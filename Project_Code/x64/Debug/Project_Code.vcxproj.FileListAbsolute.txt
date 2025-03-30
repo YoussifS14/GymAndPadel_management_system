@@ -1,0 +1,3 @@
+E:\repos\DS_project\Project_Code\x64\Debug\Project_Code.vcxproj.AssemblyReference.cache
+E:\repos\DS_project\Project_Code\x64\Debug\ProjectCode.LoginPage.resources
+E:\repos\DS_project\Project_Code\x64\Debug\Project_Code.vcxproj.GenerateResource.cache
