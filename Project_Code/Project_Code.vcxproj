@@ -113,8 +113,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LoginPage.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="staffPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -127,7 +127,17 @@
     <ClInclude Include="feature_GUI\LoadingPage.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="feature_GUI\PaymentPage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="LoginPage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="staffPage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Structure.h" />
+    <ClInclude Include="userPage.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -135,8 +145,17 @@
     <EmbeddedResource Include="feature_GUI\LoadingPage.resx">
       <DependentUpon>feature_GUI\LoadingPage.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="feature_GUI\PaymentPage.resx">
+      <DependentUpon>feature_GUI\PaymentPage.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginPage.resx">
       <DependentUpon>LoginPage.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="staffPage.resx">
+      <DependentUpon>staffPage.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userPage.resx">
+      <DependentUpon>userPage.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

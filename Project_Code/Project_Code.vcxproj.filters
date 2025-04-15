@@ -18,7 +18,7 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LoginPage.cpp">
+    <ClCompile Include="staffPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -27,6 +27,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="feature_GUI\LoadingPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Structure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="userPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="staffPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="feature_GUI\PaymentPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
