@@ -9,6 +9,10 @@ int main()
 {	 
 	 readStaffData();
 	 readUserData();
+	 readCreditCardData();
+	 readPadelCourt();
+	// writeCreditCardData();
+	 
 	 Application::EnableVisualStyles();
 	 Application::SetCompatibleTextRenderingDefault(false);
 	 ProjectCode::LoginPage form;

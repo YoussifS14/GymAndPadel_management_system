@@ -3,7 +3,7 @@
     "Name": "New Profile",
     "Projects": [
       {
-        "Path": "Project_Code\\Project_Code.vcxproj",
+        "Path": "Proj_code\\Proj_code.vcxproj",
         "Action": "Start"
       }
     ]

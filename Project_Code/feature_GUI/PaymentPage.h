@@ -16,8 +16,8 @@ namespace ProjectCode {
 	 public ref class PaymentPage : public System::Windows::Forms::Form
 	 {
 	 public:
-		  int transactionCost;
-		  PaymentPage(int Cost)
+		  float transactionCost;
+		  PaymentPage(float Cost)
 		  {
 			   transactionCost = Cost;
 			   InitializeComponent();
@@ -256,14 +256,15 @@ namespace ProjectCode {
 #pragma endregion
 
 	 private: System::Void CardID_txb_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
-		  if (!Char::IsDigit(e->KeyChar) && e->KeyChar != (char)Keys::Back) {
+		  if (!Char::IsDigit(e->KeyChar) && e->KeyChar != (char)Keys::Back&& !(Control::ModifierKeys == Keys::Control)) {
 			   e->Handled = true;
 		  }
 	 }
 	 private: System::Void CardName_txb_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
-		  if (!Char::IsLetter(e->KeyChar) && e->KeyChar != (char)Keys::Back) {
+		  if (!Char::IsLetter(e->KeyChar) && e->KeyChar != (char)Keys::Back &&e->KeyChar != ' ' && !(Control::ModifierKeys == Keys::Control)) {
 			   e->Handled = true;
 		  }
+
 	 }
 	 private: System::Void CardMM_txb_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 		  if (!Char::IsDigit(e->KeyChar) && e->KeyChar != (char)Keys::Back) {
@@ -311,7 +312,8 @@ namespace ProjectCode {
 		  card.cardID = msclr::interop::marshal_as<string>(CardID_txb->Text);
 		  card.cardCVV = msclr::interop::marshal_as<string>(CardCVV_txb->Text);
 		  card.cardName = msclr::interop::marshal_as<string>(CardName_txb->Text);
-		  card.ExpirationDate = msclr::interop::marshal_as<string>(CardMM_txb->Text) + "/" + msclr::interop::marshal_as<string>(CardYY_txb->Text);
+		  card.ExpirationDate = msclr::interop::marshal_as<string>(CardYY_txb->Text) + "/" + msclr::interop::marshal_as<string>(CardMM_txb->Text);
+		  card.balance = transactionCost;
 
 		  if (CreditCard::validateCard(card)) {// transaction is successful
 			   MessageBox::Show("Payment successful!", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);

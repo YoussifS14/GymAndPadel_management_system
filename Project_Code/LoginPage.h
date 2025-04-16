@@ -1,12 +1,14 @@
 #pragma once
 #include "Structure.h"
 #include "feature_GUI/LoadingPage.h"
+#include "feature_GUI/PaymentPage.h"
+
 #include "staffPage.h"
 #include "userPage.h"	 
 #include<windows.h>
 
 #define aliens System::Windows::Forms
-#define PicAsset "PicAssets/" 
+#define PicAsset "accPic/" 
 
 
 namespace ProjectCode {
@@ -124,7 +126,7 @@ namespace ProjectCode {
 			   // 
 			   this->Login_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-			   this->Login_btn->Location = System::Drawing::Point(448, 525);
+			   this->Login_btn->Location = System::Drawing::Point(471, 552);
 			   this->Login_btn->Name = L"Login_btn";
 			   this->Login_btn->Size = System::Drawing::Size(311, 69);
 			   this->Login_btn->TabIndex = 1;
@@ -195,7 +197,7 @@ namespace ProjectCode {
 
 		  if (Staff::login(email, password)) {
 			   MessageBox::Show("Login successful as Staff");
-			   staffPage^ staffPg = gcnew staffPage();
+			   PaymentPage^ staffPg = gcnew PaymentPage(500);
 			   this->Hide(); // Hide the login page
 			   staffPg->ShowDialog();
 			   this->Show();
@@ -205,6 +207,7 @@ namespace ProjectCode {
 			   MessageBox::Show("Login successful as User");
 			   userPage^ userPg = gcnew userPage();
 			   this->Hide(); // Hide the login page
+			 //  userPg->userPic->Image = Image::FromFile(PicAsset + "new ");
 			   userPg->ShowDialog();
 			   this->Show(); 
 			   // Proceed to the next form or functionality
