@@ -1,0 +1,62 @@
+court-1,HPadel-Cairo Stadium,naser city,200.0,1
+slot-court1-1,4/18/2025,04:00,15:00,true
+
+court-2,SmashPadel-Maadi,maadi,250.0,2
+slot-court2-1,04/19/2025,13:00,14:00,true
+slot-court2-2,04/19/2025,14:00,15:00,true
+
+court-3,PyramidPadel-Sheikh Zayed,sheikh zayed,300.0,1
+slot-court3-1,04/20/2025,11:00,12:00,true
+
+court-4,ZedPadel-6th October,6th october,280.0,3
+slot-court4-1,04/21/2025,17:00,18:00,true
+slot-court4-2,04/21/2025,18:00,19:00,true
+slot-court4-3,04/21/2025,19:00,20:00,true
+
+court-5,PadelArena-New Cairo,new cairo,220.0,0
+
+court-6,ElitePadel-Tagamoa,tagamoa,240.0,1
+slot-court6-1,04/23/2025,12:00,13:00,true
+
+court-7,PadelPro-Rehab,rehab city,260.0,2
+slot-court7-1,04/24/2025,08:00,09:00,true
+slot-court7-2,04/24/2025,09:00,10:00,true
+
+court-8,GreenPadel-Mokattam,mokattam,210.0,0
+
+court-9,PadelOne-Heliopolis,heliopolis,230.0,1
+slot-court9-1,04/26/2025,12:00,13:00,true
+
+court-10,CairoPadel-Madinaty,madinaty,270.0,0
+
+court-11,PadelZone-Cairo Stadium,naser city,200.0,2
+slot-court11-1,04/18/2025,16:00,17:00,true
+slot-court11-2,04/18/2025,17:00,18:00,true
+
+court-12,MaadiPadel-Arena,maadi,245.0,1
+slot-court12-1,04/19/2025,15:00,16:00,true
+
+court-13,ZayedPadelPark,sheikh zayed,310.0,2
+slot-court13-1,04/20/2025,12:00,13:00,true
+slot-court13-2,04/20/2025,13:00,14:00,true
+
+court-14,OctoberPadelPlus,6th october,275.0,1
+slot-court14-1,04/21/2025,18:00,19:00,true
+
+court-15,NewCairoPadel,new cairo,225.0,0
+
+court-16,TagamoaPadelStars,tagamoa,250.0,1
+slot-court16-1,04/23/2025,14:00,15:00,true
+
+court-17,RehabCityPadelZone,rehab city,265.0,2
+slot-court17-1,04/24/2025,10:00,11:00,true
+slot-court17-2,04/24/2025,11:00,12:00,true
+
+court-18,MokattamPadelArena,mokattam,215.0,1
+slot-court18-1,04/25/2025,18:00,19:00,true
+
+court-19,HeliopolisPadelPro,heliopolis,235.0,2
+slot-court19-1,04/26/2025,13:00,14:00,true
+slot-court19-2,04/26/2025,14:00,15:00,true
+
+court-20,MadinatyPadelClub,madinaty,275.0,0

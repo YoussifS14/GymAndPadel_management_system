@@ -4,8 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include <msclr/marshal_cppstd.h>
-
+#include <ctime>
 using namespace std;
 
 int loginIndex = -1; // -1 means not logged in
@@ -61,12 +60,13 @@ public:
 
 };
 struct Slot {
-	 string ID;//foramt "slot-1"
-	 string courtID; //foramt "court-1"
+	 static int slotCount;
+	 string ID;
+	 string courtName; 
 	 string date; // MM/DD/YYYY
-	 string startTime; // 24-hour format
-	 string endTime; // 24-hour format
-
+	 string startTime; 
+	 string endTime;
+	 //superkey ->courtName + ID
 };
 
 class User {
@@ -102,7 +102,7 @@ public:
 
 
 struct PadelCourt {
-	 string ID;//foramt "court-1"
+	 string courtID;//foramt "court-1"
 	 string name;
 	 string location;
 	 float price; // Price per hour
