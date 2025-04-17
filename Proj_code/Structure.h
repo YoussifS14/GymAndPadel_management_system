@@ -5,8 +5,9 @@
 #include <fstream>
 #include <sstream>
 #include <ctime>
+#include <cctype>
 using namespace std;
-
+static int baseID = 1000;
 int loginIndex = -1; // -1 means not logged in
 
 struct CreditCard {
@@ -87,6 +88,14 @@ public:
 		  Brithday = "";
 		  subscription = "";
 	 }
+	 //
+	 User(string id, string name, string email, string password, string bday, string sub);
+	 static bool isEmailCorrect(string email);
+	 static bool isEmailUnique(string email);
+	 static bool isNameValid(string name);
+	 static bool isBirthdayValid(string bday);
+	 static bool registerMember();
+	 //
 	 static bool login(string email, string password) {
 		  extern vector<User> userList;
 		  for (int i = 0; i < userList.size(); i++) {
@@ -116,4 +125,5 @@ vector<Staff> staffList;
 vector<User> userList;
 vector<CreditCard> cardList;
 vector<PadelCourt> courtList;
+
 
