@@ -5,9 +5,10 @@
 #include <fstream>
 #include <sstream>
 #include <ctime>
-#include <cctype>
+#include<map>
+#include<algorithm>
 using namespace std;
-static int baseID = 1000;
+
 int loginIndex = -1; // -1 means not logged in
 
 struct CreditCard {
@@ -31,35 +32,7 @@ struct CreditCard {
 	 }
 };
 
-class Staff {
-public:
-	 string ID;
-	 string name;
-	 string email;
-	 string password;
-	 string phone;
-	 string role; // Staff, Manager, Admin
-	 string PicPath;
-	 Staff() {
-		  ID = "";
-		  name = "";
-		  email = "";
-		  password = "";
-		  phone = "";
-		  role = "";
-	 }
-	 static bool login(string email, string password) {
-		  extern vector<Staff> staffList;
-		  for (int i = 0; i < staffList.size();i++) {
-			   if (staffList[i].email == email && staffList[i].password == password) {
-					loginIndex = i;
-					return true;
-			   }
-		  }
-		  return false;
-	 }
 
-};
 struct Slot {
 	 static int slotCount;
 	 string ID;
@@ -69,7 +42,24 @@ struct Slot {
 	 string endTime;
 	 //superkey ->courtName + ID
 };
+class Subscriptions {
+private:
+	string type;           // 1 month,3 month,6 month,1 year
+	time_t start_date;
+	time_t end_date;
+	double price;
+	bool is_VIP;
+public:
+	Subscriptions(string _type, time_t st_date, bool vip);
+	Subscriptions();
+	double getPrice();
+	//void renewSubscription(string& newType, time_t newStdate);
+	bool isActive();
+	string getType();
+	bool get_is_VIP();
+	time_t calaculateEndDate();
 
+};
 class User {
 public:
 	 string ID;
@@ -77,25 +67,23 @@ public:
 	 string email;
 	 string password;
 	 string Brithday;
-	 string subscription; // 1 month, 3 month, 6 month, 1 year
+	 Subscriptions subscription; // 1 month, 3 month, 6 month, 1 year
+	 int classEntered;
 	 vector<Slot> myReservations; // List of reserved slots
-
+	 User(string _id, string _name, Subscriptions sub, int classes) {
+		 ID = _id;
+		 name = _name;
+		 subscription = sub;
+		 classEntered = classes; 
+	 }
 	 User() {
 		  ID = "";
 		  name = "";
 		  email = "";
 		  password = "";
 		  Brithday = "";
-		  subscription = "";
+		  classEntered = 0;
 	 }
-	 //
-	 User(string id, string name, string email, string password, string bday, string sub);
-	 static bool isEmailCorrect(string email);
-	 static bool isEmailUnique(string email);
-	 static bool isNameValid(string name);
-	 static bool isBirthdayValid(string bday);
-	 static bool registerMember();
-	 //
 	 static bool login(string email, string password) {
 		  extern vector<User> userList;
 		  for (int i = 0; i < userList.size(); i++) {
@@ -119,11 +107,43 @@ struct PadelCourt {
 	
 	
 };
+class Staff {
+public:
+	string ID;
+	string name;
+	string email;
+	string password;
+	string phone;
+	string role; // Staff, Manager, Admin
+	string PicPath;
+	Staff() {
+		ID = "";
+		name = "";
+		email = "";
+		password = "";
+		phone = "";
+		role = "";
+	}
+	static bool login(string email, string password) {
+		extern vector<Staff> staffList;
+		for (int i = 0; i < staffList.size(); i++) {
+			if (staffList[i].email == email && staffList[i].password == password) {
+				loginIndex = i;
+				return true;
+			}
+		}
+		return false;
+	}
+	static bool comparingActivity(const User& user1, const User& user2) {
+		return user1.classEntered > user2.classEntered;
+	}
+	void generateMonthlyReport();
 
+};
 
 vector<Staff> staffList;
 vector<User> userList;
 vector<CreditCard> cardList;
 vector<PadelCourt> courtList;
-
+vector<Subscriptions> availableSubscriptions;
 

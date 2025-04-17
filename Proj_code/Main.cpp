@@ -1,6 +1,8 @@
 ﻿#include "Structure.h"
 #include <regex>
 #include <iomanip>
+#include<map>
+#include<algorithm>
 
 
 int indexOfUser = -1; // -1 means not logged in
@@ -275,6 +277,7 @@ void main() {
 	 // reserveCourt();
 	 string date1 = "04/12/2005";
 	 string date2 = "04/12/2004";
+	 time_t currentTime = time(nullptr);
+
 	
-	 
 }
