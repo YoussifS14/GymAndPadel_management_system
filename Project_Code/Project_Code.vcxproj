@@ -124,6 +124,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="feature_GUI\CancellingReserv.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="feature_GUI\LoadingPage.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -145,6 +148,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="feature_GUI\CancellingReserv.resx">
+      <DependentUpon>feature_GUI\CancellingReserv.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="feature_GUI\LoadingPage.resx">
       <DependentUpon>feature_GUI\LoadingPage.h</DependentUpon>
     </EmbeddedResource>

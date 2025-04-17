@@ -4,6 +4,9 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <regex>
+#include <iomanip>
+
 #include <msclr/marshal_cppstd.h>
 
 using namespace std;
@@ -61,13 +64,18 @@ public:
 
 };
 struct Slot {
-	 string ID;//foramt "slot-1"
-	 string courtID; //foramt "court-1"
+	 string ID;
+	 string courtName; 
 	 string date; // MM/DD/YYYY
-	 string startTime; // 24-hour format
-	 string endTime; // 24-hour format
+	 string startTime;  
+	// string endTime; 
+	 static int slotCounter; // Counter to generate unique slot IDs
+	 static string generateSlotID() {
+		  return "slot-" + to_string(slotCounter++);
+	 }
 
 };
+ int Slot::slotCounter = 1;
 
 class User {
 public:
@@ -77,7 +85,9 @@ public:
 	 string password;
 	 string Brithday;
 	 string subscription; // 1 month, 3 month, 6 month, 1 year
+	 float myWallet; // cash back from cancelling
 	 vector<Slot> myReservations; // List of reserved slots
+
 
 	 User() {
 		  ID = "";
@@ -97,6 +107,57 @@ public:
 		  }
 		  return false;
 	 }
+	 static string getCurrentDate_MM_DD_YYYY() {
+		  time_t now = time(0);
+		  tm* localTime = localtime(&now);
+
+		  ostringstream dateStream;
+		  dateStream << setfill('0') << setw(2) << (localTime->tm_mon + 1) << "/"
+			   << setfill('0') << setw(2) << localTime->tm_mday << "/"
+			   << (localTime->tm_year + 1900);
+
+		  return dateStream.str();
+	 }
+	 static int getHourDifferenceFromNow(const string& inputTime) {
+		  // Parse input time (HH:MM)
+		  int inputHour, inputMinute;
+		  char colon;
+		  std::istringstream iss(inputTime);
+		  iss >> inputHour >> colon >> inputMinute;
+
+		  if (iss.fail() || colon != ':' || inputHour < 0 || inputHour > 23 || inputMinute < 0 || inputMinute > 59) {
+			   throw std::invalid_argument("Invalid time format");
+		  }
+
+		  // Get current time
+		  time_t now = time(0);
+		  tm* localTime = localtime(&now);
+		  int currentHour = localTime->tm_hour;
+		  int currentMinute = localTime->tm_min;
+
+		  // Convert both times to total minutes
+		  int inputTotalMinutes = inputHour * 60 + inputMinute;
+		  int currentTotalMinutes = currentHour * 60 + currentMinute;
+
+		  // Calculate the absolute difference in minutes
+		  int diffMinutes = std::abs(currentTotalMinutes - inputTotalMinutes);
+
+		  // Convert to full hours
+		  int hourDiff = diffMinutes / 60;
+
+		  return hourDiff;
+	 }
+
+	 int searchSlot(const string& ID) {
+		  for (int i = 0; i < myReservations.size(); i++) {
+			   if (myReservations[i].ID == ID) {
+					return i;
+			   }
+		  }
+		  return -1; // Not found
+	 }
+
+
 
 };
 
@@ -108,6 +169,17 @@ struct PadelCourt {
 	 float price; // Price per hour
 	 vector<Slot> slots; // List of reserved slots
 	
+	 static int searchCourt(const string& courtName) {
+		  extern vector<PadelCourt> courtList;
+
+		  for (int i = 0; i < courtList.size(); i++) {
+			   if (courtList[i].name == courtName) {
+					return i;
+			   }
+		  }
+		  return -1; // Not found
+	 }
+
 	
 };
 
@@ -196,7 +268,8 @@ void readPadelCourt() {
 			   getline(ss, s.ID, ',');
 			   getline(ss, s.date, ',');
 			   getline(ss, s.startTime, ',');
-			   getline(ss, s.endTime);
+			//   getline(ss, s.endTime);
+			   Slot::slotCounter++;
 			  
 			   court.slots.push_back(s);
 		  }

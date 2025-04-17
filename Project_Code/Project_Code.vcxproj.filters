@@ -44,6 +44,9 @@
     <ClInclude Include="feature_GUI\padelPN.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="feature_GUI\CancellingReserv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\staffData.csv">

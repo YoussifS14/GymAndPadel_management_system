@@ -1,5 +1,5 @@
 court-1,HPadel-Cairo Stadium,naser city,200.0,1
-slot-court1-1,4/18/2025,04:00,15:00,true
+slot-court1-1,04/18/2025,04:00,15:00,true
 
 court-2,SmashPadel-Maadi,maadi,250.0,2
 slot-court2-1,04/19/2025,13:00,14:00,true

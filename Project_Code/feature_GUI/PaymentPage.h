@@ -16,6 +16,7 @@ namespace ProjectCode {
 	 public ref class PaymentPage : public System::Windows::Forms::Form
 	 {
 	 public:
+		  property bool OperationResult;
 		  float transactionCost;
 		  PaymentPage(float Cost)
 		  {
@@ -316,6 +317,7 @@ namespace ProjectCode {
 		  card.balance = transactionCost;
 
 		  if (CreditCard::validateCard(card)) {// transaction is successful
+			   OperationResult = true;
 			   MessageBox::Show("Payment successful!", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   this->Close();
 		  }
@@ -325,6 +327,8 @@ namespace ProjectCode {
 
 	 }
 	 private: System::Void cancelling_btn_Click(System::Object^ sender, System::EventArgs^ e) {
+		  OperationResult = false;
+
 		  this->Close();
 	 }
 };
