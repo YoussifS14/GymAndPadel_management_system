@@ -81,6 +81,31 @@ void payment(float cost) {
 	 }
 
 }
+
+bool paymentChecking(float cost) {
+	CreditCard card;
+	cout << "Enter card ID: ";
+	cin >> card.cardID;
+	cout << "Enter card CVV: ";
+	cin >> card.cardCVV;
+	cout << "Enter card name: ";
+	getline(cin, card.cardName);
+	cout << "Enter expiration date (YY/MM): ";
+	cin >> card.ExpirationDate;
+	card.balance = cost;
+
+
+	if (CreditCard::validateCard(card)) {
+		cout << "Payment successful!" << endl;
+		return true;
+	}
+	else {
+		cout << "Payment failed!" << endl;
+		return false;
+	}
+	
+}
+
 void readCreditCardData() {
 	 ifstream file("Data/DBofCredit.csv");
 	 string line;
@@ -266,7 +291,99 @@ void viewWaitingListEachclass() {
 		  cout << endl;
 	 }
 }
+template <typename T>
+void renewSubscription(T& entity) {  // user can renew for himself and can also ask the reception to renew it for him
+	if (loginIndex == -1) {
+		cout << "\033[1;31mSorry! you must be logged in as a manager or reception to renew members subscriptions\n\033[0m ";
+		return;
+	}
 
+	string userID;
+	cout << "\033[1;35mEnter the member ID to renew the subscription.\n\033[0m";
+	cout << "==============================================================\n";
+	cin >> userID;
+
+	User* user = nullptr;
+	if constexpr (std::is_same<T, Staff>::value) {
+		Staff& staff = static_cast<Staff&>(entity);
+
+		// Only allow managers and receptionists to renew subscriptions for others
+		if (staff.role != "manager" && staff.role != "Manager" && staff.role != "reception" && staff.role != "Reception") {
+			cout << "\033[1;31mSorry! You do not have permission to renew subscriptions. Only reception and manager roles are allowed.\n\033[0m";
+			return;
+		}
+		user = staff.searchUserByID(userID); // Search for user by ID if the staff is logged in
+	}
+	else if constexpr (std::is_same<T, User>::value) {
+		// If the entity is User, assume the logged-in user is the one renewing their subscription
+		user = &entity;
+	}
+
+	// Ensure the user exists
+	if (user == nullptr) {
+		cout << "There is no current subscription for user with ID: " << userID << endl;
+		return;
+	}
+
+	bool isStaff = false;
+	if constexpr (std::is_same<T, Staff>::value) {
+		Staff& staff = static_cast<Staff&>(entity);
+		isStaff = (staff.role == "manager" || staff.role == "Manager" || staff.role == "reception" || staff.role == "Reception");
+	}
+
+	// Ensure that the logged-in user is either renewing their own subscription or is allowed to do so as staff
+	if (!isStaff && userList[loginIndex].ID != userID) {
+		cout << "You can only renew your own subscription.\n";
+		return;
+	}
+
+	cout << "Current Subscription: " << user->subscription.getType() << (user->subscription.get_is_VIP() ? " (VIP)" : "") << endl;
+
+	int subChoice;
+	string subType;
+	while (true) {
+		cout << "\033[1;36mChoose a new Subscription:\n\033[0m";
+		cout << "1. 1 Month\n";
+		cout << "2. 3 Months\n";
+		cout << "3. 6 Months\n";
+		cout << "4. 1 Year\n";
+		cout << "\033[1;35mEnter choice (1-4):\033[0m ";
+		cin >> subChoice;
+
+		switch (subChoice) {
+		case 1: subType = "1 month"; break;
+		case 2: subType = "3 month"; break;
+		case 3: subType = "6 month"; break;
+		case 4: subType = "1 year"; break;
+		default:
+			cout << "Invalid choice. Try again.\n";
+			continue;
+		}
+		break;
+	}
+
+	char vipChoice;
+	bool isVip = false;
+	cout << "\033[1;35mDo you want VIP benefits for extra features? (y/n): \033[0m";
+	cin >> vipChoice;
+	if (vipChoice == 'y' || vipChoice == 'Y') {
+		isVip = true;
+	}
+
+	Subscriptions newSub(subType, time(0), isVip);
+	user->subscription = newSub;
+	float cost = static_cast<float>(user->subscription.getPrice());
+	if (paymentChecking(cost)) {
+		cout << "\nSubscription successfully renewed for " << user->name << endl;
+		cout << "\033[1;36mNew Subscription:\033[0m " << subType << (isVip ? " (VIP)" : "") << endl;
+		time_t endDay = user->subscription.calaculateEndDate();
+		//cout << "Valid until: " << ctime(&endDay) << endl;
+		char buffer[26];
+		ctime_s(buffer, sizeof(buffer), &endDay);
+		cout << "\033[1;36mValid until:\033[0m " << buffer << endl;
+
+	}
+}
 
 
 void main() {
@@ -278,6 +395,6 @@ void main() {
 	 string date1 = "04/12/2005";
 	 string date2 = "04/12/2004";
 	 time_t currentTime = time(nullptr);
-
+	 
 	
 }

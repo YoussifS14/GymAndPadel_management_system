@@ -60,6 +60,7 @@ public:
 	bool get_is_VIP();
 	vector<string> getAvailableClasses(string subscriptionType, bool isVIP);
 	time_t calaculateEndDate();
+	void set_is_VIP(bool vip);  
 
 };
 class User {
@@ -169,7 +170,6 @@ public:
 	User* searchUserByID(string userID);
 	//**//
 	void generateMonthlyReport();
-
 };
 
 vector<Staff> staffList;

@@ -1,5 +1,5 @@
 #include "Structure.h"
-
+#include"Main.cpp"
 
 //*//
 bool User::isEmailCorrect(string email) {
@@ -248,7 +248,8 @@ bool Subscriptions::get_is_VIP() {
 }
 
 void Staff::generateMonthlyReport() {        //Bounce (only manager can generate and access reports)
-    if (role != "manager" || role != "Manager") {
+    if (!(role == "manager" || role == "Manager"))
+    {
         cout << "\033[1;31mSorry!! only managers can access reports\033[0m\n ";
         return;
     }
@@ -299,3 +300,7 @@ void Staff::generateMonthlyReport() {        //Bounce (only manager can generate
     cout << "\033[1;35m>>Total Subscription Revenue this Month:\033[0m\n " << totalRevenue << " EGP\n";
     cout << "===========================================================\n";
 }
+void Subscriptions::set_is_VIP(bool vip) {
+    is_VIP = vip;
+} 
+
