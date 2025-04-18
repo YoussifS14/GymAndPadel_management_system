@@ -68,6 +68,7 @@ void payment(float cost) {
 	 cin >> card.cardID;
 	 cout << "Enter card CVV: ";
 	 cin >> card.cardCVV;
+	 cin.ignore(); 
 	 cout << "Enter card name: ";
 	 getline(cin, card.cardName);
 	 cout << "Enter expiration date (YY/MM): ";
@@ -84,12 +85,13 @@ void payment(float cost) {
 
 }
 
-bool paymentChecking(float cost) {
+bool paymentChecking(double cost) {
 	CreditCard card;
 	cout << "Enter card ID: ";
 	cin >> card.cardID;
 	cout << "Enter card CVV: ";
 	cin >> card.cardCVV;
+	cin.ignore();  
 	cout << "Enter card name: ";
 	getline(cin, card.cardName);
 	cout << "Enter expiration date (YY/MM): ";
@@ -403,8 +405,6 @@ bool User::registerMember() {
 		  break;
 	 }
 
-
-
 	 cout << "Do you want VIP benefits for extra features? (y/n): ";
 	 cin >> vipChoice;
 	 if (vipChoice == 'y' || vipChoice == 'Y') {
@@ -564,67 +564,7 @@ void Subscriptions::set_is_VIP(bool vip) {
 	 is_VIP = vip;
 }
 
-
-//void viewWaitingListEachclass() {
-//	 cout << "___________________\n";
-//	 cout << "Waiting list for each class:\n";
-//	 for (GymClasses& gymClass : gymClassesList) {
-//		  cout << "Class: " << gymClass.className << endl;
-//		  cout << "Waiting List:" << endl;
-//		  for (User& user : gymClass.waitingList) {
-//			   cout << user.name << endl;
-//		  }
-//		  cout << endl;
-//	 }
-//}
-template <typename T>
-void renewSubscription(T& entity) {  // user can renew for himself and can also ask the reception to renew it for him
-	if (loginIndex == -1) {
-		cout << "\033[1;31mSorry! you must be logged in as a manager or reception to renew members subscriptions\n\033[0m ";
-		return;
-	}
-
-	string userID;
-	cout << "\033[1;35mEnter the member ID to renew the subscription.\n\033[0m";
-	cout << "==============================================================\n";
-	cin >> userID;
-
-	User* user = nullptr;
-	if constexpr (std::is_same<T, Staff>::value) {
-		Staff& staff = static_cast<Staff&>(entity);
-
-		// Only allow managers and receptionists to renew subscriptions for others
-		if (staff.role != "manager" && staff.role != "Manager" && staff.role != "reception" && staff.role != "Reception") {
-			cout << "\033[1;31mSorry! You do not have permission to renew subscriptions. Only reception and manager roles are allowed.\n\033[0m";
-			return;
-		}
-		user = staff.searchUserByID(userID); // Search for user by ID if the staff is logged in
-	}
-	else if constexpr (std::is_same<T, User>::value) {
-		// If the entity is User, assume the logged-in user is the one renewing their subscription
-		user = &entity;
-	}
-
-	// Ensure the user exists
-	if (user == nullptr) {
-		cout << "There is no current subscription for user with ID: " << userID << endl;
-		return;
-	}
-
-	bool isStaff = false;
-	if constexpr (std::is_same<T, Staff>::value) {
-		Staff& staff = static_cast<Staff&>(entity);
-		isStaff = (staff.role == "manager" || staff.role == "Manager" || staff.role == "reception" || staff.role == "Reception");
-	}
-
-	// Ensure that the logged-in user is either renewing their own subscription or is allowed to do so as staff
-	if (!isStaff && userList[loginIndex].ID != userID) {
-		cout << "You can only renew your own subscription.\n";
-		return;
-	}
-
-	cout << "Current Subscription: " << user->subscription.getType() << (user->subscription.get_is_VIP() ? " (VIP)" : "") << endl;
-
+void newSubChoice(User user) { 
 	int subChoice;
 	string subType;
 	while (true) {
@@ -657,12 +597,12 @@ void renewSubscription(T& entity) {  // user can renew for himself and can also 
 	}
 
 	Subscriptions newSub(subType, time(0), isVip);
-	user->subscription = newSub;
-	float cost = static_cast<float>(user->subscription.getPrice());
+	user.subscription = newSub;
+	double cost = user.subscription.getPrice();
 	if (paymentChecking(cost)) {
-		cout << "\nSubscription successfully renewed for " << user->name << endl;
+		cout << "\nSubscription successfully renewed for " << user.name << endl;
 		cout << "\033[1;36mNew Subscription:\033[0m " << subType << (isVip ? " (VIP)" : "") << endl;
-		time_t endDay = user->subscription.calaculateEndDate();
+		time_t endDay = user.subscription.calaculateEndDate();
 		//cout << "Valid until: " << ctime(&endDay) << endl;
 		char buffer[26];
 		ctime_s(buffer, sizeof(buffer), &endDay);
@@ -670,6 +610,56 @@ void renewSubscription(T& entity) {  // user can renew for himself and can also 
 
 	}
 }
+template<typename T>
+void RenewSubscription(T userORstaff) {
+	if (loginIndex == -1) {
+		cout << "\033[1;31mSorry! you must be logged in as a manager or reception to renew members subscriptions\n\033[0m ";
+		return;
+	}
+	string userID;
+	cout << "Enter user id\n";
+	cin >> userID;
+	if constexpr (is_same<T, Staff>::value) {
+		if (userORstaff.role == "manager" || userORstaff.role == "Manager" || userORstaff.role == "Reciption" || userORstaff.role == "reciption") {
+			for (int i = 0; i < userList.size(); ++i) {
+				if (userList[i].ID == userID) {
+					newSubChoice(userList[i]); 
+					return;
+				}
+			}
+		}
+		else {
+			cout << "\033[1;31mSorry! You do not have permission to renew subscriptions. Only reception and manager roles are allowed.\n\033[0m";
+			return;
+		}
+	}
+	else if constexpr (is_same<T, User>::value) {
+		if (userList[loginIndex].ID == userID) {
+			newSubChoice(userList[loginIndex]); 
+			return;
+		}
+		else {
+			cout << "You can only renew your own subscription.\n";
+			return;
+		}
+	}
+}
+
+
+//void viewWaitingListEachclass() {
+//	 cout << "___________________\n";
+//	 cout << "Waiting list for each class:\n";
+//	 for (GymClasses& gymClass : gymClassesList) {
+//		  cout << "Class: " << gymClass.className << endl;
+//		  cout << "Waiting List:" << endl;
+//		  for (User& user : gymClass.waitingList) {
+//			   cout << user.name << endl;
+//		  }
+//		  cout << endl;
+//	 }
+//}
+
+
 
 
 void main() {
