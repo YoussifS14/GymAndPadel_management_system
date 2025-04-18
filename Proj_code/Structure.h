@@ -63,6 +63,7 @@ public:
 	bool get_is_VIP();
 	vector<string> getAvailableClasses(string subscriptionType, bool isVIP);
 	time_t calaculateEndDate();
+
    void calculateEndDate() {
         struct tm* t = localtime(&start_date);
 
