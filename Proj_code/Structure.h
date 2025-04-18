@@ -53,6 +53,7 @@ private:
 	bool is_VIP;
 	bool isActivated;
 public:
+
 	Subscriptions(string _type, time_t st_date, bool vip);
 	Subscriptions();
 	double getPrice();
@@ -62,6 +63,21 @@ public:
 	bool get_is_VIP();
 	vector<string> getAvailableClasses(string subscriptionType, bool isVIP);
 	time_t calaculateEndDate();
+   void calculateEndDate() {
+        struct tm* t = localtime(&start_date);
+
+        if (type == "1 month")
+            t->tm_mon += 1;
+        else if (type == "3 months")
+            t->tm_mon += 3;
+        else if (type== "6 months")
+            t->tm_mon += 6;
+        else if (type == "1 year")
+            t->tm_year += 1;
+
+        end_date = mktime(t);
+    }
+
 	void set_is_VIP(bool vip);  
 	bool IsExpired() {
 		 return time(0) > end_date;
