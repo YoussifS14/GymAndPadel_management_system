@@ -67,15 +67,48 @@ public:
 		 return time(0) > end_date;
 	}
 	void cancelSubscriptions() {
-		 start_date = time(0);// ?? ??? ?????? ????? var ???? ???? ?? cancel date ??????  ? null ???
+		 end_date = time(0);
 		 isActivated = false;
 		 is_VIP = false;
 	}
-	double createOffer(bool vip) {
-		 if (vip) return 0.25;
-		 else return 0.10;
-	}
+    bool createOffer() {
+        return ( is_VIP== true);
+    }
 
+    double applyOffer(double basePrice) {
+        if (createOffer()) {
+            price = basePrice * 0.75; 
+        }
+        else {
+            price = basePrice * 0.90; 
+        }
+        return price;
+    }
+//// problem
+  static void sendNotifications(vector<Subscription>& subs) {
+      time_t now = time(0);
+      for (auto& sub : subs) {
+          if (!sub.isActivated) continue;
+
+          double sec_left = difftime(sub.end_date, now);
+          int days_left = sec_left / (60 * 60 * 24);
+
+          if (days_left <= 7 && days_left >= 0) {
+              sub.sendNotification("Your subscription will end in " + to_string(days_left) + " days.");
+          }
+      }
+  }
+
+    void displaysubscriptions() {
+        cout << "Member ID: " << member_id << endl;
+        cout << "Duration: " << duration << endl;
+        cout << "Status: " << (isActivated ? "Active" : "Cancelled") << endl;
+        cout << "Price after discount: " << price << endl;
+        cout << "End Date: " << ctime(&end_date);
+    }
+~Subscription() {
+    cout << "Subscription for member ID: " << member_id << " has been destroyed." << endl;
+}
 };
 class User {
 public:
