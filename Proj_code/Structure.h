@@ -5,10 +5,11 @@
 #include <fstream>
 #include <sstream>
 #include <ctime>
+#include <cctype>
 #include<map>
 #include<algorithm>
 using namespace std;
-
+static int baseID = 1000;//**
 int loginIndex = -1; // -1 means not logged in
 
 struct CreditCard {
@@ -57,6 +58,7 @@ public:
 	bool isActive();
 	string getType();
 	bool get_is_VIP();
+	vector<string> getAvailableClasses(string subscriptionType, bool isVIP);
 	time_t calaculateEndDate();
 
 };
@@ -76,6 +78,21 @@ public:
 		 subscription = sub;
 		 classEntered = classes; 
 	 }
+	 //*//
+	 User(string Id, string Name, string Email, string pass, string bday, Subscriptions Sub) {
+		 ID = Id;
+		 name = Name;
+		 email = Email;
+		 password = pass;
+		 Brithday = bday;
+		 subscription = Sub;
+	 }
+	 static bool isEmailCorrect(string email);
+	 static bool isEmailUnique(string email);
+	 static bool isNameValid(string name);
+	 static bool isBirthdayValid(string bday);
+	 static bool registerMember();
+	 //*//
 	 User() {
 		  ID = "";
 		  name = "";
@@ -124,6 +141,17 @@ public:
 		phone = "";
 		role = "";
 	}
+	//*//
+	Staff(string id, string Name, string Email, string Password, string Phone, string Role, string picPath) {
+		ID = id;
+		name = Name;
+		email = Email;
+		password = Password;
+		phone = Phone;
+		role = Role;
+		PicPath = picPath;
+	}
+	//*//
 	static bool login(string email, string password) {
 		extern vector<Staff> staffList;
 		for (int i = 0; i < staffList.size(); i++) {
@@ -137,6 +165,9 @@ public:
 	static bool comparingActivity(const User& user1, const User& user2) {
 		return user1.classEntered > user2.classEntered;
 	}
+	//*//
+	User* searchUserByID(string userID);
+	//**//
 	void generateMonthlyReport();
 
 };
@@ -146,4 +177,4 @@ vector<User> userList;
 vector<CreditCard> cardList;
 vector<PadelCourt> courtList;
 vector<Subscriptions> availableSubscriptions;
-
+vector<string> availableClasses;
