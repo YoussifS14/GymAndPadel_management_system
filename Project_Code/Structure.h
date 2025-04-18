@@ -54,7 +54,7 @@ public:
 	 }
 	 static bool login(string email, string password) {
 		  extern vector<Staff> staffList;
-		  for (int i = 0; i < staffList.size();i++) {
+		  for (int i = 0; i < staffList.size(); i++) {
 			   if (staffList[i].email == email && staffList[i].password == password) {
 					loginIndex = i;
 					return true;
@@ -66,10 +66,10 @@ public:
 };
 struct Slot {
 	 string ID;
-	 string courtName; 
+	 string courtName;
 	 string date; // MM/DD/YYYY
-	 string startTime;  
-	// string endTime; 
+	 string startTime;
+	 // string endTime; 
 	 static int slotCounter; // Counter to generate unique slot IDs
 	 static string generateSlotID() {
 		  return "slot-" + to_string(slotCounter++);
@@ -108,6 +108,7 @@ public:
 		  }
 		  return false;
 	 }
+
 	 static string getCurrentDate_MM_DD_YYYY() {
 		  time_t now = time(0);
 		  tm* localTime = localtime(&now);
@@ -148,6 +149,20 @@ public:
 
 		  return hourDiff;
 	 }
+	 static time_t getTime_t(const string date) {
+		  tm tm = { 0 };
+		  sscanf(date.c_str(), "%d/%d/%d", &tm.tm_mon, &tm.tm_mday, &tm.tm_year);
+		  tm.tm_year -= 1900; // Year since 1900
+		  tm.tm_mon -= 1; // Months are 0-11
+		  return mktime(&tm);
+	 }
+	 static string getFormat(time_t t) {
+		  tm* tm = localtime(&t);
+		  char buffer[11];
+		  strftime(buffer, sizeof(buffer), "%m/%d/%Y", tm);
+		  return string(buffer);
+	 }
+
 
 	 int searchSlot(const string& ID) {
 		  for (int i = 0; i < myReservations.size(); i++) {
@@ -159,25 +174,34 @@ public:
 	 }
 
 
-
 };
 
 class GymClasses {
- public:
-	  string classID;
-	  string className;
-	  string instructor;
-	  string date; // MM/DD/YYYY
-	  /* string startTime;
-	   string endTime;*/
-	  int maxMembers; // Maximum number of members allowed in the class
-	  vector<User> members; // List of users enrolled in the class	
-	  deque<User> waitingList;
+public:
+	 string classID;
+	 string className;
+	 string instructor;
+	 string startDate;
+	 string endDate;
+	 float price;
+	 int maxMembers; // Maximum number of members allowed in the class
+	 vector<User> members; // List of users enrolled in the class	
+	 deque<User> waitingList;
 
-	  bool isFull() {
-		   return members.size() == maxMembers;
-	  }
- };
+	 bool isFull() {
+		  return members.size() == maxMembers;
+	 }
+	 static int FindIndex(const string& classID) {
+		  extern vector<GymClasses> gymClassList;
+		  for (int i = 0; i < gymClassList.size(); i++) {
+			   if (gymClassList[i].classID == classID) {
+					return i;
+			   }
+		  }
+		  return -1; // Not found
+	 }
+
+};
 
 struct PadelCourt {
 	 string ID;//foramt "court-1"
@@ -185,7 +209,7 @@ struct PadelCourt {
 	 string location;
 	 float price; // Price per hour
 	 vector<Slot> slots; // List of reserved slots
-	
+
 	 static int searchCourt(const string& courtName) {
 		  extern vector<PadelCourt> courtList;
 
@@ -197,7 +221,7 @@ struct PadelCourt {
 		  return -1; // Not found
 	 }
 
-	
+
 };
 
 
@@ -205,7 +229,7 @@ vector<Staff> staffList;
 vector<User> userList;
 vector<CreditCard> cardList;
 vector<PadelCourt> courtList;
-vector<GymClasses> gymClassesList;
+vector<GymClasses> gymClassList;
 
 void readStaffData() {
 	 ifstream file("Data/staffData.csv");
@@ -286,13 +310,35 @@ void readPadelCourt() {
 			   getline(ss, s.ID, ',');
 			   getline(ss, s.date, ',');
 			   getline(ss, s.startTime, ',');
-			//   getline(ss, s.endTime);
+			   //   getline(ss, s.endTime);
 			   Slot::slotCounter++;
-			  
+
 			   court.slots.push_back(s);
 		  }
 		  courtList.push_back(court);
 	 }
+}
+
+void readGymClasses() {
+	 ifstream file("Data/gymClasses.csv");
+	 string line;
+	 getline(file, line); // Skip the header line is Class ID, Class Name, Instructor, Start Date, End Date, Max Members
+	 while (getline(file, line)) {
+		  GymClasses gymClass;
+		  stringstream ss(line);
+		  getline(ss, gymClass.classID, ',');
+		  getline(ss, gymClass.className, ',');
+		  getline(ss, gymClass.instructor, ',');
+		  getline(ss, gymClass.startDate, ',');
+		  getline(ss, gymClass.endDate, ',');
+		  ss >> gymClass.maxMembers;
+		  /*
+		  load waiting list and members
+
+		  */
+		  gymClassList.push_back(gymClass);
+	 }
+	 file.close();
 }
 
 void writeCreditCardData() {

@@ -89,6 +89,7 @@ namespace ProjectCode {
 	 private: System::Windows::Forms::TextBox^ userName_txb;
 	 private: System::Windows::Forms::TextBox^ password_txb;
 	 private: System::Windows::Forms::Label^ password_lb;
+	 private: System::Windows::Forms::Button^ SwitchHide;
 	 protected:
 
 	 private:
@@ -104,11 +105,13 @@ namespace ProjectCode {
 		  /// </summary>
 		  void InitializeComponent(void)
 		  {
+			   System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LoginPage::typeid));
 			   this->userName_lb = (gcnew System::Windows::Forms::Label());
 			   this->Login_btn = (gcnew System::Windows::Forms::Button());
 			   this->userName_txb = (gcnew System::Windows::Forms::TextBox());
 			   this->password_txb = (gcnew System::Windows::Forms::TextBox());
 			   this->password_lb = (gcnew System::Windows::Forms::Label());
+			   this->SwitchHide = (gcnew System::Windows::Forms::Button());
 			   this->SuspendLayout();
 			   // 
 			   // userName_lb
@@ -151,6 +154,7 @@ namespace ProjectCode {
 			   this->password_txb->Name = L"password_txb";
 			   this->password_txb->Size = System::Drawing::Size(552, 38);
 			   this->password_txb->TabIndex = 4;
+			   this->password_txb->UseSystemPasswordChar = true;
 			   // 
 			   // password_lb
 			   // 
@@ -163,11 +167,23 @@ namespace ProjectCode {
 			   this->password_lb->TabIndex = 3;
 			   this->password_lb->Text = L"Password";
 			   // 
+			   // SwitchHide
+			   // 
+			   this->SwitchHide->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SwitchHide.BackgroundImage")));
+			   this->SwitchHide->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			   this->SwitchHide->Location = System::Drawing::Point(1048, 355);
+			   this->SwitchHide->Name = L"SwitchHide";
+			   this->SwitchHide->Size = System::Drawing::Size(36, 32);
+			   this->SwitchHide->TabIndex = 5;
+			   this->SwitchHide->UseVisualStyleBackColor = true;
+			   this->SwitchHide->Click += gcnew System::EventHandler(this, &LoginPage::SwitchHide_Click);
+			   // 
 			   // LoginPage
 			   // 
 			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			   this->ClientSize = System::Drawing::Size(1273, 739);
+			   this->Controls->Add(this->SwitchHide);
 			   this->Controls->Add(this->password_txb);
 			   this->Controls->Add(this->password_lb);
 			   this->Controls->Add(this->userName_txb);
@@ -197,9 +213,13 @@ namespace ProjectCode {
 
 		  if (Staff::login(email, password)) {
 			   MessageBox::Show("Login successful as Staff");
-			   PaymentPage^ staffPg = gcnew PaymentPage(500);
+			
 			   this->Hide(); // Hide the login page
-			   staffPg->ShowDialog();
+			   userName_txb->Text = "";
+			   password_txb->Text = "";
+			 
+
+
 			   this->Show();
 			   // Proceed to the next form or functionality
 		  }
@@ -207,7 +227,8 @@ namespace ProjectCode {
 			   MessageBox::Show("Login successful as User");
 			   userPage^ userPg = gcnew userPage();
 			   this->Hide(); // Hide the login page
-			 //  userPg->userPic->Image = Image::FromFile(PicAsset + "new ");
+			   userName_txb->Text = "";
+			   password_txb->Text = "";
 			   userPg->ShowDialog();
 			   this->Show(); 
 			   // Proceed to the next form or functionality
@@ -216,5 +237,8 @@ namespace ProjectCode {
 			   MessageBox::Show("Invalid email or password");
 		  }
 	 }
-	 };
+	 private: System::Void SwitchHide_Click(System::Object^ sender, System::EventArgs^ e) {
+		  password_txb->UseSystemPasswordChar = !password_txb->UseSystemPasswordChar;
+	 }
+};
 }

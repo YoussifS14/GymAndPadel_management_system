@@ -248,6 +248,7 @@ namespace ProjectCode {
 			   this->Controls->Add(this->confirm_btn);
 			   this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			   this->Name = L"PaymentPage";
+			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			   this->Text = L"PaymentPage";
 			   this->Load += gcnew System::EventHandler(this, &PaymentPage::PaymentPage_Load);
 			   this->ResumeLayout(false);

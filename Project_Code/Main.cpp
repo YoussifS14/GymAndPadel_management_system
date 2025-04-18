@@ -11,6 +11,7 @@ int main()
 	 readUserData();
 	 readCreditCardData();
 	 readPadelCourt();
+	 readGymClasses();
 	// writeCreditCardData();
 	 
 	 Application::EnableVisualStyles();

@@ -2,6 +2,7 @@
 #include "Structure.h"
 #include "feature_GUI/padelPN.h"
 #include "feature_GUI/CancellingReserv.h"
+#include "feature_GUI/GymPN.h"
 
 namespace ProjectCode {
 
@@ -60,6 +61,9 @@ namespace ProjectCode {
 	 private: System::Windows::Forms::Panel^ CancelPadel_pg;
 	 private: System::Windows::Forms::Label^ label3;
 	 private: System::Windows::Forms::FlowLayoutPanel^ ListOfMyRes;
+	 private: System::Windows::Forms::Button^ GymReserv;
+	 private: System::Windows::Forms::Panel^ GymClass_pg;
+	 private: System::Windows::Forms::FlowLayoutPanel^ ListOfClasses;
 
 
 	 private: System::ComponentModel::IContainer^ components;
@@ -91,12 +95,15 @@ namespace ProjectCode {
 		  {
 			   System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(userPage::typeid));
 			   this->MainMenu_pn = (gcnew System::Windows::Forms::Panel());
+			   this->GymReserv = (gcnew System::Windows::Forms::Button());
 			   this->Padel = (gcnew System::Windows::Forms::Button());
 			   this->profile_pn = (gcnew System::Windows::Forms::Panel());
 			   this->ListReserPadel = (gcnew System::Windows::Forms::Button());
 			   this->AccName = (gcnew System::Windows::Forms::Label());
 			   this->AccPic = (gcnew System::Windows::Forms::PictureBox());
 			   this->MainPage = (gcnew System::Windows::Forms::Panel());
+			   this->GymClass_pg = (gcnew System::Windows::Forms::Panel());
+			   this->ListOfClasses = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			   this->CancelPadel_pg = (gcnew System::Windows::Forms::Panel());
 			   this->label3 = (gcnew System::Windows::Forms::Label());
 			   this->ListOfMyRes = (gcnew System::Windows::Forms::FlowLayoutPanel());
@@ -113,12 +120,14 @@ namespace ProjectCode {
 			   this->profile_pn->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->BeginInit();
 			   this->MainPage->SuspendLayout();
+			   this->GymClass_pg->SuspendLayout();
 			   this->CancelPadel_pg->SuspendLayout();
 			   this->PadelPage->SuspendLayout();
 			   this->SuspendLayout();
 			   // 
 			   // MainMenu_pn
 			   // 
+			   this->MainMenu_pn->Controls->Add(this->GymReserv);
 			   this->MainMenu_pn->Controls->Add(this->Padel);
 			   this->MainMenu_pn->Controls->Add(this->profile_pn);
 			   this->MainMenu_pn->Dock = System::Windows::Forms::DockStyle::Left;
@@ -126,6 +135,19 @@ namespace ProjectCode {
 			   this->MainMenu_pn->Name = L"MainMenu_pn";
 			   this->MainMenu_pn->Size = System::Drawing::Size(313, 739);
 			   this->MainMenu_pn->TabIndex = 0;
+			   // 
+			   // GymReserv
+			   // 
+			   this->GymReserv->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->GymReserv->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->GymReserv->Location = System::Drawing::Point(0, 278);
+			   this->GymReserv->Name = L"GymReserv";
+			   this->GymReserv->Size = System::Drawing::Size(313, 66);
+			   this->GymReserv->TabIndex = 2;
+			   this->GymReserv->Text = L"Gym Class";
+			   this->GymReserv->UseVisualStyleBackColor = true;
+			   this->GymReserv->Click += gcnew System::EventHandler(this, &userPage::GymReserv_Click);
 			   // 
 			   // Padel
 			   // 
@@ -185,6 +207,7 @@ namespace ProjectCode {
 			   // 
 			   // MainPage
 			   // 
+			   this->MainPage->Controls->Add(this->GymClass_pg);
 			   this->MainPage->Controls->Add(this->CancelPadel_pg);
 			   this->MainPage->Controls->Add(this->PadelPage);
 			   this->MainPage->Dock = System::Windows::Forms::DockStyle::Left;
@@ -192,6 +215,24 @@ namespace ProjectCode {
 			   this->MainPage->Name = L"MainPage";
 			   this->MainPage->Size = System::Drawing::Size(958, 739);
 			   this->MainPage->TabIndex = 1;
+			   // 
+			   // GymClass_pg
+			   // 
+			   this->GymClass_pg->Controls->Add(this->ListOfClasses);
+			   this->GymClass_pg->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->GymClass_pg->Location = System::Drawing::Point(0, 0);
+			   this->GymClass_pg->Name = L"GymClass_pg";
+			   this->GymClass_pg->Size = System::Drawing::Size(958, 739);
+			   this->GymClass_pg->TabIndex = 1;
+			   // 
+			   // ListOfClasses
+			   // 
+			   this->ListOfClasses->AutoScroll = true;
+			   this->ListOfClasses->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->ListOfClasses->Location = System::Drawing::Point(0, 0);
+			   this->ListOfClasses->Name = L"ListOfClasses";
+			   this->ListOfClasses->Size = System::Drawing::Size(958, 739);
+			   this->ListOfClasses->TabIndex = 1;
 			   // 
 			   // CancelPadel_pg
 			   // 
@@ -340,12 +381,14 @@ namespace ProjectCode {
 			   this->Controls->Add(this->MainPage);
 			   this->Controls->Add(this->MainMenu_pn);
 			   this->Name = L"userPage";
+			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			   this->Text = L"userPage";
 			   this->MainMenu_pn->ResumeLayout(false);
 			   this->profile_pn->ResumeLayout(false);
 			   this->profile_pn->PerformLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->EndInit();
 			   this->MainPage->ResumeLayout(false);
+			   this->GymClass_pg->ResumeLayout(false);
 			   this->CancelPadel_pg->ResumeLayout(false);
 			   this->CancelPadel_pg->PerformLayout();
 			   this->PadelPage->ResumeLayout(false);
@@ -418,9 +461,9 @@ namespace ProjectCode {
 			   res->StartingTime->Text += gcnew String(userList[loginIndex].myReservations[i].startTime.c_str());
 			   if (userList[loginIndex].myReservations[i].date == User::getCurrentDate_MM_DD_YYYY()) {
 					int hourDiff = User::getHourDifferenceFromNow(userList[loginIndex].myReservations[i].startTime);
-					if (hourDiff < 3) 
+					if (hourDiff < 3)
 						 res->Cancelling_btn->Enabled = false;
-						
+
 			   }if (userList[loginIndex].myReservations[i].date < User::getCurrentDate_MM_DD_YYYY()) {
 					res->Cancelling_btn->Enabled = false;
 					res->Warning->Text = "This reservation is expired";
@@ -428,16 +471,32 @@ namespace ProjectCode {
 			   ListOfMyRes->Controls->Add(res);
 		  }
 	 }
-private: System::Void Padel_Click(System::Object^ sender, System::EventArgs^ e) {
-	 MainPage->Controls->Clear();
-	 MainPage->Controls->Add(PadelPage);
-	 PadelPage->BringToFront();
-	 comboBox1->SelectedIndex = -1;
-	 comboBox2->SelectedIndex = -1;
-	 listOfCourts->Controls->Clear();
-	 dateTimePicker1->Value = System::DateTime::Now;
-	 comboBox1->SelectedIndex = 0;
-	 comboBox2->SelectedIndex = 0;
-}
-};
+	 private: System::Void Padel_Click(System::Object^ sender, System::EventArgs^ e) {
+		  MainPage->Controls->Clear();
+		  MainPage->Controls->Add(PadelPage);
+		  PadelPage->BringToFront();
+		  comboBox1->SelectedIndex = -1;
+		  comboBox2->SelectedIndex = -1;
+		  listOfCourts->Controls->Clear();
+		  dateTimePicker1->Value = System::DateTime::Now;
+		  comboBox1->SelectedIndex = 0;
+		  comboBox2->SelectedIndex = 0;
+	 }
+	 private: System::Void GymReserv_Click(System::Object^ sender, System::EventArgs^ e) {
+		  MainPage->Controls->Clear();
+		  MainPage->Controls->Add(GymClass_pg);
+		  GymClass_pg->BringToFront();
+		  ListOfClasses->Controls->Clear();
+		  for (int i = 0; i < gymClassList.size(); i++) {
+			   GymPN^ class1 = gcnew GymPN();
+			   class1->CName->Text += gcnew String(gymClassList[i].className.c_str());
+			   class1->CName->Tag = gcnew String(gymClassList[i].classID.c_str());
+			   class1->CInstructor->Text += gcnew String(gymClassList[i].instructor.c_str());
+			   class1->CPrice->Text += gymClassList[i].price.ToString();
+			   class1->CStart->Text += gcnew String(gymClassList[i].startDate.c_str());
+			   class1->CEnd->Text += gcnew String(gymClassList[i].endDate.c_str());
+			   ListOfClasses->Controls->Add(class1);
+		  }
+	 }
+	 };
 }
