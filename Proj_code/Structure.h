@@ -40,7 +40,7 @@ struct Slot {
 	 string ID;
 	 string courtName; 
 	 string date; // MM/DD/YYYY
-	 string startTime; 
+	 string startTime;
 	 string endTime;
 	 //superkey ->courtName + ID
 };
