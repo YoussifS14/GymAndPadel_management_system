@@ -100,6 +100,10 @@ public:
         }
         return price;
     }
+   void sendNotification(string& message) {
+        cout << "[NOTIFICATION] Member ID: " << member_id << " -> " << message << endl;
+    }
+
 //// problem
   static void sendNotifications(vector<Subscription>& subs) {
       time_t now = time(0);
@@ -117,7 +121,7 @@ public:
 
     void displaysubscriptions() {
         cout << "Member ID: " << member_id << endl;
-        cout << "Duration: " << duration << endl;
+        cout << "Duration: " <<type  << endl;
         cout << "Status: " << (isActivated ? "Active" : "Cancelled") << endl;
         cout << "Price after discount: " << price << endl;
         cout << "End Date: " << ctime(&end_date);
