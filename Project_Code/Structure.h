@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <deque>
 #include <fstream>
 #include <sstream>
 #include <regex>
@@ -75,7 +76,7 @@ struct Slot {
 	 }
 
 };
- int Slot::slotCounter = 1;
+int Slot::slotCounter = 1;
 
 class User {
 public:
@@ -161,6 +162,22 @@ public:
 
 };
 
+class GymClasses {
+ public:
+	  string classID;
+	  string className;
+	  string instructor;
+	  string date; // MM/DD/YYYY
+	  /* string startTime;
+	   string endTime;*/
+	  int maxMembers; // Maximum number of members allowed in the class
+	  vector<User> members; // List of users enrolled in the class	
+	  deque<User> waitingList;
+
+	  bool isFull() {
+		   return members.size() == maxMembers;
+	  }
+ };
 
 struct PadelCourt {
 	 string ID;//foramt "court-1"
@@ -188,6 +205,7 @@ vector<Staff> staffList;
 vector<User> userList;
 vector<CreditCard> cardList;
 vector<PadelCourt> courtList;
+vector<GymClasses> gymClassesList;
 
 void readStaffData() {
 	 ifstream file("Data/staffData.csv");

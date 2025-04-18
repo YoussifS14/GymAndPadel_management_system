@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
-#include <string>
-#include <vector>
 #include <fstream>
 #include <sstream>
+#include <string>
+#include <vector>
+#include <deque>
 #include <ctime>
 #include <cctype>
 #include<map>
@@ -50,6 +51,7 @@ private:
 	time_t end_date;
 	double price;
 	bool is_VIP;
+	bool isActivated;
 public:
 	Subscriptions(string _type, time_t st_date, bool vip);
 	Subscriptions();
@@ -61,6 +63,18 @@ public:
 	vector<string> getAvailableClasses(string subscriptionType, bool isVIP);
 	time_t calaculateEndDate();
 	void set_is_VIP(bool vip);  
+	bool IsExpired() {
+		 return time(0) > end_date;
+	}
+	void cancelSubscriptions() {
+		 start_date = time(0);// ?? ??? ?????? ????? var ???? ???? ?? cancel date ??????  ? null ???
+		 isActivated = false;
+		 is_VIP = false;
+	}
+	double createOffer(bool vip) {
+		 if (vip) return 0.25;
+		 else return 0.10;
+	}
 
 };
 class User {
@@ -143,14 +157,14 @@ public:
 		role = "";
 	}
 	//*//
-	Staff(string id, string Name, string Email, string Password, string Phone, string Role, string picPath) {
+	Staff(string id, string Name, string Email, string Password, string Phone, string Role, string picPath=" ") {
 		ID = id;
 		name = Name;
 		email = Email;
 		password = Password;
 		phone = Phone;
 		role = Role;
-		PicPath = picPath;
+		//PicPath = picPath; //gui
 	}
 	//*//
 	static bool login(string email, string password) {
@@ -171,10 +185,27 @@ public:
 	//**//
 	void generateMonthlyReport();
 };
+class GymClasses {
+public:
+	 string classID;
+	 string className;
+	 string instructor;
+	 string date; // MM/DD/YYYY
+	 /* string startTime;
+	  string endTime;*/
+	 int maxMembers; // Maximum number of members allowed in the class
+	 vector<User> members; // List of users enrolled in the class	
+	 deque<User> waitingList;
+
+	 bool isFull() {
+		  return members.size() == maxMembers;
+	 }
+};
 
 vector<Staff> staffList;
 vector<User> userList;
 vector<CreditCard> cardList;
 vector<PadelCourt> courtList;
 vector<Subscriptions> availableSubscriptions;
-vector<string> availableClasses;
+vector<string> availableClasses;//?
+vector<GymClasses> gymClassesList;
