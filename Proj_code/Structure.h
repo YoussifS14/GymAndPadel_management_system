@@ -100,11 +100,8 @@ public:
         }
         return price;
     }
-   void sendNotification(string& message) {
-        cout << "[NOTIFICATION] Member ID: " << member_id << " -> " << message << endl;
-    }
 
-//// problem
+////
   static void sendNotifications(vector<Subscription>& subs) {
       time_t now = time(0);
       for (auto& sub : subs) {
@@ -114,21 +111,10 @@ public:
           int days_left = sec_left / (60 * 60 * 24);
 
           if (days_left <= 7 && days_left >= 0) {
-              sub.sendNotification("Your subscription will end in " + to_string(days_left) + " days.");
+              cout<<"Your subscription will end in " << days_left<<  " days.";
           }
       }
   }
-
-    void displaysubscriptions() {
-        cout << "Member ID: " << member_id << endl;
-        cout << "Duration: " <<type  << endl;
-        cout << "Status: " << (isActivated ? "Active" : "Cancelled") << endl;
-        cout << "Price after discount: " << price << endl;
-        cout << "End Date: " << ctime(&end_date);
-    }
-~Subscription() {
-    cout << "Subscription for member ID: " << member_id << " has been destroyed." << endl;
-}
 };
 class User {
 public:
