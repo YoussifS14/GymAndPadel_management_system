@@ -751,7 +751,115 @@ void RenewSubscription(T userORstaff) {
 		}
 	}
 }
+bool isTimeOverlap(string start1, string end1, string start2, string end2) {
+	return !(end1 <= start2 || start1 >= end2);
+}
 
+bool isCoachAvailable(Staff coachName, string date, string startTime, string endTime) {
+	extern vector<GymClasses> gymClassesList;
+	extern vector<Staff>staffList;
+
+	for (auto existingClass : gymClassesList) {
+		if (existingClass.coachName.name == coachName.name && existingClass.date == date) {
+			if (isTimeOverlap(existingClass.startTime, existingClass.endTime, startTime, endTime)) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+GymClasses Staff::createClass() {
+	extern vector<Staff> staffList;
+	extern vector<GymClasses> gymClassesList;
+	if (role != "Manager" && role != "manager") {
+		cout << "Only a manager can create classes." << endl;
+		return GymClasses();
+	}
+
+	GymClasses newClass;
+	while (true) {
+		cout << "Enter class name: ";
+		cin >> newClass.className;
+
+		if (!isNameValid(newClass.className)) {
+			cout << "Invalid class name. Use letters and spaces only.\n";
+		}
+		else {
+			break;
+		}
+	}
+	while (true) {
+		cout << "Enter class date (MM/DD/YYYY): ";
+		cin >> newClass.date;
+
+		if (!isBirthdayValid(newClass.date)) {
+			cout << "Invalid date format.\n";
+		}
+		else break;
+	}
+	while (true) {
+		cout << "Enter the maximum number of members: ";
+		cin >> newClass.maxMembers;
+		if (newClass.maxMembers <= 0) {
+			cout << "Invalid number of members. Must be greater than 0." << endl;
+		}
+		else {
+			break;
+		}
+	}
+	while (true) {
+		cout << "Enter class start time (00:00): ";
+		cin >> newClass.startTime;
+
+		if (!isValidTimeFormat(newClass.startTime)) {
+			cout << "Invalid time format.\n";
+		}
+		else break;
+	}
+	while (true) {
+		cout << "Enter class end time (00:00): ";
+		cin >> newClass.endTime;
+
+		if (!isValidTimeFormat(newClass.endTime)) {
+			cout << "Invalid time format.\n";
+		}
+		else break;
+	}
+	while (true) {
+		Staff coachInput;
+		cout << "Enter instructor (coach) name: ";
+		cin >> coachInput.name;
+		cout << "Enter instructor (coach) ID: ";
+		cin >> coachInput.ID;
+
+		bool found = false;
+		for (int i = 0; i < staffList.size(); i++) {
+			if (staffList[i].name == coachInput.name && staffList[i].ID == coachInput.ID && (staffList[i].role == "coach" || staffList[i].role == "Coach")) {
+				if (!isCoachAvailable(staffList[i], newClass.date, newClass.startTime, newClass.endTime)) {
+					cout << "This coach already has another class at this time.\n";
+					return GymClasses();
+
+				}
+				newClass.coachName = staffList[i];
+				found = true;
+				break;
+			}
+		}
+
+		if (!found) {
+			cout << "Coach not found in staff list.\n";
+		}
+		else {
+			break;
+		}
+	}
+
+
+	gymClassesList.push_back(newClass);
+
+	cout << "Class created successfully!" << endl;
+	return newClass;
+}
 
 //void viewWaitingListEachclass() {
 //	 cout << "___________________\n";

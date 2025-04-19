@@ -245,22 +245,48 @@ public:
 	User searchUserByID(string userID);
 	//**//
 	void generateMonthlyReport();
+	GymClasses createClass();   // only manager can acess 
 };
 class GymClasses {
 public:
-	 string classID;
-	 string className;
-	 string instructor;
-	 string date; // MM/DD/YYYY
-	 /* string startTime;
-	  string endTime;*/
-	 int maxMembers; // Maximum number of members allowed in the class
-	 vector<User> members; // List of users enrolled in the class	
-	 deque<User> waitingList;
 
-	 bool isFull() {
-		  return members.size() == maxMembers;
-	 }
+	string classID;
+	string className;
+	Staff coachName;
+	string date; // MM/DD/YYYY
+	string startTime;
+	string endTime;
+	int maxMembers; // Maximum number of members allowed in the class
+	vector<User> members; // List of users enrolled in the class	
+	deque<User> waitingList;
+	GymClasses(string name, Staff coach, string dt, string startT, string endT, int capacity) {
+		classID = generateUniqueID();
+		className = name;
+		coachName = coach;
+		date = dt;
+		startTime = startT;
+		endTime = endT;
+		maxMembers = capacity;
+	}
+
+	GymClasses() {
+		classID = "";
+		className = "";
+		date = "";
+		startTime = "";
+		endTime = "";
+		maxMembers = 0;
+	}
+
+
+	bool isFull();
+
+private:
+	string generateUniqueID() {
+		static int lastID = 0;
+		lastID++;
+		return "CLASS" + to_string(lastID);
+	}
 };
 
 vector<Staff> staffList;
