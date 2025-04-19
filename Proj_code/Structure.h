@@ -65,20 +65,21 @@ public:
 	vector<GymClasses>getAvailableClasses();
 	time_t calaculateEndDate();
 
-   void calculateEndDate() {
-        struct tm* t = localtime(&start_date);
+   void calculateEndDate() {  
+      struct tm t;  
+      localtime_s(&t, &start_date);  
 
-        if (type == "1 month")
-            t->tm_mon += 1;
-        else if (type == "3 months")
-            t->tm_mon += 3;
-        else if (type== "6 months")
-            t->tm_mon += 6;
-        else if (type == "1 year")
-            t->tm_year += 1;
+      if (type == "1 month")  
+          t.tm_mon += 1;  
+      else if (type == "3 months")  
+          t.tm_mon += 3;  
+      else if (type == "6 months")  
+          t.tm_mon += 6;  
+      else if (type == "1 year")  
+          t.tm_year += 1;  
 
-        end_date = mktime(t);
-    }
+      end_date = mktime(&t);  
+   }
 
 	void set_is_VIP(bool vip);  
 	bool IsExpired() {

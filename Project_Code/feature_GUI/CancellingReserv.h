@@ -147,9 +147,14 @@ namespace ProjectCode {
 	private: System::Void Cancelling_btn_Click(System::Object^ sender, System::EventArgs^ e) {
 		 String^ courtID = (String^)courtName->Tag;
 		 string courtIDString = msclr::interop::marshal_as<string>(courtID);
+		 string courtNameString = msclr::interop::marshal_as<string>(courtName->Text);
+		 courtNameString = courtNameString.substr(courtNameString.find(":") + 1);
+
+		 int courtIndex = PadelCourt::searchCourt(courtNameString);
 		 int slotIndex = userList[loginIndex].searchSlot(courtIDString);
-		 if (slotIndex != -1) {
+		 if (slotIndex != -1 || courtIndex !=-1) {
 			  userList[loginIndex].myReservations.erase(userList[loginIndex].myReservations.begin() + slotIndex);
+			  courtList[courtIndex].deleteSlot(courtIDString);
 			  MessageBox::Show("Reservation cancelled successfully", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			  this->Enabled = false;
 		 }

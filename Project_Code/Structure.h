@@ -87,6 +87,7 @@ public:
 	 string Brithday;
 	 string subscription; // 1 month, 3 month, 6 month, 1 year
 	 float myWallet; // cash back from cancelling
+	 bool isVip;
 	 vector<Slot> myReservations; // List of reserved slots
 
 
@@ -209,6 +210,15 @@ struct PadelCourt {
 	 string location;
 	 float price; // Price per hour
 	 vector<Slot> slots; // List of reserved slots
+
+	 void deleteSlot(const string& ID) {
+		  for (int i = 0; i < slots.size(); i++) {
+			   if (slots[i].ID == ID) {
+					slots.erase(slots.begin() + i);
+					break;
+			   }
+		  }
+	 }
 
 	 static int searchCourt(const string& courtName) {
 		  extern vector<PadelCourt> courtList;
