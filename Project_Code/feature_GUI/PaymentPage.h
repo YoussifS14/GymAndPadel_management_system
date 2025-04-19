@@ -45,11 +45,12 @@ namespace ProjectCode {
 
 	 private: System::Windows::Forms::Label^ label1;
 	 private: System::Windows::Forms::Label^ label2;
-	 private: System::Windows::Forms::TextBox^ CardMM_txb;
-	 private: System::Windows::Forms::TextBox^ CardYY_txb;
+	 private: System::Windows::Forms::TextBox^ CardExp_txb;
 
 
-	 private: System::Windows::Forms::Label^ label3;
+
+
+
 	 private: System::Windows::Forms::Label^ label4;
 	 private: System::Windows::Forms::TextBox^ CardCVV_txb;
 
@@ -77,9 +78,7 @@ namespace ProjectCode {
 			   this->CardID_txb = (gcnew System::Windows::Forms::TextBox());
 			   this->label1 = (gcnew System::Windows::Forms::Label());
 			   this->label2 = (gcnew System::Windows::Forms::Label());
-			   this->CardMM_txb = (gcnew System::Windows::Forms::TextBox());
-			   this->CardYY_txb = (gcnew System::Windows::Forms::TextBox());
-			   this->label3 = (gcnew System::Windows::Forms::Label());
+			   this->CardExp_txb = (gcnew System::Windows::Forms::TextBox());
 			   this->label4 = (gcnew System::Windows::Forms::Label());
 			   this->CardCVV_txb = (gcnew System::Windows::Forms::TextBox());
 			   this->label5 = (gcnew System::Windows::Forms::Label());
@@ -143,36 +142,15 @@ namespace ProjectCode {
 			   this->label2->TabIndex = 5;
 			   this->label2->Text = L"Expire date(MM/YY)";
 			   // 
-			   // CardMM_txb
+			   // CardExp_txb
 			   // 
-			   this->CardMM_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			   this->CardExp_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-			   this->CardMM_txb->Location = System::Drawing::Point(12, 282);
-			   this->CardMM_txb->Name = L"CardMM_txb";
-			   this->CardMM_txb->Size = System::Drawing::Size(40, 30);
-			   this->CardMM_txb->TabIndex = 4;
-			   this->CardMM_txb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PaymentPage::CardMM_txb_KeyPress);
-			   // 
-			   // CardYY_txb
-			   // 
-			   this->CardYY_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->CardYY_txb->Location = System::Drawing::Point(87, 282);
-			   this->CardYY_txb->Name = L"CardYY_txb";
-			   this->CardYY_txb->Size = System::Drawing::Size(40, 30);
-			   this->CardYY_txb->TabIndex = 6;
-			   this->CardYY_txb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PaymentPage::CardYY_txb_KeyPress);
-			   // 
-			   // label3
-			   // 
-			   this->label3->AutoSize = true;
-			   this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label3->Location = System::Drawing::Point(58, 276);
-			   this->label3->Name = L"label3";
-			   this->label3->Size = System::Drawing::Size(23, 36);
-			   this->label3->TabIndex = 7;
-			   this->label3->Text = L"/";
+			   this->CardExp_txb->Location = System::Drawing::Point(12, 282);
+			   this->CardExp_txb->Name = L"CardExp_txb";
+			   this->CardExp_txb->Size = System::Drawing::Size(71, 30);
+			   this->CardExp_txb->TabIndex = 4;
+			   this->CardExp_txb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PaymentPage::CardMM_txb_KeyPress);
 			   // 
 			   // label4
 			   // 
@@ -238,10 +216,8 @@ namespace ProjectCode {
 			   this->Controls->Add(this->CardName_txb);
 			   this->Controls->Add(this->label4);
 			   this->Controls->Add(this->CardCVV_txb);
-			   this->Controls->Add(this->label3);
-			   this->Controls->Add(this->CardYY_txb);
 			   this->Controls->Add(this->label2);
-			   this->Controls->Add(this->CardMM_txb);
+			   this->Controls->Add(this->CardExp_txb);
 			   this->Controls->Add(this->label1);
 			   this->Controls->Add(this->CardID_txb);
 			   this->Controls->Add(this->cancelling_btn);
@@ -272,12 +248,18 @@ namespace ProjectCode {
 		  if (!Char::IsDigit(e->KeyChar) && e->KeyChar != (char)Keys::Back) {
 			   e->Handled = true;
 		  }
-	 }
-	 private: System::Void CardYY_txb_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
-		  if (!Char::IsDigit(e->KeyChar) && e->KeyChar != (char)Keys::Back) {
-			   e->Handled = true;
+		  if (CardExp_txb->Text->Length == 2 && e->KeyChar != (char)Keys::Back) {
+			   CardExp_txb->Text += "/";
+			   CardExp_txb->SelectionStart = CardExp_txb->Text->Length;
 		  }
+		  if (CardExp_txb->Text->Length == 5) {
+			   if (e->KeyChar != (char)Keys::Back) {
+					e->Handled = true;
+			   }
+		  }
+
 	 }
+	
 	 private: System::Void CardCVV_txb_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 		  if (!Char::IsDigit(e->KeyChar) && e->KeyChar != (char)Keys::Back) {
 			   e->Handled = true;
@@ -289,7 +271,7 @@ namespace ProjectCode {
 	 }
 	 private: System::Void confirm_btn_Click(System::Object^ sender, System::EventArgs^ e) {
 		  // Check if all fields are filled
-		  if (CardID_txb->Text == "" || CardMM_txb->Text == "" || CardYY_txb->Text == "" || CardCVV_txb->Text == "" || CardName_txb->Text == "") {
+		  if (CardID_txb->Text == "" || CardExp_txb->Text == "" || CardCVV_txb->Text == "" || CardName_txb->Text == "") {
 			   MessageBox::Show("Please fill all fields", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			   return;
 		  }
@@ -299,8 +281,17 @@ namespace ProjectCode {
 			   return;
 		  }
 		  // Check if the expiration date is valid
-		  int month = Convert::ToInt32(CardMM_txb->Text);
-		  int year = Convert::ToInt32(CardYY_txb->Text);
+
+		  string ExpDate = msclr::interop::marshal_as<string>(CardExp_txb->Text);
+		   
+		  stringstream ss(ExpDate);
+		  string temp;
+		  getline(ss, temp, '/');
+		  int month = stoi(temp);
+		  int year;
+		  ss >> year;
+
+
 		  if (month < 1 || month > 12 || year < 0 || year > 99) {
 			   MessageBox::Show("Invalid expiration date", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			   return;
@@ -314,7 +305,7 @@ namespace ProjectCode {
 		  card.cardID = msclr::interop::marshal_as<string>(CardID_txb->Text);
 		  card.cardCVV = msclr::interop::marshal_as<string>(CardCVV_txb->Text);
 		  card.cardName = msclr::interop::marshal_as<string>(CardName_txb->Text);
-		  card.ExpirationDate = msclr::interop::marshal_as<string>(CardYY_txb->Text) + "/" + msclr::interop::marshal_as<string>(CardMM_txb->Text);
+		  card.ExpirationDate = msclr::interop::marshal_as<string>(CardExp_txb->Text);
 		  card.balance = transactionCost;
 
 		  if (CreditCard::validateCard(card)) {// transaction is successful
