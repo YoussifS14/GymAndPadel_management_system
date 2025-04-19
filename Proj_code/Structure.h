@@ -44,6 +44,7 @@ struct Slot {
 	 string endTime;
 	 //superkey ->courtName + ID
 };
+class GymClasses;//Subscriptions ???? ??? ??user ???? ?? GymClasses ????? ?????? 
 class Subscriptions {
 private:
 	string type;           // 1 month,3 month,6 month,1 year
@@ -61,7 +62,7 @@ public:
 	bool isActive();
 	string getType();
 	bool get_is_VIP();
-	vector<string> getAvailableClasses(string subscriptionType, bool isVIP);
+	vector<GymClasses>getAvailableClasses();
 	time_t calaculateEndDate();
 
    void calculateEndDate() {
@@ -142,10 +143,7 @@ public:
 		 Brithday = bday;
 		 subscription = Sub;
 	 }
-	 static bool isEmailCorrect(string email);
-	 static bool isEmailUnique(string email);
-	 static bool isNameValid(string name);
-	 static bool isBirthdayValid(string bday);
+	
 	 static bool registerMember();
 	 //*//
 	 User() {
@@ -247,5 +245,4 @@ vector<User> userList;
 vector<CreditCard> cardList;
 vector<PadelCourt> courtList;
 vector<Subscriptions> availableSubscriptions;
-vector<string> availableClasses;//?
 vector<GymClasses> gymClassesList;
