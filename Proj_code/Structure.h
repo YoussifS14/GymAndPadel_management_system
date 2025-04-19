@@ -219,7 +219,8 @@ public:
 		return user1.classEntered > user2.classEntered;
 	}
 	//*//
-	User* searchUserByID(string userID);
+	bool registerStaff();
+	User searchUserByID(string userID);
 	//**//
 	void generateMonthlyReport();
 };

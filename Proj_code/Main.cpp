@@ -303,11 +303,6 @@ bool isBirthdayValid(string bday) {
 	 return true;
 }
 
-void logout()
-{
-	loginIndex = -1;
-	cout << "You have been logged out successfully.\n";
-}
 
 vector<GymClasses> Subscriptions::getAvailableClasses() {
 	extern vector<GymClasses> gymClassesList;
@@ -471,19 +466,85 @@ bool User::registerMember() {
 	cout << "Member registered successfully.\n";
 	return true;
 }
-User* Staff::searchUserByID(string userID) {
-	 if (loginIndex == -1) {
-		  cout << "You must be logged in as a staff to search for users." << endl;
-		  return nullptr;
-	 }
+bool Staff::registerStaff() {
+	string name, email, password, phone, role;
 
-	 for (int i = 0; i < userList.size(); i++) {
-		  if (userList[i].ID == userID) {
-			   return &userList[i];
-		  }
-	 }
+	extern vector<GymClasses> gymClassesList;
+	extern vector<Staff> staffList;
 
-	 return nullptr;
+	while (true) {
+		cout << "Enter your Name: ";
+		cin >> name;
+		if (!isNameValid(name)) {
+			cout << "Invalid name. Use letters and spaces only.\n";
+		}
+		else break;
+	}
+
+	while (true) {
+		cout << "Enter Email: ";
+		cin >> email;
+		if (!isEmailCorrect(email))
+			cout << "Invalid format. Must contain '@' and end with '.com'.\n";
+		else if (!isEmailUnique(email))
+			cout << "Email already exists. Try another.\n";
+		else break;
+	}
+
+	cout << "Enter password: ";
+	cin >> password;
+
+	while (true) {
+		cout << "Enter phone number (at least 11 digits): ";
+		cin >> phone;
+		if (phone.length() < 11) {
+			cout << "Phone number must be at least 11 digits.\n";
+		}
+		else break;
+	}
+
+	cout << "Enter role (Coach/Reception): ";
+	cin >> role;
+
+	Staff newStaff;
+	newStaff.name = name;
+	newStaff.email = email;
+	newStaff.password = password;
+	newStaff.phone = phone;
+	newStaff.role = role;
+	if (role == "Reception" || role == "reception") {
+		cout << "Reception staff cannot assign classes.\n";
+		newStaff.ID = "R" + to_string(++baseID);
+		cout << "your id is" << newStaff.ID << "\n";
+		staffList.push_back(newStaff);
+		cout << "Reception staff registered successfully.\n";
+		return true;
+	}
+
+	if (role == "Coach" || role == "coach") {
+		newStaff.ID = "C" + to_string(++baseID);
+		staffList.push_back(newStaff);
+		cout << "Coach staff registered successfully.\n";
+		cout << "Your ID is: " << newStaff.ID << "\n";
+		return true;
+	}
+
+	cout << "Invalid role entered.\n";
+	return false;
+}
+User Staff::searchUserByID(string userID) {
+	if (loginIndex == -1) {
+		cout << "You must be logged in as a staff to search for users." << endl;
+		return User();
+	}
+
+	for (int i = 0; i < userList.size(); i++) {
+		if (userList[i].ID == userID) {
+			return userList[i];
+		}
+	}
+	cout << "User with ID " << userID << " not found." << endl;
+	return User();
 }
 //*//
 Subscriptions::Subscriptions(string _type, time_t st_date, bool vip) {
