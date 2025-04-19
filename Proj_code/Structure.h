@@ -155,15 +155,25 @@ public:
 		  Brithday = "";
 		  classEntered = 0;
 	 }
-	 static bool login(string email, string password) {
-		  extern vector<User> userList;
-		  for (int i = 0; i < userList.size(); i++) {
-			   if (userList[i].email == email && userList[i].password == password) {
-					loginIndex = i;
-					return true;
-			   }
-		  }
-		  return false;
+	 bool login(string email, string password) {
+		 extern vector<User> userList;
+		 for (int i = 0; i < userList.size(); i++) {
+			 if (userList[i].email == email && userList[i].password == password) {
+				 loginIndex = i;
+
+				 this->ID = userList[i].ID;
+				 this->name = userList[i].name;
+				 this->email = userList[i].email;
+				 this->password = userList[i].password;
+				 this->Brithday = userList[i].Brithday;
+				 this->subscription = userList[i].subscription;
+
+				 this->classEntered = userList[i].classEntered;
+				 this->myReservations = userList[i].myReservations;
+				 return true;
+			 }
+		 }
+		 return false;
 	 }
 
 };
@@ -206,14 +216,25 @@ public:
 		//PicPath = picPath; //gui
 	}
 	//*//
-	static bool login(string email, string password) {
+	bool login(string email, string password) {
 		extern vector<Staff> staffList;
 		for (int i = 0; i < staffList.size(); i++) {
 			if (staffList[i].email == email && staffList[i].password == password) {
+
 				loginIndex = i;
+
+				this->name = staffList[i].name;
+				this->email = staffList[i].email;
+				this->password = staffList[i].password;
+				this->phone = staffList[i].phone;
+				this->role = staffList[i].role;
+				this->ID = staffList[i].ID;
+				this->PicPath = staffList[i].PicPath;
+				
 				return true;
 			}
 		}
+		cout << "Login failed. Incorrect email or password.\n";
 		return false;
 	}
 	static bool comparingActivity(const User& user1, const User& user2) {

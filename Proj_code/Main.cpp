@@ -489,6 +489,12 @@ bool Staff::registerStaff() {
 		else if (!isEmailUnique(email))
 			cout << "Email already exists. Try another.\n";
 		else break;
+
+
+
+
+
+
 	}
 
 	cout << "Enter password: ";
@@ -521,7 +527,7 @@ bool Staff::registerStaff() {
 		return true;
 	}
 
-	if (role == "Coach" || role == "coach") {
+	else if (role == "Coach" || role == "coach") {
 		newStaff.ID = "C" + to_string(++baseID);
 		staffList.push_back(newStaff);
 		cout << "Coach staff registered successfully.\n";
@@ -711,6 +717,8 @@ void newSubChoice(User user) {
 }
 template<typename T>
 void RenewSubscription(T userORstaff) {
+	extern vector<User>userList;
+	extern vector<Staff>staffList;
 	if (loginIndex == -1) {
 		cout << "\033[1;31mSorry! you must be logged in as a manager or reception to renew members subscriptions\n\033[0m ";
 		return;
@@ -719,10 +727,10 @@ void RenewSubscription(T userORstaff) {
 	cout << "Enter user id\n";
 	cin >> userID;
 	if constexpr (is_same<T, Staff>::value) {
-		if (userORstaff.role == "manager" || userORstaff.role == "Manager" || userORstaff.role == "Reciption" || userORstaff.role == "reciption") {
+		if (userORstaff.role == "manager" || userORstaff.role == "Manager" || userORstaff.role == "Reception" || userORstaff.role == "reception") {
 			for (int i = 0; i < userList.size(); ++i) {
 				if (userList[i].ID == userID) {
-					newSubChoice(userList[i]); 
+					newSubChoice(userList[i]);
 					return;
 				}
 			}
@@ -734,7 +742,7 @@ void RenewSubscription(T userORstaff) {
 	}
 	else if constexpr (is_same<T, User>::value) {
 		if (userList[loginIndex].ID == userID) {
-			newSubChoice(userList[loginIndex]); 
+			newSubChoice(userList[loginIndex]);
 			return;
 		}
 		else {
