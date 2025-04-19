@@ -3,6 +3,7 @@
 #include <iomanip>
 #include<map>
 #include<algorithm>
+#include "WorkoutManger.h"
 
 
 int indexOfUser = -1; // -1 means not logged in
@@ -884,6 +885,24 @@ void main() {
 	  // cout << courtList[0].slots.size() << endl;
 	 // reserveCourt();
 	 cout << " g\033[0mg";
+
+	 WorkoutManger w;
+
+	 // Load data from file
+	 w.loadFromFile("workouts.csv");
+
+	 // View workout history for user with ID "1001"
+	 User testUser;
+	 testUser.ID = "1001";
+	 cout << "\n--- Workout History for User 1001 ---\n";
+	 w.viewWorkoutHistory(testUser);
+
+	 // Add a new workout
+	 cout << "\n--- Adding New Workout ---\n";
+	 w.addWorkout(testUser);
+
+	 // Save the updated data back to the file
+	 w.saveToFile("workouts.csv");
 	 
 	
 }

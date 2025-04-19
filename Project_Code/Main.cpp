@@ -12,8 +12,8 @@ int main()
 	 readCreditCardData();
 	 readPadelCourt();
 	 readGymClasses();
-	// writeCreditCardData();
-	 
+	 // writeCreditCardData();
+	 	 
 	 Application::EnableVisualStyles();
 	 Application::SetCompatibleTextRenderingDefault(false);
 	 ProjectCode::LoginPage form;
