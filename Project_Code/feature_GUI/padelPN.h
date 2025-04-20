@@ -171,8 +171,8 @@ namespace ProjectCode {
 		  string storeCourtName = context.marshal_as<string>(courtName->Text);
 		  storeCourtName = storeCourtName.substr(storeCourtName.find(":") + 1); // Remove "name : "
 
-		  int courtIndex = PadelCourt::searchCourt(storeCourtName);
-		  if (courtIndex == -1) {
+		  string courtIndex = PadelCourt::searchCourt(storeCourtName);
+		  if (courtIndex == "") {
 			   MessageBox::Show("Court not found", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			   return;
 		  }
@@ -187,10 +187,10 @@ namespace ProjectCode {
 			   ss.courtName = storeCourtName;
 			   ss.ID = Slot::generateSlotID();
 
-			   userList[loginIndex].myReservations.push_back(ss);
+			   userList[loginID].myReservations.push_back(ss);
 			   courtList[courtIndex].slots.push_back(ss);
 			   this->Visible = false;
-			 
+
 		  }
 		  else {
 			   MessageBox::Show("Payment failed", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);

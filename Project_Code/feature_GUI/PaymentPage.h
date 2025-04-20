@@ -140,7 +140,7 @@ namespace ProjectCode {
 			   this->label2->Name = L"label2";
 			   this->label2->Size = System::Drawing::Size(190, 25);
 			   this->label2->TabIndex = 5;
-			   this->label2->Text = L"Expire date(MM/YY)";
+			   this->label2->Text = L"Expire date(YY/MM)";
 			   // 
 			   // CardExp_txb
 			   // 
@@ -234,12 +234,12 @@ namespace ProjectCode {
 #pragma endregion
 
 	 private: System::Void CardID_txb_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
-		  if (!Char::IsDigit(e->KeyChar) && e->KeyChar != (char)Keys::Back&& !(Control::ModifierKeys == Keys::Control)) {
+		  if (!Char::IsDigit(e->KeyChar) && e->KeyChar != (char)Keys::Back && !(Control::ModifierKeys == Keys::Control)) {
 			   e->Handled = true;
 		  }
 	 }
 	 private: System::Void CardName_txb_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
-		  if (!Char::IsLetter(e->KeyChar) && e->KeyChar != (char)Keys::Back &&e->KeyChar != ' ' && !(Control::ModifierKeys == Keys::Control)) {
+		  if (!Char::IsLetter(e->KeyChar) && e->KeyChar != (char)Keys::Back && e->KeyChar != ' ' && !(Control::ModifierKeys == Keys::Control)) {
 			   e->Handled = true;
 		  }
 
@@ -259,7 +259,7 @@ namespace ProjectCode {
 		  }
 
 	 }
-	
+
 	 private: System::Void CardCVV_txb_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 		  if (!Char::IsDigit(e->KeyChar) && e->KeyChar != (char)Keys::Back) {
 			   e->Handled = true;
@@ -283,13 +283,13 @@ namespace ProjectCode {
 		  // Check if the expiration date is valid
 
 		  string ExpDate = msclr::interop::marshal_as<string>(CardExp_txb->Text);
-		   
+
 		  stringstream ss(ExpDate);
 		  string temp;
 		  getline(ss, temp, '/');
-		  int month = stoi(temp);
-		  int year;
-		  ss >> year;
+		  int year = stoi(temp);
+		  int month;
+		  ss >> month;
 
 
 		  if (month < 1 || month > 12 || year < 0 || year > 99) {
@@ -314,8 +314,10 @@ namespace ProjectCode {
 			   this->Close();
 		  }
 		  else {
+			   MessageBox::Show(CardExp_txb->Text, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+
 			   MessageBox::Show("Payment failed! Please check your card details or card balance.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			   }
+		  }
 
 	 }
 	 private: System::Void cancelling_btn_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -323,5 +325,5 @@ namespace ProjectCode {
 
 		  this->Close();
 	 }
-};
+	 };
 }

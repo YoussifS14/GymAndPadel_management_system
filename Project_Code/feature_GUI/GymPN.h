@@ -164,17 +164,17 @@ namespace ProjectCode {
 		  // Check if the class is full
 		  String^ classID = CName->Tag->ToString();
 		  string classIDStr = msclr::interop::marshal_as<string>(classID);
-		  int index = GymClasses::FindIndex(classIDStr);
-		  if (index != -1) {
-			   if (gymClassList[index].isFull()) {
+		  string index = GymClasses::FindIndex(classIDStr);
+		  if (index != "") {
+			   if (gymClassList[classIDStr].isFull()) {
 					DialogResult result = MessageBox::Show("This class is full. You can join the waiting list.\n!!Warning: If you want to skip the waiting period, you must pay for a subscription", "Request wait", MessageBoxButtons::OKCancel, MessageBoxIcon::Question);
 
 					if (result == DialogResult::OK) {
-						 PaymentPage^ paymentPage = gcnew PaymentPage(gymClassList[index].price);
+						 PaymentPage^ paymentPage = gcnew PaymentPage(gymClassList[classIDStr].price);
 						 paymentPage->ShowDialog();
 						 if (paymentPage->OperationResult) {
 							  // Add the user to the waiting list
-							  gymClassList[index].waitingList.push_back(userList[loginIndex]);
+							  gymClassList[classIDStr].waitingList.push_back(userList[loginID]);
 							  MessageBox::Show("You have been added to the waiting list.");
 						 }
 						 else {
@@ -191,22 +191,22 @@ namespace ProjectCode {
 
 			   }
 			   else {
-					PaymentPage^ paymentPage = gcnew PaymentPage(gymClassList[index].price);
+					PaymentPage^ paymentPage = gcnew PaymentPage(gymClassList[classIDStr].price);
 					paymentPage->ShowDialog();
 					if (paymentPage->OperationResult) {
 						 // Add the user to the waiting list
-						 if (userList[loginIndex].isVip)
-							  gymClassList[index].waitingList.push_front(userList[loginIndex]);
+						 if (userList[loginID].isVip)
+							  gymClassList[classIDStr].waitingList.push_front(userList[loginID]);
 						 else
-							  gymClassList[index].waitingList.push_back(userList[loginIndex]);
+							  gymClassList[classIDStr].waitingList.push_back(userList[loginID]);
 						 MessageBox::Show("You have been added to the waiting list.");
 					}
 					else {
-						
+
 						 MessageBox::Show("Payment cancelled.");
 					}
 					if (paymentPage->OperationResult)
-						 gymClassList[index].members.push_back(userList[loginIndex]), MessageBox::Show("You have successfully reserved a spot in this class.");
+						 gymClassList[classIDStr].members.push_back(userList[loginID]), MessageBox::Show("You have successfully reserved a spot in this class.");
 			   }
 		  }
 		  else {

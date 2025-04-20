@@ -414,9 +414,9 @@ namespace ProjectCode {
 
 		  //  s.endTime = context.marshal_as<std::string>(time);
 
-
-		  for (const PadelCourt& co : courtList) {
-
+		  auto it = courtList.begin();
+		  for (; it != courtList.end(); it++) {
+			   PadelCourt co = it->second;
 			   bool exists = false;
 			   if (co.location == context.marshal_as<std::string>(location)) {
 					if (co.slots.size() == 0) {
@@ -453,18 +453,18 @@ namespace ProjectCode {
 		  MainPage->Controls->Add(CancelPadel_pg);
 		  CancelPadel_pg->BringToFront();
 		  ListOfMyRes->Controls->Clear();
-		  for (int i = 0; i < userList[loginIndex].myReservations.size(); i++) {
+		  for (int i = 0; i < userList[loginID].myReservations.size(); i++) {
 			   CancellingReserv^ res = gcnew CancellingReserv();
-			   res->courtName->Text += gcnew String(userList[loginIndex].myReservations[i].courtName.c_str());
-			   res->courtName->Tag = gcnew String(userList[loginIndex].myReservations[i].ID.c_str());
-			   res->ReservDate->Text += gcnew String(userList[loginIndex].myReservations[i].date.c_str());
-			   res->StartingTime->Text += gcnew String(userList[loginIndex].myReservations[i].startTime.c_str());
-			   if (userList[loginIndex].myReservations[i].date == User::getCurrentDate_MM_DD_YYYY()) {
-					int hourDiff = User::getHourDifferenceFromNow(userList[loginIndex].myReservations[i].startTime);
+			   res->courtName->Text += gcnew String(userList[loginID].myReservations[i].courtName.c_str());
+			   res->courtName->Tag = gcnew String(userList[loginID].myReservations[i].ID.c_str());
+			   res->ReservDate->Text += gcnew String(userList[loginID].myReservations[i].date.c_str());
+			   res->StartingTime->Text += gcnew String(userList[loginID].myReservations[i].startTime.c_str());
+			   if (userList[loginID].myReservations[i].date == User::getCurrentDate_MM_DD_YYYY()) {
+					int hourDiff = User::getHourDifferenceFromNow(userList[loginID].myReservations[i].startTime);
 					if (hourDiff < 3)
 						 res->Cancelling_btn->Enabled = false;
 
-			   }if (userList[loginIndex].myReservations[i].date < User::getCurrentDate_MM_DD_YYYY()) {
+			   }if (userList[loginID].myReservations[i].date < User::getCurrentDate_MM_DD_YYYY()) {
 					res->Cancelling_btn->Enabled = false;
 					res->Warning->Text = "This reservation is expired";
 			   }
@@ -487,14 +487,15 @@ namespace ProjectCode {
 		  MainPage->Controls->Add(GymClass_pg);
 		  GymClass_pg->BringToFront();
 		  ListOfClasses->Controls->Clear();
-		  for (int i = 0; i < gymClassList.size(); i++) {
+		  auto it = gymClassList.begin();
+		  for (; it != gymClassList.end(); it++) {
 			   GymPN^ class1 = gcnew GymPN();
-			   class1->CName->Text += gcnew String(gymClassList[i].className.c_str());
-			   class1->CName->Tag = gcnew String(gymClassList[i].classID.c_str());
-			   class1->CInstructor->Text += gcnew String(gymClassList[i].instructor.c_str());
-			   class1->CPrice->Text += gymClassList[i].price.ToString();
-			   class1->CStart->Text += gcnew String(gymClassList[i].startDate.c_str());
-			   class1->CEnd->Text += gcnew String(gymClassList[i].endDate.c_str());
+			   class1->CName->Text += gcnew String(it->second.className.c_str());
+			   class1->CName->Tag = gcnew String(it->second.classID.c_str());
+			   class1->CInstructor->Text += gcnew String(it->second.instructor.c_str());
+			   class1->CPrice->Text += it->second.price.ToString();
+			   class1->CStart->Text += gcnew String(it->second.startDate.c_str());
+			   class1->CEnd->Text += gcnew String(it->second.endDate.c_str());
 			   ListOfClasses->Controls->Add(class1);
 		  }
 	 }

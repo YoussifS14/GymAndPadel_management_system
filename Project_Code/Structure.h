@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include <deque>
 #include <fstream>
 #include <sstream>
@@ -12,7 +13,7 @@
 
 using namespace std;
 
-int loginIndex = -1; // -1 means not logged in
+string loginID = ""; // -1 means not logged in
 
 struct CreditCard {
 	 string cardID;
@@ -53,12 +54,14 @@ public:
 		  role = "";
 	 }
 	 static bool login(string email, string password) {
-		  extern vector<Staff> staffList;
-		  for (int i = 0; i < staffList.size(); i++) {
-			   if (staffList[i].email == email && staffList[i].password == password) {
-					loginIndex = i;
+		  extern unordered_map<string, Staff> staffList;
+		  auto it = staffList.begin();
+		  while (it != staffList.end()) {
+			   if (it->second.email == email) {
+					loginID = it->second.ID;
 					return true;
 			   }
+			   it++;
 		  }
 		  return false;
 	 }
@@ -100,13 +103,17 @@ public:
 		  subscription = "";
 	 }
 	 static bool login(string email, string password) {
-		  extern vector<User> userList;
-		  for (int i = 0; i < userList.size(); i++) {
-			   if (userList[i].email == email && userList[i].password == password) {
-					loginIndex = i;
+		  extern unordered_map<string, User> userList;
+		  auto it = userList.begin();
+		  while (it != userList.end()) {
+			   if (it->second.email == email) {
+					loginID = it->second.ID;
 					return true;
 			   }
+			   it++;
 		  }
+
+
 		  return false;
 	 }
 
@@ -164,6 +171,12 @@ public:
 		  return string(buffer);
 	 }
 
+	 static string generateID() {
+		  extern unordered_map<string, User> userList;
+		  string ID = "usr-";
+		  ID += to_string(userList.size() + 1);
+		  return ID;
+	 }
 
 	 int searchSlot(const string& ID) {
 		  for (int i = 0; i < myReservations.size(); i++) {
@@ -192,14 +205,15 @@ public:
 	 bool isFull() {
 		  return members.size() == maxMembers;
 	 }
-	 static int FindIndex(const string& classID) {
-		  extern vector<GymClasses> gymClassList;
-		  for (int i = 0; i < gymClassList.size(); i++) {
-			   if (gymClassList[i].classID == classID) {
-					return i;
-			   }
+	 static string  FindIndex(const string& classID) {
+		  extern unordered_map<string, GymClasses> gymClassList;
+		  auto it = gymClassList.find(classID);
+		  if (it != gymClassList.end()) {
+			   return it->first; // Return the classID
 		  }
-		  return -1; // Not found
+
+
+		  return ""; // Not found
 	 }
 
 };
@@ -220,26 +234,26 @@ struct PadelCourt {
 		  }
 	 }
 
-	 static int searchCourt(const string& courtName) {
-		  extern vector<PadelCourt> courtList;
+	 static string searchCourt(const string& courtName) {
+		  extern unordered_map<string, PadelCourt> courtList;
 
-		  for (int i = 0; i < courtList.size(); i++) {
-			   if (courtList[i].name == courtName) {
-					return i;
+		  for (auto it = courtList.begin(); it != courtList.end(); it++) {
+			   if (it->second.name == courtName) {
+					return it->second.ID;
 			   }
 		  }
-		  return -1; // Not found
+		  return ""; // Not found
 	 }
 
 
 };
 
 
-vector<Staff> staffList;
-vector<User> userList;
+unordered_map<string, Staff> staffList;
+unordered_map<string, User> userList;
+unordered_map<string, PadelCourt> courtList;
+unordered_map<string, GymClasses> gymClassList;
 vector<CreditCard> cardList;
-vector<PadelCourt> courtList;
-vector<GymClasses> gymClassList;
 
 void readStaffData() {
 	 ifstream file("Data/staffData.csv");
@@ -254,7 +268,9 @@ void readStaffData() {
 		  getline(ss, staff.password, ',');
 		  getline(ss, staff.phone, ',');
 		  getline(ss, staff.role);
-		  staffList.push_back(staff);
+
+		  staffList[staff.ID] = staff;
+
 	 }
 	 file.close();
 }
@@ -272,7 +288,8 @@ void readUserData() {
 		  getline(ss, user.password, ',');
 		  getline(ss, user.Brithday, ',');
 		  getline(ss, user.subscription);
-		  userList.push_back(user);
+		  userList[user.ID] = user; // Use ID as key
+		  // userList.push_back(user);
 	 }
 	 file.close();
 }
@@ -325,8 +342,9 @@ void readPadelCourt() {
 
 			   court.slots.push_back(s);
 		  }
-		  courtList.push_back(court);
+		  courtList[court.ID] = court; // Use ID as key
 	 }
+	 padelFile.close();
 }
 
 void readGymClasses() {
@@ -346,7 +364,7 @@ void readGymClasses() {
 		  load waiting list and members
 
 		  */
-		  gymClassList.push_back(gymClass);
+		  gymClassList[gymClass.classID] = gymClass; // Use classID as key
 	 }
 	 file.close();
 }
