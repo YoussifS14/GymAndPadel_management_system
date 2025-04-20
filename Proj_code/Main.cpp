@@ -844,6 +844,10 @@ GymClasses Staff::createClass() {
 	return newClass;
 }
 
+bool GymClasses::isFull()  {
+	return currentMembersCount >= maxMembers; 
+}
+
 //void viewWaitingListEachclass() {
 //	 cout << "___________________\n";
 //	 cout << "Waiting list for each class:\n";

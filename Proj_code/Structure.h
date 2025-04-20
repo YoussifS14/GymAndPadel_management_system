@@ -256,8 +256,11 @@ public:
 	string startTime;
 	string endTime;
 	int maxMembers; // Maximum number of members allowed in the class
-	vector<User> members; // List of users enrolled in the class	
+	int currentMembersCount; 
+	unordered_map<string,vector<User>> usersEnrolled; // connect the subscription type(key) with users enrolled in this class(value)
+	//vector<User> members; // List of users enrolled in the class	
 	deque<User> waitingList;
+
 	GymClasses(string name, Staff coach, string dt, string startT, string endT, int capacity) {
 		classID = generateUniqueID();
 		className = name;
@@ -266,6 +269,7 @@ public:
 		startTime = startT;
 		endTime = endT;
 		maxMembers = capacity;
+		currentMembersCount = 0; 
 	}
 
 	GymClasses() {
@@ -275,6 +279,7 @@ public:
 		startTime = "";
 		endTime = "";
 		maxMembers = 0;
+		currentMembersCount = 0;
 	}
 
 
