@@ -105,7 +105,7 @@ public:
     }
 
 ////
-  static void sendNotifications(vector<Subscriptions>& subs) {
+  static void sendNotifications(string & member_id) {
       time_t now = time(0);
       for (auto& sub : subs) {
           if (!sub.isActivated) continue;
