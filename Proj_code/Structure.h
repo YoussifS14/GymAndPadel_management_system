@@ -108,20 +108,7 @@ public:
 		  return price;
 	 }
 
-	 ////
-	 /*static void sendNotifications(string& member_id) {
-		  time_t now = time(0);
-		  for (auto& sub : subs) {
-			   if (!sub.isActivated) continue;
 
-			   double sec_left = difftime(sub.end_date, now);
-			   int days_left = sec_left / (60 * 60 * 24);
-
-			   if (days_left <= 7 && days_left >= 0) {
-					cout << "Your subscription will end in " << days_left << " days.";
-			   }
-		  }
-	 }*/
 };
 
 class User {
