@@ -25,16 +25,17 @@ private:
 	 unordered_map<string, vector<Workout>>workoutData;
 
 public:
-	 void viewWorkoutHistory(User);
-	 void addWorkout(User);
-	 void TrackProgress(User);
-	 void filterWorkout(User, string);
+	void viewWorkoutHistory(const User&);
+	void addWorkout(const User&);
+	void TrackProgress(const User&);
+	void filterWorkout(const User&, string);
+	 void recordWorkout(const string& memberID, const Workout& workout);
 
 private:
 	 int calcCalories(User, int, string, int);
 	 void display(User);
 public:
-	 void loadFromFile(const string&);
+	void loadFromFile(const string&, unordered_map<string, User>& users);
 	 void saveToFile(const string&);
 
 
