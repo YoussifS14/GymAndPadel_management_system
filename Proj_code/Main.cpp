@@ -907,6 +907,18 @@ void notifyExpiringSubscriptions( string& staffID) {
 		}
 	}
 }
+void deleteUser_and_cancelsubscription(string& userID) {
+	extern std::unordered_map<std::string, User> userList;
+
+	auto it = userList.find(userID);
+	if (it == userList.end()) {
+		cout << "User not found.\n";
+		return;
+	}
+
+	userList.erase(it);
+	cout << "User " << userID << " has been removed from the system.\n";
+}
 void main() {
 
 	 // readCreditCardData();
