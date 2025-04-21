@@ -294,6 +294,7 @@ private:
 };
 extern unordered_map<string, User> userList;     
 extern unordered_map<string, Staff> staffList;
+extern unordered_map<string, GymClasses> gymClassesList; 
 vector<CreditCard> cardList;
 vector<PadelCourt> courtList;
 vector<Subscriptions> availableSubscriptions;

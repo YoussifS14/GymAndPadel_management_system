@@ -6,7 +6,7 @@
 #include "WorkoutManger.h"
 unordered_map<string, User> userList;      // Definition
 unordered_map<string, Staff> staffList;
-
+unordered_map<string, GymClasses> gymClassesList; // gymClass ID (key), gymClass(value)
 int indexOfUser = -1; // -1 means not logged in/////?????????????
 bool isValidTimeFormat(const string& time) {
 	 // Regular expression to match HH:MM where HH is 00-23 and MM is 00-59
@@ -465,7 +465,6 @@ bool User::registerMember() {
 }
 bool Staff::registerStaff() {
 	string Name, Email, Password, phonenumber, Role, id;
-	extern vector<GymClasses> gymClassesList;
 	extern unordered_map<string, Staff> staffList;
 	while (true) {
 		cout << "Enter your Name: ";
@@ -498,7 +497,6 @@ bool Staff::registerStaff() {
 	cin >> Role;
 
 	Staff newStaff;
-	newStaff.ID = id;
 	newStaff.name = Name;
 	newStaff.email = Email;
 	newStaff.password = Password;
@@ -517,6 +515,7 @@ bool Staff::registerStaff() {
 		cout << "Invalid role entered.\n";
 		return false;
 	}
+	newStaff.ID = id; 
 	staffList[id] = newStaff;
 	cout << "Staff registered successfully. Your ID is: " << id << "\n";
 	return true;
@@ -738,32 +737,37 @@ bool isTimeOverlap(string start1, string end1, string start2, string end2) {
 	return !(end1 <= start2 || start1 >= end2);
 }
 
-bool isCoachAvailable(Staff coachName, string date, string startTime, string endTime) {
-	extern vector<GymClasses> gymClassesList;
-	extern vector<Staff>staffList;
-
-	for (auto existingClass : gymClassesList) {
-		if (existingClass.coachName.name == coachName.name && existingClass.date == date) {
-			if (isTimeOverlap(existingClass.startTime, existingClass.endTime, startTime, endTime)) {
+bool isCoachAvailable(Staff coach, string date, string startTime, string endTime) {
+	extern unordered_map<string, GymClasses> gymClassesList;    
+	for (auto pair : gymClassesList) { 
+		GymClasses cls = pair.second;   
+		if (cls.coachName.ID == coach.ID && cls.date == date) {
+			if (isTimeOverlap(cls.startTime, cls.endTime, startTime, endTime)) {
 				return false;
 			}
 		}
 	}
 	return true;
 }
+
+
 GymClasses Staff::createClass() {
-	extern vector<Staff> staffList;
-	extern vector<GymClasses> gymClassesList;
+	extern unordered_map<string, GymClasses> gymClassesList;
+	extern unordered_map<string, Staff> staffList;
+	if (loginIndex == -1) {
+		cout << "You must be logged in to create classes.\n";
+		return GymClasses();
+	}
 	if (role != "Manager" && role != "manager") {
-		cout << "Only a manager can create classes." << endl;
+		cout << "Only a manager can create classes.\n";
 		return GymClasses();
 	}
 
 	GymClasses newClass;
 	while (true) {
 		cout << "Enter class name: ";
-		cin >> newClass.className;
-
+		cin.ignore();
+		getline(cin, newClass.className);
 		if (!isNameValid(newClass.className)) {
 			cout << "Invalid class name. Use letters and spaces only.\n";
 		}
@@ -774,75 +778,100 @@ GymClasses Staff::createClass() {
 	while (true) {
 		cout << "Enter class date (MM/DD/YYYY): ";
 		cin >> newClass.date;
-
 		if (!isBirthdayValid(newClass.date)) {
 			cout << "Invalid date format.\n";
 		}
-		else break;
+		else {
+			break;
+		}
+	}
+	while (true) {
+		cout << "Enter class start time (HH:MM): ";
+		cin >> newClass.startTime;
+		if (!isValidTimeFormat(newClass.startTime)) {
+			cout << "Invalid time format.\n";
+		}
+		else {
+			break;
+		}
+	}
+	while (true) {
+		cout << "Enter class end time (HH:MM): ";
+		cin >> newClass.endTime;
+		if (!isValidTimeFormat(newClass.endTime)) {
+			cout << "Invalid time format.\n";
+		}
+		else if (newClass.endTime <= newClass.startTime) {
+			cout << "End time must be after start time.\n";
+		}
+		else {
+			break;
+		}
 	}
 	while (true) {
 		cout << "Enter the maximum number of members: ";
 		cin >> newClass.maxMembers;
 		if (newClass.maxMembers <= 0) {
-			cout << "Invalid number of members. Must be greater than 0." << endl;
+			cout << "Invalid number of members. Must be greater than 0.\n";
 		}
-		else {
+		else { 
 			break;
 		}
-	}
-	while (true) {
-		cout << "Enter class start time (00:00): ";
-		cin >> newClass.startTime;
-
-		if (!isValidTimeFormat(newClass.startTime)) {
-			cout << "Invalid time format.\n";
-		}
-		else break;
-	}
-	while (true) {
-		cout << "Enter class end time (00:00): ";
-		cin >> newClass.endTime;
-
-		if (!isValidTimeFormat(newClass.endTime)) {
-			cout << "Invalid time format.\n";
-		}
-		else break;
 	}
 	while (true) {
 		Staff coachInput;
 		cout << "Enter instructor (coach) name: ";
-		cin >> coachInput.name;
+		cin.ignore();
+		getline(cin, coachInput.name);
 		cout << "Enter instructor (coach) ID: ";
 		cin >> coachInput.ID;
-
 		bool found = false;
-		for (int i = 0; i < staffList.size(); i++) {
-			if (staffList[i].name == coachInput.name && staffList[i].ID == coachInput.ID && (staffList[i].role == "coach" || staffList[i].role == "Coach")) {
-				if (!isCoachAvailable(staffList[i], newClass.date, newClass.startTime, newClass.endTime)) {
+		for (auto& pair : staffList) {
+			if (pair.second.name == coachInput.name && pair.second.ID == coachInput.ID &&
+				(pair.second.role == "Coach" || pair.second.role == "coach")) {
+				if (!isCoachAvailable(pair.second, newClass.date, newClass.startTime, newClass.endTime)) {
 					cout << "This coach already has another class at this time.\n";
 					return GymClasses();
-
 				}
-				newClass.coachName = staffList[i];
+				newClass.coachName = pair.second;
 				found = true;
 				break;
 			}
 		}
-
 		if (!found) {
-			cout << "Coach not found in staff list.\n";
+			cout << "Coach not found in staff list or not a coach.\n";
 		}
-		else {
-			break;
+		else break;
+	}
+
+	cout << "Select subscription types allowed to enroll (enter numbers, 0 to finish):\n";
+	cout << "1. 1 Month\n2. 3 Months\n3. 6 Months\n4. 1 Year\n";
+	int subChoice;
+	while (true) {
+		cout << "Enter choice (1-4, 0 to finish): ";
+		cin >> subChoice;
+		if (subChoice == 0) break;
+		string subType;
+		switch (subChoice) {
+		case 1: subType = "1 month"; break;
+		case 2: subType = "3 month"; break;
+		case 3: subType = "6 month"; break;
+		case 4: subType = "1 year"; break;
+		default:
+			cout << "Invalid choice. Try again.\n";
+			continue;
+		}
+		if (newClass.usersEnrolled.find(subType) == newClass.usersEnrolled.end()) {
+			newClass.usersEnrolled[subType] = vector<User>();
 		}
 	}
 
-
-	gymClassesList.push_back(newClass);
-
-	cout << "Class created successfully!" << endl;
+	newClass.currentMembersCount = 0;
+	gymClassesList[newClass.classID] = newClass;
+	cout << "Class created successfully with ID: " << newClass.classID << "\n";
 	return newClass;
 }
+
 
 bool GymClasses::isFull()  {
 	return currentMembersCount >= maxMembers; 
@@ -860,8 +889,6 @@ bool GymClasses::isFull()  {
 //		  cout << endl;
 //	 }
 //}
-
-
 
 
 void main() {
