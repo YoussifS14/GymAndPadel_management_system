@@ -908,7 +908,7 @@ void notifyExpiringSubscriptions( string& staffID) {
 	}
 }
 void deleteUser_and_cancelsubscription(string& userID) {
-	extern std::unordered_map<std::string, User> userList;
+	extern unordered_map<string, User> userList;
 
 	auto it = userList.find(userID);
 	if (it == userList.end()) {
