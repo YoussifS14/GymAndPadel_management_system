@@ -13,7 +13,7 @@
 
 using namespace std;
 
-string loginID = ""; // -1 means not logged in
+extern string loginID = ""; // -1 means not logged in
 // class Subscriptions // This gym subscription generally has nothing to do with classes.
 struct CreditCard {
 	 string cardID;
@@ -44,6 +44,7 @@ public:
 	 string password;
 	 string phone;
 	 string role; // Staff, Manager, Admin
+	 string myClass = "null"; // if the staff is a coach, this will be the class(ID) they are coaching 
 	 string PicPath;
 	 Staff() {
 		  ID = "";
@@ -64,6 +65,12 @@ public:
 			   it++;
 		  }
 		  return false;
+	 }
+	 static string generateID() {
+		  extern unordered_map<string, Staff> staffList;
+		  string ID = "stf-";
+		  ID += to_string(staffList.size() + 1);
+		  return ID;
 	 }
 
 };
@@ -206,7 +213,7 @@ public:
 	 string instructor;
 	 string startDate;
 	 string endDate;
-	 float price;
+	 float price = 1.0;
 	 int maxMembers; // Maximum number of members allowed in the class
 	 vector<User> members; // List of users enrolled in the class	
 	 deque<User> waitingList;

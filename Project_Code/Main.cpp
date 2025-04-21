@@ -26,6 +26,10 @@ void readStaffData() {
 		  getline(ss, staff.password, ',');
 		  getline(ss, staff.phone, ',');
 		  getline(ss, staff.role);
+		  /*
+		  loop to load myClass
+
+		  */
 
 		  staffList[staff.ID] = staff;
 
@@ -46,6 +50,13 @@ void readUserData() {
 		  getline(ss, user.password, ',');
 		  getline(ss, user.Brithday, ',');
 		  getline(ss, user.subscription);
+		  // getline(ss, user.myWallet);
+		  // getline(ss, user.isVip);
+		  /*
+		  loop to load myReservations
+		  save the slot in padelCourt
+		  Slot::slotCounter++;
+		  */
 		  userList[user.ID] = user; // Use ID as key
 		  // userList.push_back(user);
 	 }
@@ -119,7 +130,8 @@ void readGymClasses() {
 		  getline(ss, gymClass.endDate, ',');
 		  ss >> gymClass.maxMembers;
 		  /*
-		  load waiting list and members
+		  * load price
+		  * load waiting list and members
 
 		  */
 		  gymClassList[gymClass.classID] = gymClass; // Use classID as key
