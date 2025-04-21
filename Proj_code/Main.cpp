@@ -655,7 +655,7 @@ void Subscriptions::set_is_VIP(bool vip) {
 	 is_VIP = vip;
 }
 
-void newSubChoice(User user) { 
+void newSubChoice(User & user) { 
 	int subChoice;
 	string subType;
 	while (true) {
@@ -702,41 +702,47 @@ void newSubChoice(User user) {
 	}
 }
 template<typename T>
-void RenewSubscription(T userORstaff) {
-	extern vector<User>userList;
-	extern vector<Staff>staffList;
+void RenewSubscription(T userOrStaff) {
+	extern unordered_map<string, User> userList;
+	extern unordered_map<string, Staff> staffList;
+
 	if (loginIndex == -1) {
-		cout << "\033[1;31mSorry! you must be logged in as a manager or reception to renew members subscriptions\n\033[0m ";
+		cout << "\033[1;31mSorry! You must be logged in as a manager or receptionist to renew subscriptions.\n\033[0m";
 		return;
 	}
-	string userID;
-	cout << "Enter user id\n";
-	cin >> userID;
+
+	string targetID;
+	cout << "Enter member ID to renew: ";
+	cin >> targetID;
+
 	if constexpr (is_same<T, Staff>::value) {
-		if (userORstaff.role == "manager" || userORstaff.role == "Manager" || userORstaff.role == "Reception" || userORstaff.role == "reception") {
-			for (int i = 0; i < userList.size(); ++i) {
-				if (userList[i].ID == userID) {
-					newSubChoice(userList[i]);
-					return;
-				}
+		if (userOrStaff.role == "Manager" || userOrStaff.role == "manager" || 
+            userOrStaff.role == "Reception" || userOrStaff.role == "reception") {
+
+			if (userList.find(targetID) != userList.end()) {
+				newSubChoice(userList[targetID]);
+				return;
+			}
+			else {
+				cout << "User not found.\n";
 			}
 		}
 		else {
-			cout << "\033[1;31mSorry! You do not have permission to renew subscriptions. Only reception and manager roles are allowed.\n\033[0m";
-			return;
+			cout << "\033[1;31mYou do not have permission to renew subscriptions.\n\033[0m";
 		}
 	}
+
 	else if constexpr (is_same<T, User>::value) {
-		if (userList[loginIndex].ID == userID) {
-			newSubChoice(userList[loginIndex]);
+		if (userOrStaff.ID == targetID) {
+			newSubChoice(userOrStaff);
 			return;
 		}
 		else {
 			cout << "You can only renew your own subscription.\n";
-			return;
 		}
 	}
 }
+
 bool isTimeOverlap(string start1, string end1, string start2, string end2) {
 	return !(end1 <= start2 || start1 >= end2);
 }
