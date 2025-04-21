@@ -14,7 +14,7 @@
 using namespace std;
 
 string loginID = ""; // -1 means not logged in
-
+// class Subscriptions // This gym subscription generally has nothing to do with classes.
 struct CreditCard {
 	 string cardID;
 	 string cardCVV;
@@ -88,10 +88,13 @@ public:
 	 string email;
 	 string password;
 	 string Brithday;
-	 string subscription; // 1 month, 3 month, 6 month, 1 year
+	 string subscription; // 1 month, 3 month, 6 month, 1 year -> This is the gym subscription in general (type Subscriptions)
 	 float myWallet; // cash back from cancelling
 	 bool isVip;
 	 vector<Slot> myReservations; // List of reserved slots
+	 /*
+	 list<string> myClasses;  // List of reserved classes ->> classID
+	 */
 
 
 	 User() {
@@ -192,6 +195,12 @@ public:
 
 class GymClasses {
 public:
+	 /*
+	 Note:
+	 All class members start their subscription at the same time and end at the same time,
+	 even if all members do not subscribe at the same time,
+	 The last day to subscribe to the class is the middle of the month.
+	 */
 	 string classID;
 	 string className;
 	 string instructor;
@@ -248,132 +257,39 @@ struct PadelCourt {
 
 };
 
-
-unordered_map<string, Staff> staffList;
-unordered_map<string, User> userList;
-unordered_map<string, PadelCourt> courtList;
-unordered_map<string, GymClasses> gymClassList;
-vector<CreditCard> cardList;
-
-void readStaffData() {
-	 ifstream file("Data/staffData.csv");
-	 string line;
-	 getline(file, line); // Skip the header line
-	 while (getline(file, line)) {
-		  Staff staff;
-		  stringstream ss(line);
-		  getline(ss, staff.ID, ',');
-		  getline(ss, staff.name, ',');
-		  getline(ss, staff.email, ',');
-		  getline(ss, staff.password, ',');
-		  getline(ss, staff.phone, ',');
-		  getline(ss, staff.role);
-
-		  staffList[staff.ID] = staff;
-
+struct Notification {
+	 string ID;
+	 string message;
+	 string date; // MM/DD/YYYY
+	 string time; // HH:MM
+	 static int notificationCounter; // Counter to generate unique notification IDs
+	 static string generateNotificationID() {
+		  return "notification-" + to_string(notificationCounter++);
 	 }
-	 file.close();
-}
+	 static string standardMessage(const string& message/*Subscriptions ss,gymClass gm*/) { //may be just gymClass
+		  // Convert the message to a standard format
+		  string standardMessage = message;/*
+		  dear userName,
+		  your subscription will expire on date ()
+		  you have to renew it before date
 
-void readUserData() {
-	 ifstream file("Data/usrData.csv");
-	 string line;
-	 getline(file, line); // Skip the header line
-	 while (getline(file, line)) {
-		  User user;
-		  stringstream ss(line);
-		  getline(ss, user.ID, ',');
-		  getline(ss, user.name, ',');
-		  getline(ss, user.email, ',');
-		  getline(ss, user.password, ',');
-		  getline(ss, user.Brithday, ',');
-		  getline(ss, user.subscription);
-		  userList[user.ID] = user; // Use ID as key
-		  // userList.push_back(user);
-	 }
-	 file.close();
-}
+		  thank you for using our service
 
-void readCreditCardData() {
-	 ifstream file("Data/DBofCredit.csv");
-	 string line;
-	 getline(file, line); // Skip the header line
-	 while (getline(file, line)) {
-		  CreditCard card;
-		  string temp;
-		  stringstream ss(line);
-		  getline(ss, card.cardID, ',');
-		  getline(ss, card.cardName, ',');
-		  getline(ss, card.ExpirationDate, ',');
-		  getline(ss, card.cardCVV, ',');
-		  getline(ss, temp);
-		  card.balance = stof(temp);
-		  // Remove the 'a' character from cardID
-		  card.cardID.resize(card.cardID.size() - 1);
-		  card.cardCVV.resize(card.cardCVV.size() - 1);
-		  cardList.push_back(card);
 
-		  // Add the card to a vector or process it as needed
-	 }
-	 file.close();
-}
-
-void readPadelCourt() {
-	 ifstream  padelFile("Data/padelData.txt");
-	 string line;
-	 while (getline(padelFile, line)) {
-		  PadelCourt court;
-		  stringstream ss(line);
-		  getline(ss, court.ID, ',');
-		  getline(ss, court.name, ',');
-		  getline(ss, court.location, ',');
-		  ss >> court.price;
-		  // Read slots
-		  string slotLine;
-		  while (getline(padelFile, slotLine) && !slotLine.empty()) {
-			   Slot s;
-
-			   stringstream ss(slotLine);
-			   getline(ss, s.ID, ',');
-			   getline(ss, s.date, ',');
-			   getline(ss, s.startTime, ',');
-			   //   getline(ss, s.endTime);
-			   Slot::slotCounter++;
-
-			   court.slots.push_back(s);
-		  }
-		  courtList[court.ID] = court; // Use ID as key
-	 }
-	 padelFile.close();
-}
-
-void readGymClasses() {
-	 ifstream file("Data/gymClasses.csv");
-	 string line;
-	 getline(file, line); // Skip the header line is Class ID, Class Name, Instructor, Start Date, End Date, Max Members
-	 while (getline(file, line)) {
-		  GymClasses gymClass;
-		  stringstream ss(line);
-		  getline(ss, gymClass.classID, ',');
-		  getline(ss, gymClass.className, ',');
-		  getline(ss, gymClass.instructor, ',');
-		  getline(ss, gymClass.startDate, ',');
-		  getline(ss, gymClass.endDate, ',');
-		  ss >> gymClass.maxMembers;
-		  /*
-		  load waiting list and members
 
 		  */
-		  gymClassList[gymClass.classID] = gymClass; // Use classID as key
-	 }
-	 file.close();
-}
 
-void writeCreditCardData() {
-	 ofstream file("Data/DBofCredit.csv");
-	 file << "CardID,CardName,ExpirationDate,CardCVV,Balance\n"; // Write header
-	 for (const CreditCard& card : cardList) {
-		  file << card.cardID << "a," << card.cardName << "," << card.ExpirationDate << "," << card.cardCVV << "a," << card.balance << "\n";
+
+		  return standardMessage;
 	 }
-	 file.close();
-}
+
+};
+
+int Notification::notificationCounter = 1;
+
+extern unordered_map<string, User> userList;
+extern unordered_map<string, Staff> staffList;
+extern unordered_map<string, GymClasses> gymClassList; // gymClass ID (key), gymClass(value)
+extern vector<CreditCard> cardList;
+extern unordered_map<string, PadelCourt> courtList;
+

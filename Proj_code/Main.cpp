@@ -4,10 +4,17 @@
 #include<map>
 #include<algorithm>
 #include "WorkoutManger.h"
-unordered_map<string, User> userList;      // Definition
+
+string loginIndex;
+vector<CreditCard> cardList;
+
+unordered_map<string, User> userList;
 unordered_map<string, Staff> staffList;
 unordered_map<string, GymClasses> gymClassesList; // gymClass ID (key), gymClass(value)
-int indexOfUser = -1; // -1 means not logged in/////?????????????
+vector<PadelCourt> courtList;
+vector<Subscriptions> availableSubscriptions;
+
+
 bool isValidTimeFormat(const string& time) {
 	 // Regular expression to match HH:MM where HH is 00-23 and MM is 00-59
 	 std::regex timeRegex(R"(^([01]?[0-9]|2[0-3]):([0-5][0-9])$)");
@@ -70,7 +77,7 @@ void payment(float cost) {
 	 cin >> card.cardID;
 	 cout << "Enter card CVV: ";
 	 cin >> card.cardCVV;
-	 cin.ignore(); 
+	 cin.ignore();
 	 cout << "Enter card name: ";
 	 getline(cin, card.cardName);
 	 cout << "Enter expiration date (YY/MM): ";
@@ -88,28 +95,28 @@ void payment(float cost) {
 }
 
 bool paymentChecking(double cost) {
-	CreditCard card;
-	cout << "Enter card ID: ";
-	cin >> card.cardID;
-	cout << "Enter card CVV: ";
-	cin >> card.cardCVV;
-	cin.ignore();  
-	cout << "Enter card name: ";
-	getline(cin, card.cardName);
-	cout << "Enter expiration date (YY/MM): ";
-	cin >> card.ExpirationDate;
-	card.balance = cost;
+	 CreditCard card;
+	 cout << "Enter card ID: ";
+	 cin >> card.cardID;
+	 cout << "Enter card CVV: ";
+	 cin >> card.cardCVV;
+	 cin.ignore();
+	 cout << "Enter card name: ";
+	 getline(cin, card.cardName);
+	 cout << "Enter expiration date (YY/MM): ";
+	 cin >> card.ExpirationDate;
+	 card.balance = cost;
 
 
-	if (CreditCard::validateCard(card)) {
-		cout << "Payment successful!" << endl;
-		return true;
-	}
-	else {
-		cout << "Payment failed!" << endl;
-		return false;
-	}
-	
+	 if (CreditCard::validateCard(card)) {
+		  cout << "Payment successful!" << endl;
+		  return true;
+	 }
+	 else {
+		  cout << "Payment failed!" << endl;
+		  return false;
+	 }
+
 }
 
 void readCreditCardData() {
@@ -266,272 +273,271 @@ void cancelReservation() {
 
 }
 bool isEmailCorrect(string email) {
-	if (email.find('@') == string::npos || email.size() < 5 || email.substr(email.size() - 4) != ".com") {
-		return false;
-	}
-	return true;
+	 if (email.find('@') == string::npos || email.size() < 5 || email.substr(email.size() - 4) != ".com") {
+		  return false;
+	 }
+	 return true;
 }
 
 bool isEmailUnique(string email) {
-	extern unordered_map<string, User> userList;
-	for (auto it = userList.begin(); it != userList.end(); ++it) {
-		if (it->second.email == email) {
-			return false; 
-		}
-	}
-	return true; 
+	 extern unordered_map<string, User> userList;
+	 for (auto it = userList.begin(); it != userList.end(); ++it) {
+		  if (it->second.email == email) {
+			   return false;
+		  }
+	 }
+	 return true;
 }
 bool isNameValid(string name) {
-	for (int i = 0; i < name.size(); i++) {
-		if (!isalpha(name[i])) {
-			return false;
-		}
-	}
-	return true;
+	 for (int i = 0; i < name.size(); i++) {
+		  if (!isalpha(name[i])) {
+			   return false;
+		  }
+	 }
+	 return true;
 }
 
 bool isBirthdayValid(string bday) {
-	if (bday.size() != 10) return false;
-	if (bday[2] != '/' || bday[5] != '/') return false;
-	for (int i = 0; i < bday.size(); ++i) {
-		if ((i != 2 && i != 5) && !isdigit(bday[i])) {
-			return false;
-		}
-	}
-	if (bday[0] < '0' || bday[0] > '1' || (bday[0] == '1' && bday[1] > '2')) return false;
-	if (bday[3] < '0' || bday[3] > '3' || (bday[3] == '3' && bday[4] > '1')) return false;
-	return true;
+	 if (bday.size() != 10) return false;
+	 if (bday[2] != '/' || bday[5] != '/') return false;
+	 for (int i = 0; i < bday.size(); ++i) {
+		  if ((i != 2 && i != 5) && !isdigit(bday[i])) {
+			   return false;
+		  }
+	 }
+	 if (bday[0] < '0' || bday[0] > '1' || (bday[0] == '1' && bday[1] > '2')) return false;
+	 if (bday[3] < '0' || bday[3] > '3' || (bday[3] == '3' && bday[4] > '1')) return false;
+	 return true;
 }
-vector<GymClasses> Subscriptions::getAvailableClasses() {
-	extern vector<GymClasses> gymClassesList;
-	string subscriptionType = getType();
-	bool isVIP = get_is_VIP();
-	if (gymClassesList.empty()) {
-		GymClasses yoga; yoga.className = "Yoga";
-		GymClasses cardio; cardio.className = "Cardio";
-		GymClasses pilates; pilates.className = "Pilates";
-		GymClasses zumba; zumba.className = "Zumba";
-		GymClasses spin; spin.className = "Spin";
-		GymClasses stretching; stretching.className = "Stretching";
-		GymClasses strength; strength.className = "Strength Training";
-		GymClasses hiit; hiit.className = "HIIT";
-		GymClasses cycling; cycling.className = "Cycling";
-		GymClasses boxing; boxing.className = "Boxing";
-		GymClasses crossfit; crossfit.className = "Crossfit";
+unordered_map<string, GymClasses> Subscriptions::getAvailableClasses() {
+	 extern unordered_map<string, GymClasses> gymClassesList;
+	 string subscriptionType = getType();
+	 bool isVIP = get_is_VIP();
+	 if (gymClassesList.empty()) {
+		  GymClasses yoga; yoga.className = "Yoga";
+		  GymClasses cardio; cardio.className = "Cardio";
+		  GymClasses pilates; pilates.className = "Pilates";
+		  GymClasses zumba; zumba.className = "Zumba";
+		  GymClasses spin; spin.className = "Spin";
+		  GymClasses stretching; stretching.className = "Stretching";
+		  GymClasses strength; strength.className = "Strength Training";
+		  GymClasses hiit; hiit.className = "HIIT";
+		  GymClasses cycling; cycling.className = "Cycling";
+		  GymClasses boxing; boxing.className = "Boxing";
+		  GymClasses crossfit; crossfit.className = "Crossfit";
 
-		gymClassesList = { yoga, cardio, pilates, zumba, spin, stretching,
-						   strength, hiit, cycling, boxing, crossfit };
-	}
-	if (subscriptionType == "1 month") {
-		for (int i = 0; i < gymClassesList.size(); i++) {
-			if (gymClassesList[i].className == "Yoga" || gymClassesList[i].className == "Cardio" || gymClassesList[i].className == "Stretching") {
-				cout << gymClassesList[i].className << endl;
-			}
-		}
-	}
-	else if (subscriptionType == "3 month") {
-		for (int i = 0; i < gymClassesList.size(); i++) {
-			if (gymClassesList[i].className == "Yoga" || gymClassesList[i].className == "Cardio" || gymClassesList[i].className == "Pilates" ||
-				gymClassesList[i].className == "Zumba" || gymClassesList[i].className == "Spin") {
-				cout << gymClassesList[i].className << endl;
-			}
-		}
-	}
-	else if (subscriptionType == "6 month") {
-		for (int i = 0; i < gymClassesList.size(); i++) {
-			if (gymClassesList[i].className == "Yoga" || gymClassesList[i].className == "Cardio" || gymClassesList[i].className == "Pilates" ||
-				gymClassesList[i].className == "Zumba" || gymClassesList[i].className == "Strength Training" || gymClassesList[i].className == "HIIT") {
-				cout << gymClassesList[i].className << endl;
-			}
-		}
-	}
-	else if (subscriptionType == "1 year") {
-		for (int i = 0; i < gymClassesList.size(); i++) {
-			if (gymClassesList[i].className == "Yoga" || gymClassesList[i].className == "Cardio" || gymClassesList[i].className == "Pilates" ||
-				gymClassesList[i].className == "Zumba" || gymClassesList[i].className == "Strength Training" || gymClassesList[i].className == "HIIT" ||
-				gymClassesList[i].className == "Cycling" || gymClassesList[i].className == "Boxing" || gymClassesList[i].className == "Crossfit") {
-				cout << gymClassesList[i].className << endl;
-			}
-		}
-	}
+		  // gymClassesList = { yoga, cardio, pilates, zumba, spin, stretching, strength, hiit, cycling, boxing, crossfit };
+	 }
+	 if (subscriptionType == "1 month") {
+		  for (auto it = gymClassesList.begin(); it != gymClassesList.end(); it++) {
+			   if (it->second.className == "Yoga" || it->second.className == "Cardio" || it->second.className == "Stretching") {
+					cout << it->second.className << endl;
+			   }
+		  }
+	 }
+	 else if (subscriptionType == "3 month") {
+		  for (auto it = gymClassesList.begin(); it != gymClassesList.end(); it++) {
+			   if (it->second.className == "Yoga" || it->second.className == "Cardio" || it->second.className == "Pilates" ||
+					it->second.className == "Zumba" || it->second.className == "Spin") {
+					cout << it->second.className << endl;
+			   }
+		  }
+	 }
+	 else if (subscriptionType == "6 month") {
+		  for (auto it = gymClassesList.begin(); it != gymClassesList.end(); it++) {
+			   if (it->second.className == "Yoga" || it->second.className == "Cardio" || it->second.className == "Pilates" ||
+					it->second.className == "Zumba" || it->second.className == "Strength Training" || it->second.className == "HIIT") {
+					cout << it->second.className << endl;
+			   }
+		  }
+	 }
+	 else if (subscriptionType == "1 year") {
+		  for (auto it = gymClassesList.begin(); it != gymClassesList.end(); it++) {
+			   if (it->second.className == "Yoga" || it->second.className == "Cardio" || it->second.className == "Pilates" ||
+					it->second.className == "Zumba" || it->second.className == "Strength Training" || it->second.className == "HIIT" ||
+					it->second.className == "Cycling" || it->second.className == "Boxing" || it->second.className == "Crossfit") {
+					cout << it->second.className << endl;
+			   }
+		  }
+	 }
 
-	if (isVIP) {
-		if (subscriptionType == "1 month") {
-			cout << "VIP Yoga - Private Session" << endl;
-			cout << "VIP Zumba - Private Session" << endl;
-		}
-		else if (subscriptionType == "3 month") {
-			cout << "VIP Pilates - Private Session" << endl;
-			cout << "VIP Crossfit - Expert Trainer" << endl;
-		}
-		else if (subscriptionType == "6 month") {
-			cout << "VIP Strength Training - Personal Coach" << endl;
-			cout << "VIP HIIT - High-Intensity Class" << endl;
-		}
-		else if (subscriptionType == "1 year") {
-			cout << "VIP Yoga - Exclusive" << endl;
-			cout << "VIP Crossfit - Elite Coaching" << endl;
-			cout << "VIP Zumba - Personal Trainer" << endl;
-		}
-	}
+	 if (isVIP) {
+		  if (subscriptionType == "1 month") {
+			   cout << "VIP Yoga - Private Session" << endl;
+			   cout << "VIP Zumba - Private Session" << endl;
+		  }
+		  else if (subscriptionType == "3 month") {
+			   cout << "VIP Pilates - Private Session" << endl;
+			   cout << "VIP Crossfit - Expert Trainer" << endl;
+		  }
+		  else if (subscriptionType == "6 month") {
+			   cout << "VIP Strength Training - Personal Coach" << endl;
+			   cout << "VIP HIIT - High-Intensity Class" << endl;
+		  }
+		  else if (subscriptionType == "1 year") {
+			   cout << "VIP Yoga - Exclusive" << endl;
+			   cout << "VIP Crossfit - Elite Coaching" << endl;
+			   cout << "VIP Zumba - Personal Trainer" << endl;
+		  }
+	 }
 
-	return gymClassesList;
+	 return gymClassesList;
 }
 
 
 bool User::registerMember() {
-	string id, Name, Email, password, bday, sub;
-	extern unordered_map<string, User> userList;
-	cout << "====================================\n";
-	cout << "   Welcome to ysm GYM SYSTEM   \n";
-	cout << "====================================\n";
-	string subType;
-	char vipChoice;
+	 string id, Name, Email, password, bday, sub;
+	 extern unordered_map<string, User> userList;
+	 cout << "====================================\n";
+	 cout << "   Welcome to ysm GYM SYSTEM   \n";
+	 cout << "====================================\n";
+	 string subType;
+	 char vipChoice;
 
-	bool isVip = false;
-	while (true) {
-		cout << "Enter your Name: ";
-		cin >> Name;
-		if (!isNameValid(Name)) {
-			cout << "Invalid name. Use letters and spaces only.\n";
-		}
-		else break;
-	}
+	 bool isVip = false;
+	 while (true) {
+		  cout << "Enter your Name: ";
+		  cin >> Name;
+		  if (!isNameValid(Name)) {
+			   cout << "Invalid name. Use letters and spaces only.\n";
+		  }
+		  else break;
+	 }
 
-	while (true) {
-		cout << "Enter Email: ";
-		cin >> Email;
-		if (!isEmailCorrect(Email))
-			cout << "Invalid format. Must contain '@' and end with '.com'.\n";
-		else if (!isEmailUnique(Email))
-			cout << "Email already exists. Try another.\n";
-		else break;
-	}
+	 while (true) {
+		  cout << "Enter Email: ";
+		  cin >> Email;
+		  if (!isEmailCorrect(Email))
+			   cout << "Invalid format. Must contain '@' and end with '.com'.\n";
+		  else if (!isEmailUnique(Email))
+			   cout << "Email already exists. Try another.\n";
+		  else break;
+	 }
 
-	cout << "Enter Password: ";
-	cin >> password;
-	while (true) {
-		cout << "Enter Birthday (MM/DD/YYYY): ";
-		cin >> bday;
-		if (!isBirthdayValid(bday)) {
-			cout << "Invalid birthday format.\n";
-		}
-		else break;
-	}
-	int subChoice;
-	while (true) {
-		cout << "\nChoose a Subscription:\n";
-		cout << "1. 1 Month\n";
-		cout << "2. 3 Months\n";
-		cout << "3. 6 Months\n";
-		cout << "4. 1 Year\n";
-		cout << "Enter choice (1-4): ";
-		cin >> subChoice;
+	 cout << "Enter Password: ";
+	 cin >> password;
+	 while (true) {
+		  cout << "Enter Birthday (MM/DD/YYYY): ";
+		  cin >> bday;
+		  if (!isBirthdayValid(bday)) {
+			   cout << "Invalid birthday format.\n";
+		  }
+		  else break;
+	 }
+	 int subChoice;
+	 while (true) {
+		  cout << "\nChoose a Subscription:\n";
+		  cout << "1. 1 Month\n";
+		  cout << "2. 3 Months\n";
+		  cout << "3. 6 Months\n";
+		  cout << "4. 1 Year\n";
+		  cout << "Enter choice (1-4): ";
+		  cin >> subChoice;
 
-		switch (subChoice) {
-		case 1: subType = "1 month"; break;
-		case 2: subType = "3 month"; break;
-		case 3: subType = "6 month"; break;
-		case 4: subType = "1 year"; break;
-		default:
-			cout << "Invalid choice. Try again.\n";
-			continue;
-		}
-		break;
-	}
-	cout << "Do you want VIP benefits for extra features? (y/n): ";
-	cin >> vipChoice;
-	if (vipChoice == 'y' || vipChoice == 'Y') {
-		isVip = true;
-	}
-	Subscriptions userSub(subType, time(0), isVip);
-	userSub.getAvailableClasses();
+		  switch (subChoice) {
+		  case 1: subType = "1 month"; break;
+		  case 2: subType = "3 month"; break;
+		  case 3: subType = "6 month"; break;
+		  case 4: subType = "1 year"; break;
+		  default:
+			   cout << "Invalid choice. Try again.\n";
+			   continue;
+		  }
+		  break;
+	 }
+	 cout << "Do you want VIP benefits for extra features? (y/n): ";
+	 cin >> vipChoice;
+	 if (vipChoice == 'y' || vipChoice == 'Y') {
+		  isVip = true;
+	 }
+	 Subscriptions userSub(subType, time(0), isVip);
+	 userSub.getAvailableClasses();
 
-	double price = userSub.getPrice();
-	cout << "Total Price: $" << price << endl;
-	id = "M" + to_string(++baseID);
-	cout << "Your ID is: " << id << "\n";
-	User newUser;
-	newUser.ID = id;
-	newUser.name = Name;
-	newUser.email = Email;
-	newUser.password = password;
-	newUser.Brithday = bday;
-	newUser.subscription = userSub;
-	newUser.classEntered = 0;
-	userList[id] = newUser;
-	cout << "Member registered successfully.\n";
-	return true;
+	 double price = userSub.getPrice();
+	 cout << "Total Price: $" << price << endl;
+	 id = "M" + to_string(++baseID);
+	 cout << "Your ID is: " << id << "\n";
+	 User newUser;
+	 newUser.ID = id;
+	 newUser.name = Name;
+	 newUser.email = Email;
+	 newUser.password = password;
+	 newUser.Brithday = bday;
+	 newUser.subscription = userSub;
+	 newUser.classEntered = 0;
+	 userList[id] = newUser;
+	 cout << "Member registered successfully.\n";
+	 return true;
 }
 bool Staff::registerStaff() {
-	string Name, Email, Password, phonenumber, Role, id;
-	extern unordered_map<string, Staff> staffList;
-	while (true) {
-		cout << "Enter your Name: ";
-		cin >> Name;
-		if (!isNameValid(Name)) {
-			cout << "Invalid name. Use letters and spaces only.\n";
-		}
-		else break;
-	}
-	while (true) {
-		cout << "Enter Email: ";
-		cin >> Email;
-		if (!isEmailCorrect(Email))
-			cout << "Invalid format. Must contain '@' and end with '.com'.\n";
-		else if (!isEmailUnique(Email))
-			cout << "Email already exists. Try another.\n";
-		else break;
-	}
-	cout << "Enter password: ";
-	cin >> Password;
-	while (true) {
-		cout << "Enter phone number (at least 11 digits): ";
-		cin >> phonenumber;
-		if (phonenumber.length() < 11) {
-			cout << "Phone number must be at least 11 digits.\n";
-		}
-		else break;
-	}
-	cout << "Enter role (Coach/Reception): ";
-	cin >> Role;
+	 string Name, Email, Password, phonenumber, Role, id;
+	 extern unordered_map<string, Staff> staffList;
+	 while (true) {
+		  cout << "Enter your Name: ";
+		  cin >> Name;
+		  if (!isNameValid(Name)) {
+			   cout << "Invalid name. Use letters and spaces only.\n";
+		  }
+		  else break;
+	 }
+	 while (true) {
+		  cout << "Enter Email: ";
+		  cin >> Email;
+		  if (!isEmailCorrect(Email))
+			   cout << "Invalid format. Must contain '@' and end with '.com'.\n";
+		  else if (!isEmailUnique(Email))
+			   cout << "Email already exists. Try another.\n";
+		  else break;
+	 }
+	 cout << "Enter password: ";
+	 cin >> Password;
+	 while (true) {
+		  cout << "Enter phone number (at least 11 digits): ";
+		  cin >> phonenumber;
+		  if (phonenumber.length() < 11) {
+			   cout << "Phone number must be at least 11 digits.\n";
+		  }
+		  else break;
+	 }
+	 cout << "Enter role (Coach/Reception): ";
+	 cin >> Role;
 
-	Staff newStaff;
-	newStaff.name = Name;
-	newStaff.email = Email;
-	newStaff.password = Password;
-	newStaff.phone = phonenumber;
-	newStaff.role = Role;
-	if (Role == "Reception" || Role == "reception") {
-		cout << "Reception staff cannot assign classes.\n";
-		id = "R" + to_string(++baseID);
-		cout << "Reception staff registered successfully.\n";
-	}
-	else if (Role == "Coach" || Role == "coach") {
-		id = "C" + to_string(++baseID);
-		cout << "Coach staff registered successfully.\n";
-	}
-	else {
-		cout << "Invalid role entered.\n";
-		return false;
-	}
-	newStaff.ID = id; 
-	staffList[id] = newStaff;
-	cout << "Staff registered successfully. Your ID is: " << id << "\n";
-	return true;
+	 Staff newStaff;
+	 newStaff.name = Name;
+	 newStaff.email = Email;
+	 newStaff.password = Password;
+	 newStaff.phone = phonenumber;
+	 newStaff.role = Role;
+	 if (Role == "Reception" || Role == "reception") {
+		  cout << "Reception staff cannot assign classes.\n";
+		  id = "R" + to_string(++baseID);
+		  cout << "Reception staff registered successfully.\n";
+	 }
+	 else if (Role == "Coach" || Role == "coach") {
+		  id = "C" + to_string(++baseID);
+		  cout << "Coach staff registered successfully.\n";
+	 }
+	 else {
+		  cout << "Invalid role entered.\n";
+		  return false;
+	 }
+	 newStaff.ID = id;
+	 staffList[id] = newStaff;
+	 cout << "Staff registered successfully. Your ID is: " << id << "\n";
+	 return true;
 }
 User Staff::searchUserByID(string userID) {
-	extern unordered_map<string, User> userList;
-	if (loginIndex == -1) {
-		cout << "You must be logged in as a staff to search for users.\n";
-		return User();
-	}
-	unordered_map<string, User>::iterator it = userList.find(userID);
-	if (it != userList.end()) {
-		return it->second; 
-	}
-	cout << "User with ID " << userID << " not found.\n";
-	return User();
+	 extern unordered_map<string, User> userList;
+	 if (loginIndex == "") {
+		  cout << "You must be logged in as a staff to search for users.\n";
+		  return User();
+	 }
+	 unordered_map<string, User>::iterator it = userList.find(userID);
+	 if (it != userList.end()) {
+		  return it->second;
+	 }
+	 cout << "User with ID " << userID << " not found.\n";
+	 return User();
 }
 //*//
 Subscriptions::Subscriptions(string _type, time_t st_date, bool vip) {
@@ -568,7 +574,8 @@ time_t Subscriptions::calaculateEndDate() {
 
 
 Subscriptions::Subscriptions() : type(""), start_date(0), end_date(0),
-is_VIP(false), price(0.0), isActivated(false) {}
+is_VIP(false), price(0.0), isActivated(false) {
+}
 double Subscriptions::getPrice() {
 	 if (type == "1 month")
 		  price = 450.0;
@@ -594,311 +601,312 @@ bool Subscriptions::get_is_VIP() {
 	 return is_VIP;
 }
 void Staff::generateMonthlyReport() {        //Bounce (only manager can generate and access reports)
-	if (!(role == "manager" || role == "Manager"))
-	{
-		cout << "\033[1;31mSorry!! only managers can access reports\033[0m\n ";
-		return;
-	}
-	time_t currentDate = time(0);
-	tm localTime;
-	localtime_s(&localTime, &currentDate);
-	int currentYear = localTime.tm_year + 1900;
-	int currentMonth = localTime.tm_mon + 1;
-	cout << "\n=================Monthly Report for ";
-	if (currentMonth < 10)
-		cout << "0";
-	cout << currentMonth << "-" << currentYear << "=================\n";
-	vector<User> activeUsers;
-	double totalRevenue = 0.0;
-	map<string, pair<int, double>>SubscriptionState;
+	 if (!(role == "manager" || role == "Manager"))
+	 {
+		  cout << "\033[1;31mSorry!! only managers can access reports\033[0m\n ";
+		  return;
+	 }
+	 time_t currentDate = time(0);
+	 tm localTime;
+	 localtime_s(&localTime, &currentDate);
+	 int currentYear = localTime.tm_year + 1900;
+	 int currentMonth = localTime.tm_mon + 1;
+	 cout << "\n=================Monthly Report for ";
+	 if (currentMonth < 10)
+		  cout << "0";
+	 cout << currentMonth << "-" << currentYear << "=================\n";
+	 vector<User> activeUsers;
+	 double totalRevenue = 0.0;
+	 map<string, pair<int, double>>SubscriptionState;
 
-	for (auto& entry : userList) { //*
-		User& user = entry.second;
-		if (user.subscription.isActive()) {
-			activeUsers.push_back(user);
+	 for (auto& entry : userList) { //*
+		  User& user = entry.second;
+		  if (user.subscription.isActive()) {
+			   activeUsers.push_back(user);
 
-			string type = user.subscription.getType();
-			double price = user.subscription.getPrice();
+			   string type = user.subscription.getType();
+			   double price = user.subscription.getPrice();
 
-			SubscriptionState[type].first += 1;
-			SubscriptionState[type].second += price;
-			totalRevenue += price;
-		}
-	}
+			   SubscriptionState[type].first += 1;
+			   SubscriptionState[type].second += price;
+			   totalRevenue += price;
+		  }
+	 }
 
-	sort(activeUsers.begin(), activeUsers.end(), Staff::comparingActivity);
+	 sort(activeUsers.begin(), activeUsers.end(), Staff::comparingActivity);
 
-	cout << "\033[1;35m>>Most active members:\n\033[0m ";
-	cout << "----------------------------------------------------------\n";
-	cout << "\033[1;36mName\t\tid\tnumber of classes attended\tVIP\n\033[0m";
+	 cout << "\033[1;35m>>Most active members:\n\033[0m ";
+	 cout << "----------------------------------------------------------\n";
+	 cout << "\033[1;36mName\t\tid\tnumber of classes attended\tVIP\n\033[0m";
 
-	int numberOfmembers = min(10, static_cast<int>(activeUsers.size()));
-	for (int i = 0; i < numberOfmembers; ++i) {
-		cout << activeUsers[i].name << "\t\t" << activeUsers[i].ID << "\t\t" << activeUsers[i].classEntered << "\t\t\t";
-		cout << (activeUsers[i].subscription.get_is_VIP() ? "YES\n" : "NO\n");
-	}
+	 int numberOfmembers = min(10, static_cast<int>(activeUsers.size()));
+	 for (int i = 0; i < numberOfmembers; ++i) {
+		  cout << activeUsers[i].name << "\t\t" << activeUsers[i].ID << "\t\t" << activeUsers[i].classEntered << "\t\t\t";
+		  cout << (activeUsers[i].subscription.get_is_VIP() ? "YES\n" : "NO\n");
+	 }
 
-	cout << "----------------------------------------------------------\n";
-	cout << "\033[1;35m>>Subscription Summary by Type:\n\033[0m";
-	cout << "----------------------------------------------------------\n";
+	 cout << "----------------------------------------------------------\n";
+	 cout << "\033[1;35m>>Subscription Summary by Type:\n\033[0m";
+	 cout << "----------------------------------------------------------\n";
 
-	for (auto it = SubscriptionState.begin(); it != SubscriptionState.end(); ++it) {
-		cout << "\033[1;36mNumber of subscriptions at " << it->first
-			<< " plan:\033[0m " << it->second.first << " users | "
-			<< it->second.second << " EGP\n";
-	}
-	cout << "===========================================================\n";
-	cout << "\033[1;35m>>Total Subscription Revenue this Month:\033[0m\n " << totalRevenue << " EGP\n";
-	cout << "===========================================================\n";
+	 for (auto it = SubscriptionState.begin(); it != SubscriptionState.end(); ++it) {
+		  cout << "\033[1;36mNumber of subscriptions at " << it->first
+			   << " plan:\033[0m " << it->second.first << " users | "
+			   << it->second.second << " EGP\n";
+	 }
+	 cout << "===========================================================\n";
+	 cout << "\033[1;35m>>Total Subscription Revenue this Month:\033[0m\n " << totalRevenue << " EGP\n";
+	 cout << "===========================================================\n";
 }
 void Subscriptions::set_is_VIP(bool vip) {
 	 is_VIP = vip;
 }
 
-void newSubChoice(User & user) { 
-	int subChoice;
-	string subType;
-	while (true) {
-		cout << "\033[1;36mChoose a new Subscription:\n\033[0m";
-		cout << "1. 1 Month\n";
-		cout << "2. 3 Months\n";
-		cout << "3. 6 Months\n";
-		cout << "4. 1 Year\n";
-		cout << "\033[1;35mEnter choice (1-4):\033[0m ";
-		cin >> subChoice;
+void newSubChoice(User& user) {
+	 int subChoice;
+	 string subType;
+	 while (true) {
+		  cout << "\033[1;36mChoose a new Subscription:\n\033[0m";
+		  cout << "1. 1 Month\n";
+		  cout << "2. 3 Months\n";
+		  cout << "3. 6 Months\n";
+		  cout << "4. 1 Year\n";
+		  cout << "\033[1;35mEnter choice (1-4):\033[0m ";
+		  cin >> subChoice;
 
-		switch (subChoice) {
-		case 1: subType = "1 month"; break;
-		case 2: subType = "3 month"; break;
-		case 3: subType = "6 month"; break;
-		case 4: subType = "1 year"; break;
-		default:
-			cout << "Invalid choice. Try again.\n";
-			continue;
-		}
-		break;
-	}
+		  switch (subChoice) {
+		  case 1: subType = "1 month"; break;
+		  case 2: subType = "3 month"; break;
+		  case 3: subType = "6 month"; break;
+		  case 4: subType = "1 year"; break;
+		  default:
+			   cout << "Invalid choice. Try again.\n";
+			   continue;
+		  }
+		  break;
+	 }
 
-	char vipChoice;
-	bool isVip = false;
-	cout << "\033[1;35mDo you want VIP benefits for extra features? (y/n): \033[0m";
-	cin >> vipChoice;
-	if (vipChoice == 'y' || vipChoice == 'Y') {
-		isVip = true;
-	}
+	 char vipChoice;
+	 bool isVip = false;
+	 cout << "\033[1;35mDo you want VIP benefits for extra features? (y/n): \033[0m";
+	 cin >> vipChoice;
+	 if (vipChoice == 'y' || vipChoice == 'Y') {
+		  isVip = true;
+	 }
 
-	Subscriptions newSub(subType, time(0), isVip);
-	user.subscription = newSub;
-	double cost = user.subscription.getPrice();
-	if (paymentChecking(cost)) {
-		cout << "\nSubscription successfully renewed for " << user.name << endl;
-		cout << "\033[1;36mNew Subscription:\033[0m " << subType << (isVip ? " (VIP)" : "") << endl;
-		time_t endDay = user.subscription.calaculateEndDate();
-		//cout << "Valid until: " << ctime(&endDay) << endl;
-		char buffer[26];
-		ctime_s(buffer, sizeof(buffer), &endDay);
-		cout << "\033[1;36mValid until:\033[0m " << buffer << endl;
+	 Subscriptions newSub(subType, time(0), isVip);
+	 user.subscription = newSub;
+	 double cost = user.subscription.getPrice();
+	 if (paymentChecking(cost)) {
+		  cout << "\nSubscription successfully renewed for " << user.name << endl;
+		  cout << "\033[1;36mNew Subscription:\033[0m " << subType << (isVip ? " (VIP)" : "") << endl;
+		  time_t endDay = user.subscription.calaculateEndDate();
+		  //cout << "Valid until: " << ctime(&endDay) << endl;
+		  char buffer[26];
+		  ctime_s(buffer, sizeof(buffer), &endDay);
+		  cout << "\033[1;36mValid until:\033[0m " << buffer << endl;
 
-	}
+	 }
 }
 template<typename T>
 void RenewSubscription(T userOrStaff) {
-	extern unordered_map<string, User> userList;
-	extern unordered_map<string, Staff> staffList;
+	 extern unordered_map<string, User> userList;
+	 extern unordered_map<string, Staff> staffList;
 
-	if (loginIndex == -1) {
-		cout << "\033[1;31mSorry! You must be logged in as a manager or receptionist to renew subscriptions.\n\033[0m";
-		return;
-	}
+	 if (loginIndex == "") {
+		  cout << "\033[1;31mSorry! You must be logged in as a manager or receptionist to renew subscriptions.\n\033[0m";
+		  return;
+	 }
 
-	string targetID;
-	cout << "Enter member ID to renew: ";
-	cin >> targetID;
+	 string targetID;
+	 cout << "Enter member ID to renew: ";
+	 cin >> targetID;
 
-	if constexpr (is_same<T, Staff>::value) {
-		if (userOrStaff.role == "Manager" || userOrStaff.role == "manager" || 
-            userOrStaff.role == "Reception" || userOrStaff.role == "reception") {
+	 if constexpr (is_same<T, Staff>::value) {
+		  if (userOrStaff.role == "Manager" || userOrStaff.role == "manager" ||
+			   userOrStaff.role == "Reception" || userOrStaff.role == "reception") {
 
-			if (userList.find(targetID) != userList.end()) {
-				newSubChoice(userList[targetID]);
-				return;
-			}
-			else {
-				cout << "User not found.\n";
-			}
-		}
-		else {
-			cout << "\033[1;31mYou do not have permission to renew subscriptions.\n\033[0m";
-		}
-	}
+			   if (userList.find(targetID) != userList.end()) {
+					newSubChoice(userList[targetID]);
+					return;
+			   }
+			   else {
+					cout << "User not found.\n";
+			   }
+		  }
+		  else {
+			   cout << "\033[1;31mYou do not have permission to renew subscriptions.\n\033[0m";
+		  }
+	 }
 
-	else if constexpr (is_same<T, User>::value) {
-		if (userOrStaff.ID == targetID) {
-			newSubChoice(userOrStaff);
-			return;
-		}
-		else {
-			cout << "You can only renew your own subscription.\n";
-		}
-	}
+	 else if constexpr (is_same<T, User>::value) {
+		  if (userOrStaff.ID == targetID) {
+			   newSubChoice(userOrStaff);
+			   return;
+		  }
+		  else {
+			   cout << "You can only renew your own subscription.\n";
+		  }
+	 }
 }
 
 bool isTimeOverlap(string start1, string end1, string start2, string end2) {
-	return !(end1 <= start2 || start1 >= end2);
+	 return !(end1 <= start2 || start1 >= end2);
 }
 
 bool isCoachAvailable(Staff coach, string date, string startTime, string endTime) {
-	extern unordered_map<string, GymClasses> gymClassesList;    
-	for (auto pair : gymClassesList) { 
-		GymClasses cls = pair.second;   
-		if (cls.coachName.ID == coach.ID && cls.date == date) {
-			if (isTimeOverlap(cls.startTime, cls.endTime, startTime, endTime)) {
-				return false;
-			}
-		}
-	}
-	return true;
+	 extern unordered_map<string, GymClasses> gymClassesList;
+	 for (auto pair : gymClassesList) {
+		  GymClasses cls = pair.second;
+		  if (cls.coachName.ID == coach.ID && cls.date == date) {
+			   if (isTimeOverlap(cls.startTime, cls.endTime, startTime, endTime)) {
+					return false;
+			   }
+		  }
+	 }
+	 return true;
 }
 
 
 GymClasses Staff::createClass() {
-	extern unordered_map<string, GymClasses> gymClassesList;
-	extern unordered_map<string, Staff> staffList;
-	if (loginIndex == -1) {
-		cout << "You must be logged in to create classes.\n";
-		return GymClasses();
-	}
-	if (role != "Manager" && role != "manager") {
-		cout << "Only a manager can create classes.\n";
-		return GymClasses();
-	}
+	 extern unordered_map<string, GymClasses> gymClassesList;
+	 extern unordered_map<string, Staff> staffList;
+	 if (loginIndex == "") {
+		  cout << "You must be logged in to create classes.\n";
+		  return GymClasses();
+	 }
+	 if (role != "Manager" && role != "manager") {
+		  cout << "Only a manager can create classes.\n";
+		  return GymClasses();
+	 }
 
-	GymClasses newClass;
-	while (true) {
-		cout << "Enter class name: ";
-		cin.ignore();
-		getline(cin, newClass.className);
-		if (!isNameValid(newClass.className)) {
-			cout << "Invalid class name. Use letters and spaces only.\n";
-		}
-		else {
-			break;
-		}
-	}
-	while (true) {
-		cout << "Enter class date (MM/DD/YYYY): ";
-		cin >> newClass.date;
-		if (!isBirthdayValid(newClass.date)) {
-			cout << "Invalid date format.\n";
-		}
-		else {
-			break;
-		}
-	}
-	while (true) {
-		cout << "Enter class start time (HH:MM): ";
-		cin >> newClass.startTime;
-		if (!isValidTimeFormat(newClass.startTime)) {
-			cout << "Invalid time format.\n";
-		}
-		else {
-			break;
-		}
-	}
-	while (true) {
-		cout << "Enter class end time (HH:MM): ";
-		cin >> newClass.endTime;
-		if (!isValidTimeFormat(newClass.endTime)) {
-			cout << "Invalid time format.\n";
-		}
-		else if (newClass.endTime <= newClass.startTime) {
-			cout << "End time must be after start time.\n";
-		}
-		else {
-			break;
-		}
-	}
-	while (true) {
-		cout << "Enter the maximum number of members: ";
-		cin >> newClass.maxMembers;
-		if (newClass.maxMembers <= 0) {
-			cout << "Invalid number of members. Must be greater than 0.\n";
-		}
-		else { 
-			break;
-		}
-	}
-	while (true) {
-		Staff coachInput;
-		cout << "Enter instructor (coach) name: ";
-		cin.ignore();
-		getline(cin, coachInput.name);
-		cout << "Enter instructor (coach) ID: ";
-		cin >> coachInput.ID;
-		bool found = false;
-		for (auto& pair : staffList) {
-			if (pair.second.name == coachInput.name && pair.second.ID == coachInput.ID &&
-				(pair.second.role == "Coach" || pair.second.role == "coach")) {
-				if (!isCoachAvailable(pair.second, newClass.date, newClass.startTime, newClass.endTime)) {
-					cout << "This coach already has another class at this time.\n";
-					return GymClasses();
-				}
-				newClass.coachName = pair.second;
-				found = true;
-				break;
-			}
-		}
-		if (!found) {
-			cout << "Coach not found in staff list or not a coach.\n";
-		}
-		else break;
-	}
+	 GymClasses newClass;
+	 while (true) {
+		  cout << "Enter class name: ";
+		  cin.ignore();
+		  getline(cin, newClass.className);
+		  if (!isNameValid(newClass.className)) {
+			   cout << "Invalid class name. Use letters and spaces only.\n";
+		  }
+		  else {
+			   break;
+		  }
+	 }
+	 while (true) {
+		  cout << "Enter class date (MM/DD/YYYY): ";
+		  cin >> newClass.date;
+		  if (!isBirthdayValid(newClass.date)) {
+			   cout << "Invalid date format.\n";
+		  }
+		  else {
+			   break;
+		  }
+	 }
+	 while (true) {
+		  cout << "Enter class start time (HH:MM): ";
+		  cin >> newClass.startTime;
+		  if (!isValidTimeFormat(newClass.startTime)) {
+			   cout << "Invalid time format.\n";
+		  }
+		  else {
+			   break;
+		  }
+	 }
+	 while (true) {
+		  cout << "Enter class end time (HH:MM): ";
+		  cin >> newClass.endTime;
+		  if (!isValidTimeFormat(newClass.endTime)) {
+			   cout << "Invalid time format.\n";
+		  }
+		  else if (newClass.endTime <= newClass.startTime) {
+			   cout << "End time must be after start time.\n";
+		  }
+		  else {
+			   break;
+		  }
+	 }
+	 while (true) {
+		  cout << "Enter the maximum number of members: ";
+		  cin >> newClass.maxMembers;
+		  if (newClass.maxMembers <= 0) {
+			   cout << "Invalid number of members. Must be greater than 0.\n";
+		  }
+		  else {
+			   break;
+		  }
+	 }
+	 while (true) {
+		  Staff coachInput;
+		  cout << "Enter instructor (coach) name: ";
+		  cin.ignore();
+		  getline(cin, coachInput.name);
+		  cout << "Enter instructor (coach) ID: ";
+		  cin >> coachInput.ID;
+		  bool found = false;
+		  for (auto& pair : staffList) {
+			   if (pair.second.name == coachInput.name && pair.second.ID == coachInput.ID &&
+					(pair.second.role == "Coach" || pair.second.role == "coach")) {
+					if (!isCoachAvailable(pair.second, newClass.date, newClass.startTime, newClass.endTime)) {
+						 cout << "This coach already has another class at this time.\n";
+						 return GymClasses();
+					}
+					newClass.coachName = pair.second;
+					found = true;
+					break;
+			   }
+		  }
+		  if (!found) {
+			   cout << "Coach not found in staff list or not a coach.\n";
+		  }
+		  else break;
+	 }
 
-	cout << "Select subscription types allowed to enroll (enter numbers, 0 to finish):\n";
-	cout << "1. 1 Month\n2. 3 Months\n3. 6 Months\n4. 1 Year\n";
-	int subChoice;
-	while (true) {
-		cout << "Enter choice (1-4, 0 to finish): ";
-		cin >> subChoice;
-		if (subChoice == 0) break;
-		string subType;
-		switch (subChoice) {
-		case 1: subType = "1 month"; break;
-		case 2: subType = "3 month"; break;
-		case 3: subType = "6 month"; break;
-		case 4: subType = "1 year"; break;
-		default:
-			cout << "Invalid choice. Try again.\n";
-			continue;
-		}
-		if (newClass.usersEnrolled.find(subType) == newClass.usersEnrolled.end()) {
-			newClass.usersEnrolled[subType] = vector<User>();
-		}
-	}
+	 cout << "Select subscription types allowed to enroll (enter numbers, 0 to finish):\n";
+	 cout << "1. 1 Month\n2. 3 Months\n3. 6 Months\n4. 1 Year\n";
+	 int subChoice;
+	 while (true) {
+		  cout << "Enter choice (1-4, 0 to finish): ";
+		  cin >> subChoice;
+		  if (subChoice == 0) break;
+		  string subType;
+		  switch (subChoice) {
+		  case 1: subType = "1 month"; break;
+		  case 2: subType = "3 month"; break;
+		  case 3: subType = "6 month"; break;
+		  case 4: subType = "1 year"; break;
+		  default:
+			   cout << "Invalid choice. Try again.\n";
+			   continue;
+		  }
+		  if (newClass.usersEnrolled.find(subType) == newClass.usersEnrolled.end()) {
+			   newClass.usersEnrolled[subType] = vector<User>();
+		  }
+	 }
 
-	newClass.currentMembersCount = 0;
-	gymClassesList[newClass.classID] = newClass;
-	cout << "Class created successfully with ID: " << newClass.classID << "\n";
-	return newClass;
+	 newClass.currentMembersCount = 0;
+	 gymClassesList[newClass.classID] = newClass;
+	 cout << "Class created successfully with ID: " << newClass.classID << "\n";
+	 return newClass;
 }
 
 
-bool GymClasses::isFull()  {
-	return currentMembersCount >= maxMembers; 
+bool GymClasses::isFull() {
+	 return currentMembersCount >= maxMembers;
 }
 
-//void viewWaitingListEachclass() {
-//	 cout << "___________________\n";
-//	 cout << "Waiting list for each class:\n";
-//	 for (GymClasses& gymClass : gymClassesList) {
-//		  cout << "Class: " << gymClass.className << endl;
-//		  cout << "Waiting List:" << endl;
-//		  for (User& user : gymClass.waitingList) {
-//			   cout << user.name << endl;
-//		  }
-//		  cout << endl;
-//	 }
-//}
+void viewWaitingListEachclass() {
+	 cout << "___________________\n";
+	 cout << "Waiting list for each class:\n";
+
+	 for (auto it = gymClassesList.begin(); it != gymClassesList.end(); it++) {
+		  cout << "Class: " << it->second.className << endl;
+		  cout << "Waiting List:" << endl;
+		  for (User& user : it->second.waitingList) {
+			   cout << user.name << endl;
+		  }
+		  cout << endl;
+	 }
+}
 
 
 void main() {
@@ -926,6 +934,6 @@ void main() {
 
 	 // Save the updated data back to the file
 	 w.saveToFile("workouts.csv");
-	 
-	
+
+
 }
