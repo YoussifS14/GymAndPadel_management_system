@@ -56,14 +56,14 @@ private:
 	 time_t end_date;
 	 double price;
 	 bool is_VIP;
-	
+         bool isActivated;/// for sendnotifications
 public:
 
 	 Subscriptions(string _type, time_t st_date, bool vip);
 	 Subscriptions();
 	 double getPrice();
 	 //void renewSubscription(string& newType, time_t newStdate);
-	
+	 bool isActive();
 	 string getType();
 	 bool get_is_VIP();
 	 unordered_map<string, GymClasses>getAvailableClasses();
