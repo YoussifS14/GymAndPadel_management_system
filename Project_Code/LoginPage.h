@@ -212,25 +212,31 @@ namespace ProjectCode {
 		  string password = msclr::interop::marshal_as<string>(password_txb->Text);
 
 		  if (Staff::login(email, password)) {
+			   LoadingPage^ loading = gcnew LoadingPage();
 			   MessageBox::Show("Login successful as Staff");
-			
 			   this->Hide(); // Hide the login page
+			   loading->label1->Text = "Loading Staff Page...";
+			   loading->ShowDialog();
+			   staffPage^ staffPg = gcnew staffPage();
 			   userName_txb->Text = "";
 			   password_txb->Text = "";
-			 
+			   staffPg->ShowDialog();
 
 
 			   this->Show();
 			   // Proceed to the next form or functionality
 		  }
 		  else if (User::login(email, password)) {
+			   LoadingPage^ loading = gcnew LoadingPage();
 			   MessageBox::Show("Login successful as User");
-			   userPage^ userPg = gcnew userPage();
 			   this->Hide(); // Hide the login page
+			   loading->label1->Text = "Loading User Page...";
+			   loading->ShowDialog();
+			   userPage^ userPg = gcnew userPage();
 			   userName_txb->Text = "";
 			   password_txb->Text = "";
 			   userPg->ShowDialog();
-			   this->Show(); 
+			   this->Show();
 			   // Proceed to the next form or functionality
 		  }
 		  else {
@@ -240,5 +246,5 @@ namespace ProjectCode {
 	 private: System::Void SwitchHide_Click(System::Object^ sender, System::EventArgs^ e) {
 		  password_txb->UseSystemPasswordChar = !password_txb->UseSystemPasswordChar;
 	 }
-};
+	 };
 }
