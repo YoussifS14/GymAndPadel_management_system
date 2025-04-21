@@ -265,48 +265,49 @@ public:
 class GymClasses {
 public:
 
-	 string classID;
-	 string className;
-	 Staff coachName;
-	 string date; // MM/DD/YYYY
-	 string startTime;
-	 string endTime;
-	 int maxMembers; // Maximum number of members allowed in the class
-	 int currentMembersCount;
-	 unordered_map<string, vector<User>> usersEnrolled; // connect the subscription type(key) with users enrolled in this class(value)
-	 //vector<User> members; // List of users enrolled in the class	
-	 deque<User> waitingList;
+	string classID;
+	string className;
+	Staff coachName;
+	string date; // MM/DD/YYYY
+	string startTime;
+	string endTime;
+	int maxMembers; // Maximum number of members allowed in the class
+	int currentMembersCount;
+	unordered_map<string, vector<User>> usersEnrolled; // connect the subscription type(key) with users enrolled in this class(value)
+	//vector<User> members; // List of users enrolled in the class	
+	deque<User> waitingList;
+	vector<string>allowedSubTypes;
 
-	 GymClasses(string name, Staff coach, string dt, string startT, string endT, int capacity) {
-		  classID = generateUniqueID();
-		  className = name;
-		  coachName = coach;
-		  date = dt;
-		  startTime = startT;
-		  endTime = endT;
-		  maxMembers = capacity;
-		  currentMembersCount = 0;
-	 }
+	GymClasses(string name, Staff coach, string dt, string startT, string endT, int capacity) {
+		classID = generateUniqueID();
+		className = name;
+		coachName = coach;
+		date = dt;
+		startTime = startT;
+		endTime = endT;
+		maxMembers = capacity;
+		currentMembersCount = 0;
+	}
 
-	 GymClasses() {
-		  classID = "";
-		  className = "";
-		  date = "";
-		  startTime = "";
-		  endTime = "";
-		  maxMembers = 0;
-		  currentMembersCount = 0;
-	 }
+	GymClasses() {
+		classID = "";
+		className = "";
+		date = "";
+		startTime = "";
+		endTime = "";
+		maxMembers = 0;
+		currentMembersCount = 0;
+	}
 
 
-	 bool isFull();
+	bool isFull();
 
-private:
-	 string generateUniqueID() {
-		  static int lastID = 0;
-		  lastID++;
-		  return "CLASS" + to_string(lastID);
-	 }
+
+	string generateUniqueID() {
+		static int lastID = 0;
+		lastID++;
+		return "CLASS" + to_string(lastID);
+	}
 };
 
 
