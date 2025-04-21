@@ -56,14 +56,14 @@ private:
 	 time_t end_date;
 	 double price;
 	 bool is_VIP;
-	 bool isActivated;
+	
 public:
 
 	 Subscriptions(string _type, time_t st_date, bool vip);
 	 Subscriptions();
 	 double getPrice();
 	 //void renewSubscription(string& newType, time_t newStdate);
-	 bool isActive();
+	
 	 string getType();
 	 bool get_is_VIP();
 	 unordered_map<string, GymClasses>getAvailableClasses();
@@ -88,11 +88,6 @@ public:
 	 void set_is_VIP(bool vip);
 	 bool IsExpired() {
 		  return time(0) > end_date;
-	 }
-	 void cancelSubscriptions() {
-		  end_date = time(0);
-		  isActivated = false;
-		  is_VIP = false;
 	 }
 	 bool createOffer() {
 		  return (is_VIP == true);
