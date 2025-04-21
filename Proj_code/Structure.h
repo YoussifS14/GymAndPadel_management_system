@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -9,9 +9,10 @@
 #include <cctype>
 #include<map>
 #include<algorithm>
+#include<unordered_map>
 using namespace std;
 static int baseID = 1000;//**
-int loginIndex = -1; // -1 means not logged in
+int loginIndex = -1; // -1 means not logged in //  map اتغير علشان ينفع مع ال login لوجيك //logical error
 
 struct CreditCard {
 	 string cardID;
@@ -44,7 +45,7 @@ struct Slot {
 	 string endTime;
 	 //superkey ->courtName + ID
 };
-class GymClasses;//Subscriptions ???? ??? ??user ???? ?? GymClasses ????? ?????? 
+class GymClasses;//Subscriptions ???? ??? ??user ???? ?? GymClasses ????? ?????? هتتعدل
 class Subscriptions {
 private:
 	string type;           // 1 month,3 month,6 month,1 year
@@ -148,31 +149,31 @@ public:
 	 static bool registerMember();
 	 //*//
 	 User() {
-		  ID = "";
-		  name = "";
-		  email = "";
-		  password = "";
-		  Brithday = "";
-		  classEntered = 0;
+		 ID = "";
+		 name = "";
+		 email = "";
+		 password = "";
+		 Brithday = "";  
+		 classEntered = 0;
 	 }
 	 bool login(string email, string password) {
-		 extern vector<User> userList;
-		 for (int i = 0; i < userList.size(); i++) {
-			 if (userList[i].email == email && userList[i].password == password) {
-				 loginIndex = i;
-
-				 this->ID = userList[i].ID;
-				 this->name = userList[i].name;
-				 this->email = userList[i].email;
-				 this->password = userList[i].password;
-				 this->Brithday = userList[i].Brithday;
-				 this->subscription = userList[i].subscription;
-
-				 this->classEntered = userList[i].classEntered;
-				 this->myReservations = userList[i].myReservations;
+		 extern unordered_map<string, User> userList;
+		 for (auto it = userList.begin(); it != userList.end(); ++it) {
+			 if (it->second.email == email && it->second.password == password) {
+				 loginIndex = 1; 
+				 this->ID = it->second.ID;
+				 this->name = it->second.name;
+				 this->email = it->second.email;
+				 this->password = it->second.password;
+				 this->Brithday = it->second.Brithday;
+				 this->subscription = it->second.subscription;
+				 this->classEntered = it->second.classEntered;
+				 this->myReservations = it->second.myReservations;
 				 return true;
 			 }
 		 }
+
+		 cout << "Login failed. Incorrect email or password.\n";
 		 return false;
 	 }
 
@@ -217,20 +218,18 @@ public:
 	}
 	//*//
 	bool login(string email, string password) {
-		extern vector<Staff> staffList;
-		for (int i = 0; i < staffList.size(); i++) {
-			if (staffList[i].email == email && staffList[i].password == password) {
+		extern unordered_map<string, Staff> staffList;
+		for (auto it = staffList.begin(); it != staffList.end(); ++it) {
+			if (it->second.email == email && it->second.password == password) {
+				loginIndex = 1;
+				this->name = it->second.name;
+				this->email = it->second.email;
+				this->password = it->second.password;
+				this->phone = it->second.phone;
+				this->role = it->second.role;
+				this->ID = it->second.ID;
+				this->PicPath = it->second.PicPath;
 
-				loginIndex = i;
-
-				this->name = staffList[i].name;
-				this->email = staffList[i].email;
-				this->password = staffList[i].password;
-				this->phone = staffList[i].phone;
-				this->role = staffList[i].role;
-				this->ID = staffList[i].ID;
-				this->PicPath = staffList[i].PicPath;
-				
 				return true;
 			}
 		}
@@ -288,9 +287,8 @@ private:
 		return "CLASS" + to_string(lastID);
 	}
 };
-
-vector<Staff> staffList;
-vector<User> userList;
+extern unordered_map<string, User> userList;     
+extern unordered_map<string, Staff> staffList;
 vector<CreditCard> cardList;
 vector<PadelCourt> courtList;
 vector<Subscriptions> availableSubscriptions;

@@ -4,9 +4,10 @@
 #include<map>
 #include<algorithm>
 #include "WorkoutManger.h"
+unordered_map<string, User> userList;      // Definition
+unordered_map<string, Staff> staffList;
 
-
-int indexOfUser = -1; // -1 means not logged in
+int indexOfUser = -1; // -1 means not logged in/////?????????????
 bool isValidTimeFormat(const string& time) {
 	 // Regular expression to match HH:MM where HH is 00-23 and MM is 00-59
 	 std::regex timeRegex(R"(^([01]?[0-9]|2[0-3]):([0-5][0-9])$)");
@@ -264,47 +265,43 @@ void cancelReservation() {
 
 
 }
-
 bool isEmailCorrect(string email) {
-	 if (email.find('@') == string::npos || email.size() < 5 || email.substr(email.size() - 4) != ".com") {
-		  return false;
-	 }
-	 return true;
+	if (email.find('@') == string::npos || email.size() < 5 || email.substr(email.size() - 4) != ".com") {
+		return false;
+	}
+	return true;
 }
 
 bool isEmailUnique(string email) {
-	 extern vector<User> userList;
-	 for (int i = 0; i < userList.size(); ++i) {
-		  if (userList[i].email == email) {
-			   return false;
-		  }
-	 }
-	 return true;
+	extern unordered_map<string, User> userList;
+	for (auto it = userList.begin(); it != userList.end(); ++it) {
+		if (it->second.email == email) {
+			return false; 
+		}
+	}
+	return true; 
 }
-
 bool isNameValid(string name) {
-	 for (int i = 0; i < name.size(); i++) {
-		  if (!isalpha(name[i])) {
-			   return false;
-		  }
-	 }
-	 return true;
+	for (int i = 0; i < name.size(); i++) {
+		if (!isalpha(name[i])) {
+			return false;
+		}
+	}
+	return true;
 }
 
 bool isBirthdayValid(string bday) {
-	 if (bday.size() != 10) return false;
-	 if (bday[2] != '/' || bday[5] != '/') return false;
-	 for (int i = 0; i < bday.size(); ++i) {
-		  if ((i != 2 && i != 5) && !isdigit(bday[i])) {
-			   return false;
-		  }
-	 }
-	 if (bday[0] < '0' || bday[0] > '1' || (bday[0] == '1' && bday[1] > '2')) return false;
-	 if (bday[3] < '0' || bday[3] > '3' || (bday[3] == '3' && bday[4] > '1')) return false;
-	 return true;
+	if (bday.size() != 10) return false;
+	if (bday[2] != '/' || bday[5] != '/') return false;
+	for (int i = 0; i < bday.size(); ++i) {
+		if ((i != 2 && i != 5) && !isdigit(bday[i])) {
+			return false;
+		}
+	}
+	if (bday[0] < '0' || bday[0] > '1' || (bday[0] == '1' && bday[1] > '2')) return false;
+	if (bday[3] < '0' || bday[3] > '3' || (bday[3] == '3' && bday[4] > '1')) return false;
+	return true;
 }
-
-
 vector<GymClasses> Subscriptions::getAvailableClasses() {
 	extern vector<GymClasses> gymClassesList;
 	string subscriptionType = getType();
@@ -381,9 +378,10 @@ vector<GymClasses> Subscriptions::getAvailableClasses() {
 	return gymClassesList;
 }
 
+
 bool User::registerMember() {
-	string id, name, email, password, bday, sub;
-	extern vector<User> userList;
+	string id, Name, Email, password, bday, sub;
+	extern unordered_map<string, User> userList;
 	cout << "====================================\n";
 	cout << "   Welcome to ysm GYM SYSTEM   \n";
 	cout << "====================================\n";
@@ -393,8 +391,8 @@ bool User::registerMember() {
 	bool isVip = false;
 	while (true) {
 		cout << "Enter your Name: ";
-		cin >> name;
-		if (!isNameValid(name)) {
+		cin >> Name;
+		if (!isNameValid(Name)) {
 			cout << "Invalid name. Use letters and spaces only.\n";
 		}
 		else break;
@@ -402,10 +400,10 @@ bool User::registerMember() {
 
 	while (true) {
 		cout << "Enter Email: ";
-		cin >> email;
-		if (!isEmailCorrect(email))
+		cin >> Email;
+		if (!isEmailCorrect(Email))
 			cout << "Invalid format. Must contain '@' and end with '.com'.\n";
-		else if (!isEmailUnique(email))
+		else if (!isEmailUnique(Email))
 			cout << "Email already exists. Try another.\n";
 		else break;
 	}
@@ -420,7 +418,6 @@ bool User::registerMember() {
 		}
 		else break;
 	}
-
 	int subChoice;
 	while (true) {
 		cout << "\nChoose a Subscription:\n";
@@ -442,7 +439,6 @@ bool User::registerMember() {
 		}
 		break;
 	}
-
 	cout << "Do you want VIP benefits for extra features? (y/n): ";
 	cin >> vipChoice;
 	if (vipChoice == 'y' || vipChoice == 'Y') {
@@ -457,100 +453,85 @@ bool User::registerMember() {
 	cout << "Your ID is: " << id << "\n";
 	User newUser;
 	newUser.ID = id;
-	newUser.name = name;
-	newUser.email = email;
+	newUser.name = Name;
+	newUser.email = Email;
 	newUser.password = password;
 	newUser.Brithday = bday;
 	newUser.subscription = userSub;
 	newUser.classEntered = 0;
-	userList.push_back(newUser);
+	userList[id] = newUser;
 	cout << "Member registered successfully.\n";
 	return true;
 }
 bool Staff::registerStaff() {
-	string name, email, password, phone, role;
-
+	string Name, Email, Password, phonenumber, Role, id;
 	extern vector<GymClasses> gymClassesList;
-	extern vector<Staff> staffList;
-
+	extern unordered_map<string, Staff> staffList;
 	while (true) {
 		cout << "Enter your Name: ";
-		cin >> name;
-		if (!isNameValid(name)) {
+		cin >> Name;
+		if (!isNameValid(Name)) {
 			cout << "Invalid name. Use letters and spaces only.\n";
 		}
 		else break;
 	}
-
 	while (true) {
 		cout << "Enter Email: ";
-		cin >> email;
-		if (!isEmailCorrect(email))
+		cin >> Email;
+		if (!isEmailCorrect(Email))
 			cout << "Invalid format. Must contain '@' and end with '.com'.\n";
-		else if (!isEmailUnique(email))
+		else if (!isEmailUnique(Email))
 			cout << "Email already exists. Try another.\n";
 		else break;
-
-
-
-
-
-
 	}
-
 	cout << "Enter password: ";
-	cin >> password;
-
+	cin >> Password;
 	while (true) {
 		cout << "Enter phone number (at least 11 digits): ";
-		cin >> phone;
-		if (phone.length() < 11) {
+		cin >> phonenumber;
+		if (phonenumber.length() < 11) {
 			cout << "Phone number must be at least 11 digits.\n";
 		}
 		else break;
 	}
-
 	cout << "Enter role (Coach/Reception): ";
-	cin >> role;
+	cin >> Role;
 
 	Staff newStaff;
-	newStaff.name = name;
-	newStaff.email = email;
-	newStaff.password = password;
-	newStaff.phone = phone;
-	newStaff.role = role;
-	if (role == "Reception" || role == "reception") {
+	newStaff.ID = id;
+	newStaff.name = Name;
+	newStaff.email = Email;
+	newStaff.password = Password;
+	newStaff.phone = phonenumber;
+	newStaff.role = Role;
+	if (Role == "Reception" || Role == "reception") {
 		cout << "Reception staff cannot assign classes.\n";
-		newStaff.ID = "R" + to_string(++baseID);
-		cout << "your id is" << newStaff.ID << "\n";
-		staffList.push_back(newStaff);
+		id = "R" + to_string(++baseID);
 		cout << "Reception staff registered successfully.\n";
-		return true;
 	}
-
-	else if (role == "Coach" || role == "coach") {
-		newStaff.ID = "C" + to_string(++baseID);
-		staffList.push_back(newStaff);
+	else if (Role == "Coach" || Role == "coach") {
+		id = "C" + to_string(++baseID);
 		cout << "Coach staff registered successfully.\n";
-		cout << "Your ID is: " << newStaff.ID << "\n";
-		return true;
 	}
-
-	cout << "Invalid role entered.\n";
-	return false;
+	else {
+		cout << "Invalid role entered.\n";
+		return false;
+	}
+	staffList[id] = newStaff;
+	cout << "Staff registered successfully. Your ID is: " << id << "\n";
+	return true;
 }
 User Staff::searchUserByID(string userID) {
+	extern unordered_map<string, User> userList;
 	if (loginIndex == -1) {
-		cout << "You must be logged in as a staff to search for users." << endl;
+		cout << "You must be logged in as a staff to search for users.\n";
 		return User();
 	}
-
-	for (int i = 0; i < userList.size(); i++) {
-		if (userList[i].ID == userID) {
-			return userList[i];
-		}
+	unordered_map<string, User>::iterator it = userList.find(userID);
+	if (it != userList.end()) {
+		return it->second; 
 	}
-	cout << "User with ID " << userID << " not found." << endl;
+	cout << "User with ID " << userID << " not found.\n";
 	return User();
 }
 //*//
@@ -587,7 +568,8 @@ time_t Subscriptions::calaculateEndDate() {
 }
 
 
-Subscriptions::Subscriptions() : type(""), start_date(0), end_date(0), is_VIP(false), price(0.0) {}
+Subscriptions::Subscriptions() : type(""), start_date(0), end_date(0),
+is_VIP(false), price(0.0), isActivated(false) {}
 double Subscriptions::getPrice() {
 	 if (type == "1 month")
 		  price = 450.0;
