@@ -877,8 +877,36 @@ void viewWaitingListEachclass() {
 		  cout << endl;
 	 }
 }
+void notifyExpiringSubscriptions( string& staffID) {
+	extern unordered_map<string, Staff> staffList;
+	extern unordered_map<string, User> userList;
 
+	auto staffIt = staffList.find(staffID);
+	if (staffIt == staffList.end() || staffIt->second.role != "Manager" && staffIt->second.role != "manager") {
+		cout << "Access denied. Only Managers can send notifications.\n";
+		return;
+	}
 
+	time_t now = time(0);
+	const int warningDays = 5;
+
+	for (auto& pair : userList) {
+		User& user = pair.second;
+		time_t endDate = user.subscription.calaculateEndDate();
+		double daysLeft = difftime(endDate, now) / (60 * 60 * 24);
+
+		if (daysLeft <= warningDays && user.subscription.isActive()) {
+			string msg = "Reminder: Your subscription is about to expire in " + to_string((int)daysLeft) + " day(s). Please renew.";
+			cout << "Sending to " << user.email << ": " << msg << endl;
+
+		}
+		else if (user.subscription.IsExpired()) {
+			string msg = "Your subscription has expired. Please renew to continue enjoying our services.";
+			cout << "Sending to " << user.email << ": " << msg << endl;
+
+		}
+	}
+}
 void main() {
 
 	 // readCreditCardData();
