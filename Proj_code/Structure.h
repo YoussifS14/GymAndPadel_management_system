@@ -172,7 +172,7 @@ public:
 		  cout << "Login failed. Incorrect email or password.\n";
 		  return false;
 	 }
-
+	 void displayUserEnrolledClasses();
 };
 
 

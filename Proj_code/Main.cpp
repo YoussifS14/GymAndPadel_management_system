@@ -996,6 +996,32 @@ void deleteUser_and_cancelsubscription(string& userID) {
 	userList.erase(it);
 	cout << "User " << userID << " has been removed from the system.\n";
 }
+void User::displayUserEnrolledClasses() {  //    علشان دي تشتغل  صحgymClassesList  تبقي لينكد مع enrollClass Function لازم ال  
+	extern unordered_map<string, GymClasses> gymClassesList;
+	bool hasClasses = false;
+	cout << "\n=== Enrolled Classes for " << name << " (ID: " << ID << ") ===\n";
+	cout << "----------------------------------------------------------\n";
+	for (auto& pair : gymClassesList) {
+		GymClasses& gymClass = pair.second;
+		for (auto& subPair : gymClass.usersEnrolled) {
+			for (User& user : subPair.second) {
+				if (user.ID == ID) {
+					hasClasses = true;
+					cout << "Class ID: " << gymClass.classID << "\n";
+					cout << "Class Name: " << gymClass.className << "\n";
+					cout << "Coach: " << gymClass.coachName.name << "\n";
+					cout << "Date: " << gymClass.date << "\n";
+					cout << "Time: " << gymClass.startTime << " - " << gymClass.endTime << "\n";
+					cout << "Status: " << (gymClass.isFull() ? "Full" : "Available") << "\n";
+					cout << "----------------------------------------------------------\n";
+				}
+			}
+		}
+	}
+	if (!hasClasses)
+		cout << "No classes enrolled.\n";
+	cout << "----------------------------------------------------------\n";
+}
 void main() {
 
 	 // readCreditCardData();
