@@ -16,9 +16,11 @@ namespace ProjectCode {
 	 public ref class GymPN : public System::Windows::Forms::UserControl
 	 {
 	 public:
-		  GymPN(void)
+		  bool res;
+		  GymPN(bool temp)
 		  {
 			   InitializeComponent();
+			   res = temp;
 			   //
 			   //TODO: Add the constructor code here
 			   //
@@ -42,6 +44,7 @@ namespace ProjectCode {
 	 public: System::Windows::Forms::Label^ CEnd;
 	 public: System::Windows::Forms::Button^ Reserv_btn;
 	 public: System::Windows::Forms::Label^ CPrice;
+	 public: System::Windows::Forms::Button^ cancelling_btn;
 	 protected:
 
 	 protected:
@@ -72,6 +75,7 @@ namespace ProjectCode {
 			   this->CEnd = (gcnew System::Windows::Forms::Label());
 			   this->Reserv_btn = (gcnew System::Windows::Forms::Button());
 			   this->CPrice = (gcnew System::Windows::Forms::Label());
+			   this->cancelling_btn = (gcnew System::Windows::Forms::Button());
 			   this->SuspendLayout();
 			   // 
 			   // CName
@@ -128,6 +132,7 @@ namespace ProjectCode {
 			   this->Reserv_btn->TabIndex = 4;
 			   this->Reserv_btn->Text = L"Reserve";
 			   this->Reserv_btn->UseVisualStyleBackColor = true;
+			   this->Reserv_btn->Visible = false;
 			   this->Reserv_btn->Click += gcnew System::EventHandler(this, &GymPN::Reserv_btn_Click);
 			   // 
 			   // CPrice
@@ -141,10 +146,24 @@ namespace ProjectCode {
 			   this->CPrice->TabIndex = 5;
 			   this->CPrice->Text = L"Price :";
 			   // 
+			   // cancelling_btn
+			   // 
+			   this->cancelling_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->cancelling_btn->Location = System::Drawing::Point(515, 191);
+			   this->cancelling_btn->Name = L"cancelling_btn";
+			   this->cancelling_btn->Size = System::Drawing::Size(123, 39);
+			   this->cancelling_btn->TabIndex = 6;
+			   this->cancelling_btn->Text = L"Cancel";
+			   this->cancelling_btn->UseVisualStyleBackColor = true;
+			   this->cancelling_btn->Visible = false;
+			   this->cancelling_btn->Click += gcnew System::EventHandler(this, &GymPN::cancelling_btn_Click);
+			   // 
 			   // GymPN
 			   // 
 			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			   this->Controls->Add(this->cancelling_btn);
 			   this->Controls->Add(this->CPrice);
 			   this->Controls->Add(this->Reserv_btn);
 			   this->Controls->Add(this->CEnd);
@@ -154,6 +173,7 @@ namespace ProjectCode {
 			   this->Name = L"GymPN";
 			   this->Padding = System::Windows::Forms::Padding(0, 0, 10, 0);
 			   this->Size = System::Drawing::Size(785, 264);
+			   this->Load += gcnew System::EventHandler(this, &GymPN::GymPN_Load);
 			   this->ResumeLayout(false);
 			   this->PerformLayout();
 
@@ -166,6 +186,10 @@ namespace ProjectCode {
 		  string classIDStr = msclr::interop::marshal_as<string>(classID);
 		  string index = GymClasses::FindIndex(classIDStr);
 		  if (index != "") {
+			   if (gymClassList[classIDStr].isFull() && gymClassList[classIDStr].waitingList.size() == gymClassList[classIDStr].maxMembers) {
+					MessageBox::Show("This class not accept any order  again  you can check another class.");
+					return;
+			   }
 			   if (gymClassList[classIDStr].isFull()) {
 					DialogResult result = MessageBox::Show("This class is full. You can join the waiting list.\n!!Warning: If you want to skip the waiting period, you must pay for a subscription", "Request wait", MessageBoxButtons::OKCancel, MessageBoxIcon::Question);
 
@@ -174,7 +198,11 @@ namespace ProjectCode {
 						 paymentPage->ShowDialog();
 						 if (paymentPage->OperationResult) {
 							  // Add the user to the waiting list
-							  gymClassList[classIDStr].waitingList.push_back(userList[loginID]);
+							  if (userList[loginID].isVip)
+								   gymClassList[classIDStr].waitingList.push_front(userList[loginID]);
+							  else
+								   gymClassList[classIDStr].waitingList.push_back(userList[loginID]);
+							  MessageBox::Show("You have been added to the waiting list.");
 							  MessageBox::Show("You have been added to the waiting list.");
 						 }
 						 else {
@@ -194,24 +222,31 @@ namespace ProjectCode {
 					PaymentPage^ paymentPage = gcnew PaymentPage(gymClassList[classIDStr].price);
 					paymentPage->ShowDialog();
 					if (paymentPage->OperationResult) {
-						 // Add the user to the waiting list
-						 if (userList[loginID].isVip)
-							  gymClassList[classIDStr].waitingList.push_front(userList[loginID]);
-						 else
-							  gymClassList[classIDStr].waitingList.push_back(userList[loginID]);
-						 MessageBox::Show("You have been added to the waiting list.");
+						 // Add the user to the member list
+						 gymClassList[classIDStr].members[loginID] = userList[loginID];
+						 // userList[loginID].list.push_back(classIDstr);
+						 MessageBox::Show("You have successfully reserved a spot in this class.");
+
 					}
 					else {
 
 						 MessageBox::Show("Payment cancelled.");
 					}
-					if (paymentPage->OperationResult)
-						 gymClassList[classIDStr].members.push_back(userList[loginID]), MessageBox::Show("You have successfully reserved a spot in this class.");
+
 			   }
 		  }
 		  else {
 			   MessageBox::Show("Class not found.");
 		  }
+	 }
+	 private: System::Void GymPN_Load(System::Object^ sender, System::EventArgs^ e) {
+		  if (res)
+			   Reserv_btn->Visible = true;
+		  else
+			   cancelling_btn->Visible = true;
+	 }
+	 private: System::Void cancelling_btn_Click(System::Object^ sender, System::EventArgs^ e) {
+
 	 }
 	 };
 }

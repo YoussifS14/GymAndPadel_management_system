@@ -21,6 +21,9 @@
     <ClCompile Include="staffPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="managertPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LoginPage.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="feature_GUI\GymPN.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="managertPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
