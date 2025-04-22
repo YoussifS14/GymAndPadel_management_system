@@ -4,7 +4,7 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
-string loginIndex;
+//string loginID = "";
 vector<CreditCard> cardList;
 
 unordered_map<string, User> userList;

@@ -235,6 +235,7 @@ namespace ProjectCode {
 			   userPage^ userPg = gcnew userPage();
 			   userName_txb->Text = "";
 			   password_txb->Text = "";
+			   userPg->AccName->Text = gcnew String(userList[loginID].name.c_str());
 			   userPg->ShowDialog();
 			   this->Show();
 			   // Proceed to the next form or functionality

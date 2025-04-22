@@ -215,7 +215,7 @@ public:
 	 string endDate;
 	 float price = 1.0;
 	 int maxMembers; // Maximum number of members allowed in the class
-	 vector<User> members; // List of users enrolled in the class	
+	 unordered_map<string, User> members; // List of users enrolled in the class	
 	 deque<User> waitingList;
 
 	 bool isFull() {
@@ -231,6 +231,15 @@ public:
 
 		  return ""; // Not found
 	 }
+	 int getDaysDifference() {
+		  string date1 = User::getCurrentDate_MM_DD_YYYY();
+		  time_t t1 = User::getTime_t(date1);
+		  time_t t2 = User::getTime_t(startDate);
+		  double secondsDiff = difftime(t2, t1);
+		  int daysDiff = (int)(secondsDiff / (60 * 60 * 24));
+		  return daysDiff;
+	 }
+
 
 };
 
