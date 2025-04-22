@@ -137,6 +137,16 @@ public:
 		 classEntered = classes; 
 	 }
 	 //*//
+	 User(string _id, string _name, string _email, string _password, string _birthday, Subscriptions _sub, int _classEntered, vector<Slot> _reservations) {
+		 ID = _id;
+		 name = _name;
+		 email = _email;
+		 password = _password;
+		 Brithday = _birthday;
+		 subscription = _sub;
+		 classEntered = _classEntered;
+		 myReservations = _reservations;
+	 }
 	 User(string Id, string Name, string Email, string pass, string bday, Subscriptions Sub) {
 		 ID = Id;
 		 name = Name;
