@@ -242,6 +242,7 @@ public:
 	 //**//
 	 void generateMonthlyReport();
 	 GymClasses createClass();   // only manager can acess 
+	 void displayCoachClasses(string coachID);
 };
 
 class GymClasses {
@@ -260,6 +261,18 @@ public:
 	deque<User> waitingList;
 	vector<string>allowedSubTypes;
 
+	GymClasses(string id, string name, Staff coach, string dt, string startT, string endT, int maxMem, int currentMem, unordered_map<string, vector<User>> enrolled, deque<User> waitList) {
+		classID = id;
+		className = name;
+		coachName = coach;
+		date = dt;
+		startTime = startT;
+		endTime = endT;
+		maxMembers = maxMem;
+		currentMembersCount = currentMem;
+		usersEnrolled = enrolled;
+		waitingList = waitList;
+	}
 	GymClasses(string name, Staff coach, string dt, string startT, string endT, int capacity) {
 		classID = generateUniqueID();
 		className = name;

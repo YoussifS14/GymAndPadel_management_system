@@ -741,7 +741,7 @@ GymClasses Staff::createClass() {
 		cout << "You must be logged in to create classes.\n";
 		return GymClasses();
 	}
-	if (role != "Manager" && role != "reception") {
+	if (role != "Manager" && role != "manager") {
 		cout << "Only a manager can create classes.\n";
 		return GymClasses();
 	}
@@ -859,6 +859,83 @@ GymClasses Staff::createClass() {
 	return newClass;
 }
 
+void Staff::displayCoachClasses(string coachID = "")
+{
+	//extern unordered_map<string, GymClasses> gymClassesList;
+	//extern unordered_map<string, Staff> staffList;
+
+	if (role == "Coach" || role == "coach") {
+		coachID = ID;
+	}
+	else if ((role == "Manager" || role == "manager" ||
+		role == "Reception" || role == "reception") && coachID.empty()) {
+		cout << "\033[1;35mEnter Coach ID: \033[0m";
+		cin >> coachID;
+	}
+
+	if (staffList.find(coachID) == staffList.end() ||
+		(staffList[coachID].role != "Coach" && staffList[coachID].role != "coach")) {
+		cout << "\033[1;31mError: Coach with ID " << coachID
+			<< " not found or not a coach.\033[0m\n";
+		return;
+	}
+	cout << "\n\033[1;35m=== Classes for Coach " << staffList[coachID].name
+		<< " (ID: " << coachID << ") ===\033[0m\n";
+	cout << "----------------------------------------------------------\n";
+
+	bool hasClasses = false;
+	unordered_map<string, GymClasses>::iterator it;
+	for (it = gymClassesList.begin(); it != gymClassesList.end(); ++it) {
+		GymClasses gymClass = it->second;
+
+		if (gymClass.coachName.ID == coachID) {
+			hasClasses = true;
+			cout << "\033[1;36mClass ID:\033[0m " << gymClass.classID << "\n";
+			cout << "\033[1;36mClass Name:\033[0m " << gymClass.className << "\n";
+			cout << "\033[1;36mDate:\033[0m " << gymClass.date << "\n";
+			cout << "\033[1;36mTime:\033[0m " << gymClass.startTime << " - " << gymClass.endTime << "\n";
+			cout << "\033[1;36mcurrentMembersCount: \033[0m" << gymClass.currentMembersCount
+				<< "\t" << "\033[1;36mmaxMembers: \033[0m" << gymClass.maxMembers << "\n";
+			cout << "\033[1;36mStatus:\033[0m " << (gymClass.isFull() ? "Full" : "Available") << "\n";
+
+			cout << "\033[1;36mEnrolled Members:\033[0m\n";
+			if (gymClass.usersEnrolled.empty()) {
+				cout << "  No members enrolled\n";
+			}
+			else {
+				unordered_map<string, vector<User>>::iterator subit;
+				for (subit = gymClass.usersEnrolled.begin(); subit != gymClass.usersEnrolled.end(); ++subit) {
+					cout << "  " << subit->first << " Subscription:\n";
+					if (subit->second.empty()) {
+						cout << "No members\n";
+					}
+					else {
+						for (int i = 0; i < subit->second.size(); ++i) {
+							User user = subit->second[i];
+							cout << "member name is" << "\t" << user.name << "\t" << " ID: " << user.ID << endl;
+						}
+
+					}
+				}
+			}
+			cout << "\033[1;36mWaiting List:\033[0m\n";
+			if (gymClass.waitingList.empty()) {
+				cout << " No members in waiting list\n";
+			}
+			else {
+				for (int i = 0; i < gymClass.waitingList.size(); ++i) {
+					cout << "member name in waitingList" << "\t" << gymClass.waitingList[i].name << "\t" << "ID: " << gymClass.waitingList[i].ID << endl;
+				}
+			}
+
+			cout << "----------------------------------------------------------\n";
+		}
+	}
+
+	if (!hasClasses) {
+		cout << "\033[1;33mNo classes assigned to this coach.\033[0m\n";
+	}
+}
 
 bool GymClasses::isFull() {
 	 return currentMembersCount >= maxMembers;
