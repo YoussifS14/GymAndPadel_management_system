@@ -58,7 +58,7 @@ public:
 		  extern unordered_map<string, Staff> staffList;
 		  auto it = staffList.begin();
 		  while (it != staffList.end()) {
-			   if (it->second.email == email) {
+			   if (it->second.email == email && it->second.password == password) {
 					loginID = it->second.ID;
 					return true;
 			   }
@@ -116,7 +116,7 @@ public:
 		  extern unordered_map<string, User> userList;
 		  auto it = userList.begin();
 		  while (it != userList.end()) {
-			   if (it->second.email == email) {
+			   if (it->second.email == email && it->second.password == password) {
 					loginID = it->second.ID;
 					return true;
 			   }
