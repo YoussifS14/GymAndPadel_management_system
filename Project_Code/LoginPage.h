@@ -220,9 +220,9 @@ namespace ProjectCode {
 			   }
 
 			   LoadingPage^ loading = gcnew LoadingPage();
-			   MessageBox::Show("Login successful as Staff");
+			   // MessageBox::Show("Login successful as Staff");
 			   this->Hide();
-			   loading->label1->Text = "Loading Staff Page...";
+			   loading->label1->Text = "Loading...";
 			   loading->ShowDialog();
 
 			   if (staffRole == "manager") {
@@ -241,12 +241,12 @@ namespace ProjectCode {
 
 		  else if (User::login(email, password)) {
 			   LoadingPage^ loading = gcnew LoadingPage();
-			   MessageBox::Show("Login successful as User");
+			   //  MessageBox::Show("Login successful as User");
 			   if (userList[loginID].subscription.get_is_VIP()) {
-					loading->label1->Text = "Loading VIP User Page...";
+					loading->label1->Text = "Loading Vip...";
 			   }
 			   else {
-					loading->label1->Text = "Loading User Page...";
+					loading->label1->Text = "Loading...";
 			   }
 			   this->Hide(); // Hide the login page
 			   //loading->label1->Text = "Loading User Page...";
