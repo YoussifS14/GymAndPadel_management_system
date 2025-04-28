@@ -119,9 +119,6 @@
 
     <ClCompile Include="sighup.cpp" />
 
-    <ClCompile Include="sighup.cpp" />
-
-
     <ClCompile Include="staffPage.cpp" />
   </ItemGroup>
   <ItemGroup>
