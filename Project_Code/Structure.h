@@ -14,8 +14,9 @@
 #include <msclr/marshal_cppstd.h>
 
 using namespace std;
-
-
+using namespace msclr::interop;
+extern void writeStaffData();
+static int baseID = 1000; 
 extern std::string loginID;   // -1 means not logged in
 // class Subscriptions // This gym subscription generally has nothing to do with classes.
 struct CreditCard {
@@ -39,7 +40,7 @@ struct CreditCard {
 	 }
 };
 
-time_t getTime_t(const string date) {
+static time_t getTime_t(const string date) {
 	 tm ty{};
 	 if (sscanf(date.c_str(), "%d/%d/%d", &ty.tm_mon, &ty.tm_mday, &ty.tm_year) != 3) {
 
@@ -51,7 +52,7 @@ time_t getTime_t(const string date) {
 
 	 return mktime(&ty);
 }
-string getFormat(time_t t) {
+static string getFormat(time_t t) {
 	 tm* tm = localtime(&t);
 	 char buffer[11];
 	 strftime(buffer, sizeof(buffer), "%m/%d/%Y", tm);
@@ -98,7 +99,60 @@ public:
 		  ID += to_string(staffList.size() + 1);
 		  return ID;
 	 }
+	 bool registerStaff(string Name, string Email, string Password, string Phone, string Role, string imagepath = "") {
+		 extern unordered_map<string, Staff> staffList;
+		 extern int baseID;
 
+		 if (!isNameValid(Name)) return false;
+		 if (!isEmailUnique(Email)) return false;
+		 //if (Phone.length() < 11) return false;
+
+		 Staff newStaff;
+		 newStaff.name = Name;
+		 newStaff.email = Email;
+		 newStaff.password = Password;
+		 newStaff.phone = Phone;
+		 newStaff.role = Role;
+		 newStaff.PicPath = imagepath;
+		 // newStaff.PicPath = PicPath; 
+
+		 string id;
+		 if (Role == "Reception" || Role == "reception") {
+			 id = "R" + to_string(++baseID);
+		 }
+		 else if (Role == "Coach" || Role == "coach") {
+			 id = "C" + to_string(++baseID);
+		 }
+		 else {
+			 return false;
+		 }
+
+		 newStaff.ID = id;
+		 staffList[id] = newStaff;
+		 writeStaffData();
+		 return true;
+	 }
+	 bool isEmailCorrect(string email) {
+		 if (email.find('@') == string::npos || email.size() < 5 || email.substr(email.size() - 4) != ".com") {
+			 return false;
+		 }
+		 return true;
+	 }
+	 bool isEmailUnique(string email) {
+		 extern unordered_map<string, Staff> staffList;
+		 for (auto it = staffList.begin(); it != staffList.end(); ++it) {
+			 if (it->second.email == email) {
+				 return false;
+			 }
+		 }
+		 return true;
+	 }
+	 bool isNameValid(string name) {
+		 for (char c : name) {
+			 if (!isalpha(c) && c != ' ') return false;
+		 }
+		 return !name.empty();
+	 }
 };
 struct Slot {
 	 string ID;
