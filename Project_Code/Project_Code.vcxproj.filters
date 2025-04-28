@@ -21,12 +21,15 @@
     <ClCompile Include="staffPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
     <ClCompile Include="managertPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sighup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+>>>>>>> 52dd82388a888d9a521de48f9b57be7b0963ec49
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LoginPage.h">
