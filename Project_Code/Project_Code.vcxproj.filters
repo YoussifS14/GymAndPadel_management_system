@@ -27,7 +27,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
 
- 36ccb57320177c572a09e06ecd37f086d431680b
+
     <ClCompile Include="sighup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
