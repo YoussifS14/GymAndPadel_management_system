@@ -167,7 +167,18 @@ void writeUserData() {
 	 }
 	 file.close();
 }
-
+void writeStaffData() {
+	ofstream file("Data/staffData.csv");
+	file << "ID,Name,Email,password, PhoneNumber,Role,accountPic\n";
+	//file << "ID,name,email,password,Birthday,subscription,accPic,myClass,myWallet\n"; // reservation data  if exists
+	// Write header
+	for (auto it = staffList.begin(); it != staffList.end(); ++it) {
+		Staff staff = it->second;
+		if (!staff.ID.empty())
+			file << staff.ID << "," << staff.name << "," << staff.email << "," << staff.password << "," << staff.phone << "," << staff.PicPath << "," << staff.role << "\n";
+	}
+	file.close();
+}
 
 [STAThreadAttribute]
 int main()
