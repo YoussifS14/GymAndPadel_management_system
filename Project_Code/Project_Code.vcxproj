@@ -114,11 +114,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+<<<<<<< HEAD
 
     <ClCompile Include="managertPage.cpp" />
 
     <ClCompile Include="sighup.cpp" />
 
+=======
+    <ClCompile Include="sighup.cpp" />
+>>>>>>> 36ccb57320177c572a09e06ecd37f086d431680b
     <ClCompile Include="staffPage.cpp" />
   </ItemGroup>
   <ItemGroup>
