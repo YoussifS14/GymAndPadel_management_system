@@ -21,11 +21,6 @@
     <ClCompile Include="staffPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-
-    <ClCompile Include="managertPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-
     <ClCompile Include="sighup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
