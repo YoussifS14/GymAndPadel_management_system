@@ -3,15 +3,16 @@
 
 using namespace System;
 using namespace System::Windows::Forms;
+int Slot::slotCounter = 1;
 
-//string loginID = "";
-vector<CreditCard> cardList;
+int Notification::notificationCounter = 1;
 
-unordered_map<string, User> userList;
-unordered_map<string, Staff> staffList;
-unordered_map<string, GymClasses> gymClassList; // gymClass ID (key), gymClass(value)
-unordered_map<string, PadelCourt> courtList;//vector<Subscriptions> availableSubscriptions;
-
+std::string loginID;
+std::vector<CreditCard> cardList;
+std::unordered_map<std::string, User> userList;
+std::unordered_map<std::string, Staff> staffList;
+std::unordered_map<std::string, GymClasses> gymClassList;
+std::unordered_map<std::string, PadelCourt> courtList;
 
 void readStaffData() {
 	 ifstream file("Data/staffData.csv");

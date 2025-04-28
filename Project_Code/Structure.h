@@ -12,8 +12,7 @@
 #include <msclr/marshal_cppstd.h>
 
 using namespace std;
-
-extern string loginID = ""; // -1 means not logged in
+extern std::string loginID;   // -1 means not logged in
 // class Subscriptions // This gym subscription generally has nothing to do with classes.
 struct CreditCard {
 	 string cardID;
@@ -86,7 +85,7 @@ struct Slot {
 	 }
 
 };
-int Slot::slotCounter = 1;
+
 
 class User {
 public:
@@ -301,11 +300,9 @@ struct Notification {
 
 };
 
-int Notification::notificationCounter = 1;
 
-extern unordered_map<string, User> userList;
-extern unordered_map<string, Staff> staffList;
-extern unordered_map<string, GymClasses> gymClassList; // gymClass ID (key), gymClass(value)
-extern vector<CreditCard> cardList;
-extern unordered_map<string, PadelCourt> courtList;
-
+extern std::vector<CreditCard> cardList;
+extern std::unordered_map<std::string, User> userList;
+extern std::unordered_map<std::string, Staff> staffList;
+extern std::unordered_map<std::string, GymClasses> gymClassList;
+extern std::unordered_map<std::string, PadelCourt> courtList;
