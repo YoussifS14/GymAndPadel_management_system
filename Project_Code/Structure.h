@@ -4,6 +4,8 @@
 #include <vector>
 #include <unordered_map>
 #include <deque>
+#include <list>
+#include <ctime>
 #include <fstream>
 #include <sstream>
 #include <regex>
@@ -12,6 +14,8 @@
 #include <msclr/marshal_cppstd.h>
 
 using namespace std;
+
+
 extern std::string loginID;   // -1 means not logged in
 // class Subscriptions // This gym subscription generally has nothing to do with classes.
 struct CreditCard {
@@ -34,6 +38,29 @@ struct CreditCard {
 		  return false; // Card not found or invalid
 	 }
 };
+
+time_t getTime_t(const string date) {
+	 tm ty{};
+	 if (sscanf(date.c_str(), "%d/%d/%d", &ty.tm_mon, &ty.tm_mday, &ty.tm_year) != 3) {
+
+		  return static_cast<time_t>(-1);
+	 }
+
+	 ty.tm_year -= 1900;
+	 ty.tm_mon -= 1;
+
+	 return mktime(&ty);
+}
+string getFormat(time_t t) {
+	 tm* tm = localtime(&t);
+	 char buffer[11];
+	 strftime(buffer, sizeof(buffer), "%m/%d/%Y", tm);
+	 return string(buffer);
+}
+
+
+class User;
+class GymClasses;
 
 class Staff {
 public:
@@ -86,21 +113,139 @@ struct Slot {
 
 };
 
+class Subscriptions {
+private:
+	 string type;           // 1 month,3 month,6 month,1 year
+	 string start_date;
+	 string end_date;
+	 double price;
+	 bool isActivated;/// for sendnotifications
+	 bool is_VIP;
+public:
+
+	 Subscriptions(string _type, string  st_date, bool vip) {
+		  type = _type;
+		  start_date = st_date;
+		  is_VIP = vip;
+		  price = getPrice();
+		  calculateEndDate();
+	 }
+	 Subscriptions() : type(""), start_date(""), end_date(""),
+		  is_VIP(false), price(0.0), isActivated(false) {
+	 }
+
+	 double getPrice() {
+		  if (type == "1 month")
+			   price = 450.0;
+		  else if (type == "3 month")
+			   price = 1250.0;
+		  else if (type == "6 month")
+			   price = 2400.0;
+		  else if (type == "1 year")
+			   price = 4700.0;
+		  if (is_VIP)
+			   price += 100.0;
+		  return price;
+	 }
+	 //void renewSubscription(string& newType, time_t newStdate);
+	 bool isActive() {
+		  time_t current_date = time(0);
+		  time_t convertedStartDate = getTime_t(start_date);
+		  time_t convertedEndDate = getTime_t(end_date);
+		  return(current_date >= convertedStartDate && current_date <= convertedEndDate);
+	 }
+	 string getType() {
+		  return type;
+	 }
+	 bool get_is_VIP() {
+		  return is_VIP;
+	 }
+	 unordered_map<string, GymClasses>getAvailableClasses();
+	 /*time_t calaculateEndDate() {
+		   tm tmStart;
+		   time_t convertedStartDate = User::getTime_t(start_date);
+		   localtime_s(&tmStart, &convertedStartDate);
+
+		   tmStart.tm_sec = 0;
+		   tmStart.tm_min = 0;
+		   tmStart.tm_hour = 0;
+
+		   if (type == "1 month") {
+				tmStart.tm_mon += 1;
+		   }
+		   else if (type == "3 month") {
+				tmStart.tm_mon += 3;
+		   }
+		   else if (type == "6 month") {
+				tmStart.tm_mon += 6;
+		   }
+		   else if (type == "1 year") {
+				tmStart.tm_year += 1;
+		   }
+
+		   return mktime(&tmStart);
+	  }*/
+
+	 void calculateEndDate() {
+		  struct tm t;
+		  time_t convertedStartDate = getTime_t(start_date);
+		  localtime_s(&t, &convertedStartDate);
+
+		  if (type == "1 month")
+			   t.tm_mon += 1;
+		  else if (type == "3 months")
+			   t.tm_mon += 3;
+		  else if (type == "6 months")
+			   t.tm_mon += 6;
+		  else if (type == "1 year")
+			   t.tm_year += 1;
+		  time_t convertedEndDate = mktime(&t);
+		  end_date = getFormat(convertedEndDate);
+	 }
+
+	 void set_is_VIP(bool vip) {
+		  is_VIP = vip;
+	 }
+	 bool IsExpired() {
+		  time_t convertedT = getTime_t(end_date);
+		  return time(0) > convertedT;
+	 }
+	 bool createOffer() {
+		  return (is_VIP == true);
+	 }
+
+	 double applyOffer(double basePrice) {
+		  if (createOffer()) {
+			   price = basePrice * 0.75;
+		  }
+		  else {
+			   price = basePrice * 0.90;
+		  }
+		  return price;
+	 }
+	 string getStartDate() {
+		  return start_date;
+	 }
+
+};
 
 class User {
 public:
 	 string ID;
 	 string name;
 	 string email;
+
 	 string password;
-	 string Brithday;
-	 string subscription; // 1 month, 3 month, 6 month, 1 year -> This is the gym subscription in general (type Subscriptions)
+	 string Birthday;
+	 string PicPath;
+	 Subscriptions subscription; // 1 month, 3 month, 6 month, 1 year -> This is the gym subscription in general (type Subscriptions)
+
 	 float myWallet; // cash back from cancelling
 	 bool isVip;
 	 vector<Slot> myReservations; // List of reserved slots
-	 /*
 	 list<string> myClasses;  // List of reserved classes ->> classID
-	 */
+
+
 
 
 	 User() {
@@ -108,8 +253,8 @@ public:
 		  name = "";
 		  email = "";
 		  password = "";
-		  Brithday = "";
-		  subscription = "";
+		  Birthday = "";
+		  subscription = Subscriptions();
 	 }
 	 static bool login(string email, string password) {
 		  extern unordered_map<string, User> userList;
@@ -166,19 +311,6 @@ public:
 
 		  return hourDiff;
 	 }
-	 static time_t getTime_t(const string date) {
-		  tm tm = { 0 };
-		  sscanf(date.c_str(), "%d/%d/%d", &tm.tm_mon, &tm.tm_mday, &tm.tm_year);
-		  tm.tm_year -= 1900; // Year since 1900
-		  tm.tm_mon -= 1; // Months are 0-11
-		  return mktime(&tm);
-	 }
-	 static string getFormat(time_t t) {
-		  tm* tm = localtime(&t);
-		  char buffer[11];
-		  strftime(buffer, sizeof(buffer), "%m/%d/%Y", tm);
-		  return string(buffer);
-	 }
 
 	 static string generateID() {
 		  extern unordered_map<string, User> userList;
@@ -215,7 +347,7 @@ public:
 	 float price = 1.0;
 	 int maxMembers; // Maximum number of members allowed in the class
 	 unordered_map<string, User> members; // List of users enrolled in the class	
-	 deque<User> waitingList;
+	 deque<string> waitingList; // List of userIDs on the waiting list
 
 	 bool isFull() {
 		  return members.size() == maxMembers;
@@ -232,8 +364,8 @@ public:
 	 }
 	 int getDaysDifference() {
 		  string date1 = User::getCurrentDate_MM_DD_YYYY();
-		  time_t t1 = User::getTime_t(date1);
-		  time_t t2 = User::getTime_t(startDate);
+		  time_t t1 = getTime_t(date1);
+		  time_t t2 = getTime_t(startDate);
 		  double secondsDiff = difftime(t2, t1);
 		  int daysDiff = (int)(secondsDiff / (60 * 60 * 24));
 		  return daysDiff;
@@ -301,8 +433,13 @@ struct Notification {
 };
 
 
-extern std::vector<CreditCard> cardList;
-extern std::unordered_map<std::string, User> userList;
-extern std::unordered_map<std::string, Staff> staffList;
-extern std::unordered_map<std::string, GymClasses> gymClassList;
-extern std::unordered_map<std::string, PadelCourt> courtList;
+extern vector<CreditCard> cardList;
+extern unordered_map<string, User> userList;
+extern unordered_map<string, Staff> staffList;
+extern unordered_map<string, GymClasses> gymClassList;
+extern unordered_map<string, PadelCourt> courtList;
+
+
+extern void writeCreditCardData();
+extern void writeUserData();
+

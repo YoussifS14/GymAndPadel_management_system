@@ -7,12 +7,12 @@ int Slot::slotCounter = 1;
 
 int Notification::notificationCounter = 1;
 
-std::string loginID;
-std::vector<CreditCard> cardList;
-std::unordered_map<std::string, User> userList;
-std::unordered_map<std::string, Staff> staffList;
-std::unordered_map<std::string, GymClasses> gymClassList;
-std::unordered_map<std::string, PadelCourt> courtList;
+string loginID;
+vector<CreditCard> cardList;
+unordered_map<string, User> userList;
+unordered_map<string, Staff> staffList;
+unordered_map<string, GymClasses> gymClassList;
+unordered_map<string, PadelCourt> courtList;
 
 void readStaffData() {
 	 ifstream file("Data/staffData.csv");
@@ -49,19 +49,24 @@ void readUserData() {
 		  getline(ss, user.name, ',');
 		  getline(ss, user.email, ',');
 		  getline(ss, user.password, ',');
-		  getline(ss, user.Brithday, ',');
-		  getline(ss, user.subscription);
-		  // getline(ss, user.myWallet);
-		  // getline(ss, user.isVip);
+		  getline(ss, user.Birthday, ',');
+		  string temp;
+		  getline(ss, temp, ',');
+		  stringstream subs(temp);
+		  string startDate, S_Type;
+		  bool is_VIP;
+
+		  getline(subs, S_Type, '!');
+		  getline(subs, startDate, '!');
+		  subs >> is_VIP;
+		  Subscriptions subscription(S_Type, startDate, is_VIP);
+		  user.subscription = subscription;
+
 		  /*
-		  loop to load myReservations
-		  save the slot in padelCourt
-		  Slot::slotCounter++;
+		  loop to load myClass
 		  */
-		  userList[user.ID] = user; // Use ID as key
-		  // userList.push_back(user);
+		  userList[user.ID] = user;
 	 }
-	 file.close();
 }
 
 void readCreditCardData() {
@@ -124,12 +129,15 @@ void readGymClasses() {
 	 while (getline(file, line)) {
 		  GymClasses gymClass;
 		  stringstream ss(line);
+		  string temp;
 		  getline(ss, gymClass.classID, ',');
 		  getline(ss, gymClass.className, ',');
 		  getline(ss, gymClass.instructor, ',');
 		  getline(ss, gymClass.startDate, ',');
 		  getline(ss, gymClass.endDate, ',');
-		  ss >> gymClass.maxMembers;
+		  getline(ss, temp, ',');
+		  gymClass.maxMembers = stoi(temp);
+		  ss >> gymClass.price;
 		  /*
 		  * load price
 		  * load waiting list and members
@@ -148,6 +156,17 @@ void writeCreditCardData() {
 	 }
 	 file.close();
 }
+void writeUserData() {
+	 ofstream file("Data/usrData.csv");
+	 file << "ID,name,email,password,Birthday,subscription\n"; // Write header
+	 for (auto it = userList.begin(); it != userList.end(); ++it) {
+		  User user = it->second;
+
+		  file << user.ID << "," << user.name << "," << user.email << "," << user.password << "," << user.Birthday << "," << user.subscription.getType() << "!" << user.subscription.getStartDate() << "!" << user.subscription.get_is_VIP() << "\n";
+	 }
+	 file.close();
+}
+
 
 [STAThreadAttribute]
 int main()

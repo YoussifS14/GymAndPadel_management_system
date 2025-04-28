@@ -199,9 +199,9 @@ namespace ProjectCode {
 						 if (paymentPage->OperationResult) {
 							  // Add the user to the waiting list
 							  if (userList[loginID].isVip)
-								   gymClassList[classIDStr].waitingList.push_front(userList[loginID]);
+								   gymClassList[classIDStr].waitingList.push_front(loginID);
 							  else
-								   gymClassList[classIDStr].waitingList.push_back(userList[loginID]);
+								   gymClassList[classIDStr].waitingList.push_back(loginID);
 							  MessageBox::Show("You have been added to the waiting list.");
 							  MessageBox::Show("You have been added to the waiting list.");
 						 }
