@@ -18,62 +18,16 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="staffPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-
-
-
-    <ClCompile Include="managertPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-
-
-    <ClCompile Include="sighup.cpp">
+    <ClCompile Include="WorkoutManger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LoginPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="feature_GUI\LoadingPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Structure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="userPage.h">
+    <ClInclude Include="WorkoutManger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="staffPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="feature_GUI\PaymentPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="feature_GUI\padelPN.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="feature_GUI\CancellingReserv.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="feature_GUI\GymPN.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="managertPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sighup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\staffData.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="Data\usrData.csv">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>
