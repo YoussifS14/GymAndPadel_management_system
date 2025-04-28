@@ -13,6 +13,7 @@ unordered_map<string, User> userList;
 unordered_map<string, Staff> staffList;
 unordered_map<string, GymClasses> gymClassList;
 unordered_map<string, PadelCourt> courtList;
+WorkoutManger workoutManager;
 
 void readStaffData() {
 	 ifstream file("Data/staffData.csv");

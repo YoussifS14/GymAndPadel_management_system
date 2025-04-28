@@ -431,6 +431,123 @@ struct Notification {
 	 }
 
 };
+struct Workout {
+	string date;
+	string type;
+	int duration;
+	int caloriesBurned;
+
+	Workout() : date(""), type(""), duration(0), caloriesBurned(0) {}
+	Workout(string d, string t, int dur, int cal) : date(d), type(t), duration(dur), caloriesBurned(cal) {}
+	void display() {
+		cout << "Date: " << date << "\nType: " << type << "\nDuration: " << duration << " minutes\nCalories Burned: " << caloriesBurned << endl;
+	}
+};
+
+class WorkoutManger
+{
+private:
+	unordered_map<string, vector<Workout>>workoutData;
+
+public:
+
+
+
+	void recordWorkout(const string& memberID, const Workout& workout)
+	{
+		if (memberID.empty()) {
+			cout << "Error: Member ID is empty. Workout not recorded.\n";
+			return;
+		}
+		workoutData[memberID].push_back(workout);
+
+	}
+
+	int calcCalories(const User& user, int duration, string type, int bodyWei)
+	{
+		int bodyWeight = bodyWei;
+
+		type.erase(remove_if(type.begin(), type.end(), ::isspace), type.end());
+		transform(type.begin(), type.end(), type.begin(), ::tolower);
+
+		// MET values for different workouts
+		unordered_map<string, int> metValues = {
+			{"cardio", 8},
+			{"strength", 5},
+			{"yoga", 3},
+			{"cycling", 7},
+			{"hitt", 9},
+			{"pilates", 4}
+		};
+
+		// Find MET value or fallback to default
+		int met = 5; // Default MET
+		if (metValues.find(type) != metValues.end()) {
+			met = metValues[type];
+		}
+		else {
+			cout << "Unknown workout type \"" << type << "\". Using default MET = 5\n";
+		}
+
+		// Calculate calories burned
+		return static_cast<int>(met * bodyWeight * (duration / 60.0));
+	}
+
+	void loadFromFile(const string& filename, unordered_map<string, User>& users) {
+		ifstream inFile(filename);
+		if (!inFile.is_open()) {
+			cerr << "Error: Couldn't open file for loading.\n";
+			return;
+		}
+
+		workoutData.clear();
+		string line;
+		while (getline(inFile, line)) {
+			stringstream ss(line);
+			string userId, date, type, durationStr, caloriesStr;
+			getline(ss, userId, ',');
+			getline(ss, date, ',');
+			getline(ss, type, ',');
+			getline(ss, durationStr, ',');
+			getline(ss, caloriesStr, ',');
+
+			int duration = stoi(durationStr);
+			int calories = stoi(caloriesStr);
+
+
+			Workout w(date, type, duration, calories);
+			recordWorkout(userId, w);
+		}
+
+		inFile.close();
+		cout << "Workout data loaded successfully.\n";
+	}
+
+	void saveToFile(const string& filename) {
+		ofstream outFile(filename);
+		if (!outFile.is_open()) {
+			cerr << "Error: Couldn't open file for saving.\n";
+			return;
+		}
+
+		for (const auto& userPair : workoutData) {
+			for (const Workout& w : userPair.second) {
+				outFile << userPair.first << ","
+					<< w.date << ","
+					<< w.type << ","
+					<< w.duration << ","
+					<< w.caloriesBurned << "\n";
+			}
+		}
+
+		outFile.close();
+		cout << "Workout data saved successfully.\n";
+	}
+
+	unordered_map<string, vector<Workout>>& getWorkoutData() { return workoutData; }
+
+
+};
 
 
 extern vector<CreditCard> cardList;
@@ -438,6 +555,7 @@ extern unordered_map<string, User> userList;
 extern unordered_map<string, Staff> staffList;
 extern unordered_map<string, GymClasses> gymClassList;
 extern unordered_map<string, PadelCourt> courtList;
+extern WorkoutManger workoutManager;
 
 
 extern void writeCreditCardData();
