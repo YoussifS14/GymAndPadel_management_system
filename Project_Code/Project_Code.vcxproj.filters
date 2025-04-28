@@ -23,6 +23,7 @@
     </ClCompile>
 
 
+
     <ClCompile Include="managertPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

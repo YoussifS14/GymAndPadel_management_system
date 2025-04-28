@@ -65,7 +65,6 @@ void readUserData() {
 		  /*
 		  loop to load myClass
 		  */
-		  Slot::slotCounter += user.myReservations.size();
 		  userList[user.ID] = user;
 	 }
 }
@@ -159,9 +158,7 @@ void writeCreditCardData() {
 }
 void writeUserData() {
 	 ofstream file("Data/usrData.csv");
-	 file << "ID,name,email,password,Birthday,subscription,accPic,myClass,myWallet,number of slots\n";
-	 //file << "ID,name,email,password,Birthday,subscription,accPic,myClass,myWallet\n"; // reservation data  if exists
-	 // Write header
+	 file << "ID,name,email,password,Birthday,subscription\n"; // Write header
 	 for (auto it = userList.begin(); it != userList.end(); ++it) {
 		  User user = it->second;
 
