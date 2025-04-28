@@ -114,7 +114,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="managertPage.cpp" />
     <ClCompile Include="sighup.cpp" />
     <ClCompile Include="staffPage.cpp" />
   </ItemGroup>
