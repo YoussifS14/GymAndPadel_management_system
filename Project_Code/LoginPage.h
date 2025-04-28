@@ -211,7 +211,7 @@ namespace ProjectCode {
 		string email = msclr::interop::marshal_as<string>(userName_txb->Text);
 		string password = msclr::interop::marshal_as<string>(password_txb->Text);
 		if (Staff::login(email, password)) {
-			std::string staffRole = "manager"; // Default role*//
+			std::string staffRole = "manager"; // Default role*//look here again
 
 			// Check if staff exists in the list
 			auto it = staffList.find(email);
