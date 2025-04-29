@@ -14,8 +14,7 @@
 #include <msclr/marshal_cppstd.h>
 
 using namespace std;
-using namespace msclr::interop;
-extern void writeStaffData();
+using namespace msclr::interop; 
 static int baseID = 1000; 
 extern std::string loginID;   // -1 means not logged in
 // class Subscriptions // This gym subscription generally has nothing to do with classes.
@@ -54,6 +53,9 @@ static time_t getTime_t(const string date) {
 }
 static string getFormat(time_t t) {
 	 tm* tm = localtime(&t);
+	 if (tm == nullptr) {
+		 return "Invalid date";
+	 }
 	 char buffer[11];
 	 strftime(buffer, sizeof(buffer), "%m/%d/%Y", tm);
 	 return string(buffer);
@@ -81,6 +83,30 @@ public:
 		  phone = "";
 		  role = "";
 	 }
+
+	 static void initializeBaseID() {
+		 extern unordered_map<string, Staff> staffList;
+		 int maxID = 1000; // Default starting point
+
+		 for (const auto& pair : staffList) {
+			 const string& id = pair.first;
+			 if (id.length() > 1 && (id[0] == 'R' || id[0] == 'C')) {
+				 try {
+					 int num = stoi(id.substr(1));
+					 if (num > maxID) {
+						 maxID = num;
+					 }
+				 }
+				 catch (const exception& e) {
+					 continue;
+				 }
+			 }
+		 }
+		 baseID = maxID;
+
+	 }
+
+
 	 static bool login(string email, string password) {
 		  extern unordered_map<string, Staff> staffList;
 		  auto it = staffList.begin();
@@ -102,18 +128,18 @@ public:
 	 bool registerStaff(string Name, string Email, string Password, string Phone, string Role, string imagepath = "") {
 		 extern unordered_map<string, Staff> staffList;
 		 extern int baseID;
-
+		 initializeBaseID();
 		 if (!isNameValid(Name)) return false;
 		 if (!isEmailUnique(Email)) return false;
 		 //if (Phone.length() < 11) return false;
 
-		 Staff newStaff;
-		 newStaff.name = Name;
-		 newStaff.email = Email;
-		 newStaff.password = Password;
-		 newStaff.phone = Phone;
-		 newStaff.role = Role;
-		 newStaff.PicPath = imagepath;
+		 
+		 name = Name;
+		 email = Email;
+		 password = Password;
+		 phone = Phone;
+		 role = Role;
+		 PicPath = imagepath;
 		 // newStaff.PicPath = PicPath; 
 
 		 string id;
@@ -127,9 +153,8 @@ public:
 			 return false;
 		 }
 
-		 newStaff.ID = id;
-		 staffList[id] = newStaff;
-		 writeStaffData();
+		 ID = id;
+		 staffList[id] = *this;
 		 return true;
 	 }
 	 bool isEmailCorrect(string email) {
@@ -182,7 +207,7 @@ public:
 		  start_date = st_date;
 		  is_VIP = vip;
 		  price = getPrice();
-		  calculateEndDate();
+		end_date= calculateEndDate();
 	 }
 	 Subscriptions() : type(""), start_date(""), end_date(""),
 		  is_VIP(false), price(0.0), isActivated(false) {
@@ -214,7 +239,7 @@ public:
 	 bool get_is_VIP() {
 		  return is_VIP;
 	 }
-	 unordered_map<string, GymClasses>getAvailableClasses();
+	 unordered_map<string, GymClasses>getAvailableClasses(); 
 	 /*time_t calaculateEndDate() {
 		   tm tmStart;
 		   time_t convertedStartDate = User::getTime_t(start_date);
@@ -240,23 +265,24 @@ public:
 		   return mktime(&tmStart);
 	  }*/
 
-	 void calculateEndDate() {
+	 string calculateEndDate() {
 		  struct tm t;
 		  time_t convertedStartDate = getTime_t(start_date);
 		  localtime_s(&t, &convertedStartDate);
 
 		  if (type == "1 month")
 			   t.tm_mon += 1;
-		  else if (type == "3 months")
+		  else if (type == "3 month")
 			   t.tm_mon += 3;
-		  else if (type == "6 months")
+		  else if (type == "6 month")
 			   t.tm_mon += 6;
 		  else if (type == "1 year")
 			   t.tm_year += 1;
 		  time_t convertedEndDate = mktime(&t);
 		  end_date = getFormat(convertedEndDate);
+		  return end_date;
 	 }
-
+	 
 	 void set_is_VIP(bool vip) {
 		  is_VIP = vip;
 	 }
@@ -293,7 +319,7 @@ public:
 	 string Birthday;
 	 string PicPath;
 	 Subscriptions subscription; // 1 month, 3 month, 6 month, 1 year -> This is the gym subscription in general (type Subscriptions)
-
+	 int classEntered = 0;
 	 float myWallet; // cash back from cancelling
 	 bool isVip;
 	 vector<Slot> myReservations; // List of reserved slots
@@ -381,10 +407,73 @@ public:
 		  }
 		  return -1; // Not found
 	 }
+	 bool isNameValid(string name) {
+		 for (char c : name) {
+			 if (!isalpha(c) && c != ' ') return false;
+		 }
+		 return !name.empty();
+	 }
+	 bool isEmailCorrect(string email) {
+		 if (email.find('@') == string::npos || email.size() < 5 || email.substr(email.size() - 4) != ".com") {
+			 return false;
+		 }
+		 return true;
+	 }
+	 bool isEmailUnique(string email) {
+		 extern unordered_map<string, User> userList; 
+		 for (auto it = userList.begin(); it != userList.end(); ++it) {
+			 if (it->second.email == email) {
+				 return false;
+			 }
+		 }
+		 return true;
+	 }
+	 bool registerMember(string Name, string Email, string Password, string Bday, string subType, bool isVip, string picPath = "") {
+		 extern int baseID;
+		 extern unordered_map<string, User>userList;
+		 initializeBaseIDUser(); 
+		 if (!isNameValid(Name)) return false;
+		 if (!isEmailCorrect(Email) || !isEmailUnique(Email)) return false;
+		// if (!isBirthdayValid(Bday)) return false;
+		 if (subType != "1 month" && subType != "3 month" && subType != "6 month" && subType != "1 year") 
+			 return false;
+		 Subscriptions userSub(subType,getCurrentDate_MM_DD_YYYY(), isVip);
+		// userSub.getAvailableClasses();
+		
+		 ID = "M" + to_string(++baseID);
+		 name = Name;
+		 email = Email;
+		 password = Password;
+		 Birthday = Bday;
+		 subscription = userSub;
+		 PicPath = picPath;
+		 classEntered = 0;
 
+		 userList[ID] = *this;
+		 return true;
+	 }
+	 static void initializeBaseIDUser() {
+		 extern unordered_map<string, User> userList; 
+		 int maxID = 1000; // Default starting point
 
+		 for (const auto& pair : userList) {
+			 const string& id = pair.first;
+			 if (id.length() > 1 && id[0] == 'M' ) {
+				 try {
+					 int num = stoi(id.substr(1));
+					 if (num > maxID) {
+						 maxID = num;
+					 }
+				 }
+				 catch (const exception& e) {
+					 continue;
+				 }
+			 }
+		 }
+		 baseID = maxID;
+
+	 }
 };
-
 class GymClasses {
 public:
 	 /*
