@@ -51,6 +51,7 @@ void readUserData() {
 		  getline(ss, user.email, ',');
 		  getline(ss, user.password, ',');
 		  getline(ss, user.Birthday, ',');
+		 // getline(ss, user.classEnteredStr, ',');
 		  string temp;
 		  getline(ss, temp, ',');
 		  stringstream subs(temp);

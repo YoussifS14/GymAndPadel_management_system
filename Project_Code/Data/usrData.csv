@@ -1,4 +1,5 @@
-ID,name,email,password,Birthday,subscription,Pic Path
-usr-0,youssif,you,5523,2005/2,1 month!07/25/2023!1,accPic/usr-0.jpg
-usr-1,alsayed,sayed@gmail0com,88997,1967,3 month!07/25/2023!1,null
-M1001,salma,s@.com,1,8/23/1964,3 month!04/30/2025!0,null
+ID,name,email,password,Birthday,subscription,Pic Path,classes
+usr-0,youssif,you,5523,2005/2,1 month!07/25/2023!1,accPic/usr-0.jpg,5
+usr-1,alsayed,sayed@gmail0com,88997,1967,3 month!07/25/2023!1,null,4
+M1001,salma,s@.com,1,8/23/1964,3 month!04/30/2025!0,null,2
+M1002,yasmin,y@.com,1,8/23/1964,4 month!04/30/2025!0,null,6

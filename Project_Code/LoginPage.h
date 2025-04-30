@@ -239,32 +239,61 @@ namespace ProjectCode {
 		  string email = msclr::interop::marshal_as<string>(userName_txb->Text);
 		  string password = msclr::interop::marshal_as<string>(password_txb->Text);
 		  if (Staff::login(email, password)) {
-			   std::string staffRole = "manager"; // Default role*//look here again
+			  // Set loginID to email
+			  std::string loginID = email;
 
-			   // Check if staff exists in the list
-			   auto it = staffList.find(loginID);
-			   if (it != staffList.end()) {
-					staffRole = it->second.role; // Retrieve role from map
-			   }
+			  // Debugging: Show loginID
+			  MessageBox::Show("loginID: " + gcnew String(loginID.c_str()));
 
-			   LoadingPage^ loading = gcnew LoadingPage();
-			   // MessageBox::Show("Login successful as Staff");
-			   this->Hide();
-			   loading->label1->Text = "Loading...";
-			   loading->ShowDialog();
+			  // Debugging: Show staffList contents
+			  if (staffList.empty()) {
+				  MessageBox::Show("staffList is empty!");
+			  }
+			  else {
+				  System::String^ listContents = "staffList contents:\n";
+				  for (const auto& pair : staffList) {
+					listContents += "ID: " + gcnew String(pair.first.c_str()) + 
+                   ", Role: " + gcnew String(pair.second.role.c_str()) + "\n";
 
-			   if (staffRole == "manager") {
-					managertPage^ managerPage = gcnew managertPage();
-					managerPage->ShowDialog();
-			   }
-			   else {
-					staffPage^ staffPg = gcnew staffPage();
-					staffPg->ShowDialog();
-			   }
+				  }
+				  MessageBox::Show(listContents);
+			  }
 
-			   userName_txb->Text = "";
-			   password_txb->Text = "";
-			   this->Show();
+			  std::string staffRole = "manager";
+
+			  auto it = staffList.find(loginID);
+			  if (it != staffList.end()) {
+				  staffRole = it->second.role;
+				  staffRole.erase(staffRole.find_last_not_of(" \n\r\t") + 1);
+				  staffRole.erase(0, staffRole.find_first_not_of(" \n\r\t"));
+				  MessageBox::Show("Role found: " + gcnew String(staffRole.c_str()));
+			  }
+			  else {
+				  MessageBox::Show("loginID not found in staffList, using default role: " + gcnew String(staffRole.c_str()));
+			  }
+
+			  MessageBox::Show("staffRole before check: " + gcnew String(staffRole.c_str()));
+
+			  std::string lowerRole = staffRole;
+			  std::transform(lowerRole.begin(), lowerRole.end(), lowerRole.begin(), ::tolower);
+
+			  LoadingPage^ loading = gcnew LoadingPage();
+			  this->Hide();
+			  loading->label1->Text = "Loading...";
+			  loading->ShowDialog();
+
+			  if (lowerRole == "manager") {
+				  managertPage^ managerPage = gcnew managertPage();
+				  managerPage->ShowDialog();
+			  }
+			  else {
+				  staffPage^ staffPg = gcnew staffPage();
+				  staffPg->ShowDialog();
+			  }
+
+			  userName_txb->Text = "";
+			  password_txb->Text = "";
+			  this->Show();
 		  }
 
 		  else if (User::login(email, password)) {
