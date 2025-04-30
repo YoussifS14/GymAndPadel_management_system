@@ -11,13 +11,20 @@
 #include <regex>
 #include <iomanip>
 
+#include <filesystem>  
+#include <Windows.h>  
 #include <msclr/marshal_cppstd.h>
 
+#define aliens System::Windows::Forms
+#define PicAsset "accPic/" 
+
+
 using namespace std;
-using namespace msclr::interop; 
-static int baseID = 1000; 
+using namespace msclr::interop;
+static int baseID = 1000;
 extern std::string loginID;   // -1 means not logged in
 // class Subscriptions // This gym subscription generally has nothing to do with classes.
+extern string defaultImagePath;
 struct CreditCard {
 	 string cardID;
 	 string cardCVV;
@@ -54,7 +61,7 @@ static time_t getTime_t(const string date) {
 static string getFormat(time_t t) {
 	 tm* tm = localtime(&t);
 	 if (tm == nullptr) {
-		 return "Invalid date";
+		  return "Invalid date";
 	 }
 	 char buffer[11];
 	 strftime(buffer, sizeof(buffer), "%m/%d/%Y", tm);
@@ -85,24 +92,24 @@ public:
 	 }
 
 	 static void initializeBaseID() {
-		 extern unordered_map<string, Staff> staffList;
-		 int maxID = 1000; // Default starting point
+		  extern unordered_map<string, Staff> staffList;
+		  int maxID = 1000; // Default starting point
 
-		 for (const auto& pair : staffList) {
-			 const string& id = pair.first;
-			 if (id.length() > 1 && (id[0] == 'R' || id[0] == 'C')) {
-				 try {
-					 int num = stoi(id.substr(1));
-					 if (num > maxID) {
-						 maxID = num;
-					 }
-				 }
-				 catch (const exception& e) {
-					 continue;
-				 }
-			 }
-		 }
-		 baseID = maxID;
+		  for (const auto& pair : staffList) {
+			   const string& id = pair.first;
+			   if (id.length() > 1 && (id[0] == 'R' || id[0] == 'C')) {
+					try {
+						 int num = stoi(id.substr(1));
+						 if (num > maxID) {
+							  maxID = num;
+						 }
+					}
+					catch (const exception& e) {
+						 continue;
+					}
+			   }
+		  }
+		  baseID = maxID;
 
 	 }
 
@@ -126,57 +133,57 @@ public:
 		  return ID;
 	 }
 	 bool registerStaff(string Name, string Email, string Password, string Phone, string Role, string imagepath = "") {
-		 extern unordered_map<string, Staff> staffList;
-		 extern int baseID;
-		 initializeBaseID();
-		 if (!isNameValid(Name)) return false;
-		 if (!isEmailUnique(Email)) return false;
-		 //if (Phone.length() < 11) return false;
+		  extern unordered_map<string, Staff> staffList;
+		  extern int baseID;
+		  initializeBaseID();
+		  if (!isNameValid(Name)) return false;
+		  if (!isEmailUnique(Email)) return false;
+		  //if (Phone.length() < 11) return false;
 
-		 
-		 name = Name;
-		 email = Email;
-		 password = Password;
-		 phone = Phone;
-		 role = Role;
-		 PicPath = imagepath;
-		 // newStaff.PicPath = PicPath; 
 
-		 string id;
-		 if (Role == "Reception" || Role == "reception") {
-			 id = "R" + to_string(++baseID);
-		 }
-		 else if (Role == "Coach" || Role == "coach") {
-			 id = "C" + to_string(++baseID);
-		 }
-		 else {
-			 return false;
-		 }
+		  name = Name;
+		  email = Email;
+		  password = Password;
+		  phone = Phone;
+		  role = Role;
+		  PicPath = imagepath;
+		  // newStaff.PicPath = PicPath; 
 
-		 ID = id;
-		 staffList[id] = *this;
-		 return true;
+		  string id;
+		  if (Role == "Reception" || Role == "reception") {
+			   id = "R" + to_string(++baseID);
+		  }
+		  else if (Role == "Coach" || Role == "coach") {
+			   id = "C" + to_string(++baseID);
+		  }
+		  else {
+			   return false;
+		  }
+
+		  ID = id;
+		  staffList[id] = *this;
+		  return true;
 	 }
 	 bool isEmailCorrect(string email) {
-		 if (email.find('@') == string::npos || email.size() < 5 || email.substr(email.size() - 4) != ".com") {
-			 return false;
-		 }
-		 return true;
+		  if (email.find('@') == string::npos || email.size() < 5 || email.substr(email.size() - 4) != ".com") {
+			   return false;
+		  }
+		  return true;
 	 }
 	 bool isEmailUnique(string email) {
-		 extern unordered_map<string, Staff> staffList;
-		 for (auto it = staffList.begin(); it != staffList.end(); ++it) {
-			 if (it->second.email == email) {
-				 return false;
-			 }
-		 }
-		 return true;
+		  extern unordered_map<string, Staff> staffList;
+		  for (auto it = staffList.begin(); it != staffList.end(); ++it) {
+			   if (it->second.email == email) {
+					return false;
+			   }
+		  }
+		  return true;
 	 }
 	 bool isNameValid(string name) {
-		 for (char c : name) {
-			 if (!isalpha(c) && c != ' ') return false;
-		 }
-		 return !name.empty();
+		  for (char c : name) {
+			   if (!isalpha(c) && c != ' ') return false;
+		  }
+		  return !name.empty();
 	 }
 };
 struct Slot {
@@ -207,7 +214,7 @@ public:
 		  start_date = st_date;
 		  is_VIP = vip;
 		  price = getPrice();
-		end_date= calculateEndDate();
+		  end_date = calculateEndDate();
 	 }
 	 Subscriptions() : type(""), start_date(""), end_date(""),
 		  is_VIP(false), price(0.0), isActivated(false) {
@@ -239,7 +246,7 @@ public:
 	 bool get_is_VIP() {
 		  return is_VIP;
 	 }
-	 unordered_map<string, GymClasses>getAvailableClasses(); 
+	 unordered_map<string, GymClasses>getAvailableClasses();
 	 /*time_t calaculateEndDate() {
 		   tm tmStart;
 		   time_t convertedStartDate = User::getTime_t(start_date);
@@ -282,7 +289,7 @@ public:
 		  end_date = getFormat(convertedEndDate);
 		  return end_date;
 	 }
-	 
+
 	 void set_is_VIP(bool vip) {
 		  is_VIP = vip;
 	 }
@@ -408,69 +415,69 @@ public:
 		  return -1; // Not found
 	 }
 	 bool isNameValid(string name) {
-		 for (char c : name) {
-			 if (!isalpha(c) && c != ' ') return false;
-		 }
-		 return !name.empty();
+		  for (char c : name) {
+			   if (!isalpha(c) && c != ' ') return false;
+		  }
+		  return !name.empty();
 	 }
 	 bool isEmailCorrect(string email) {
-		 if (email.find('@') == string::npos || email.size() < 5 || email.substr(email.size() - 4) != ".com") {
-			 return false;
-		 }
-		 return true;
+		  if (email.find('@') == string::npos || email.size() < 5 || email.substr(email.size() - 4) != ".com") {
+			   return false;
+		  }
+		  return true;
 	 }
 	 bool isEmailUnique(string email) {
-		 extern unordered_map<string, User> userList; 
-		 for (auto it = userList.begin(); it != userList.end(); ++it) {
-			 if (it->second.email == email) {
-				 return false;
-			 }
-		 }
-		 return true;
+		  extern unordered_map<string, User> userList;
+		  for (auto it = userList.begin(); it != userList.end(); ++it) {
+			   if (it->second.email == email) {
+					return false;
+			   }
+		  }
+		  return true;
 	 }
 	 bool registerMember(string Name, string Email, string Password, string Bday, string subType, bool isVip, string picPath = "") {
-		 extern int baseID;
-		 extern unordered_map<string, User>userList;
-		 initializeBaseIDUser(); 
-		 if (!isNameValid(Name)) return false;
-		 if (!isEmailCorrect(Email) || !isEmailUnique(Email)) return false;
-		// if (!isBirthdayValid(Bday)) return false;
-		 if (subType != "1 month" && subType != "3 month" && subType != "6 month" && subType != "1 year") 
-			 return false;
-		 Subscriptions userSub(subType,getCurrentDate_MM_DD_YYYY(), isVip);
-		// userSub.getAvailableClasses();
-		
-		 ID = "M" + to_string(++baseID);
-		 name = Name;
-		 email = Email;
-		 password = Password;
-		 Birthday = Bday;
-		 subscription = userSub;
-		 PicPath = picPath;
-		 classEntered = 0;
+		  extern int baseID;
+		  extern unordered_map<string, User>userList;
+		  initializeBaseIDUser();
+		  if (!isNameValid(Name)) return false;
+		  if (!isEmailCorrect(Email) || !isEmailUnique(Email)) return false;
+		  // if (!isBirthdayValid(Bday)) return false;
+		  if (subType != "1 month" && subType != "3 month" && subType != "6 month" && subType != "1 year")
+			   return false;
+		  Subscriptions userSub(subType, getCurrentDate_MM_DD_YYYY(), isVip);
+		  // userSub.getAvailableClasses();
 
-		 userList[ID] = *this;
-		 return true;
+		  ID = "M" + to_string(++baseID);
+		  name = Name;
+		  email = Email;
+		  password = Password;
+		  Birthday = Bday;
+		  subscription = userSub;
+		  PicPath = picPath;
+		  classEntered = 0;
+
+		  userList[ID] = *this;
+		  return true;
 	 }
 	 static void initializeBaseIDUser() {
-		 extern unordered_map<string, User> userList; 
-		 int maxID = 1000; // Default starting point
+		  extern unordered_map<string, User> userList;
+		  int maxID = 1000; // Default starting point
 
-		 for (const auto& pair : userList) {
-			 const string& id = pair.first;
-			 if (id.length() > 1 && id[0] == 'M' ) {
-				 try {
-					 int num = stoi(id.substr(1));
-					 if (num > maxID) {
-						 maxID = num;
-					 }
-				 }
-				 catch (const exception& e) {
-					 continue;
-				 }
-			 }
-		 }
-		 baseID = maxID;
+		  for (const auto& pair : userList) {
+			   const string& id = pair.first;
+			   if (id.length() > 1 && id[0] == 'M') {
+					try {
+						 int num = stoi(id.substr(1));
+						 if (num > maxID) {
+							  maxID = num;
+						 }
+					}
+					catch (const exception& e) {
+						 continue;
+					}
+			   }
+		  }
+		  baseID = maxID;
 
 	 }
 };
@@ -575,119 +582,119 @@ struct Notification {
 
 };
 struct Workout {
-	string date;
-	string type;
-	int duration;
-	int caloriesBurned;
+	 string date;
+	 string type;
+	 int duration;
+	 int caloriesBurned;
 
-	Workout() : date(""), type(""), duration(0), caloriesBurned(0) {}
-	Workout(string d, string t, int dur, int cal) : date(d), type(t), duration(dur), caloriesBurned(cal) {}
-	void display() {
-		cout << "Date: " << date << "\nType: " << type << "\nDuration: " << duration << " minutes\nCalories Burned: " << caloriesBurned << endl;
-	}
+	 Workout() : date(""), type(""), duration(0), caloriesBurned(0) {}
+	 Workout(string d, string t, int dur, int cal) : date(d), type(t), duration(dur), caloriesBurned(cal) {}
+	 void display() {
+		  cout << "Date: " << date << "\nType: " << type << "\nDuration: " << duration << " minutes\nCalories Burned: " << caloriesBurned << endl;
+	 }
 };
 
 class WorkoutManger
 {
 private:
-	unordered_map<string, vector<Workout>>workoutData;
+	 unordered_map<string, vector<Workout>>workoutData;
 
 public:
 
 
 
-	void recordWorkout(const string& memberID, const Workout& workout)
-	{
-		if (memberID.empty()) {
-			cout << "Error: Member ID is empty. Workout not recorded.\n";
-			return;
-		}
-		workoutData[memberID].push_back(workout);
+	 void recordWorkout(const string& memberID, const Workout& workout)
+	 {
+		  if (memberID.empty()) {
+			   cout << "Error: Member ID is empty. Workout not recorded.\n";
+			   return;
+		  }
+		  workoutData[memberID].push_back(workout);
 
-	}
+	 }
 
-	int calcCalories(const User& user, int duration, string type, int bodyWei)
-	{
-		int bodyWeight = bodyWei;
+	 int calcCalories(const User& user, int duration, string type, int bodyWei)
+	 {
+		  int bodyWeight = bodyWei;
 
-		type.erase(remove_if(type.begin(), type.end(), ::isspace), type.end());
-		transform(type.begin(), type.end(), type.begin(), ::tolower);
+		  type.erase(remove_if(type.begin(), type.end(), ::isspace), type.end());
+		  transform(type.begin(), type.end(), type.begin(), ::tolower);
 
-		// MET values for different workouts
-		unordered_map<string, int> metValues = {
-			{"cardio", 8},
-			{"strength", 5},
-			{"yoga", 3},
-			{"cycling", 7},
-			{"hitt", 9},
-			{"pilates", 4}
-		};
+		  // MET values for different workouts
+		  unordered_map<string, int> metValues = {
+			  {"cardio", 8},
+			  {"strength", 5},
+			  {"yoga", 3},
+			  {"cycling", 7},
+			  {"hitt", 9},
+			  {"pilates", 4}
+		  };
 
-		// Find MET value or fallback to default
-		int met = 5; // Default MET
-		if (metValues.find(type) != metValues.end()) {
-			met = metValues[type];
-		}
-		else {
-			cout << "Unknown workout type \"" << type << "\". Using default MET = 5\n";
-		}
+		  // Find MET value or fallback to default
+		  int met = 5; // Default MET
+		  if (metValues.find(type) != metValues.end()) {
+			   met = metValues[type];
+		  }
+		  else {
+			   cout << "Unknown workout type \"" << type << "\". Using default MET = 5\n";
+		  }
 
-		// Calculate calories burned
-		return static_cast<int>(met * bodyWeight * (duration / 60.0));
-	}
+		  // Calculate calories burned
+		  return static_cast<int>(met * bodyWeight * (duration / 60.0));
+	 }
 
-	void loadFromFile(const string& filename, unordered_map<string, User>& users) {
-		ifstream inFile(filename);
-		if (!inFile.is_open()) {
-			cerr << "Error: Couldn't open file for loading.\n";
-			return;
-		}
+	 void loadFromFile(const string& filename, unordered_map<string, User>& users) {
+		  ifstream inFile(filename);
+		  if (!inFile.is_open()) {
+			   cerr << "Error: Couldn't open file for loading.\n";
+			   return;
+		  }
 
-		workoutData.clear();
-		string line;
-		while (getline(inFile, line)) {
-			stringstream ss(line);
-			string userId, date, type, durationStr, caloriesStr;
-			getline(ss, userId, ',');
-			getline(ss, date, ',');
-			getline(ss, type, ',');
-			getline(ss, durationStr, ',');
-			getline(ss, caloriesStr, ',');
+		  workoutData.clear();
+		  string line;
+		  while (getline(inFile, line)) {
+			   stringstream ss(line);
+			   string userId, date, type, durationStr, caloriesStr;
+			   getline(ss, userId, ',');
+			   getline(ss, date, ',');
+			   getline(ss, type, ',');
+			   getline(ss, durationStr, ',');
+			   getline(ss, caloriesStr, ',');
 
-			int duration = stoi(durationStr);
-			int calories = stoi(caloriesStr);
+			   int duration = stoi(durationStr);
+			   int calories = stoi(caloriesStr);
 
 
-			Workout w(date, type, duration, calories);
-			recordWorkout(userId, w);
-		}
+			   Workout w(date, type, duration, calories);
+			   recordWorkout(userId, w);
+		  }
 
-		inFile.close();
-		cout << "Workout data loaded successfully.\n";
-	}
+		  inFile.close();
+		  cout << "Workout data loaded successfully.\n";
+	 }
 
-	void saveToFile(const string& filename) {
-		ofstream outFile(filename);
-		if (!outFile.is_open()) {
-			cerr << "Error: Couldn't open file for saving.\n";
-			return;
-		}
+	 void saveToFile(const string& filename) {
+		  ofstream outFile(filename);
+		  if (!outFile.is_open()) {
+			   cerr << "Error: Couldn't open file for saving.\n";
+			   return;
+		  }
 
-		for (const auto& userPair : workoutData) {
-			for (const Workout& w : userPair.second) {
-				outFile << userPair.first << ","
-					<< w.date << ","
-					<< w.type << ","
-					<< w.duration << ","
-					<< w.caloriesBurned << "\n";
-			}
-		}
+		  for (const auto& userPair : workoutData) {
+			   for (const Workout& w : userPair.second) {
+					outFile << userPair.first << ","
+						 << w.date << ","
+						 << w.type << ","
+						 << w.duration << ","
+						 << w.caloriesBurned << "\n";
+			   }
+		  }
 
-		outFile.close();
-		cout << "Workout data saved successfully.\n";
-	}
+		  outFile.close();
+		  cout << "Workout data saved successfully.\n";
+	 }
 
-	unordered_map<string, vector<Workout>>& getWorkoutData() { return workoutData; }
+	 unordered_map<string, vector<Workout>>& getWorkoutData() { return workoutData; }
 
 
 };

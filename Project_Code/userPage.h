@@ -7,6 +7,7 @@
 namespace ProjectCode {
 
 	 using namespace System;
+	 using namespace System::IO;
 	 using namespace System::ComponentModel;
 	 using namespace System::Collections;
 	 using namespace System::Windows::Forms;
@@ -26,6 +27,33 @@ namespace ProjectCode {
 			   //
 			   //TODO: Add the constructor code here
 			   //
+		  }
+		  Void loadpic(string val, PictureBox^ pic)
+		  {
+			   string temp = userList[loginID].PicPath;
+			   if (val != "none" || val != "null")
+					pic->Image = System::Drawing::Image::FromFile(gcnew String(temp.c_str()));
+			   else
+					pic->Image = System::Drawing::Image::FromFile(gcnew String(defaultImagePath.c_str()));
+
+		  }
+		  Void removeProfilePic(String^ imagePath, PictureBox^ pic) {
+			   try
+			   {
+
+
+					if (File::Exists(imagePath)) {
+						 File::Delete(imagePath);
+						 MessageBox::Show("done", "", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					}
+					pic->Image = System::Drawing::Image::FromFile(gcnew System::String(defaultImagePath.c_str()));
+
+			   }
+			   catch (const std::exception&)
+			   {
+					MessageBox::Show("error", "error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+
+			   }
 		  }
 
 	 protected:
@@ -123,6 +151,7 @@ namespace ProjectCode {
 			   this->button1 = (gcnew System::Windows::Forms::Button());
 			   this->GymReserv = (gcnew System::Windows::Forms::Button());
 			   this->Padel = (gcnew System::Windows::Forms::Button());
+			   this->btnWorkout = (gcnew System::Windows::Forms::Button());
 			   this->profile_pn = (gcnew System::Windows::Forms::Panel());
 			   this->ListReserPadel = (gcnew System::Windows::Forms::Button());
 			   this->AccName = (gcnew System::Windows::Forms::Label());
@@ -142,6 +171,24 @@ namespace ProjectCode {
 			   this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			   this->searchOFcourts = (gcnew System::Windows::Forms::Button());
 			   this->listOfCourts = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			   this->panelWorkoutContent = (gcnew System::Windows::Forms::Panel());
+			   this->comboFilterType = (gcnew System::Windows::Forms::ComboBox());
+			   this->btnHideWorkout = (gcnew System::Windows::Forms::Button());
+			   this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			   this->lblDate = (gcnew System::Windows::Forms::Label());
+			   this->txtDate = (gcnew System::Windows::Forms::TextBox());
+			   this->lblType = (gcnew System::Windows::Forms::Label());
+			   this->txtType = (gcnew System::Windows::Forms::TextBox());
+			   this->lblDuration = (gcnew System::Windows::Forms::Label());
+			   this->txtDuration = (gcnew System::Windows::Forms::TextBox());
+			   this->lblWeight = (gcnew System::Windows::Forms::Label());
+			   this->txtWeight = (gcnew System::Windows::Forms::TextBox());
+			   this->btnAddWorkout = (gcnew System::Windows::Forms::Button());
+			   this->btnViewHistory = (gcnew System::Windows::Forms::Button());
+			   this->btnTrackProgress = (gcnew System::Windows::Forms::Button());
+			   this->lblFilter = (gcnew System::Windows::Forms::Label());
+			   this->btnFilter = (gcnew System::Windows::Forms::Button());
+			   this->richTextOutput = (gcnew System::Windows::Forms::RichTextBox());
 			   this->MainMenu_pn->SuspendLayout();
 			   this->profile_pn->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->BeginInit();
@@ -149,28 +196,8 @@ namespace ProjectCode {
 			   this->GymClass_pg->SuspendLayout();
 			   this->CancelPadel_pg->SuspendLayout();
 			   this->PadelPage->SuspendLayout();
+			   this->panelWorkoutContent->SuspendLayout();
 			   this->SuspendLayout();
-
-
-			this->btnWorkout = (gcnew System::Windows::Forms::Button());
-			this->panelWorkoutContent = (gcnew System::Windows::Forms::Panel());
-			this->btnHideWorkout = (gcnew System::Windows::Forms::Button());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->lblDate = (gcnew System::Windows::Forms::Label());
-			this->txtDate = (gcnew System::Windows::Forms::TextBox());
-			this->lblType = (gcnew System::Windows::Forms::Label());
-			this->txtType = (gcnew System::Windows::Forms::TextBox());
-			this->lblDuration = (gcnew System::Windows::Forms::Label());
-			this->txtDuration = (gcnew System::Windows::Forms::TextBox());
-			this->lblWeight = (gcnew System::Windows::Forms::Label());
-			this->txtWeight = (gcnew System::Windows::Forms::TextBox());
-			this->btnAddWorkout = (gcnew System::Windows::Forms::Button());
-			this->btnViewHistory = (gcnew System::Windows::Forms::Button());
-			this->btnTrackProgress = (gcnew System::Windows::Forms::Button());
-			this->lblFilter = (gcnew System::Windows::Forms::Label());
-			this->btnFilter = (gcnew System::Windows::Forms::Button());
-			this->richTextOutput = (gcnew System::Windows::Forms::RichTextBox());
-			this->comboFilterType = (gcnew System::Windows::Forms::ComboBox());
 			   // 
 			   // MainMenu_pn
 			   // 
@@ -190,7 +217,7 @@ namespace ProjectCode {
 			   this->button1->Dock = System::Windows::Forms::DockStyle::Top;
 			   this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-			   this->button1->Location = System::Drawing::Point(0, 344);
+			   this->button1->Location = System::Drawing::Point(0, 398);
 			   this->button1->Name = L"button1";
 			   this->button1->Size = System::Drawing::Size(313, 66);
 			   this->button1->TabIndex = 3;
@@ -203,7 +230,7 @@ namespace ProjectCode {
 			   this->GymReserv->Dock = System::Windows::Forms::DockStyle::Top;
 			   this->GymReserv->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-			   this->GymReserv->Location = System::Drawing::Point(0, 278);
+			   this->GymReserv->Location = System::Drawing::Point(0, 332);
 			   this->GymReserv->Name = L"GymReserv";
 			   this->GymReserv->Size = System::Drawing::Size(313, 66);
 			   this->GymReserv->TabIndex = 2;
@@ -216,13 +243,27 @@ namespace ProjectCode {
 			   this->Padel->Dock = System::Windows::Forms::DockStyle::Top;
 			   this->Padel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-			   this->Padel->Location = System::Drawing::Point(0, 212);
+			   this->Padel->Location = System::Drawing::Point(0, 266);
 			   this->Padel->Name = L"Padel";
 			   this->Padel->Size = System::Drawing::Size(313, 66);
 			   this->Padel->TabIndex = 1;
 			   this->Padel->Text = L"Padel Court";
 			   this->Padel->UseVisualStyleBackColor = true;
 			   this->Padel->Click += gcnew System::EventHandler(this, &userPage::Padel_Click);
+			   // 
+			   // btnWorkout
+			   // 
+			   this->btnWorkout->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->btnWorkout->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->btnWorkout->Location = System::Drawing::Point(0, 212);
+			   this->btnWorkout->Margin = System::Windows::Forms::Padding(2);
+			   this->btnWorkout->Name = L"btnWorkout";
+			   this->btnWorkout->Size = System::Drawing::Size(313, 54);
+			   this->btnWorkout->TabIndex = 4;
+			   this->btnWorkout->Text = L"My Workout";
+			   this->btnWorkout->UseVisualStyleBackColor = true;
+			   this->btnWorkout->Click += gcnew System::EventHandler(this, &userPage::btnWorkout_Click);
 			   // 
 			   // profile_pn
 			   // 
@@ -435,44 +476,6 @@ namespace ProjectCode {
 			   this->listOfCourts->Size = System::Drawing::Size(958, 669);
 			   this->listOfCourts->TabIndex = 0;
 			   // 
-			   // userPage
-			   // 
-			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			   this->ClientSize = System::Drawing::Size(1273, 739);
-			   this->Controls->Add(this->MainPage);
-			   this->Controls->Add(this->MainMenu_pn);
-			   this->Name = L"userPage";
-			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			   this->Text = L"userPage";
-			   this->MainMenu_pn->ResumeLayout(false);
-			   this->profile_pn->ResumeLayout(false);
-			   this->profile_pn->PerformLayout();
-			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->EndInit();
-			   this->MainPage->ResumeLayout(false);
-			   this->GymClass_pg->ResumeLayout(false);
-			   this->CancelPadel_pg->ResumeLayout(false);
-			   this->CancelPadel_pg->PerformLayout();
-			   this->PadelPage->ResumeLayout(false);
-			   this->PadelPage->PerformLayout();
-			   this->ResumeLayout(false);
-
-
-			     // 
-			    // btnWorkout
-			   // 
-			   this->btnWorkout->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->btnWorkout->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				   static_cast<System::Byte>(0)));
-			   this->btnWorkout->Location = System::Drawing::Point(0, 334);
-			   this->btnWorkout->Margin = System::Windows::Forms::Padding(2);
-			   this->btnWorkout->Name = L"btnWorkout";
-			   this->btnWorkout->Size = System::Drawing::Size(235, 54);
-			   this->btnWorkout->TabIndex = 4;
-			   this->btnWorkout->Text = L"My Workout";
-			   this->btnWorkout->UseVisualStyleBackColor = true;
-			   this->btnWorkout->Click += gcnew System::EventHandler(this, &userPage::btnWorkout_Click);
-			   // 
 			   // panelWorkoutContent
 			   // 
 			   this->panelWorkoutContent->Controls->Add(this->comboFilterType);
@@ -498,6 +501,14 @@ namespace ProjectCode {
 			   this->panelWorkoutContent->TabIndex = 0;
 			   this->panelWorkoutContent->Visible = false;
 			   // 
+			   // comboFilterType
+			   // 
+			   this->comboFilterType->FormattingEnabled = true;
+			   this->comboFilterType->Location = System::Drawing::Point(109, 230);
+			   this->comboFilterType->Name = L"comboFilterType";
+			   this->comboFilterType->Size = System::Drawing::Size(195, 24);
+			   this->comboFilterType->TabIndex = 16;
+			   // 
 			   // btnHideWorkout
 			   // 
 			   this->btnHideWorkout->Location = System::Drawing::Point(565, 3);
@@ -512,11 +523,11 @@ namespace ProjectCode {
 			   this->textBox1->BackColor = System::Drawing::SystemColors::Menu;
 			   this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			   this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 12, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
-				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+					System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			   this->textBox1->ForeColor = System::Drawing::SystemColors::InactiveCaptionText;
 			   this->textBox1->Location = System::Drawing::Point(11, 12);
 			   this->textBox1->Name = L"textBox1";
-			   this->textBox1->Size = System::Drawing::Size(145, 21);
+			   this->textBox1->Size = System::Drawing::Size(145, 26);
 			   this->textBox1->TabIndex = 0;
 			   this->textBox1->Text = L"Workout";
 			   // 
@@ -532,7 +543,7 @@ namespace ProjectCode {
 			   // 
 			   this->txtDate->Location = System::Drawing::Point(120, 50);
 			   this->txtDate->Name = L"txtDate";
-			   this->txtDate->Size = System::Drawing::Size(200, 20);
+			   this->txtDate->Size = System::Drawing::Size(200, 22);
 			   this->txtDate->TabIndex = 2;
 			   // 
 			   // lblType
@@ -547,7 +558,7 @@ namespace ProjectCode {
 			   // 
 			   this->txtType->Location = System::Drawing::Point(120, 80);
 			   this->txtType->Name = L"txtType";
-			   this->txtType->Size = System::Drawing::Size(200, 20);
+			   this->txtType->Size = System::Drawing::Size(200, 22);
 			   this->txtType->TabIndex = 4;
 			   // 
 			   // lblDuration
@@ -562,7 +573,7 @@ namespace ProjectCode {
 			   // 
 			   this->txtDuration->Location = System::Drawing::Point(120, 110);
 			   this->txtDuration->Name = L"txtDuration";
-			   this->txtDuration->Size = System::Drawing::Size(200, 20);
+			   this->txtDuration->Size = System::Drawing::Size(200, 22);
 			   this->txtDuration->TabIndex = 6;
 			   // 
 			   // lblWeight
@@ -577,7 +588,7 @@ namespace ProjectCode {
 			   // 
 			   this->txtWeight->Location = System::Drawing::Point(120, 140);
 			   this->txtWeight->Name = L"txtWeight";
-			   this->txtWeight->Size = System::Drawing::Size(200, 20);
+			   this->txtWeight->Size = System::Drawing::Size(200, 22);
 			   this->txtWeight->TabIndex = 8;
 			   // 
 			   // btnAddWorkout
@@ -632,16 +643,30 @@ namespace ProjectCode {
 			   this->richTextOutput->Size = System::Drawing::Size(670, 200);
 			   this->richTextOutput->TabIndex = 15;
 			   this->richTextOutput->Text = L"";
-
 			   // 
-			   // comboFilterType
+			   // userPage
 			   // 
-			   this->comboFilterType->FormattingEnabled = true;
-			   this->comboFilterType->Location = System::Drawing::Point(109, 230);
-			   this->comboFilterType->Name = L"comboFilterType";
-			   this->comboFilterType->Size = System::Drawing::Size(195, 21);
-			   this->comboFilterType->TabIndex = 16;
-			   this->comboFilterType->Items->AddRange(gcnew cli::array<String^>{"Cardio", "Strength", "Yoga", "Cycling", "Padel"});
+			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			   this->ClientSize = System::Drawing::Size(1273, 739);
+			   this->Controls->Add(this->MainPage);
+			   this->Controls->Add(this->MainMenu_pn);
+			   this->Name = L"userPage";
+			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			   this->Text = L"userPage";
+			   this->MainMenu_pn->ResumeLayout(false);
+			   this->profile_pn->ResumeLayout(false);
+			   this->profile_pn->PerformLayout();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->EndInit();
+			   this->MainPage->ResumeLayout(false);
+			   this->GymClass_pg->ResumeLayout(false);
+			   this->CancelPadel_pg->ResumeLayout(false);
+			   this->CancelPadel_pg->PerformLayout();
+			   this->PadelPage->ResumeLayout(false);
+			   this->PadelPage->PerformLayout();
+			   this->panelWorkoutContent->ResumeLayout(false);
+			   this->panelWorkoutContent->PerformLayout();
+			   this->ResumeLayout(false);
 
 		  }
 #pragma endregion
@@ -769,232 +794,230 @@ namespace ProjectCode {
 			*/
 	 }
 
-	private: System::Void btnWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
+	 private: System::Void btnWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
 
-				MainPage->Controls->Clear();
+		  MainPage->Controls->Clear();
 
-				MainPage->Controls->Add(panelWorkoutContent);
-				panelWorkoutContent->Visible = true;
-				panelWorkoutContent->BringToFront();
-			}
+		  MainPage->Controls->Add(panelWorkoutContent);
+		  panelWorkoutContent->Visible = true;
+		  panelWorkoutContent->BringToFront();
+	 }
 
-	private: System::Void btnHideWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
-		panelWorkoutContent->Visible = false;
-		richTextOutput->Clear();
-	}
+	 private: System::Void btnHideWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
+		  panelWorkoutContent->Visible = false;
+		  richTextOutput->Clear();
+	 }
 
+	 private: System::Void btnAddWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
 
 
-	private: System::Void btnAddWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
+		  // Get input values
+		  String^ date = txtDate->Text;
+		  String^ type = txtType->Text;
+		  String^ duration = txtDuration->Text;
+		  String^ weight = txtWeight->Text;
 
 
-		// Get input values
-		String^ date = txtDate->Text;
-		String^ type = txtType->Text;
-		String^ duration = txtDuration->Text;
-		String^ weight = txtWeight->Text;
+		  if (String::IsNullOrEmpty(date) || String::IsNullOrEmpty(type) ||
+			   String::IsNullOrEmpty(duration) || String::IsNullOrEmpty(weight)) {
+			   MessageBox::Show("Please fill in all fields", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			   return;
+		  }
 
 
-		if (String::IsNullOrEmpty(date) || String::IsNullOrEmpty(type) ||
-			String::IsNullOrEmpty(duration) || String::IsNullOrEmpty(weight)) {
-			MessageBox::Show("Please fill in all fields", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			return;
-		}
+		  int workoutDuration;
+		  int bodyWeight;
+		  try {
+			   workoutDuration = System::Convert::ToInt32(duration);
+			   bodyWeight = System::Convert::ToInt32(weight);
 
+			   if (workoutDuration <= 0) {
+					MessageBox::Show("Duration must be a positive number", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					return;
+			   }
+			   if (bodyWeight <= 0) {
+					MessageBox::Show("Weight must be a positive number", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					return;
+			   }
+		  }
+		  catch (System::FormatException^) {
+			   MessageBox::Show("Please enter valid numbers for duration and weight", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			   return;
+		  }
 
-		int workoutDuration;
-		int bodyWeight;
-		try {
-			workoutDuration = System::Convert::ToInt32(duration);
-			bodyWeight = System::Convert::ToInt32(weight);
 
-			if (workoutDuration <= 0) {
-				MessageBox::Show("Duration must be a positive number", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-				return;
-			}
-			if (bodyWeight <= 0) {
-				MessageBox::Show("Weight must be a positive number", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-				return;
-			}
-		}
-		catch (System::FormatException^) {
-			MessageBox::Show("Please enter valid numbers for duration and weight", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			return;
-		}
+		  workoutManager.loadFromFile("Data/workouts.csv", userList);
 
+		  string workoutDate = context.marshal_as<std::string>(date);
+		  string workoutType = context.marshal_as<std::string>(type);
 
-		workoutManager.loadFromFile("Data/workouts.csv", userList);
 
-		string workoutDate = context.marshal_as<std::string>(date);
-		string workoutType = context.marshal_as<std::string>(type);
+		  int calories = workoutManager.calcCalories(userList[loginID], workoutDuration, workoutType, bodyWeight);
 
+		  Workout newWorkout(workoutDate, workoutType, workoutDuration, calories);
+		  workoutManager.recordWorkout(userList[loginID].ID, newWorkout);
 
-		int calories = workoutManager.calcCalories(userList[loginID], workoutDuration, workoutType, bodyWeight);
 
-		Workout newWorkout(workoutDate, workoutType, workoutDuration, calories);
-		workoutManager.recordWorkout(userList[loginID].ID, newWorkout);
+		  workoutManager.saveToFile("Data/workouts.csv");
 
 
-		workoutManager.saveToFile("Data/workouts.csv");
+		  MessageBox::Show(
+			   String::Format("Workout added successfully!\n\nDate: {0}\nType: {1}\nDuration: {2} minutes\nCalories Burned: {3} kcal",
+					date, type, workoutDuration, calories),
+			   "Success",
+			   MessageBoxButtons::OK,
+			   MessageBoxIcon::Information
+		  );
 
 
-		MessageBox::Show(
-			String::Format("Workout added successfully!\n\nDate: {0}\nType: {1}\nDuration: {2} minutes\nCalories Burned: {3} kcal",
-				date, type, workoutDuration, calories),
-			"Success",
-			MessageBoxButtons::OK,
-			MessageBoxIcon::Information
-		);
+		  txtDate->Clear();
+		  txtType->Clear();
+		  txtDuration->Clear();
+		  txtWeight->Clear();
+	 }
 
+	 private: System::Void btnViewHistory_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		txtDate->Clear();
-		txtType->Clear();
-		txtDuration->Clear();
-		txtWeight->Clear();
-	}
+		  richTextOutput->Clear();
 
-	private: System::Void btnViewHistory_Click(System::Object^ sender, System::EventArgs^ e) {
+		  workoutManager.loadFromFile("Data/workouts.csv", userList);
 
-		richTextOutput->Clear();
+		  auto it = workoutManager.getWorkoutData().find(userList[loginID].ID);
 
-		workoutManager.loadFromFile("Data/workouts.csv", userList);
+		  if (it == workoutManager.getWorkoutData().end() || it->second.empty()) {
+			   richTextOutput->AppendText("NO WORKOUT HISTORY FOR USER: " + gcnew String(userList[loginID].ID.c_str()) + "\n");
+			   return;
+		  }
 
-		auto it = workoutManager.getWorkoutData().find(userList[loginID].ID);
+		  richTextOutput->AppendText("Workout History For User " + gcnew String(userList[loginID].name.c_str()) + "\n\n");
 
-		if (it == workoutManager.getWorkoutData().end() || it->second.empty()) {
-			richTextOutput->AppendText("NO WORKOUT HISTORY FOR USER: " + gcnew String(userList[loginID].ID.c_str()) + "\n");
-			return;
-		}
+		  richTextOutput->AppendText("Date\t\tType\t\tDuration\tCalories\n");
+		  richTextOutput->AppendText("------------------------------------------------\n");
 
-		richTextOutput->AppendText("Workout History For User " + gcnew String(userList[loginID].name.c_str()) + "\n\n");
+		  for (auto workoutIt = it->second.begin(); workoutIt != it->second.end(); workoutIt++) {
+			   richTextOutput->AppendText(
+					"Date: " + gcnew String(workoutIt->date.c_str()) + "\n" +
+					"Type: " + gcnew String(workoutIt->type.c_str()) + "\n" +
+					"Duration: " + workoutIt->duration + " minutes\n" +
+					"Calories Burned: " + workoutIt->caloriesBurned + " kcal\n\n"
+			   );
+		  }
 
-		richTextOutput->AppendText("Date\t\tType\t\tDuration\tCalories\n");
-		richTextOutput->AppendText("------------------------------------------------\n");
 
-		for (auto workoutIt = it->second.begin(); workoutIt != it->second.end(); workoutIt++) {
-			richTextOutput->AppendText(
-				"Date: " + gcnew String(workoutIt->date.c_str()) + "\n" +
-				"Type: " + gcnew String(workoutIt->type.c_str()) + "\n" +
-				"Duration: " + workoutIt->duration + " minutes\n" +
-				"Calories Burned: " + workoutIt->caloriesBurned + " kcal\n\n"
-			);
-		}
+		  richTextOutput->SelectionStart = 0;
+		  richTextOutput->SelectionLength = richTextOutput->TextLength;
+		  richTextOutput->SelectionFont = gcnew System::Drawing::Font("Consolas", 10);
 
+	 }
 
-		richTextOutput->SelectionStart = 0;
-		richTextOutput->SelectionLength = richTextOutput->TextLength;
-		richTextOutput->SelectionFont = gcnew System::Drawing::Font("Consolas", 10);
 
-	}
+	 private: System::Void btnTrackProgress_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		  richTextOutput->Clear();
 
-	private: System::Void btnTrackProgress_Click(System::Object^ sender, System::EventArgs^ e) {
+		  auto it = workoutManager.getWorkoutData().find(userList[loginID].ID);
+		  if (it == workoutManager.getWorkoutData().end() || it->second.empty()) {
+			   richTextOutput->AppendText("NO PROGRESS TO TRACK FOR USER: " + gcnew String(userList[loginID].ID.c_str()) + "\n");
+			   return;
+		  }
 
-		richTextOutput->Clear();
+		  int totalCalories = 0;
+		  int totalDuration = 0;
 
-		auto it = workoutManager.getWorkoutData().find(userList[loginID].ID);
-		if (it == workoutManager.getWorkoutData().end() || it->second.empty()) {
-			richTextOutput->AppendText("NO PROGRESS TO TRACK FOR USER: " + gcnew String(userList[loginID].ID.c_str()) + "\n");
-			return;
-		}
+		  for (auto workoutIt = it->second.begin(); workoutIt != it->second.end(); workoutIt++) {
+			   totalCalories += workoutIt->caloriesBurned;
+			   totalDuration += workoutIt->duration;
+		  }
 
-		int totalCalories = 0;
-		int totalDuration = 0;
+		  // Display summary
+		  richTextOutput->AppendText("Track Progress for User: " + gcnew String(userList[loginID].name.c_str()) + "\n\n");
+		  richTextOutput->AppendText("Total workouts: " + it->second.size() + "\n");
+		  richTextOutput->AppendText("Total duration: " + totalDuration + " minutes\n");
+		  richTextOutput->AppendText("Total calories burned: " + totalCalories + " kcal\n");
 
-		for (auto workoutIt = it->second.begin(); workoutIt != it->second.end(); workoutIt++) {
-			totalCalories += workoutIt->caloriesBurned;
-			totalDuration += workoutIt->duration;
-		}
 
-		// Display summary
-		richTextOutput->AppendText("Track Progress for User: " + gcnew String(userList[loginID].name.c_str()) + "\n\n");
-		richTextOutput->AppendText("Total workouts: " + it->second.size() + "\n");
-		richTextOutput->AppendText("Total duration: " + totalDuration + " minutes\n");
-		richTextOutput->AppendText("Total calories burned: " + totalCalories + " kcal\n");
 
 
+	 }
 
 
-	}
+	 private: System::Void btnFilter_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		  richTextOutput->Clear();
 
-	private: System::Void btnFilter_Click(System::Object^ sender, System::EventArgs^ e) {
+		  String^ selectedWorkoutType = comboFilterType->SelectedItem != nullptr
+			   ? comboFilterType->SelectedItem->ToString()
+			   : nullptr;
 
-		richTextOutput->Clear();
+		  if (String::IsNullOrEmpty(selectedWorkoutType)) {
+			   MessageBox::Show("Please select a workout type to filter.", "Input Error",
+					MessageBoxButtons::OK, MessageBoxIcon::Error);
+			   return;
+		  }
 
-		String^ selectedWorkoutType = comboFilterType->SelectedItem != nullptr
-			? comboFilterType->SelectedItem->ToString()
-			: nullptr;
 
-		if (String::IsNullOrEmpty(selectedWorkoutType)) {
-			MessageBox::Show("Please select a workout type to filter.", "Input Error",
-				MessageBoxButtons::OK, MessageBoxIcon::Error);
-			return;
-		}
+		  string type;
+		  try {
+			   type = msclr::interop::marshal_as<std::string>(selectedWorkoutType);
 
 
-		string type;
-		try {
-			type = msclr::interop::marshal_as<std::string>(selectedWorkoutType);
+			   transform(type.begin(), type.end(), type.begin(), ::tolower);
+		  }
+		  catch (System::Exception^ ex) {
+			   MessageBox::Show("Error processing workout type: " + ex->Message, "Error",
+					MessageBoxButtons::OK, MessageBoxIcon::Error);
+			   return;
+		  }
+		  for (size_t i = 0; i < type.length(); ++i) {
+			   type[i] = std::tolower(type[i]);
+		  }
+		  type.erase(remove(type.begin(), type.end(), ' '), type.end());
 
 
-			transform(type.begin(), type.end(), type.begin(), ::tolower);
-		}
-		catch (System::Exception^ ex) {
-			MessageBox::Show("Error processing workout type: " + ex->Message, "Error",
-				MessageBoxButtons::OK, MessageBoxIcon::Error);
-			return;
-		}
-		for (size_t i = 0; i < type.length(); ++i) {
-			type[i] = std::tolower(type[i]);
-		}
-		type.erase(remove(type.begin(), type.end(), ' '), type.end());
+		  try {
+			   // Access the workout data
+			   auto& workoutData = workoutManager.getWorkoutData();
+			   auto it = workoutData.find(userList[loginID].ID);
 
+			   if (it == workoutData.end() || it->second.empty()) {
+					richTextOutput->AppendText("No workouts available for user: " +
+						 gcnew String(userList[loginID].ID.c_str()) + "\n");
+					return;
+			   }
 
-		try {
-			// Access the workout data
-			auto& workoutData = workoutManager.getWorkoutData();
-			auto it = workoutData.find(userList[loginID].ID);
+			   richTextOutput->AppendText("Filtered Workouts (Type: " + selectedWorkoutType + ")\n\n");
 
-			if (it == workoutData.end() || it->second.empty()) {
-				richTextOutput->AppendText("No workouts available for user: " +
-					gcnew String(userList[loginID].ID.c_str()) + "\n");
-				return;
-			}
+			   bool found = false;
+			   for (const auto& workout : it->second) {
+					string workoutType = workout.type;
+					transform(workoutType.begin(), workoutType.end(), workoutType.begin(), ::tolower);
+					workoutType.erase(remove(workoutType.begin(), workoutType.end(), ' '), workoutType.end());
 
-			richTextOutput->AppendText("Filtered Workouts (Type: " + selectedWorkoutType + ")\n\n");
+					Console::WriteLine("Workout Type in file: '{0}'", gcnew String(workout.type.c_str()));
 
-			bool found = false;
-			for (const auto& workout : it->second) {
-				string workoutType = workout.type;
-				transform(workoutType.begin(), workoutType.end(), workoutType.begin(), ::tolower);
-				workoutType.erase(remove(workoutType.begin(), workoutType.end(), ' '), workoutType.end());
-				
-				Console::WriteLine("Workout Type in file: '{0}'", gcnew String(workout.type.c_str()));
+					if (workoutType == type) {
+						 richTextOutput->AppendText(
+							  "Date: " + gcnew String(workout.date.c_str()) + "\n" +
+							  "Type: " + gcnew String(workout.type.c_str()) + "\n" +
+							  "Duration: " + workout.duration.ToString() + " minutes\n" +
+							  "Calories Burned: " + workout.caloriesBurned.ToString("F1") + " kcal\n" +
+							  "------------------------\n"
+						 );
+						 found = true;
+					}
+			   }
 
-				if (workoutType == type) {
-					richTextOutput->AppendText(
-						"Date: " + gcnew String(workout.date.c_str()) + "\n" +
-						"Type: " + gcnew String(workout.type.c_str()) + "\n" +
-						"Duration: " + workout.duration.ToString() + " minutes\n" +
-						"Calories Burned: " + workout.caloriesBurned.ToString("F1") + " kcal\n" +
-						"------------------------\n"
-					);
-					found = true;
-				}
-			}
+			   if (!found) {
+					MessageBox::Show("No workouts found for type: " + selectedWorkoutType,
+						 "No Results", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			   }
+		  }
+		  catch (const std::exception& ex) {
+			   MessageBox::Show("Error retrieving workout data: " + gcnew String(ex.what()), "Error",
+					MessageBoxButtons::OK, MessageBoxIcon::Error);
+		  }
 
-			if (!found) {
-				MessageBox::Show("No workouts found for type: " + selectedWorkoutType,
-					"No Results", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			}
-		}
-		catch (const std::exception& ex) {
-			MessageBox::Show("Error retrieving workout data: " + gcnew String(ex.what()), "Error",
-				MessageBoxButtons::OK, MessageBoxIcon::Error);
-		}
-
-	}
+	 }
 
 
 
