@@ -41,11 +41,7 @@ namespace ProjectCode {
 	private: System::Windows::Forms::PictureBox^ AccPic;
 	private: System::Windows::Forms::Panel^ MainPage;
 
-        private: System::Windows::Forms::Label^ labelMemberID;
-        private: System::Windows::Forms::TextBox^ txtMemberID;
-        private: System::Windows::Forms::Button^ btnSearch;
-        private: System::Windows::Forms::Button^ btnRenew;
-        private: System::Windows::Forms::Button^ btnDelete;
+  
 	protected:
 
 	private:
@@ -68,11 +64,7 @@ namespace ProjectCode {
 			this->AccPic = (gcnew System::Windows::Forms::PictureBox());
 			this->MainPage = (gcnew System::Windows::Forms::Panel()); 
 			
-		        this->labelMemberID = (gcnew System::Windows::Forms::Label());
-                        this->txtMemberID = (gcnew System::Windows::Forms::TextBox());
-                        this->btnSearch = (gcnew System::Windows::Forms::Button());
-                        this->btnRenew = (gcnew System::Windows::Forms::Button());
-                        this->btnDelete = (gcnew System::Windows::Forms::Button());
+		
 			this->MainMenu_pn->SuspendLayout();
 			this->profile_pn->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->BeginInit();
@@ -126,66 +118,6 @@ namespace ProjectCode {
 			this->MainPage->Name = L"MainPage";
 			this->MainPage->Size = System::Drawing::Size(960, 739);
 			this->MainPage->TabIndex = 2;
-      // 
-      // labelMemberID
-      // 
-      this->labelMemberID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-          static_cast<System::Byte>(0)));
-      this->labelMemberID->Location = System::Drawing::Point(175, 112);
-      this->labelMemberID->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-      this->labelMemberID->Name = L"labelMemberID";
-      this->labelMemberID->Size = System::Drawing::Size(133, 28);
-      this->labelMemberID->TabIndex = 8;
-      this->labelMemberID->Text = L"Member ID:";
-      this->labelMemberID->Click += gcnew System::EventHandler(this, &MyForm::labelMemberID_Click);
-      // 
-      // txtMemberID
-      // 
-      this->txtMemberID->Location = System::Drawing::Point(355, 112);
-      this->txtMemberID->Margin = System::Windows::Forms::Padding(4);
-      this->txtMemberID->Name = L"txtMemberID";
-      this->txtMemberID->Size = System::Drawing::Size(284, 22);
-      this->txtMemberID->TabIndex = 9;
-      this->txtMemberID->TextChanged += gcnew System::EventHandler(this, &MyForm::txtMemberID_TextChanged);
-      // 
-      // btnSearch
-      // 
-      this->btnSearch->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-          static_cast<System::Byte>(0)));
-      this->btnSearch->Location = System::Drawing::Point(355, 182);
-      this->btnSearch->Margin = System::Windows::Forms::Padding(4);
-      this->btnSearch->Name = L"btnSearch";
-      this->btnSearch->Size = System::Drawing::Size(133, 37);
-      this->btnSearch->TabIndex = 11;
-      this->btnSearch->Text = L"Search";
-      this->btnSearch->Click += gcnew System::EventHandler(this, &MyForm::btnSearch_Click);
-      // 
-      // btnRenew
-      // 
-      this->btnRenew->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-          static_cast<System::Byte>(0)));
-      this->btnRenew->Location = System::Drawing::Point(522, 182);
-      this->btnRenew->Margin = System::Windows::Forms::Padding(4);
-      this->btnRenew->Name = L"btnRenew";
-      this->btnRenew->Size = System::Drawing::Size(133, 37);
-      this->btnRenew->TabIndex = 12;
-      this->btnRenew->Text = L"Renew";
-      this->btnRenew->Click += gcnew System::EventHandler(this, &MyForm::btnRenew_Click);
-      // 
-      // btnDelete
-      // 
-      this->btnDelete->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-          static_cast<System::Byte>(0)));
-      this->btnDelete->Location = System::Drawing::Point(437, 261);
-      this->btnDelete->Margin = System::Windows::Forms::Padding(4);
-      this->btnDelete->Name = L"btnDelete";
-      this->btnDelete->Size = System::Drawing::Size(133, 37);
-      this->btnDelete->TabIndex = 13;
-      this->btnDelete->Text = L"Delete";
-      this->btnDelete->Click += gcnew System::EventHandler(this, &MyForm::btnDelete_Click);
-
-
-
 
 			
 			// 
@@ -213,18 +145,6 @@ namespace ProjectCode {
 
 		}
 #pragma endregion
-    private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e);
-    private: System::Void btnRenew_Click(System::Object^ sender, System::EventArgs^ e);
-    private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e);
-    private: System::Void btnRegister_Click_1(System::Object^ sender, System::EventArgs^ e) {
-    }
-private: System::Void labelMemberID_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void txtMemberID_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-}
+   
 	};
 }
