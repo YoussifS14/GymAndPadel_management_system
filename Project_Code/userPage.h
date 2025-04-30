@@ -13,6 +13,7 @@ namespace ProjectCode {
 	 using namespace System::Windows::Forms;
 	 using namespace System::Data;
 	 using namespace System::Drawing;
+	 using namespace System::Drawing::Drawing2D;
 
 	 /// <summary>
 	 /// Summary for userPage
@@ -28,11 +29,11 @@ namespace ProjectCode {
 			   //TODO: Add the constructor code here
 			   //
 		  }
-		  Void loadpic(string val, PictureBox^ pic)
+		  Void loadpic(PictureBox^ pic)
 		  {
-			   string temp = userList[loginID].PicPath;
-			   if (val != "none" || val != "null")
-					pic->Image = System::Drawing::Image::FromFile(gcnew String(temp.c_str()));
+			   string val = userList[loginID].PicPath;
+			   if (val != "null")
+					pic->Image = System::Drawing::Image::FromFile(gcnew String(val.c_str()));
 			   else
 					pic->Image = System::Drawing::Image::FromFile(gcnew String(defaultImagePath.c_str()));
 
@@ -55,7 +56,32 @@ namespace ProjectCode {
 
 			   }
 		  }
+		  Void MakePictureCircular(PictureBox^ picBox) {
 
+
+			   Bitmap^ bmp = gcnew Bitmap(picBox->Image);
+
+
+			   int diameter = Math::Min(bmp->Width, bmp->Height);
+			   Bitmap^ circularBmp = gcnew Bitmap(diameter, diameter);
+
+			   Graphics^ g = Graphics::FromImage(circularBmp);
+			   g->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::AntiAlias;
+
+			   GraphicsPath^ path = gcnew GraphicsPath();
+			   path->AddEllipse(0, 0, diameter, diameter);
+			   g->SetClip(path);
+
+
+			   int offsetX = (bmp->Width - diameter) / 2;
+			   int offsetY = (bmp->Height - diameter) / 2;
+
+			   g->DrawImage(bmp, -offsetX, -offsetY);
+
+			   picBox->Image = circularBmp;
+
+
+		  }
 	 protected:
 		  /// <summary>
 		  /// Clean up any resources being used.
@@ -654,6 +680,7 @@ namespace ProjectCode {
 			   this->Name = L"userPage";
 			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			   this->Text = L"userPage";
+			   this->Load += gcnew System::EventHandler(this, &userPage::userPage_Load);
 			   this->MainMenu_pn->ResumeLayout(false);
 			   this->profile_pn->ResumeLayout(false);
 			   this->profile_pn->PerformLayout();
@@ -1022,5 +1049,9 @@ namespace ProjectCode {
 
 
 
+	 private: System::Void userPage_Load(System::Object^ sender, System::EventArgs^ e) {
+		  loadpic(AccPic);
+		  MakePictureCircular(AccPic);
+	 }
 	 };
 }

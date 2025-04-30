@@ -59,6 +59,7 @@ void readUserData() {
 
 		  getline(subs, S_Type, '!');
 		  getline(subs, startDate, '!');
+		  getline(ss, user.PicPath, ',');
 		  subs >> is_VIP;
 		  Subscriptions subscription(S_Type, startDate, is_VIP);
 		  user.subscription = subscription;
@@ -159,19 +160,18 @@ void writeCreditCardData() {
 }
 void writeUserData() {
 	 ofstream file("Data/usrData.csv");
-	 file << "ID,name,email,password,Birthday,subscription\n"; // Write header
+	 file << "ID,name,email,password,Birthday,subscription,pic Path\n"; // Write header
+
 	 for (auto it = userList.begin(); it != userList.end(); ++it) {
-		  User user = it->second;
+		  User& user = it->second;
 		  if (!user.ID.empty())
-			   file << user.ID << "," << user.name << "," << user.email << "," << user.password << "," << user.Birthday << "," << user.subscription.getType() << "!" << user.subscription.getStartDate() << "!" << user.subscription.get_is_VIP() << "\n";
+			   file << user.ID << "," << user.name << "," << user.email << "," << user.password << "," << user.Birthday << "," << user.subscription.getType() << "!" << user.subscription.getStartDate() << "!" << user.subscription.get_is_VIP() << "," << user.PicPath << "\n";
 	 }
 	 file.close();
 }
 void writeStaffData() {
 	 ofstream file("Data/staffData.csv");
-	 file << "ID,Name,Email,password, PhoneNumber,Role,accountPic\n";
-	 //file << "ID,name,email,password,Birthday,subscription,accPic,myClass,myWallet\n"; // reservation data  if exists
-	 // Write header
+	 file << "ID,Name,Email,password, PhoneNumber,Role,accountPic\n"; // Write header
 	 for (auto it = staffList.begin(); it != staffList.end(); ++it) {
 		  Staff staff = it->second;
 		  if (!staff.ID.empty())
@@ -188,13 +188,13 @@ int main()
 	 readCreditCardData();
 	 readPadelCourt();
 	 readGymClasses();
-	 // writeCreditCardData();
 
 	 Application::EnableVisualStyles();
 	 Application::SetCompatibleTextRenderingDefault(false);
 	 ProjectCode::LoginPage form;
 	 Application::Run(% form);
-	 writeStaffData();
-	 writeUserData();
+	 // writeCreditCardData();
+	 //writeStaffData();
+	// writeUserData();
 	 return 0;
 }

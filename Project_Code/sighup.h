@@ -29,18 +29,27 @@ namespace ProjectCode {
 
 
 			   Bitmap^ bmp = gcnew Bitmap(picBox->Image);
-			   Bitmap^ circularBmp = gcnew Bitmap(bmp->Width, bmp->Height);
+
+
+			   int diameter = Math::Min(bmp->Width, bmp->Height);
+			   Bitmap^ circularBmp = gcnew Bitmap(diameter, diameter);
 
 			   Graphics^ g = Graphics::FromImage(circularBmp);
 			   g->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::AntiAlias;
 
 			   GraphicsPath^ path = gcnew GraphicsPath();
-			   path->AddEllipse(0, 0, bmp->Width, bmp->Height);
-
+			   path->AddEllipse(0, 0, diameter, diameter);
 			   g->SetClip(path);
-			   g->DrawImage(bmp, 0, 0);
+
+
+			   int offsetX = (bmp->Width - diameter) / 2;
+			   int offsetY = (bmp->Height - diameter) / 2;
+
+			   g->DrawImage(bmp, -offsetX, -offsetY);
 
 			   picBox->Image = circularBmp;
+
+
 
 		  }
 		  string setProfilePic(string userID, PictureBox^ pic) {
@@ -62,6 +71,7 @@ namespace ProjectCode {
 					target = marshal_as<string>(newPATH);
 
 			   }
+			   MakePictureCircular(pic);
 			   return target;
 		  }
 
@@ -525,7 +535,7 @@ namespace ProjectCode {
 			   // 
 			   // openFileDialog1
 			   // 
-			   this->openFileDialog1->Filter = L"Image Files|.jpg;.jpeg;*.png";
+			   this->openFileDialog1->Filter = L"Image Files|*.jpg;*.jpeg;*.png;*.bmp;";
 			   this->openFileDialog1->Title = L"Select a Staff Image";
 			   // 
 			   // panel2
@@ -973,6 +983,7 @@ namespace ProjectCode {
 					MessageBox::Show("Error loading image: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			   }
 		  }
+		  MakePictureCircular(MemberpictureBox2);
 
 	 }
 	 private: System::Void OneMradioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {

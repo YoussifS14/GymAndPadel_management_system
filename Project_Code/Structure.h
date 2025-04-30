@@ -89,6 +89,7 @@ public:
 		  password = "";
 		  phone = "";
 		  role = "";
+		  PicPath = defaultImagePath;
 	 }
 
 	 static void initializeBaseID() {
@@ -129,7 +130,7 @@ public:
 	 static string generateID() {
 		  extern unordered_map<string, Staff> staffList;
 		  string ID = "stf-";
-		  ID += to_string(staffList.size() + 1);
+		  ID += to_string(1001 + staffList.size());
 		  return ID;
 	 }
 	 bool registerStaff(string Name, string Email, string Password, string Phone, string Role, string imagepath = "") {
@@ -341,6 +342,7 @@ public:
 		  email = "";
 		  password = "";
 		  Birthday = "";
+		  PicPath = "null";
 		  subscription = Subscriptions();
 	 }
 	 static bool login(string email, string password) {
@@ -402,7 +404,7 @@ public:
 	 static string generateID() {
 		  extern unordered_map<string, User> userList;
 		  string ID = "usr-";
-		  ID += to_string(userList.size() + 1);
+		  ID += to_string(1001 + userList.size());
 		  return ID;
 	 }
 
@@ -435,7 +437,7 @@ public:
 		  }
 		  return true;
 	 }
-	 bool registerMember(string Name, string Email, string Password, string Bday, string subType, bool isVip, string picPath = "") {
+	 bool registerMember(string Name, string Email, string Password, string Bday, string subType, bool isVip, string picPath = "null") {
 		  extern int baseID;
 		  extern unordered_map<string, User>userList;
 		  initializeBaseIDUser();
@@ -447,7 +449,7 @@ public:
 		  Subscriptions userSub(subType, getCurrentDate_MM_DD_YYYY(), isVip);
 		  // userSub.getAvailableClasses();
 
-		  ID = "M" + to_string(++baseID);
+		  ID = "M" + to_string(++baseID);// replace with the generateID function
 		  name = Name;
 		  email = Email;
 		  password = Password;
