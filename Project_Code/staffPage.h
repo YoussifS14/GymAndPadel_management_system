@@ -41,7 +41,7 @@ namespace ProjectCode {
 	private: System::Windows::Forms::PictureBox^ AccPic;
 	private: System::Windows::Forms::Panel^ MainPage;
 
-
+  
 	protected:
 
 	private:
@@ -62,11 +62,14 @@ namespace ProjectCode {
 			this->profile_pn = (gcnew System::Windows::Forms::Panel());
 			this->AccName = (gcnew System::Windows::Forms::Label());
 			this->AccPic = (gcnew System::Windows::Forms::PictureBox());
-			this->MainPage = (gcnew System::Windows::Forms::Panel());
+			this->MainPage = (gcnew System::Windows::Forms::Panel()); 
+			
+		
 			this->MainMenu_pn->SuspendLayout();
 			this->profile_pn->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->BeginInit();
 			this->SuspendLayout();
+			
 			// 
 			// MainMenu_pn
 			// 
@@ -115,12 +118,20 @@ namespace ProjectCode {
 			this->MainPage->Name = L"MainPage";
 			this->MainPage->Size = System::Drawing::Size(960, 739);
 			this->MainPage->TabIndex = 2;
+
+			
 			// 
 			// staffPage
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1273, 739);
+			        this->Controls->Add(this->labelMemberID);
+                                this->Controls->Add(this->txtMemberID);
+                                this->Controls->Add(this->btnSearch);
+                                this->Controls->Add(this->btnRenew);
+                                this->Controls->Add(this->btnDelete);
+			       this->Margin = System::Windows::Forms::Padding(4);
 			this->Controls->Add(this->MainPage);
 			this->Controls->Add(this->MainMenu_pn);
 			this->Name = L"staffPage";
@@ -134,5 +145,6 @@ namespace ProjectCode {
 
 		}
 #pragma endregion
+   
 	};
 }
