@@ -5,6 +5,7 @@
     <ClCompile Include="sighup.cpp" />
     <ClCompile Include="staffPage.cpp" />
     <ClCompile Include="CreatClassForm.cpp" />
+    <ClCompile Include="useraccount.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="feature_GUI\CancellingReserv.h" />
@@ -19,6 +20,7 @@
     <ClInclude Include="Structure.h" />
     <ClInclude Include="userPage.h" />
     <ClInclude Include="CreatClassForm.h" />
+    <ClInclude Include="useraccount.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="AccPic.Image.png" />

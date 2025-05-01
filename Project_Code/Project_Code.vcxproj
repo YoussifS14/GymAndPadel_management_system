@@ -117,6 +117,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="sighup.cpp" />
     <ClCompile Include="staffPage.cpp" />
+    <ClCompile Include="useraccount.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -157,6 +158,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Structure.h" />
+    <ClInclude Include="useraccount.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="userPage.h">
       <FileType>CppForm</FileType>
     </ClInclude>
