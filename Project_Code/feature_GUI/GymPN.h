@@ -45,6 +45,7 @@ namespace ProjectCode {
 	 public: System::Windows::Forms::Button^ Reserv_btn;
 	 public: System::Windows::Forms::Label^ CPrice;
 	 public: System::Windows::Forms::Button^ cancelling_btn;
+	 public: System::Windows::Forms::Label^ label1;
 	 protected:
 
 	 protected:
@@ -76,6 +77,7 @@ namespace ProjectCode {
 			   this->Reserv_btn = (gcnew System::Windows::Forms::Button());
 			   this->CPrice = (gcnew System::Windows::Forms::Label());
 			   this->cancelling_btn = (gcnew System::Windows::Forms::Button());
+			   this->label1 = (gcnew System::Windows::Forms::Label());
 			   this->SuspendLayout();
 			   // 
 			   // CName
@@ -159,10 +161,24 @@ namespace ProjectCode {
 			   this->cancelling_btn->Visible = false;
 			   this->cancelling_btn->Click += gcnew System::EventHandler(this, &GymPN::cancelling_btn_Click);
 			   // 
+			   // label1
+			   // 
+			   this->label1->AutoSize = true;
+			   this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->label1->ForeColor = System::Drawing::Color::DarkGreen;
+			   this->label1->Location = System::Drawing::Point(302, 208);
+			   this->label1->Name = L"label1";
+			   this->label1->Size = System::Drawing::Size(61, 22);
+			   this->label1->TabIndex = 7;
+			   this->label1->Text = L"Status";
+			   this->label1->Visible = false;
+			   // 
 			   // GymPN
 			   // 
 			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			   this->Controls->Add(this->label1);
 			   this->Controls->Add(this->cancelling_btn);
 			   this->Controls->Add(this->CPrice);
 			   this->Controls->Add(this->Reserv_btn);
@@ -203,7 +219,7 @@ namespace ProjectCode {
 							  else
 								   gymClassList[classIDStr].waitingList.push_back(loginID);
 							  MessageBox::Show("You have been added to the waiting list.");
-							  MessageBox::Show("You have been added to the waiting list.");
+							  userList[loginID].myWaitingList.push_back(classIDStr);
 						 }
 						 else {
 							  // User cancelled the payment
@@ -224,13 +240,14 @@ namespace ProjectCode {
 					if (paymentPage->OperationResult) {
 						 // Add the user to the member list
 						 gymClassList[classIDStr].members[loginID] = userList[loginID];
-						 // userList[loginID].list.push_back(classIDstr);
-						 MessageBox::Show("You have successfully reserved a spot in this class.");
+						 userList[loginID].myClasses.push_back(classIDStr);
+						 MessageBox::Show("You have successfully reserved a spot in this class.", "Done", MessageBoxButtons::OK, MessageBoxIcon::Information);
+						 this->Visible = false;
 
 					}
 					else {
 
-						 MessageBox::Show("Payment cancelled.");
+						 MessageBox::Show("Payment cancelled.", "Failed", MessageBoxButtons::OK, MessageBoxIcon::Information);
 					}
 
 			   }
@@ -242,11 +259,34 @@ namespace ProjectCode {
 	 private: System::Void GymPN_Load(System::Object^ sender, System::EventArgs^ e) {
 		  if (res)
 			   Reserv_btn->Visible = true;
-		  else
+		  else {
+			   label1->Visible = true;
 			   cancelling_btn->Visible = true;
+		  }
 	 }
 	 private: System::Void cancelling_btn_Click(System::Object^ sender, System::EventArgs^ e) {
+		  DialogResult result = MessageBox::Show("Are you sure you want to cancel?\nWarning: You will lose 50% of your subscription.", "Cancel reservation", MessageBoxButtons::OKCancel, MessageBoxIcon::Question);
+		  if (result == DialogResult::Cancel) {
+			   // User chose not to cancel
+			   return;
+		  }
+		  else if (result == DialogResult::OK) {
 
+			   String^ classID = CName->Tag->ToString();
+			   string classIDStr = msclr::interop::marshal_as<string>(classID);
+			   string index = GymClasses::FindIndex(classIDStr);
+			   if (index != "") {
+					// Remove the user from the member list
+					gymClassList[classIDStr].members.erase(loginID);
+					userList[loginID].myClasses.remove(classIDStr);
+					userList[loginID].myWallet += gymClassList[classIDStr].price * 0.5; // Refund 50% of the price
+					MessageBox::Show("You have successfully cancelled your reservation.", "Done", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					this->Visible = false;
+			   }
+			   else {
+					MessageBox::Show("Class not found.");
+			   }
+		  }
 	 }
 	 };
 }

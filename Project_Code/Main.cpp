@@ -51,7 +51,7 @@ void readUserData() {
 		  getline(ss, user.email, ',');
 		  getline(ss, user.password, ',');
 		  getline(ss, user.Birthday, ',');
-		 // getline(ss, user.classEnteredStr, ',');
+		  // getline(ss, user.classEnteredStr, ',');
 		  string temp;
 		  getline(ss, temp, ',');
 		  stringstream subs(temp);
@@ -68,6 +68,15 @@ void readUserData() {
 		  /*
 		  loop to load myClass
 		  */
+		  string myClassStr;
+		  getline(ss, myClassStr, ',');
+		  stringstream myClassStream(myClassStr);
+		  while (getline(myClassStream, myClassStr, '!')) {
+			   string classID = myClassStr;
+
+			   user.myClasses.push_back(classID);
+
+		  }
 		  userList[user.ID] = user;
 	 }
 }
@@ -140,12 +149,20 @@ void readGymClasses() {
 		  getline(ss, gymClass.endDate, ',');
 		  getline(ss, temp, ',');
 		  gymClass.maxMembers = stoi(temp);
+		  getline(ss, temp, ',');
+		  gymClass.price = stof(temp);
 		  ss >> gymClass.price;
 		  /*
 		  * load price
 		  * load waiting list and members
-
 		  */
+		  string memberLine;
+		  getline(ss, memberLine, ',');
+		  stringstream waitingStream(memberLine);// Assuming userList is defined and contains User objects
+		  while (getline(waitingStream, memberLine, '!')) {
+			   string userID = memberLine;
+			   gymClass.waitingList.push_back(userID);
+		  }
 		  gymClassList[gymClass.classID] = gymClass; // Use classID as key
 	 }
 	 file.close();
@@ -161,12 +178,18 @@ void writeCreditCardData() {
 }
 void writeUserData() {
 	 ofstream file("Data/usrData.csv");
-	 file << "ID,name,email,password,Birthday,subscription,pic Path\n"; // Write header
+	 file << "ID,name,email,password,Birthday,subscription,pic Path,my Classes list\n"; // Write header
 
 	 for (auto it = userList.begin(); it != userList.end(); ++it) {
 		  User& user = it->second;
 		  if (!user.ID.empty())
-			   file << user.ID << "," << user.name << "," << user.email << "," << user.password << "," << user.Birthday << "," << user.subscription.getType() << "!" << user.subscription.getStartDate() << "!" << user.subscription.get_is_VIP() << "," << user.PicPath << "\n";
+			   file << user.ID << "," << user.name << "," << user.email << "," << user.password << "," << user.Birthday << "," << user.subscription.getType() << "!" << user.subscription.getStartDate() << "!" << user.subscription.get_is_VIP() << "," << user.PicPath << ",";
+		  for (auto itCLass = user.myClasses.begin(); itCLass != user.myClasses.end();) {
+			   file << *itCLass;
+			   if ((++itCLass) != user.myClasses.end())
+					file << "!";
+		  }
+		  file << "\n";
 	 }
 	 file.close();
 }
@@ -180,7 +203,27 @@ void writeStaffData() {
 	 }
 	 file.close();
 }
+void writeGymClass() {
+	 ofstream file("Data/gymClasses.csv");
+	 file << "Class ID,Class Name,Instructor,Start Date,End Date,Max Members,price (EGP),wait list\n"; // Write header
+	 for (auto it = gymClassList.begin(); it != gymClassList.end(); ++it) {
+		  GymClasses& gymClass = it->second;
 
+
+		  file << gymClass.classID << "," << gymClass.className << "," << gymClass.instructor << "," << gymClass.startDate << "," << gymClass.endDate << "," << gymClass.maxMembers << "," << gymClass.price << ",";
+		  for (auto itWaiting = gymClass.waitingList.begin(); itWaiting != gymClass.waitingList.end();) {
+			   file << *itWaiting;
+			   if ((++itWaiting) != gymClass.waitingList.end())
+					file << "!";
+
+		  }
+		  file << "\n";
+
+
+
+	 }
+	 file.close();
+}
 [STAThreadAttribute]
 int main()
 {
@@ -196,6 +239,7 @@ int main()
 	 Application::Run(% form);
 	 // writeCreditCardData();
 	 //writeStaffData();
-	// writeUserData();
+	 //writeUserData();
+	 // writeGymClass();
 	 return 0;
 }

@@ -789,7 +789,10 @@ namespace ProjectCode {
 		  ListOfClasses->Controls->Clear();
 		  auto it = gymClassList.begin();
 		  for (; it != gymClassList.end(); it++) {
+
 			   GymPN^ class1 = gcnew GymPN(true);
+			   if (userList[loginID].isClassReserved(it->first) || userList[loginID].isClassWaiting(it->first))
+					continue;
 			   class1->CName->Text += gcnew String(it->second.className.c_str());
 			   class1->CName->Tag = gcnew String(it->second.classID.c_str());
 			   class1->CInstructor->Text += gcnew String(it->second.instructor.c_str());
@@ -802,23 +805,48 @@ namespace ProjectCode {
 		  }
 	 }
 	 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		  /*  MainPage->Controls->Clear();
-			MainPage->Controls->Add(GymClass_pg);
-			GymClass_pg->BringToFront();
-			ListOfClasses->Controls->Clear();
+		  MainPage->Controls->Clear();
+		  MainPage->Controls->Add(GymClass_pg);
+		  GymClass_pg->BringToFront();
+		  ListOfClasses->Controls->Clear();
 
-			auto it =  userList[loginID].list.begin; // list contain gym class key
-			while(it !=list.end()){
-				 GymPN^ class1 = gcnew GymPN(false);
-				 class1->CName->Text += gcnew String(gymClassList[*it].className.c_str());
-				 class1->CName->Tag = gcnew String(gymClassList[*it].classID.c_str());
-				 class1->CInstructor->Text += gcnew String(gymClassList[*it].instructor.c_str());
-				 class1->CPrice->Text += gymClassList[*it].price.ToString();
-				 class1->CStart->Text += gcnew String(gymClassList[*it].startDate.c_str());
-				 class1->CEnd->Text += gcnew String(gymClassList[*it].endDate.c_str());
-			}
+		  auto it = userList[loginID].myClasses.begin(); // list contain gym class key
 
-			*/
+		  if (it == userList[loginID].myClasses.end()) {
+			   MessageBox::Show("No classes found for this user.", "Info", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			   return;
+		  }
+		  while (it != userList[loginID].myClasses.end()) {
+			   GymPN^ class1 = gcnew GymPN(false);
+			   class1->CName->Text += gcnew String(gymClassList[*it].className.c_str());
+			   class1->CName->Tag = gcnew String(gymClassList[*it].classID.c_str());
+			   class1->CInstructor->Text += gcnew String(gymClassList[*it].instructor.c_str());
+			   class1->CPrice->Text += gymClassList[*it].price.ToString();
+			   class1->CStart->Text += gcnew String(gymClassList[*it].startDate.c_str());
+			   class1->CEnd->Text += gcnew String(gymClassList[*it].endDate.c_str());
+			   class1->label1->Text = "Reserved";
+			   class1->label1->ForeColor = System::Drawing::Color::Green;
+			   if (gymClassList[*it].getDaysDifference() >= 15)
+					class1->cancelling_btn->Enabled = false;
+			   ListOfClasses->Controls->Add(class1);
+			   it++;
+		  }
+		  for (auto itWait = userList[loginID].myWaitingList.begin(); itWait != userList[loginID].myWaitingList.end(); itWait++) {
+			   GymPN^ class1 = gcnew GymPN(false);
+			   class1->CName->Text += gcnew String(gymClassList[*itWait].className.c_str());
+			   class1->CName->Tag = gcnew String(gymClassList[*itWait].classID.c_str());
+			   class1->CInstructor->Text += gcnew String(gymClassList[*itWait].instructor.c_str());
+			   class1->CPrice->Text += gymClassList[*itWait].price.ToString();
+			   class1->CStart->Text += gcnew String(gymClassList[*itWait].startDate.c_str());
+			   class1->CEnd->Text += gcnew String(gymClassList[*itWait].endDate.c_str());
+			   class1->label1->Text = "Waiting";
+			   class1->label1->ForeColor = System::Drawing::Color::Orange;
+			   if (gymClassList[*itWait].getDaysDifference() >= 15)
+					class1->cancelling_btn->Enabled = false;
+			   ListOfClasses->Controls->Add(class1);
+		  }
+
+
 	 }
 
 	 private: System::Void btnWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
