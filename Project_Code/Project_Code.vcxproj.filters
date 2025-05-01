@@ -30,5 +30,6 @@
     <None Include="Data\staffData.csv" />
     <None Include="Data\usrData.csv" />
     <None Include="Data\gymClasses.csv" />
+    <None Include="Data\SlotsData.csv" />
   </ItemGroup>
 </Project>

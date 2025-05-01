@@ -167,6 +167,29 @@ void readGymClasses() {
 	 }
 	 file.close();
 }
+void readSlotData() {
+	 ifstream file("Data/SlotsData.csv");
+	 string line;
+	 getline(file, line); // Skip the header line
+	 while (getline(file, line)) {
+		  Slot slot;
+		  stringstream ss(line);
+		  string userID;
+		  getline(ss, userID, ',');
+		  getline(ss, slot.courtName, ',');
+		  getline(ss, slot.ID, ',');
+		  getline(ss, slot.date, ',');
+		  getline(ss, slot.startTime, ',');
+		  /*  string courtID = PadelCourt::searchCourt(slot.courtName);
+			Slot::slotCounter++;
+			 load padel court && user data first
+			courtList[courtID].slots.push_back(slot);
+			if want remove slot from court's file
+			*/
+		  userList[userID].myReservations.push_back(slot);
+	 }
+	 file.close();
+}
 
 void writeCreditCardData() {
 	 ofstream file("Data/DBofCredit.csv");
@@ -224,6 +247,32 @@ void writeGymClass() {
 	 }
 	 file.close();
 }
+void writeSlotData() {
+	 ofstream file("Data/SlotsData.csv");
+	 file << "UserID,CourtName,SlotID,Date,StartTime\n"; // Write header
+	 for (auto it = userList.begin(); it != userList.end(); ++it) {
+		  User& user = it->second;
+		  for (auto itSlot = user.myReservations.begin(); itSlot != user.myReservations.end(); ++itSlot) {
+			   Slot slot = *itSlot;
+			   file << user.ID << "," << slot.courtName << "," << slot.ID << "," << slot.date << "," << slot.startTime << "\n";
+		  }
+	 }
+	 file.close();
+
+}
+void writePadelCourt() {
+	 ofstream file("Data/padelData.txt");
+	 for (auto it = courtList.begin(); it != courtList.end(); ++it) {
+		  PadelCourt& court = it->second;
+		  file << court.ID << "," << court.name << "," << court.location << "," << court.price << "\n";
+		  for (auto itSlot = court.slots.begin(); itSlot != court.slots.end(); ++itSlot) {
+			   Slot slot = *itSlot;
+			   file << slot.ID << "," << slot.date << "," << slot.startTime << "\n";
+		  }
+		  file << "\n"; // Add a blank line to separate courts
+	 }
+	 file.close();
+}
 [STAThreadAttribute]
 int main()
 {
@@ -232,6 +281,7 @@ int main()
 	 readCreditCardData();
 	 readPadelCourt();
 	 readGymClasses();
+	 readSlotData();
 
 	 Application::EnableVisualStyles();
 	 Application::SetCompatibleTextRenderingDefault(false);
@@ -241,5 +291,7 @@ int main()
 	 //writeStaffData();
 	 //writeUserData();
 	 // writeGymClass();
+	// writePadelCourt();
+	 //writeSlotData();
 	 return 0;
 }

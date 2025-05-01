@@ -220,6 +220,7 @@ namespace ProjectCode {
 			   this->Name = L"LoginPage";
 			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			   this->Text = L"LoginPage";
+			   this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &LoginPage::LoginPage_FormClosing);
 			   this->Load += gcnew System::EventHandler(this, &LoginPage::LoginPage_Load);
 			   this->ResumeLayout(false);
 			   this->PerformLayout();
@@ -239,61 +240,61 @@ namespace ProjectCode {
 		  string email = msclr::interop::marshal_as<string>(userName_txb->Text);
 		  string password = msclr::interop::marshal_as<string>(password_txb->Text);
 		  if (Staff::login(email, password)) {
-			  // Set loginID to email
-			  std::string loginID = email;
+			   // Set loginID to email
+			   std::string loginID = email;
 
-			  // Debugging: Show loginID
-			  MessageBox::Show("loginID: " + gcnew String(loginID.c_str()));
+			   // Debugging: Show loginID
+			   MessageBox::Show("loginID: " + gcnew String(loginID.c_str()));
 
-			  // Debugging: Show staffList contents
-			  if (staffList.empty()) {
-				  MessageBox::Show("staffList is empty!");
-			  }
-			  else {
-				  System::String^ listContents = "staffList contents:\n";
-				  for (const auto& pair : staffList) {
-					listContents += "ID: " + gcnew String(pair.first.c_str()) + 
-                   ", Role: " + gcnew String(pair.second.role.c_str()) + "\n";
+			   // Debugging: Show staffList contents
+			   if (staffList.empty()) {
+					MessageBox::Show("staffList is empty!");
+			   }
+			   else {
+					System::String^ listContents = "staffList contents:\n";
+					for (const auto& pair : staffList) {
+						 listContents += "ID: " + gcnew String(pair.first.c_str()) +
+							  ", Role: " + gcnew String(pair.second.role.c_str()) + "\n";
 
-				  }
-				  MessageBox::Show(listContents);
-			  }
+					}
+					MessageBox::Show(listContents);
+			   }
 
-			  std::string staffRole = "manager";
+			   std::string staffRole = "manager";
 
-			  auto it = staffList.find(loginID);
-			  if (it != staffList.end()) {
-				  staffRole = it->second.role;
-				  staffRole.erase(staffRole.find_last_not_of(" \n\r\t") + 1);
-				  staffRole.erase(0, staffRole.find_first_not_of(" \n\r\t"));
-				  MessageBox::Show("Role found: " + gcnew String(staffRole.c_str()));
-			  }
-			  else {
-				  MessageBox::Show("loginID not found in staffList, using default role: " + gcnew String(staffRole.c_str()));
-			  }
+			   auto it = staffList.find(loginID);
+			   if (it != staffList.end()) {
+					staffRole = it->second.role;
+					staffRole.erase(staffRole.find_last_not_of(" \n\r\t") + 1);
+					staffRole.erase(0, staffRole.find_first_not_of(" \n\r\t"));
+					MessageBox::Show("Role found: " + gcnew String(staffRole.c_str()));
+			   }
+			   else {
+					MessageBox::Show("loginID not found in staffList, using default role: " + gcnew String(staffRole.c_str()));
+			   }
 
-			  MessageBox::Show("staffRole before check: " + gcnew String(staffRole.c_str()));
+			   MessageBox::Show("staffRole before check: " + gcnew String(staffRole.c_str()));
 
-			  std::string lowerRole = staffRole;
-			  std::transform(lowerRole.begin(), lowerRole.end(), lowerRole.begin(), ::tolower);
+			   std::string lowerRole = staffRole;
+			   std::transform(lowerRole.begin(), lowerRole.end(), lowerRole.begin(), ::tolower);
 
-			  LoadingPage^ loading = gcnew LoadingPage();
-			  this->Hide();
-			  loading->label1->Text = "Loading...";
-			  loading->ShowDialog();
+			   LoadingPage^ loading = gcnew LoadingPage();
+			   this->Hide();
+			   loading->label1->Text = "Loading...";
+			   loading->ShowDialog();
 
-			  if (lowerRole == "manager") {
-				  managertPage^ managerPage = gcnew managertPage();
-				  managerPage->ShowDialog();
-			  }
-			  else {
-				  staffPage^ staffPg = gcnew staffPage();
-				  staffPg->ShowDialog();
-			  }
+			   if (lowerRole == "manager") {
+					managertPage^ managerPage = gcnew managertPage();
+					managerPage->ShowDialog();
+			   }
+			   else {
+					staffPage^ staffPg = gcnew staffPage();
+					staffPg->ShowDialog();
+			   }
 
-			  userName_txb->Text = "";
-			  password_txb->Text = "";
-			  this->Show();
+			   userName_txb->Text = "";
+			   password_txb->Text = "";
+			   this->Show();
 		  }
 
 		  else if (User::login(email, password)) {
@@ -332,5 +333,12 @@ namespace ProjectCode {
 
 	 }
 
+	 private: System::Void LoginPage_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+		  LoadingPage^ loading = gcnew LoadingPage();
+		  loading->label1->Text = "Exiting...";
+		  this->Hide();
+		  loading->ShowDialog();
+		  MessageBox::Show("Thanks for using our system", "Alert", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	 }
 	 };
 }

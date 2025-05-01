@@ -193,12 +193,16 @@
     <EmbeddedResource Include="staffPage.resx">
       <DependentUpon>staffPage.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="useraccount.resx">
+      <DependentUpon>useraccount.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="userPage.resx">
       <DependentUpon>userPage.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\gymClasses.csv" />
+    <None Include="Data\SlotsData.csv" />
     <None Include="Data\staffData.csv" />
     <None Include="Data\usrData.csv" />
   </ItemGroup>

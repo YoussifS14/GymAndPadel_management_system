@@ -611,7 +611,12 @@ public:
 		  int daysDiff = (int)(secondsDiff / (60 * 60 * 24));
 		  return daysDiff;
 	 }
-
+	 void removeFromWaitingList(const string& userID) {
+		  auto it = find(waitingList.begin(), waitingList.end(), userID);
+		  if (it != waitingList.end()) {
+			   waitingList.erase(it);
+		  }
+	 }
 
 };
 

@@ -81,9 +81,10 @@ namespace ProjectCode {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(23, 26);
+			this->label1->Location = System::Drawing::Point(31, 32);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(36, 24);
+			this->label1->Size = System::Drawing::Size(45, 29);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"HI ";
 			// 
@@ -92,9 +93,10 @@ namespace ProjectCode {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(584, 26);
+			this->label2->Location = System::Drawing::Point(779, 32);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(227, 24);
+			this->label2->Size = System::Drawing::Size(292, 29);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"YOUR SUBSCRIPTION:";
 			// 
@@ -102,9 +104,10 @@ namespace ProjectCode {
 			// 
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(417, 333);
+			this->button2->Location = System::Drawing::Point(556, 410);
+			this->button2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(202, 89);
+			this->button2->Size = System::Drawing::Size(269, 110);
 			this->button2->TabIndex = 4;
 			this->button2->Text = L"Back to main page";
 			this->button2->UseVisualStyleBackColor = true;
@@ -114,9 +117,10 @@ namespace ProjectCode {
 			// 
 			this->subscriptionDetailsLabel->AutoSize = true;
 			this->subscriptionDetailsLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
-			this->subscriptionDetailsLabel->Location = System::Drawing::Point(584, 100);
+			this->subscriptionDetailsLabel->Location = System::Drawing::Point(779, 123);
+			this->subscriptionDetailsLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->subscriptionDetailsLabel->Name = L"subscriptionDetailsLabel";
-			this->subscriptionDetailsLabel->Size = System::Drawing::Size(0, 17);
+			this->subscriptionDetailsLabel->Size = System::Drawing::Size(0, 20);
 			this->subscriptionDetailsLabel->TabIndex = 5;
 			// 
 			// label3
@@ -124,9 +128,10 @@ namespace ProjectCode {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(24, 71);
+			this->label3->Location = System::Drawing::Point(32, 87);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(57, 20);
+			this->label3->Size = System::Drawing::Size(70, 25);
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"label3";
 			// 
@@ -135,9 +140,10 @@ namespace ProjectCode {
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(23, 104);
+			this->label4->Location = System::Drawing::Point(31, 128);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(57, 20);
+			this->label4->Size = System::Drawing::Size(70, 25);
 			this->label4->TabIndex = 7;
 			this->label4->Text = L"label4";
 			// 
@@ -146,9 +152,10 @@ namespace ProjectCode {
 			this->label5->AutoSize = true;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label5->Location = System::Drawing::Point(24, 141);
+			this->label5->Location = System::Drawing::Point(32, 174);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(57, 20);
+			this->label5->Size = System::Drawing::Size(70, 25);
 			this->label5->TabIndex = 8;
 			this->label5->Text = L"label5";
 			// 
@@ -157,9 +164,10 @@ namespace ProjectCode {
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(23, 187);
+			this->label6->Location = System::Drawing::Point(31, 230);
+			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(57, 20);
+			this->label6->Size = System::Drawing::Size(70, 25);
 			this->label6->TabIndex = 9;
 			this->label6->Text = L"label6";
 			// 
@@ -167,9 +175,10 @@ namespace ProjectCode {
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(738, 333);
+			this->button1->Location = System::Drawing::Point(984, 410);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(202, 89);
+			this->button1->Size = System::Drawing::Size(269, 110);
 			this->button1->TabIndex = 10;
 			this->button1->Text = L"Update subscription";
 			this->button1->UseVisualStyleBackColor = true;
@@ -177,9 +186,9 @@ namespace ProjectCode {
 			// 
 			// useraccount
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1102, 495);
+			this->ClientSize = System::Drawing::Size(1469, 609);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
@@ -189,7 +198,9 @@ namespace ProjectCode {
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"useraccount";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"useraccount";
 			this->Load += gcnew System::EventHandler(this, &useraccount::useraccount_Load);
 			this->ResumeLayout(false);

@@ -277,8 +277,28 @@ namespace ProjectCode {
 			   string index = GymClasses::FindIndex(classIDStr);
 			   if (index != "") {
 					// Remove the user from the member list
-					gymClassList[classIDStr].members.erase(loginID);
-					userList[loginID].myClasses.remove(classIDStr);
+					if (gymClassList[classIDStr].members.find(loginID) != gymClassList[classIDStr].members.end()) {
+						 gymClassList[classIDStr].members.erase(loginID);
+						 userList[loginID].myClasses.remove(classIDStr);
+						 //add member from waiting list to member list
+						 string newEntered = gymClassList[classIDStr].waitingList.front();
+						 gymClassList[classIDStr].waitingList.pop_front();
+						 gymClassList[classIDStr].members[newEntered] = userList[newEntered];
+						 userList[newEntered].myClasses.push_back(classIDStr);
+						 userList[newEntered].myWaitingList.remove(classIDStr);
+
+					}
+					else if (!gymClassList[classIDStr].waitingList.empty()) {
+						 userList[loginID].myWaitingList.remove(classIDStr);
+						 // Remove the user from the waiting list
+						 gymClassList[classIDStr].removeFromWaitingList(loginID);
+					}
+					else {
+						 MessageBox::Show("Invalid Reservation", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+						 return;
+					}
+
+
 					userList[loginID].myWallet += gymClassList[classIDStr].price * 0.5; // Refund 50% of the price
 					MessageBox::Show("You have successfully cancelled your reservation.", "Done", MessageBoxButtons::OK, MessageBoxIcon::Information);
 					this->Visible = false;
