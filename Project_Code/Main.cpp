@@ -16,28 +16,31 @@ unordered_map<string, PadelCourt> courtList;
 WorkoutManger workoutManager;
 string defaultImagePath = "accPic/default.png";
 void readStaffData() {
-	 ifstream file("Data/staffData.csv");
-	 string line;
-	 getline(file, line); // Skip the header line
-	 while (getline(file, line)) {
-		  Staff staff;
-		  stringstream ss(line);
-		  getline(ss, staff.ID, ',');
-		  getline(ss, staff.name, ',');
-		  getline(ss, staff.email, ',');
-		  getline(ss, staff.password, ',');
-		  getline(ss, staff.phone, ',');
-		  getline(ss, staff.role);
-		  /*
-		  loop to load myClass
+	ifstream file("Data/staffData.csv");
+	string line;
+	getline(file, line); // Skip the header line
+	while (getline(file, line)) {
+		Staff staff;
+		stringstream ss(line);
+		getline(ss, staff.ID, ',');
+		getline(ss, staff.name, ',');
+		getline(ss, staff.email, ',');
+		getline(ss, staff.password, ',');
+		getline(ss, staff.phone, ',');
+		getline(ss, staff.role, ',');       // add comma here!
+		getline(ss, staff.PicPath);         // last one, no comma
 
-		  */
+		/*
+		loop to load myClass
 
-		  staffList[staff.ID] = staff;
+		*/
 
-	 }
-	 file.close();
+		staffList[staff.ID] = staff;
+
+	}
+	file.close();
 }
+
 
 void readUserData() {
 	 ifstream file("Data/usrData.csv");
@@ -135,38 +138,84 @@ void readPadelCourt() {
 }
 
 void readGymClasses() {
-	 ifstream file("Data/gymClasses.csv");
-	 string line;
-	 getline(file, line); // Skip the header line is Class ID, Class Name, Instructor, Start Date, End Date, Max Members
-	 while (getline(file, line)) {
-		  GymClasses gymClass;
-		  stringstream ss(line);
-		  string temp;
-		  getline(ss, gymClass.classID, ',');
-		  getline(ss, gymClass.className, ',');
-		  getline(ss, gymClass.instructor, ',');
-		  getline(ss, gymClass.startDate, ',');
-		  getline(ss, gymClass.endDate, ',');
-		  getline(ss, temp, ',');
-		  gymClass.maxMembers = stoi(temp);
-		  getline(ss, temp, ',');
-		  gymClass.price = stof(temp);
-		  ss >> gymClass.price;
-		  /*
-		  * load price
-		  * load waiting list and members
-		  */
-		  string memberLine;
-		  getline(ss, memberLine, ',');
-		  stringstream waitingStream(memberLine);// Assuming userList is defined and contains User objects
-		  while (getline(waitingStream, memberLine, '!')) {
-			   string userID = memberLine;
-			   gymClass.waitingList.push_back(userID);
-		  }
-		  gymClassList[gymClass.classID] = gymClass; // Use classID as key
-	 }
-	 file.close();
+	ifstream file("Data/gymClasses.csv");
+	if (!file.is_open()) {
+		System::Diagnostics::Debug::WriteLine("Error: Could not open Data/gymClasses.csv");
+		return;
+	}
+
+	string line;
+	getline(file, line); // Skip header
+
+	while (getline(file, line)) {
+		try {
+			GymClasses gymClass;
+			stringstream ss(line);
+			string temp;
+
+			getline(ss, gymClass.classID, ',');
+			getline(ss, gymClass.className, ',');
+			getline(ss, gymClass.instructor, ',');
+			getline(ss, gymClass.instructorID, ',');
+			getline(ss, gymClass.startDate, ',');
+			getline(ss, gymClass.endDate, ',');
+
+			// Sessions
+			getline(ss, temp, ',');
+			stringstream sessionStream(temp);
+			string sessionEntry;
+			while (getline(sessionStream, sessionEntry, ';')) {
+				size_t colonPos = sessionEntry.find(':');
+				size_t dashPos = sessionEntry.find('-');
+				if (colonPos != string::npos && dashPos != string::npos && dashPos > colonPos) {
+					Session s;
+					s.date = sessionEntry.substr(0, colonPos);
+					s.startTime = sessionEntry.substr(colonPos + 1, dashPos - colonPos - 1);
+					s.endTime = sessionEntry.substr(dashPos + 1);
+					gymClass.sessions.push_back(s);
+				}
+			}
+
+			// Max Members
+			getline(ss, temp, ',');
+			gymClass.maxMembers = stoi(temp);
+
+			// Price
+			getline(ss, temp, ',');
+			gymClass.price = stof(temp);
+
+			// Allowed Subscription Types
+			getline(ss, temp, ',');
+			stringstream subStream(temp);
+			string subType;
+			while (getline(subStream, subType, ';')) {
+				if (!subType.empty())
+					gymClass.allowedSubTypes.push_back(subType);
+			}
+
+			// Waiting List
+			getline(ss, temp);
+			stringstream waitingStream(temp);
+			string userID;
+			while (getline(waitingStream, userID, '!')) {
+				if (!userID.empty())
+					gymClass.waitingList.push_back(userID);
+			}
+
+			// Save class
+			gymClassList[gymClass.classID] = gymClass;
+		}
+		catch (const std::exception& e) {
+			System::Diagnostics::Debug::WriteLine("Error parsing line: " + marshal_as<String^>(line) + ", Exception: " + marshal_as<String^>(e.what()));
+		}
+	}
+
+	file.close();
 }
+
+
+
+
 void readSlotData() {
 	 ifstream file("Data/SlotsData.csv");
 	 string line;
@@ -227,26 +276,53 @@ void writeStaffData() {
 	 file.close();
 }
 void writeGymClass() {
-	 ofstream file("Data/gymClasses.csv");
-	 file << "Class ID,Class Name,Instructor,Start Date,End Date,Max Members,price (EGP),wait list\n"; // Write header
-	 for (auto it = gymClassList.begin(); it != gymClassList.end(); ++it) {
-		  GymClasses& gymClass = it->second;
+	ofstream file("Data/gymClasses.csv");
+	if (!file.is_open()) {
+		System::Diagnostics::Debug::WriteLine("Error: Could not open Data/gymClasses.csv for writing");
+		return;
+	}
 
+	// Write header with all fields
+	file << "Class ID,Class Name,Instructor,InstructorID,Start Date,End Date,Sessions,Max Members,Price (EGP),AllowedSubTypes,Wait List\n";
 
-		  file << gymClass.classID << "," << gymClass.className << "," << gymClass.instructor << "," << gymClass.startDate << "," << gymClass.endDate << "," << gymClass.maxMembers << "," << gymClass.price << ",";
-		  for (auto itWaiting = gymClass.waitingList.begin(); itWaiting != gymClass.waitingList.end();) {
-			   file << *itWaiting;
-			   if ((++itWaiting) != gymClass.waitingList.end())
-					file << "!";
+	for (const auto& pair : gymClassList) {
+		const GymClasses& gymClass = pair.second;
 
-		  }
-		  file << "\n";
+		// Build sessions string
+		string sessionStr;
+		for (size_t i = 0; i < gymClass.sessions.size(); ++i) {
+			const Session& s = gymClass.sessions[i];
+			sessionStr += s.date + ":" + s.startTime + "-" + s.endTime;
+			if (i < gymClass.sessions.size() - 1)
+				sessionStr += ";";
+		}
 
+		// Build allowed subscription types string
+		string allowedSubTypes;
+		for (size_t i = 0; i < gymClass.allowedSubTypes.size(); ++i) {
+			allowedSubTypes += gymClass.allowedSubTypes[i];
+			if (i < gymClass.allowedSubTypes.size() - 1)
+				allowedSubTypes += ";";
+		}
 
+		// Build wait list string with '!' separator
+		string waitingListStr;
+		for (auto it = gymClass.waitingList.begin(); it != gymClass.waitingList.end(); ++it) {
+			waitingListStr += *it;
+			if (next(it) != gymClass.waitingList.end())
+				waitingListStr += "!";
+		}
 
-	 }
-	 file.close();
+		// Write all fields to file
+		file << gymClass.classID << "," << gymClass.className << "," << gymClass.instructor << ","
+			<< gymClass.instructorID << "," << gymClass.startDate << "," << gymClass.endDate << ","
+			<< sessionStr << "," << gymClass.maxMembers << "," << gymClass.price << ","
+			<< allowedSubTypes << "," << waitingListStr << "\n";
+	}
+
+	file.close();
 }
+
 void writeSlotData() {
 	 ofstream file("Data/SlotsData.csv");
 	 file << "UserID,CourtName,SlotID,Date,StartTime\n"; // Write header
@@ -290,7 +366,7 @@ int main()
 	 // writeCreditCardData();
 	 //writeStaffData();
 	 //writeUserData();
-	 // writeGymClass();
+	  writeGymClass();
 	// writePadelCourt();
 	 //writeSlotData();
 	 return 0;

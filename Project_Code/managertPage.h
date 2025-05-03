@@ -1,5 +1,6 @@
 #pragma once
 #include "Structure.h"
+#include"CreatClassForm.h"
 //#include"CreatClassForm.h"
 namespace ProjectCode {
 	// In managertPage.h (or another relevant header file)
@@ -57,6 +58,7 @@ namespace ProjectCode {
 			   this->MainMenu_pn = (gcnew System::Windows::Forms::Panel());
 			   this->profile_pn = (gcnew System::Windows::Forms::Panel());
 			   this->panel1 = (gcnew System::Windows::Forms::Panel());
+			   this->labelReport = (gcnew System::Windows::Forms::Label());
 			   this->button6 = (gcnew System::Windows::Forms::Button());
 			   this->button5 = (gcnew System::Windows::Forms::Button());
 			   this->label1 = (gcnew System::Windows::Forms::Label());
@@ -67,7 +69,6 @@ namespace ProjectCode {
 			   this->button4 = (gcnew System::Windows::Forms::Button());
 			   this->AccName = (gcnew System::Windows::Forms::Label());
 			   this->AccPic = (gcnew System::Windows::Forms::PictureBox());
-			   this->labelReport = (gcnew System::Windows::Forms::Label());
 			   this->MainMenu_pn->SuspendLayout();
 			   this->profile_pn->SuspendLayout();
 			   this->panel1->SuspendLayout();
@@ -79,9 +80,9 @@ namespace ProjectCode {
 			   this->MainMenu_pn->Controls->Add(this->profile_pn);
 			   this->MainMenu_pn->Dock = System::Windows::Forms::DockStyle::Left;
 			   this->MainMenu_pn->Location = System::Drawing::Point(0, 0);
-			   this->MainMenu_pn->Margin = System::Windows::Forms::Padding(2);
+			   this->MainMenu_pn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->MainMenu_pn->Name = L"MainMenu_pn";
-			   this->MainMenu_pn->Size = System::Drawing::Size(944, 600);
+			   this->MainMenu_pn->Size = System::Drawing::Size(1259, 738);
 			   this->MainMenu_pn->TabIndex = 3;
 			   // 
 			   // profile_pn
@@ -100,27 +101,40 @@ namespace ProjectCode {
 			   this->profile_pn->Controls->Add(this->AccPic);
 			   this->profile_pn->Dock = System::Windows::Forms::DockStyle::Top;
 			   this->profile_pn->Location = System::Drawing::Point(0, 0);
-			   this->profile_pn->Margin = System::Windows::Forms::Padding(2);
+			   this->profile_pn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->profile_pn->Name = L"profile_pn";
-			   this->profile_pn->Size = System::Drawing::Size(944, 282);
+			   this->profile_pn->Size = System::Drawing::Size(1259, 347);
 			   this->profile_pn->TabIndex = 1;
 			   this->profile_pn->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &managertPage::profile_pn_Paint);
 			   // 
 			   // panel1
 			   // 
 			   this->panel1->Controls->Add(this->labelReport);
-			   this->panel1->Location = System::Drawing::Point(272, 12);
+			   this->panel1->Location = System::Drawing::Point(362, 0);
+			   this->panel1->Margin = System::Windows::Forms::Padding(4);
 			   this->panel1->Name = L"panel1";
-			   this->panel1->Size = System::Drawing::Size(651, 292);
+			   this->panel1->Size = System::Drawing::Size(868, 359);
 			   this->panel1->TabIndex = 9;
+			   // 
+			   // labelReport
+			   // 
+			   this->labelReport->AutoSize = true;
+			   this->labelReport->Location = System::Drawing::Point(105, 48);
+			   this->labelReport->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			   this->labelReport->Name = L"labelReport";
+			   this->labelReport->Size = System::Drawing::Size(78, 16);
+			   this->labelReport->TabIndex = 0;
+			   this->labelReport->Text = L"labelReport";
+			   this->labelReport->Click += gcnew System::EventHandler(this, &managertPage::label2_Click);
 			   // 
 			   // button6
 			   // 
 			   this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 11.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->button6->Location = System::Drawing::Point(757, 143);
+			   this->button6->Location = System::Drawing::Point(1009, 176);
+			   this->button6->Margin = System::Windows::Forms::Padding(4);
 			   this->button6->Name = L"button6";
-			   this->button6->Size = System::Drawing::Size(166, 68);
+			   this->button6->Size = System::Drawing::Size(221, 84);
 			   this->button6->TabIndex = 8;
 			   this->button6->Text = L"search User By ID";
 			   this->button6->UseVisualStyleBackColor = true;
@@ -129,9 +143,10 @@ namespace ProjectCode {
 			   // 
 			   this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 11.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->button5->Location = System::Drawing::Point(757, 12);
+			   this->button5->Location = System::Drawing::Point(1009, 15);
+			   this->button5->Margin = System::Windows::Forms::Padding(4);
 			   this->button5->Name = L"button5";
-			   this->button5->Size = System::Drawing::Size(166, 68);
+			   this->button5->Size = System::Drawing::Size(221, 84);
 			   this->button5->TabIndex = 7;
 			   this->button5->Text = L"notify Expiring Subscriptions";
 			   this->button5->UseVisualStyleBackColor = true;
@@ -142,30 +157,29 @@ namespace ProjectCode {
 			   this->label1->AutoSize = true;
 			   this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 11.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->label1->Location = System::Drawing::Point(268, 215);
-			   this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->label1->Location = System::Drawing::Point(357, 265);
 			   this->label1->Name = L"label1";
-			   this->label1->Size = System::Drawing::Size(57, 19);
+			   this->label1->Size = System::Drawing::Size(70, 23);
 			   this->label1->TabIndex = 6;
 			   this->label1->Text = L"UserID";
 			   // 
 			   // userIDTextBox
 			   // 
 			   this->userIDTextBox->BackColor = System::Drawing::SystemColors::Control;
-			   this->userIDTextBox->Location = System::Drawing::Point(323, 215);
-			   this->userIDTextBox->Margin = System::Windows::Forms::Padding(2);
+			   this->userIDTextBox->Location = System::Drawing::Point(431, 265);
+			   this->userIDTextBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->userIDTextBox->Name = L"userIDTextBox";
-			   this->userIDTextBox->Size = System::Drawing::Size(166, 20);
+			   this->userIDTextBox->Size = System::Drawing::Size(220, 22);
 			   this->userIDTextBox->TabIndex = 5;
 			   // 
 			   // button2
 			   // 
 			   this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 11.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->button2->Location = System::Drawing::Point(538, 143);
-			   this->button2->Margin = System::Windows::Forms::Padding(2);
+			   this->button2->Location = System::Drawing::Point(717, 176);
+			   this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->button2->Name = L"button2";
-			   this->button2->Size = System::Drawing::Size(166, 68);
+			   this->button2->Size = System::Drawing::Size(221, 84);
 			   this->button2->TabIndex = 3;
 			   this->button2->Text = L"Display Coach Classes";
 			   this->button2->UseVisualStyleBackColor = true;
@@ -175,10 +189,10 @@ namespace ProjectCode {
 			   // 
 			   this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 11.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->button1->Location = System::Drawing::Point(323, 143);
-			   this->button1->Margin = System::Windows::Forms::Padding(2);
+			   this->button1->Location = System::Drawing::Point(431, 176);
+			   this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->button1->Name = L"button1";
-			   this->button1->Size = System::Drawing::Size(166, 68);
+			   this->button1->Size = System::Drawing::Size(221, 84);
 			   this->button1->TabIndex = 4;
 			   this->button1->Text = L"Delete User";
 			   this->button1->UseVisualStyleBackColor = true;
@@ -188,10 +202,10 @@ namespace ProjectCode {
 			   // 
 			   this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 11.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->button3->Location = System::Drawing::Point(538, 11);
-			   this->button3->Margin = System::Windows::Forms::Padding(2);
+			   this->button3->Location = System::Drawing::Point(717, 14);
+			   this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->button3->Name = L"button3";
-			   this->button3->Size = System::Drawing::Size(166, 68);
+			   this->button3->Size = System::Drawing::Size(221, 84);
 			   this->button3->TabIndex = 2;
 			   this->button3->Text = L"Create Class";
 			   this->button3->UseVisualStyleBackColor = true;
@@ -201,10 +215,10 @@ namespace ProjectCode {
 			   // 
 			   this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 11.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->button4->Location = System::Drawing::Point(323, 11);
-			   this->button4->Margin = System::Windows::Forms::Padding(2);
+			   this->button4->Location = System::Drawing::Point(431, 14);
+			   this->button4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->button4->Name = L"button4";
-			   this->button4->Size = System::Drawing::Size(166, 68);
+			   this->button4->Size = System::Drawing::Size(221, 84);
 			   this->button4->TabIndex = 1;
 			   this->button4->Text = L"Generate Monthly Report";
 			   this->button4->UseVisualStyleBackColor = true;
@@ -215,10 +229,9 @@ namespace ProjectCode {
 			   this->AccName->AutoSize = true;
 			   this->AccName->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 11.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->AccName->Location = System::Drawing::Point(23, 177);
-			   this->AccName->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->AccName->Location = System::Drawing::Point(31, 218);
 			   this->AccName->Name = L"AccName";
-			   this->AccName->Size = System::Drawing::Size(51, 19);
+			   this->AccName->Size = System::Drawing::Size(62, 23);
 			   this->AccName->TabIndex = 1;
 			   this->AccName->Text = L"Name";
 			   // 
@@ -226,34 +239,25 @@ namespace ProjectCode {
 			   // 
 			   this->AccPic->BackColor = System::Drawing::SystemColors::ControlLight;
 			   this->AccPic->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"AccPic.Image")));
-			   this->AccPic->Location = System::Drawing::Point(38, 11);
-			   this->AccPic->Margin = System::Windows::Forms::Padding(2);
+			   this->AccPic->Location = System::Drawing::Point(51, 14);
+			   this->AccPic->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->AccPic->Name = L"AccPic";
-			   this->AccPic->Size = System::Drawing::Size(225, 150);
+			   this->AccPic->Size = System::Drawing::Size(300, 185);
 			   this->AccPic->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			   this->AccPic->TabIndex = 0;
 			   this->AccPic->TabStop = false;
 			   // 
-			   // labelReport
-			   // 
-			   this->labelReport->AutoSize = true;
-			   this->labelReport->Location = System::Drawing::Point(79, 39);
-			   this->labelReport->Name = L"labelReport";
-			   this->labelReport->Size = System::Drawing::Size(61, 13);
-			   this->labelReport->TabIndex = 0;
-			   this->labelReport->Text = L"labelReport";
-			   this->labelReport->Click += gcnew System::EventHandler(this, &managertPage::label2_Click);
-			   // 
 			   // managertPage
 			   // 
-			   this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			   this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			   this->ClientSize = System::Drawing::Size(955, 600);
+			   this->ClientSize = System::Drawing::Size(1273, 738);
 			   this->Controls->Add(this->MainMenu_pn);
-			   this->Margin = System::Windows::Forms::Padding(2);
+			   this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->Name = L"managertPage";
 			   this->Text = L"Manager Page";
+			   this->Load += gcnew System::EventHandler(this, &managertPage::managertPage_Load);
 			   this->MainMenu_pn->ResumeLayout(false);
 			   this->profile_pn->ResumeLayout(false);
 			   this->profile_pn->PerformLayout();
@@ -320,10 +324,10 @@ namespace ProjectCode {
 		}
 
 		System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-			//CreatClassForm^ CreatClassFormPage = gcnew CreatClassForm();
-			//this->Hide();
-			//CreatClassFormPage->ShowDialog();
-			//this->Show();
+			CreatClassForm^ CreatClassFormPage = gcnew CreatClassForm();
+			this->Hide();
+			CreatClassFormPage->ShowDialog();
+			this->Show();
 		}
 
 		System::Void button4_Click(System::Object^ sender, System::EventArgs^ e)
@@ -342,5 +346,7 @@ namespace ProjectCode {
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void managertPage_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }

@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <regex>
+#include<set>
 #include <iomanip>
 #include<map>
 #include <filesystem>  
@@ -22,6 +23,7 @@
 using namespace std;
 using namespace msclr::interop;
 static int baseID = 1000;
+static int baseClassID = 0; 
 extern std::string loginID;   // -1 means not logged in
 // class Subscriptions // This gym subscription generally has nothing to do with classes.
 extern string defaultImagePath;
@@ -572,6 +574,11 @@ public:
 		  return !name.empty();
 	 }
 };
+struct Session {
+	string date;
+	string startTime;
+	string endTime;
+}; 
 class GymClasses {
 public:
 	 /*
@@ -583,12 +590,36 @@ public:
 	 string classID;
 	 string className;
 	 string instructor;
+	 string instructorID;
 	 string startDate;
 	 string endDate;
 	 float price = 1.0;
 	 int maxMembers; // Maximum number of members allowed in the class
 	 unordered_map<string, User> members; // List of users enrolled in the class	
 	 deque<string> waitingList; // List of userIDs on the waiting list
+	 vector<string>allowedSubTypes;
+	 vector<Session> sessions;
+	 GymClasses() {
+		 classID = "";
+		 instructor = "";
+		 instructorID = "";
+	 }
+	 GymClasses(string name, Staff coach, string st, string endT, string sessionDate, string sessionStart, string sessionEnd, int capacity) {
+		 classID = generateUniqueID();
+		 className = name;
+		 instructor = coach.name;
+		 instructorID = coach.ID;
+		 startDate = st;
+		 endDate = calculateEndDate(startDate);
+		 maxMembers = capacity;
+
+		 Session session;
+		 session.date = sessionDate;
+		 session.startTime = sessionStart;
+		 session.endTime = sessionEnd;
+		 sessions.push_back(session);
+	 }
+
 
 	 bool isFull() {
 		  return members.size() == maxMembers;
@@ -617,6 +648,87 @@ public:
 			   waitingList.erase(it);
 		  }
 	 }
+	 string generateUniqueID() {
+		 static bool initialized = false;
+		 if (!initialized) {
+			 extern unordered_map<string, GymClasses> gymClassList;
+			 int maxID = 0;
+
+			 for (const auto& pair : gymClassList) {
+				 const string& id = pair.first;
+				 if (id.length() > 5 && id.substr(0, 5) == "CLASS") {
+					 try {
+						 int num = stoi(id.substr(5));
+						 if (num > maxID) {
+							 maxID = num;
+						 }
+					 }
+					 catch (...) {
+						 continue;
+					 }
+				 }
+			 }
+
+			 baseClassID = maxID;
+			 initialized = true;
+		 }
+
+		 baseClassID++;
+		 return "CLASS" + to_string(baseClassID);
+	 }
+
+	 void generateRecurringSessions(const string& startDt, const string& endDt, const string& startT, const string& endT, const vector<int>& recurringDays) {
+		 time_t startTime = getTime_t(startDt);
+		 time_t endTime = getTime_t(endDt);
+		 tm current;
+		 localtime_s(&current, &startTime);
+	
+		 set<int> daysSet(recurringDays.begin(), recurringDays.end());  	 // (0=Sunday, 1=Monday, ...)
+		 while (startTime <= endTime) {
+			 localtime_s(&current, &startTime);
+			 int currentWday = current.tm_wday; // 0=Sunday, 1=Monday, ..., 6=Saturday
+
+			 if (daysSet.find(currentWday) != daysSet.end()) {
+				 string dateStr = getFormat(startTime);
+				 bool alreadyExists = false;
+				 for (const auto& existing : sessions) {
+					 if (existing.date == dateStr && existing.startTime == startT && existing.endTime == endT) {
+						 alreadyExists = true;
+						 break;
+					 }
+				 }
+
+				 if (!alreadyExists) {
+					 Session session;
+					 session.date = dateStr;
+					 session.startTime = startT;
+					 session.endTime = endT;
+					 sessions.push_back(session);
+				 }
+			 }
+
+
+			 // Move to next day
+			 current.tm_mday += 1;
+			 startTime = mktime(&current);
+		 }
+	 }
+	 bool createClass(const string& sessionStartTime, const string& sessionEndTime, vector<int> recurringDays) {
+		 generateRecurringSessions(startDate, endDate, sessionStartTime, sessionEndTime, recurringDays);
+		 extern unordered_map<string, GymClasses> gymClassList;
+		 gymClassList[classID] = *this;
+		 return true;
+	 }
+
+
+	string calculateEndDate(const string& startDt) {
+		time_t startTime = getTime_t(startDt);
+		tm t;
+		localtime_s(&t, &startTime);
+		t.tm_mon += 1; // Add one month
+		time_t endTime = mktime(&t);
+		return getFormat(endTime);
+	}
 
 };
 

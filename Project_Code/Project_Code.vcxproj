@@ -166,6 +166,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CreatClassForm.resx">
+      <DependentUpon>CreatClassForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="feature_GUI\CancellingReserv.resx">
       <DependentUpon>feature_GUI\CancellingReserv.h</DependentUpon>
     </EmbeddedResource>
