@@ -682,6 +682,7 @@ public:
 
 		return ""; // Not found
 	}
+
 	int getDaysDifference() {
 		string date1 = User::getCurrentDate_MM_DD_YYYY();
 		time_t t1 = getTime_t(date1);
