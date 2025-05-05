@@ -778,7 +778,69 @@ public:
 		time_t endTime = mktime(&t);
 		return getFormat(endTime);
 	}
+	string displayClassesForUserSubscription(const string& userSubType) {
+		extern unordered_map<string, GymClasses> gymClassList;
+		stringstream result;
 
+		// Check if there are any classes for the subscription type
+		bool hasClasses = false;
+		for (const auto& pair : gymClassList) {
+			const GymClasses& gymClass = pair.second;
+			if (find(gymClass.allowedSubTypes.begin(), gymClass.allowedSubTypes.end(), userSubType) != gymClass.allowedSubTypes.end()) {
+				hasClasses = true;
+				break;
+			}
+		}
+
+		if (hasClasses) {
+			// Generate output for available classes
+			result << "Classes Available for Subscription Type: " << userSubType << "\n";
+			result << "================================================================================\n";
+			result << left << setw(10) << "Class ID"
+				<< setw(20) << "Class Name"
+				<< setw(20) << "Instructor"
+				<< setw(15) << "Start Date"
+				<< setw(15) << "End Date"
+				<< setw(10) << "Price"
+				<< setw(15) << "Max Members" << "\n";
+			result << "================================================================================\n";
+
+			for (const auto& pair : gymClassList) {
+				const GymClasses& gymClass = pair.second;
+				if (find(gymClass.allowedSubTypes.begin(), gymClass.allowedSubTypes.end(), userSubType) != gymClass.allowedSubTypes.end()) {
+					string className = gymClass.className;
+					if (className.length() > 17) {
+						className = className.substr(0, 14) + "...";
+					}
+					string instructor = gymClass.instructor;
+					if (instructor.length() > 17) {
+						instructor = instructor.substr(0, 14) + "...";
+					}
+
+					result << left << setw(10) << gymClass.classID
+						<< setw(20) << className
+						<< setw(20) << instructor
+						<< setw(15) << gymClass.startDate
+						<< setw(15) << gymClass.endDate
+						<< fixed << setprecision(2) << setw(10) << gymClass.price
+						<< setw(15) << gymClass.maxMembers << "\n";
+
+					result << "Sessions:\n";
+					for (const auto& session : gymClass.sessions) {
+						result << "  Date: " << session.date << ", Time: " << session.startTime << " - " << session.endTime << "\n";
+					}
+					result << "--------------------------------------------------------------------------------\n";
+				}
+			}
+			result << "================================================================================\n";
+		}
+		else {
+
+			return "No classes available for your subscription type: " + userSubType;
+		}
+
+		return result.str();
+	}
 };
 
 struct PadelCourt {
