@@ -234,6 +234,7 @@ namespace ProjectCode {
 			   // 
 			   // MainMenu_pn
 			   // 
+			   this->MainMenu_pn->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			   this->MainMenu_pn->Controls->Add(this->logout_btn);
 			   this->MainMenu_pn->Controls->Add(this->button1);
 			   this->MainMenu_pn->Controls->Add(this->GymReserv);
@@ -263,7 +264,9 @@ namespace ProjectCode {
 			   // 
 			   // button1
 			   // 
+			   this->button1->BackColor = System::Drawing::Color::White;
 			   this->button1->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 			   this->button1->Location = System::Drawing::Point(0, 390);
@@ -271,13 +274,15 @@ namespace ProjectCode {
 			   this->button1->Name = L"button1";
 			   this->button1->Size = System::Drawing::Size(313, 66);
 			   this->button1->TabIndex = 3;
-			   this->button1->Text = L"Cancel Gym Class";
-			   this->button1->UseVisualStyleBackColor = true;
+			   this->button1->Text = L"My Gym Class";
+			   this->button1->UseVisualStyleBackColor = false;
 			   this->button1->Click += gcnew System::EventHandler(this, &userPage::button1_Click);
 			   // 
 			   // GymReserv
 			   // 
+			   this->GymReserv->BackColor = System::Drawing::Color::White;
 			   this->GymReserv->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->GymReserv->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->GymReserv->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 			   this->GymReserv->Location = System::Drawing::Point(0, 324);
@@ -286,12 +291,14 @@ namespace ProjectCode {
 			   this->GymReserv->Size = System::Drawing::Size(313, 66);
 			   this->GymReserv->TabIndex = 2;
 			   this->GymReserv->Text = L"Subscribe to Gym Class";
-			   this->GymReserv->UseVisualStyleBackColor = true;
+			   this->GymReserv->UseVisualStyleBackColor = false;
 			   this->GymReserv->Click += gcnew System::EventHandler(this, &userPage::GymReserv_Click);
 			   // 
 			   // Padel
 			   // 
+			   this->Padel->BackColor = System::Drawing::Color::White;
 			   this->Padel->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->Padel->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->Padel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 			   this->Padel->Location = System::Drawing::Point(0, 258);
@@ -300,12 +307,14 @@ namespace ProjectCode {
 			   this->Padel->Size = System::Drawing::Size(313, 66);
 			   this->Padel->TabIndex = 1;
 			   this->Padel->Text = L"Padel Court";
-			   this->Padel->UseVisualStyleBackColor = true;
+			   this->Padel->UseVisualStyleBackColor = false;
 			   this->Padel->Click += gcnew System::EventHandler(this, &userPage::Padel_Click);
 			   // 
 			   // btnWorkout
 			   // 
+			   this->btnWorkout->BackColor = System::Drawing::Color::White;
 			   this->btnWorkout->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->btnWorkout->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->btnWorkout->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 			   this->btnWorkout->Location = System::Drawing::Point(0, 204);
@@ -314,7 +323,7 @@ namespace ProjectCode {
 			   this->btnWorkout->Size = System::Drawing::Size(313, 54);
 			   this->btnWorkout->TabIndex = 4;
 			   this->btnWorkout->Text = L"My Workout";
-			   this->btnWorkout->UseVisualStyleBackColor = true;
+			   this->btnWorkout->UseVisualStyleBackColor = false;
 			   this->btnWorkout->Click += gcnew System::EventHandler(this, &userPage::btnWorkout_Click);
 			   // 
 			   // profile_pn
@@ -361,6 +370,7 @@ namespace ProjectCode {
 			   this->AccName->AutoSize = true;
 			   this->AccName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
+			   this->AccName->ForeColor = System::Drawing::Color::White;
 			   this->AccName->Location = System::Drawing::Point(3, 175);
 			   this->AccName->Name = L"AccName";
 			   this->AccName->Size = System::Drawing::Size(58, 22);
@@ -382,10 +392,10 @@ namespace ProjectCode {
 			   // 
 			   // MainPage
 			   // 
+			   this->MainPage->Controls->Add(this->PadelPage);
 			   this->MainPage->Controls->Add(this->panelWorkoutContent);
 			   this->MainPage->Controls->Add(this->GymClass_pg);
 			   this->MainPage->Controls->Add(this->CancelPadel_pg);
-			   this->MainPage->Controls->Add(this->PadelPage);
 			   this->MainPage->Dock = System::Windows::Forms::DockStyle::Left;
 			   this->MainPage->Location = System::Drawing::Point(313, 0);
 			   this->MainPage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -505,8 +515,8 @@ namespace ProjectCode {
 			   this->comboBox2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			   this->comboBox2->FormattingEnabled = true;
 			   this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(13) {
-					L"01:00", L"02:00", L"03:00", L"04:00", L"05:00",
-						 L"06:00", L"07:00", L"08:00", L"09:00", L"10:00", L"11:00", L"12:00", L"16:00"
+					L"00:00", L"12:00", L"13:00", L"14:00", L"15:00",
+						 L"16::00", L"17:00", L"18:00", L"19:00", L"20:00", L"21:00", L"22:00", L"23:00"
 			   });
 			   this->comboBox2->Location = System::Drawing::Point(355, 39);
 			   this->comboBox2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -540,9 +550,10 @@ namespace ProjectCode {
 			   // 
 			   // searchOFcourts
 			   // 
+			   this->searchOFcourts->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->searchOFcourts->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-			   this->searchOFcourts->Location = System::Drawing::Point(811, 26);
+			   this->searchOFcourts->Location = System::Drawing::Point(811, 25);
 			   this->searchOFcourts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->searchOFcourts->Name = L"searchOFcourts";
 			   this->searchOFcourts->Size = System::Drawing::Size(137, 38);

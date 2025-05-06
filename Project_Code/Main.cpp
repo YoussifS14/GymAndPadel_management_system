@@ -41,102 +41,6 @@ void readStaffData() {
 	 file.close();
 }
 
-
-void readUserData() {
-	 ifstream file("Data/usrData.csv");
-	 string line;
-	 getline(file, line); // Skip the header line
-	 while (getline(file, line)) {
-		  User user;
-		  stringstream ss(line);
-		  getline(ss, user.ID, ',');
-		  getline(ss, user.name, ',');
-		  getline(ss, user.email, ',');
-		  getline(ss, user.password, ',');
-		  getline(ss, user.Birthday, ',');
-		  // getline(ss, user.classEnteredStr, ',');
-		  string temp;
-		  getline(ss, temp, ',');
-		  stringstream subs(temp);
-		  string startDate, S_Type;
-		  bool is_VIP;
-
-		  getline(subs, S_Type, '!');
-		  getline(subs, startDate, '!');
-		  getline(ss, user.PicPath, ',');
-		  subs >> is_VIP;
-		  Subscriptions subscription(S_Type, startDate, is_VIP);
-		  user.subscription = subscription;
-
-		  /*
-		  loop to load myClass
-		  */
-		  string myClassStr;
-		  getline(ss, myClassStr, ',');
-		  stringstream myClassStream(myClassStr);
-		  while (getline(myClassStream, myClassStr, '!')) {
-			   string classID = myClassStr;
-
-			   user.myClasses.push_back(classID);
-
-		  }
-		  userList[user.ID] = user;
-	 }
-}
-
-void readCreditCardData() {
-	 ifstream file("Data/DBofCredit.csv");
-	 string line;
-	 getline(file, line); // Skip the header line
-	 while (getline(file, line)) {
-		  CreditCard card;
-		  string temp;
-		  stringstream ss(line);
-		  getline(ss, card.cardID, ',');
-		  getline(ss, card.cardName, ',');
-		  getline(ss, card.ExpirationDate, ',');
-		  getline(ss, card.cardCVV, ',');
-		  getline(ss, temp);
-		  card.balance = stof(temp);
-		  // Remove the 'a' character from cardID
-		  card.cardID.resize(card.cardID.size() - 1);
-		  card.cardCVV.resize(card.cardCVV.size() - 1);
-		  cardList.push_back(card);
-
-		  // Add the card to a vector or process it as needed
-	 }
-	 file.close();
-}
-
-void readPadelCourt() {
-	 ifstream  padelFile("Data/padelData.txt");
-	 string line;
-	 while (getline(padelFile, line)) {
-		  PadelCourt court;
-		  stringstream ss(line);
-		  getline(ss, court.ID, ',');
-		  getline(ss, court.name, ',');
-		  getline(ss, court.location, ',');
-		  ss >> court.price;
-		  // Read slots
-		  string slotLine;
-		  while (getline(padelFile, slotLine) && !slotLine.empty()) {
-			   Slot s;
-
-			   stringstream ss(slotLine);
-			   getline(ss, s.ID, ',');
-			   getline(ss, s.date, ',');
-			   getline(ss, s.startTime, ',');
-			   //   getline(ss, s.endTime);
-			   Slot::slotCounter++;
-
-			   court.slots.push_back(s);
-		  }
-		  courtList[court.ID] = court; // Use ID as key
-	 }
-	 padelFile.close();
-}
-
 void readGymClasses() {
 	 ifstream file("Data/gymClasses.csv");
 	 if (!file.is_open()) {
@@ -211,6 +115,103 @@ void readGymClasses() {
 	 }
 
 	 file.close();
+}
+
+void readUserData() {
+	 readGymClasses();
+	 ifstream file("Data/usrData.csv");
+	 string line;
+	 getline(file, line); // Skip the header line
+	 while (getline(file, line)) {
+		  User user;
+		  stringstream ss(line);
+		  getline(ss, user.ID, ',');
+		  getline(ss, user.name, ',');
+		  getline(ss, user.email, ',');
+		  getline(ss, user.password, ',');
+		  getline(ss, user.Birthday, ',');
+		  // getline(ss, user.classEnteredStr, ',');
+		  string temp;
+		  getline(ss, temp, ',');
+		  stringstream subs(temp);
+		  string startDate, S_Type;
+		  bool is_VIP;
+
+		  getline(subs, S_Type, '!');
+		  getline(subs, startDate, '!');
+		  getline(ss, user.PicPath, ',');
+		  subs >> is_VIP;
+		  Subscriptions subscription(S_Type, startDate, is_VIP);
+		  user.subscription = subscription;
+
+		  /*
+		  loop to load myClass
+		  */
+		  string myClassStr;
+		  getline(ss, myClassStr, ',');
+		  stringstream myClassStream(myClassStr);
+		  while (getline(myClassStream, myClassStr, '!')) {
+			   string classID = myClassStr;
+			   if (gymClassList.find(classID) != gymClassList.end()) {
+					user.myClasses.push_back(classID);
+					gymClassList[classID].members[user.ID] = user; // Add user to the class's member list
+			   }
+		  }
+		  userList[user.ID] = user;
+	 }
+}
+
+void readCreditCardData() {
+	 ifstream file("Data/DBofCredit.csv");
+	 string line;
+	 getline(file, line); // Skip the header line
+	 while (getline(file, line)) {
+		  CreditCard card;
+		  string temp;
+		  stringstream ss(line);
+		  getline(ss, card.cardID, ',');
+		  getline(ss, card.cardName, ',');
+		  getline(ss, card.ExpirationDate, ',');
+		  getline(ss, card.cardCVV, ',');
+		  getline(ss, temp);
+		  card.balance = stof(temp);
+		  // Remove the 'a' character from cardID
+		  card.cardID.resize(card.cardID.size() - 1);
+		  card.cardCVV.resize(card.cardCVV.size() - 1);
+		  cardList.push_back(card);
+
+		  // Add the card to a vector or process it as needed
+	 }
+	 file.close();
+}
+
+void readPadelCourt() {
+	 ifstream  padelFile("Data/padelData.txt");
+	 string line;
+	 while (getline(padelFile, line)) {
+		  PadelCourt court;
+		  stringstream ss(line);
+		  getline(ss, court.ID, ',');
+		  getline(ss, court.name, ',');
+		  getline(ss, court.location, ',');
+		  ss >> court.price;
+		  // Read slots
+		  string slotLine;
+		  while (getline(padelFile, slotLine) && !slotLine.empty()) {
+			   Slot s;
+
+			   stringstream ss(slotLine);
+			   getline(ss, s.ID, ',');
+			   getline(ss, s.date, ',');
+			   getline(ss, s.startTime, ',');
+			   //   getline(ss, s.endTime);
+			   Slot::slotCounter++;
+
+			   court.slots.push_back(s);
+		  }
+		  courtList[court.ID] = court; // Use ID as key
+	 }
+	 padelFile.close();
 }
 
 void readNotfication() {
@@ -416,7 +417,7 @@ int main()
 	 readUserData();
 	 readCreditCardData();
 	 readPadelCourt();
-	 readGymClasses();
+	 //readGymClasses(); called in readUserData
 	 readSlotData();
 	 // readNotfication(); //done
 	 Application::EnableVisualStyles();
