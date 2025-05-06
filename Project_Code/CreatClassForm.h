@@ -24,6 +24,11 @@ namespace ProjectCode {
             InitializeComboBoxes();
         }
 
+        // Public property to access panel1
+        property System::Windows::Forms::Panel^ ClassPanel {
+            System::Windows::Forms::Panel^ get() { return panel1; }
+        }
+
     protected:
         ~CreatClassForm()
         {
@@ -34,6 +39,9 @@ namespace ProjectCode {
         }
 
     private:
+        System::Windows::Forms::Panel^ panel1;
+        System::Windows::Forms::CheckedListBox^ DaysofClassCheckbox;
+        System::Windows::Forms::Label^ label1;
         System::Windows::Forms::Label^ labelClassName;
         System::Windows::Forms::TextBox^ textBoxClassName;
         System::Windows::Forms::Label^ DateLabel;
@@ -53,13 +61,14 @@ namespace ProjectCode {
         System::Windows::Forms::Label^ labelSubscription;
         System::Windows::Forms::CheckedListBox^ checkedListBoxSubscriptions;
         System::Windows::Forms::Button^ buttonCreateClass;
-        System::Windows::Forms::Label^ label1;
-        System::Windows::Forms::CheckedListBox^ DaysofClassCheckbox;
         System::ComponentModel::IContainer^ components;
 
 #pragma region Windows Form Designer generated code
         void InitializeComponent(void)
         {
+            this->panel1 = (gcnew System::Windows::Forms::Panel());
+            this->DaysofClassCheckbox = (gcnew System::Windows::Forms::CheckedListBox());
+            this->label1 = (gcnew System::Windows::Forms::Label());
             this->labelClassName = (gcnew System::Windows::Forms::Label());
             this->textBoxClassName = (gcnew System::Windows::Forms::TextBox());
             this->DateLabel = (gcnew System::Windows::Forms::Label());
@@ -79,40 +88,93 @@ namespace ProjectCode {
             this->labelSubscription = (gcnew System::Windows::Forms::Label());
             this->checkedListBoxSubscriptions = (gcnew System::Windows::Forms::CheckedListBox());
             this->buttonCreateClass = (gcnew System::Windows::Forms::Button());
-            this->label1 = (gcnew System::Windows::Forms::Label());
-            this->DaysofClassCheckbox = (gcnew System::Windows::Forms::CheckedListBox());
+            this->panel1->SuspendLayout();
             this->SuspendLayout();
+            // 
+            // panel1
+            // 
+            this->panel1->Controls->Add(this->DaysofClassCheckbox);
+            this->panel1->Controls->Add(this->label1);
+            this->panel1->Controls->Add(this->labelClassName);
+            this->panel1->Controls->Add(this->textBoxClassName);
+            this->panel1->Controls->Add(this->DateLabel);
+            this->panel1->Controls->Add(this->YearcomboBox);
+            this->panel1->Controls->Add(this->MonthcomboBox);
+            this->panel1->Controls->Add(this->DaycomboBox);
+            this->panel1->Controls->Add(this->labelStartTime);
+            this->panel1->Controls->Add(this->textBoxStartTime);
+            this->panel1->Controls->Add(this->labelEndTime);
+            this->panel1->Controls->Add(this->textBoxEndTime);
+            this->panel1->Controls->Add(this->labelMaxMembers);
+            this->panel1->Controls->Add(this->textBoxMaxMembers);
+            this->panel1->Controls->Add(this->labelInstructorName);
+            this->panel1->Controls->Add(this->textBoxInstructorName);
+            this->panel1->Controls->Add(this->labelInstructorID);
+            this->panel1->Controls->Add(this->textBoxInstructorID);
+            this->panel1->Controls->Add(this->labelSubscription);
+            this->panel1->Controls->Add(this->checkedListBoxSubscriptions);
+            this->panel1->Controls->Add(this->buttonCreateClass);
+            this->panel1->Location = System::Drawing::Point(3, 2);
+            this->panel1->Margin = System::Windows::Forms::Padding(4);
+            this->panel1->Name = L"panel1";
+            this->panel1->Size = System::Drawing::Size(1056, 569);
+            this->panel1->TabIndex = 0;
+            this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &CreatClassForm::panel1_Paint);
+            // 
+            // DaysofClassCheckbox
+            // 
+            this->DaysofClassCheckbox->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
+                L"Sunday", L"Monday", L"Tuesday", L"Wednesday",
+                    L"Thursday", L"Friday", L"Saturday"
+            });
+            this->DaysofClassCheckbox->Location = System::Drawing::Point(769, 268);
+            this->DaysofClassCheckbox->Margin = System::Windows::Forms::Padding(4);
+            this->DaysofClassCheckbox->Name = L"DaysofClassCheckbox";
+            this->DaysofClassCheckbox->Size = System::Drawing::Size(231, 89);
+            this->DaysofClassCheckbox->TabIndex = 41;
+            // 
+            // label1
+            // 
+            this->label1->AutoSize = true;
+            this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label1->Location = System::Drawing::Point(658, 235);
+            this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+            this->label1->Name = L"label1";
+            this->label1->Size = System::Drawing::Size(137, 20);
+            this->label1->TabIndex = 40;
+            this->label1->Text = L"Days of class :";
             // 
             // labelClassName
             // 
             this->labelClassName->AutoSize = true;
-            this->labelClassName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+            this->labelClassName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->labelClassName->Location = System::Drawing::Point(40, 37);
+            this->labelClassName->Location = System::Drawing::Point(226, 28);
             this->labelClassName->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->labelClassName->Name = L"labelClassName";
-            this->labelClassName->Size = System::Drawing::Size(127, 24);
-            this->labelClassName->TabIndex = 0;
+            this->labelClassName->Size = System::Drawing::Size(117, 20);
+            this->labelClassName->TabIndex = 21;
             this->labelClassName->Text = L"Class Name:";
             // 
             // textBoxClassName
             // 
-            this->textBoxClassName->Location = System::Drawing::Point(200, 37);
+            this->textBoxClassName->Location = System::Drawing::Point(433, 28);
             this->textBoxClassName->Margin = System::Windows::Forms::Padding(4);
             this->textBoxClassName->Name = L"textBoxClassName";
-            this->textBoxClassName->Size = System::Drawing::Size(265, 22);
-            this->textBoxClassName->TabIndex = 1;
+            this->textBoxClassName->Size = System::Drawing::Size(211, 22);
+            this->textBoxClassName->TabIndex = 22;
             // 
             // DateLabel
             // 
             this->DateLabel->AutoSize = true;
-            this->DateLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+            this->DateLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->DateLabel->Location = System::Drawing::Point(580, 33);
+            this->DateLabel->Location = System::Drawing::Point(658, 28);
             this->DateLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->DateLabel->Name = L"DateLabel";
-            this->DateLabel->Size = System::Drawing::Size(58, 24);
-            this->DateLabel->TabIndex = 2;
+            this->DateLabel->Size = System::Drawing::Size(55, 20);
+            this->DateLabel->TabIndex = 23;
             this->DateLabel->Text = L"Date:";
             // 
             // YearcomboBox
@@ -122,240 +184,199 @@ namespace ProjectCode {
                 L"2025", L"2026", L"2027", L"2028", L"2029",
                     L"2030"
             });
-            this->YearcomboBox->Location = System::Drawing::Point(971, 33);
+            this->YearcomboBox->Location = System::Drawing::Point(963, 28);
             this->YearcomboBox->Margin = System::Windows::Forms::Padding(4);
             this->YearcomboBox->Name = L"YearcomboBox";
-            this->YearcomboBox->Size = System::Drawing::Size(105, 24);
-            this->YearcomboBox->TabIndex = 3;
+            this->YearcomboBox->Size = System::Drawing::Size(89, 24);
+            this->YearcomboBox->TabIndex = 24;
             this->YearcomboBox->Text = L"Year";
             // 
             // MonthcomboBox
             // 
             this->MonthcomboBox->FormattingEnabled = true;
             this->MonthcomboBox->Items->AddRange(gcnew cli::array< System::Object^  >(12) {
-                L"01", L"02", L"03", L"04", L"05", L"06", L"07", L"08",
-                    L"09", L"10", L"11", L"12"
+                L"01", L"02", L"03", L"04", L"05", L"06", L"07",
+                    L"08", L"09", L"10", L"11", L"12"
             });
-            this->MonthcomboBox->Location = System::Drawing::Point(856, 33);
+            this->MonthcomboBox->Location = System::Drawing::Point(866, 29);
             this->MonthcomboBox->Margin = System::Windows::Forms::Padding(4);
             this->MonthcomboBox->Name = L"MonthcomboBox";
-            this->MonthcomboBox->Size = System::Drawing::Size(105, 24);
-            this->MonthcomboBox->TabIndex = 4;
+            this->MonthcomboBox->Size = System::Drawing::Size(89, 24);
+            this->MonthcomboBox->TabIndex = 25;
             this->MonthcomboBox->Text = L"Month";
             // 
             // DaycomboBox
             // 
             this->DaycomboBox->FormattingEnabled = true;
             this->DaycomboBox->Items->AddRange(gcnew cli::array< System::Object^  >(31) {
-                L"01", L"02", L"03", L"04", L"05", L"06", L"07", L"08",
-                    L"09", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"17", L"18", L"19", L"20", L"21", L"22", L"23", L"24", L"25", L"26",
-                    L"27", L"28", L"29", L"30", L"31"
+                L"01", L"02", L"03", L"04", L"05", L"06", L"07",
+                    L"08", L"09", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"17", L"18", L"19", L"20", L"21", L"22", L"23", L"24", L"25",
+                    L"26", L"27", L"28", L"29", L"30", L"31"
             });
-            this->DaycomboBox->Location = System::Drawing::Point(741, 33);
+            this->DaycomboBox->Location = System::Drawing::Point(769, 29);
             this->DaycomboBox->Margin = System::Windows::Forms::Padding(4);
             this->DaycomboBox->Name = L"DaycomboBox";
-            this->DaycomboBox->Size = System::Drawing::Size(105, 24);
-            this->DaycomboBox->TabIndex = 5;
+            this->DaycomboBox->Size = System::Drawing::Size(89, 24);
+            this->DaycomboBox->TabIndex = 26;
             this->DaycomboBox->Text = L"Day";
             // 
             // labelStartTime
             // 
             this->labelStartTime->AutoSize = true;
-            this->labelStartTime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+            this->labelStartTime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->labelStartTime->Location = System::Drawing::Point(580, 130);
+            this->labelStartTime->Location = System::Drawing::Point(226, 176);
             this->labelStartTime->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->labelStartTime->Name = L"labelStartTime";
-            this->labelStartTime->Size = System::Drawing::Size(200, 24);
-            this->labelStartTime->TabIndex = 6;
-            this->labelStartTime->Text = L"Start Time (HH:MM):";
+            this->labelStartTime->Size = System::Drawing::Size(181, 20);
+            this->labelStartTime->TabIndex = 27;
+            this->labelStartTime->Text = L"Start Time(HH:MM):";
             // 
             // textBoxStartTime
             // 
-            this->textBoxStartTime->Location = System::Drawing::Point(802, 132);
+            this->textBoxStartTime->Location = System::Drawing::Point(433, 176);
             this->textBoxStartTime->Margin = System::Windows::Forms::Padding(4);
             this->textBoxStartTime->Name = L"textBoxStartTime";
-            this->textBoxStartTime->Size = System::Drawing::Size(265, 22);
-            this->textBoxStartTime->TabIndex = 7;
+            this->textBoxStartTime->Size = System::Drawing::Size(211, 22);
+            this->textBoxStartTime->TabIndex = 28;
+            this->textBoxStartTime->TextChanged += gcnew System::EventHandler(this, &CreatClassForm::textBoxStartTime_TextChanged);
             // 
             // labelEndTime
             // 
             this->labelEndTime->AutoSize = true;
-            this->labelEndTime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+            this->labelEndTime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->labelEndTime->Location = System::Drawing::Point(580, 217);
+            this->labelEndTime->Location = System::Drawing::Point(658, 128);
             this->labelEndTime->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->labelEndTime->Name = L"labelEndTime";
-            this->labelEndTime->Size = System::Drawing::Size(197, 24);
-            this->labelEndTime->TabIndex = 8;
+            this->labelEndTime->Size = System::Drawing::Size(178, 20);
+            this->labelEndTime->TabIndex = 29;
             this->labelEndTime->Text = L"End Time (HH:MM):";
             // 
             // textBoxEndTime
             // 
-            this->textBoxEndTime->Location = System::Drawing::Point(802, 217);
+            this->textBoxEndTime->Location = System::Drawing::Point(854, 125);
             this->textBoxEndTime->Margin = System::Windows::Forms::Padding(4);
             this->textBoxEndTime->Name = L"textBoxEndTime";
-            this->textBoxEndTime->Size = System::Drawing::Size(265, 22);
-            this->textBoxEndTime->TabIndex = 9;
+            this->textBoxEndTime->Size = System::Drawing::Size(191, 22);
+            this->textBoxEndTime->TabIndex = 30;
             // 
             // labelMaxMembers
             // 
             this->labelMaxMembers->AutoSize = true;
-            this->labelMaxMembers->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+            this->labelMaxMembers->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->labelMaxMembers->Location = System::Drawing::Point(40, 102);
+            this->labelMaxMembers->Location = System::Drawing::Point(658, 72);
             this->labelMaxMembers->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->labelMaxMembers->Name = L"labelMaxMembers";
-            this->labelMaxMembers->Size = System::Drawing::Size(148, 24);
-            this->labelMaxMembers->TabIndex = 10;
+            this->labelMaxMembers->Size = System::Drawing::Size(132, 20);
+            this->labelMaxMembers->TabIndex = 31;
             this->labelMaxMembers->Text = L"Max Members:";
             // 
             // textBoxMaxMembers
             // 
             this->textBoxMaxMembers->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->textBoxMaxMembers->Location = System::Drawing::Point(200, 103);
+            this->textBoxMaxMembers->Location = System::Drawing::Point(854, 73);
             this->textBoxMaxMembers->Margin = System::Windows::Forms::Padding(4);
             this->textBoxMaxMembers->Name = L"textBoxMaxMembers";
-            this->textBoxMaxMembers->Size = System::Drawing::Size(265, 23);
-            this->textBoxMaxMembers->TabIndex = 11;
+            this->textBoxMaxMembers->Size = System::Drawing::Size(189, 23);
+            this->textBoxMaxMembers->TabIndex = 32;
             // 
             // labelInstructorName
             // 
             this->labelInstructorName->AutoSize = true;
-            this->labelInstructorName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold,
+            this->labelInstructorName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold,
                 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            this->labelInstructorName->Location = System::Drawing::Point(20, 214);
+            this->labelInstructorName->Location = System::Drawing::Point(226, 125);
             this->labelInstructorName->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->labelInstructorName->Name = L"labelInstructorName";
-            this->labelInstructorName->Size = System::Drawing::Size(163, 24);
-            this->labelInstructorName->TabIndex = 12;
+            this->labelInstructorName->Size = System::Drawing::Size(150, 20);
+            this->labelInstructorName->TabIndex = 33;
             this->labelInstructorName->Text = L"Instructor Name:";
+            this->labelInstructorName->Click += gcnew System::EventHandler(this, &CreatClassForm::labelInstructorName_Click);
             // 
             // textBoxInstructorName
             // 
             this->textBoxInstructorName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold,
                 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            this->textBoxInstructorName->Location = System::Drawing::Point(200, 212);
+            this->textBoxInstructorName->Location = System::Drawing::Point(433, 125);
             this->textBoxInstructorName->Margin = System::Windows::Forms::Padding(4);
             this->textBoxInstructorName->Name = L"textBoxInstructorName";
-            this->textBoxInstructorName->Size = System::Drawing::Size(265, 23);
-            this->textBoxInstructorName->TabIndex = 13;
+            this->textBoxInstructorName->Size = System::Drawing::Size(211, 23);
+            this->textBoxInstructorName->TabIndex = 34;
             // 
             // labelInstructorID
             // 
             this->labelInstructorID->AutoSize = true;
-            this->labelInstructorID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+            this->labelInstructorID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->labelInstructorID->Location = System::Drawing::Point(43, 155);
+            this->labelInstructorID->Location = System::Drawing::Point(226, 72);
             this->labelInstructorID->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->labelInstructorID->Name = L"labelInstructorID";
-            this->labelInstructorID->Size = System::Drawing::Size(127, 24);
-            this->labelInstructorID->TabIndex = 14;
+            this->labelInstructorID->Size = System::Drawing::Size(121, 20);
+            this->labelInstructorID->TabIndex = 35;
             this->labelInstructorID->Text = L"Instructor ID:";
             // 
             // textBoxInstructorID
             // 
             this->textBoxInstructorID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold,
                 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            this->textBoxInstructorID->Location = System::Drawing::Point(200, 156);
+            this->textBoxInstructorID->Location = System::Drawing::Point(433, 72);
             this->textBoxInstructorID->Margin = System::Windows::Forms::Padding(4);
             this->textBoxInstructorID->Name = L"textBoxInstructorID";
-            this->textBoxInstructorID->Size = System::Drawing::Size(265, 23);
-            this->textBoxInstructorID->TabIndex = 15;
+            this->textBoxInstructorID->Size = System::Drawing::Size(211, 23);
+            this->textBoxInstructorID->TabIndex = 36;
+            this->textBoxInstructorID->TextChanged += gcnew System::EventHandler(this, &CreatClassForm::textBoxInstructorID_TextChanged);
             // 
             // labelSubscription
             // 
             this->labelSubscription->AutoSize = true;
-            this->labelSubscription->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+            this->labelSubscription->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->labelSubscription->Location = System::Drawing::Point(16, 266);
+            this->labelSubscription->Location = System::Drawing::Point(226, 235);
             this->labelSubscription->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->labelSubscription->Name = L"labelSubscription";
-            this->labelSubscription->Size = System::Drawing::Size(234, 24);
-            this->labelSubscription->TabIndex = 16;
+            this->labelSubscription->Size = System::Drawing::Size(211, 20);
+            this->labelSubscription->TabIndex = 37;
             this->labelSubscription->Text = L"Required Subscriptions:";
             // 
             // checkedListBoxSubscriptions
             // 
-            this->checkedListBoxSubscriptions->Location = System::Drawing::Point(275, 266);
+            this->checkedListBoxSubscriptions->Location = System::Drawing::Point(433, 268);
             this->checkedListBoxSubscriptions->Margin = System::Windows::Forms::Padding(4);
             this->checkedListBoxSubscriptions->Name = L"checkedListBoxSubscriptions";
-            this->checkedListBoxSubscriptions->Size = System::Drawing::Size(265, 106);
-            this->checkedListBoxSubscriptions->TabIndex = 17;
+            this->checkedListBoxSubscriptions->Size = System::Drawing::Size(229, 89);
+            this->checkedListBoxSubscriptions->TabIndex = 38;
             // 
             // buttonCreateClass
             // 
             this->buttonCreateClass->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonCreateClass->Location = System::Drawing::Point(552, 409);
+            this->buttonCreateClass->Location = System::Drawing::Point(667, 386);
             this->buttonCreateClass->Margin = System::Windows::Forms::Padding(4);
             this->buttonCreateClass->Name = L"buttonCreateClass";
-            this->buttonCreateClass->Size = System::Drawing::Size(269, 100);
-            this->buttonCreateClass->TabIndex = 18;
-            this->buttonCreateClass->Text = L"Create Class";
+            this->buttonCreateClass->Size = System::Drawing::Size(123, 39);
+            this->buttonCreateClass->TabIndex = 39;
+            this->buttonCreateClass->Text = L"Create ";
             this->buttonCreateClass->Click += gcnew System::EventHandler(this, &CreatClassForm::buttonCreateClass_Click);
-            // 
-            // label1
-            // 
-            this->label1->AutoSize = true;
-            this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label1->Location = System::Drawing::Point(575, 295);
-            this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-            this->label1->Name = L"label1";
-            this->label1->Size = System::Drawing::Size(131, 24);
-            this->label1->TabIndex = 19;
-            this->label1->Text = L"Days of class";
-            // 
-            // DaysofClassCheckbox
-            // 
-            this->DaysofClassCheckbox->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
-                L"Sunday", L"Monday", L"Tuesday", L"Wednesday",
-                    L"Thursday", L"Friday", L"Saturday"
-            });
-            this->DaysofClassCheckbox->Location = System::Drawing::Point(765, 295);
-            this->DaysofClassCheckbox->Margin = System::Windows::Forms::Padding(4);
-            this->DaysofClassCheckbox->Name = L"DaysofClassCheckbox";
-            this->DaysofClassCheckbox->Size = System::Drawing::Size(278, 106);
-            this->DaysofClassCheckbox->TabIndex = 20;
-            this->DaysofClassCheckbox->SelectedIndexChanged += gcnew System::EventHandler(this, &CreatClassForm::DaysofClassCheckbox_SelectedIndexChanged);
             // 
             // CreatClassForm
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-            this->ClientSize = System::Drawing::Size(1347, 615);
-            this->Controls->Add(this->DaysofClassCheckbox);
-            this->Controls->Add(this->label1);
-            this->Controls->Add(this->labelClassName);
-            this->Controls->Add(this->textBoxClassName);
-            this->Controls->Add(this->DateLabel);
-            this->Controls->Add(this->YearcomboBox);
-            this->Controls->Add(this->MonthcomboBox);
-            this->Controls->Add(this->DaycomboBox);
-            this->Controls->Add(this->labelStartTime);
-            this->Controls->Add(this->textBoxStartTime);
-            this->Controls->Add(this->labelEndTime);
-            this->Controls->Add(this->textBoxEndTime);
-            this->Controls->Add(this->labelMaxMembers);
-            this->Controls->Add(this->textBoxMaxMembers);
-            this->Controls->Add(this->labelInstructorName);
-            this->Controls->Add(this->textBoxInstructorName);
-            this->Controls->Add(this->labelInstructorID);
-            this->Controls->Add(this->textBoxInstructorID);
-            this->Controls->Add(this->labelSubscription);
-            this->Controls->Add(this->checkedListBoxSubscriptions);
-            this->Controls->Add(this->buttonCreateClass);
+            this->ClientSize = System::Drawing::Size(1113, 703);
+            this->Controls->Add(this->panel1);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
             this->Margin = System::Windows::Forms::Padding(4);
             this->MaximizeBox = false;
             this->Name = L"CreatClassForm";
             this->Text = L"Create New Gym Class";
             this->Load += gcnew System::EventHandler(this, &CreatClassForm::CreatClassForm_Load);
+            this->panel1->ResumeLayout(false);
+            this->panel1->PerformLayout();
             this->ResumeLayout(false);
-            this->PerformLayout();
 
         }
 #pragma endregion
@@ -372,13 +393,11 @@ namespace ProjectCode {
 
         void InitializeComboBoxes()
         {
-
             for (int i = 1; i <= 31; i++)
             {
                 DaycomboBox->Items->Add(i.ToString("D2"));
             }
             DaycomboBox->Text = L"Day";
-
 
             for (int i = 1; i <= 12; i++)
             {
@@ -415,11 +434,9 @@ namespace ProjectCode {
             return !(end1 <= start2 || start1 >= end2);
         }
 
-
         void parseDate(const string& date, int& month, int& day, int& year) {
             sscanf_s(date.c_str(), "%d/%d/%d", &month, &day, &year);
         }
-
 
         std::string formatDate(int month, int day, int year) {
             char buffer[11];
@@ -434,7 +451,6 @@ namespace ProjectCode {
             return day <= daysInMonth[month - 1];
         }
 
-
         long daysSinceEpoch(int month, int day, int year) {
             long days = (year - 1970) * 365 + (year - 1969) / 4 - (year - 1901) / 100 + (year - 1601) / 400;
             int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -444,7 +460,6 @@ namespace ProjectCode {
             return days;
         }
 
-        // Helper to get day of week (0=Sunday, ..., 6=Saturday)
         int getDayOfWeek(int month, int day, int year) {
             long days = daysSinceEpoch(month, day, year);
             return (days + 4) % 7;
@@ -463,7 +478,7 @@ namespace ProjectCode {
             time_t t = getTime_t(startDate);
             tm timeinfo;
             localtime_s(&timeinfo, &t);
-            int currentWDay = timeinfo.tm_wday; // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+            int currentWDay = timeinfo.tm_wday;
 
             int daysToAdd = (targetWeekday - currentWDay + 7) % 7;
             if (daysToAdd == 0) {
@@ -475,9 +490,8 @@ namespace ProjectCode {
             return getFormat(nextDate);
         }
 
-
         string isCoachAvailable(Staff coach, const string& startDate, const string& startTime, const string& endTime, const vector<int>& recurringDays) {
-            extern unordered_map<string, Staff>staffList;
+            extern unordered_map<string, Staff> staffList;
             bool coachExists = false;
             for (const auto& pair : staffList) {
                 std::string staffRole = pair.second.role;
@@ -497,10 +511,6 @@ namespace ProjectCode {
             int endMonth, endDay, endYear;
             parseDate(startDate, startMonth, startDay, startYear);
             parseDate(endDate, endMonth, endDay, endYear);
-
-         //   GymClasses tempClass("", coach, startDate, startDate, startTime, endTime, 0);
-         //   string endDate = tempClass.endDate;
-
 
             vector<string> sessionDates;
             set<int> daysSet(recurringDays.begin(), recurringDays.end());
@@ -590,7 +600,6 @@ namespace ProjectCode {
                 return false;
             }
 
-
             if (endTime <= startTime) {
                 MessageBox::Show(L"End time must be after start time (including overnight sessions).", L"Input Error");
                 return false;
@@ -679,6 +688,7 @@ namespace ProjectCode {
             return true;
         }
 
+    public:
         void createClass()
         {
             if (!ValidateInput())
@@ -722,11 +732,10 @@ namespace ProjectCode {
             newClass.classID = newClass.generateUniqueID();
             newClass.className = className;
             newClass.instructor = coach.name;
-            newClass.instructorID = coach.ID; 
-            newClass.startDate = startDate;  
+            newClass.instructorID = coach.ID;
+            newClass.startDate = startDate;
             newClass.endDate = newClass.calculateEndDate(startDate);
             newClass.maxMembers = maxMembers;
-
 
             newClass.generateRecurringSessions(startDate, newClass.endDate, startTime, endTime, recurringDays);
             for each (String ^ sub in checkedListBoxSubscriptions->CheckedItems)
@@ -741,6 +750,7 @@ namespace ProjectCode {
             this->Close();
         }
 
+    private:
         System::Void buttonCreateClass_Click(System::Object^ sender, System::EventArgs^ e)
         {
             createClass();
@@ -749,7 +759,16 @@ namespace ProjectCode {
         System::Void DaysofClassCheckbox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
         }
 
+    private:
         System::Void CreatClassForm_Load(System::Object^ sender, System::EventArgs^ e) {
         }
+    private: System::Void textBoxInstructorID_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+    }
+    private: System::Void textBoxStartTime_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+    }
+    private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+    }
+    private: System::Void labelInstructorName_Click(System::Object^ sender, System::EventArgs^ e) {
+    }
     };
 }
