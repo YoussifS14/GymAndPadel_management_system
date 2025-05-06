@@ -21,6 +21,7 @@
     <ClInclude Include="userPage.h" />
     <ClInclude Include="CreatClassForm.h" />
     <ClInclude Include="useraccount.h" />
+    <ClInclude Include="userExpired.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="AccPic.Image.png" />

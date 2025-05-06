@@ -24,7 +24,7 @@ using namespace std;
 using namespace msclr::interop;
 static int baseID = 1000;
 static int baseClassID = 0;
-extern std::string loginID;   // -1 means not logged in
+extern string loginID;   // -1 means not logged in
 // class Subscriptions // This gym subscription generally has nothing to do with classes.
 extern string defaultImagePath;
 struct CreditCard {
@@ -73,6 +73,7 @@ static string getFormat(time_t t) {
 
 class User;
 class GymClasses;
+class Notification;
 
 struct Slot {
 	 string ID;
@@ -223,6 +224,16 @@ public:
 	 string getStartDate() {
 		  return start_date;
 	 }
+	 string getEndDate() {
+		  return end_date;
+	 }
+	 int getRemainingDays() {
+		  time_t currentDate = time(0);
+		  time_t endDate = getTime_t(end_date);
+		  double secondsDiff = (difftime(endDate, currentDate));
+		  int daysRemaining = static_cast<int>(abs(secondsDiff) / (60 * 60 * 24));
+		  return daysRemaining;
+	 }
 
 };
 
@@ -240,6 +251,8 @@ public:
 	 int classEntered = 0;
 	 float myWallet; // cash back from cancelling
 	 bool isVip;
+	 // bool isActive = true;
+	 list<Notification> myNotifications; // List of notifications
 	 vector<Slot> myReservations; // List of reserved slots
 	 list<string> myClasses;  // List of reserved classes ->> classID
 	 list<string> myWaitingList; // List of waiting classes ->> classID
@@ -428,6 +441,58 @@ public:
 			   }
 		  }
 		  return false;
+	 }
+
+};
+
+struct Notification {
+	 string ID;
+	 string message;
+	 string date; // MM/DD/YYYY
+	 string hour; // HH:MM
+	 bool isRead = false; // true if the user has read the notification
+	 static int notificationCounter;
+	 static string generateNotificationID() {
+		  return "noti-" + to_string(1000 + notificationCounter++);
+	 }
+	 static string standardMessage(User usr, string cls, int type) { //0-> renew notification, 1-> waitlist notification
+		  // Convert the message to a standard format
+		  string standardMessage;
+		  if (type == 0) {
+			   standardMessage = "Dear " + usr.name + ",\nyour subscription will expire on date " + usr.subscription.getEndDate() +
+					"\nyou have to renew it before " + "\n\nThank you for using our service :)";
+		  }
+		  else if (type == 1) {
+			   standardMessage = "Dear " + usr.name + ",\nYou have been added to " + cls +
+					"\nyou were waiting for." + "\n\nHave a nice day :)";
+		  }
+
+
+
+
+
+
+		  return standardMessage;
+	 }
+	 Notification(User usr, string _ID, string _Date, string _hour, string cls, int type, bool _isRead) {
+		  ID = _ID;
+		  date = _Date;
+		  hour = _hour;
+		  message = standardMessage(usr, cls, type);
+		  isRead = _isRead;
+		  notificationCounter++;
+
+	 }
+	 Notification() {
+		  date = User::getCurrentDate_MM_DD_YYYY();
+		  time_t now = time(0);
+		  tm* localtm = localtime(&now);
+
+		  stringstream ss;
+		  ss << setfill('0') << setw(2) << localtm->tm_hour << ":"
+			   << setfill('0') << setw(2) << localtm->tm_min;
+		  hour = ss.str();
+		  ID = generateNotificationID();
 	 }
 };
 
@@ -873,33 +938,6 @@ struct PadelCourt {
 
 };
 
-struct Notification {
-	 string ID;
-	 string message;
-	 string date; // MM/DD/YYYY
-	 string time; // HH:MM
-	 static int notificationCounter; // Counter to generate unique notification IDs
-	 static string generateNotificationID() {
-		  return "notification-" + to_string(notificationCounter++);
-	 }
-	 static string standardMessage(const string& message/*Subscriptions ss,gymClass gm*/) { //may be just gymClass
-		  // Convert the message to a standard format
-		  string standardMessage = message;/*
-		  dear userName,
-		  your subscription will expire on date ()
-		  you have to renew it before date
-
-		  thank you for using our service
-
-
-
-		  */
-
-
-		  return standardMessage;
-	 }
-
-};
 struct Workout {
 	 string date;
 	 string type;

@@ -286,6 +286,10 @@ namespace ProjectCode {
 						 gymClassList[classIDStr].members[newEntered] = userList[newEntered];
 						 userList[newEntered].myClasses.push_back(classIDStr);
 						 userList[newEntered].myWaitingList.remove(classIDStr);
+						 string msg = Notification::standardMessage(userList[newEntered], gymClassList[classIDStr].className, 1);
+						 Notification notify;
+						 notify.message = msg;
+						 userList[newEntered].myNotifications.push_back(notify);
 
 					}
 					else if (!gymClassList[classIDStr].waitingList.empty()) {

@@ -213,8 +213,35 @@ void readGymClasses() {
 	 file.close();
 }
 
+void readNotfication() {
+	 ifstream file("Data/msgSheet.csv");
+	 string line;
+	 getline(file, line); // Skip the header line
+	 //userID,notif.ID,Date,Hour,className,type,isRead
 
+	 while (getline(file, line)) {
+		  stringstream ss(line);
+		  string userID, NotifID, Date, hour, classname, type;
+		  //User usr,string _ID,string _Date,string _hour,string cls,int type,bool _isRead
+		  bool isRead = false;
+		  getline(ss, userID, ',');
+		  getline(ss, NotifID, ',');
+		  getline(ss, Date, ',');
+		  getline(ss, hour, ',');
+		  getline(ss, classname, ',');
+		  getline(ss, type, ',');
+		  string isReadStr;
+		  getline(ss, isReadStr);
+		  if (isReadStr == "1") {
+			   isRead = true;
+		  }
+		  int typeInt = stoi(type);
+		  Notification notification(userList[userID], NotifID, Date, hour, classname, typeInt, isRead);
+		  userList[userID].myNotifications.push_back(notification);
 
+	 }
+
+}
 
 void readSlotData() {
 	 ifstream file("Data/SlotsData.csv");
@@ -349,6 +376,39 @@ void writePadelCourt() {
 	 }
 	 file.close();
 }
+
+string extractClass(const string& msg) {
+	 string key = "You have been added to ";
+	 size_t start = msg.find(key);
+	 if (start == string::npos)
+		  return "";
+
+	 start += key.length();
+	 size_t end = msg.find("\n", start);
+	 return msg.substr(start, end - start);
+}
+void writeNotification() {
+	 ofstream file("Data/msgSheet.csv");
+	 file << "UserID,NotifID,Date,Hour,ClassName,Type,isRead\n"; // Write header
+	 for (auto it = userList.begin(); it != userList.end(); ++it) {
+		  User& user = it->second;
+		  for (auto itNotif = user.myNotifications.begin(); itNotif != user.myNotifications.end(); ++itNotif) {
+
+			   Notification notif = *itNotif;
+			   int type = -1;
+			   if (notif.message.find("subscription will expire") != string::npos)
+					type = 0;
+			   else if (notif.message.find("You have been added to") != string::npos)
+					type = 1;
+
+			   string className = extractClass(notif.message);
+
+			   file << user.ID << "," << notif.ID << "," << notif.date << "," << notif.hour << "," << className << "," << type << "," << notif.isRead << "\n";
+		  }
+	 }
+	 file.close();
+}
+
 [STAThreadAttribute]
 int main()
 {
@@ -358,7 +418,7 @@ int main()
 	 readPadelCourt();
 	 readGymClasses();
 	 readSlotData();
-
+	 // readNotfication(); //done
 	 Application::EnableVisualStyles();
 	 Application::SetCompatibleTextRenderingDefault(false);
 	 ProjectCode::LoginPage form;
@@ -369,5 +429,6 @@ int main()
 	 writeGymClass();
 	 writePadelCourt();
 	 writeSlotData();
+	 // writeNotification(); //done
 	 return 0;
 }

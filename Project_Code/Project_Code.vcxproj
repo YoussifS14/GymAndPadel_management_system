@@ -161,6 +161,9 @@
     <ClInclude Include="useraccount.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="userExpired.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="userPage.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -199,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="useraccount.resx">
       <DependentUpon>useraccount.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userExpired.resx">
+      <DependentUpon>userExpired.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="userPage.resx">
       <DependentUpon>userPage.h</DependentUpon>

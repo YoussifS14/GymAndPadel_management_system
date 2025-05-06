@@ -16,6 +16,7 @@ namespace ProjectCode {
 
 	 public ref class sighup : public System::Windows::Forms::Form {
 	 public:
+		  property bool OperationResult;
 		  sighup(void) {
 			   InitializeComponent();
 			   selectedImagePath = nullptr;
@@ -82,7 +83,9 @@ namespace ProjectCode {
 
 	 private:
 		  System::ComponentModel::Container^ components;
-		  System::Windows::Forms::GroupBox^ groupBox1;
+	 public: System::Windows::Forms::GroupBox^ groupBox1;
+	 private:
+
 		  System::Windows::Forms::RadioButton^ radioButton1;
 		  System::Windows::Forms::RadioButton^ radioButton2;
 		  System::Windows::Forms::Panel^ panel1;
@@ -772,8 +775,12 @@ namespace ProjectCode {
 					marshal_as<std::string>(imagePath)
 			   );
 
+			   OperationResult = registed;
+
 			   if (registed) {
+
 					MessageBox::Show("Staff registered successfully", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					this->Close();
 					textBox1->Clear();
 					textBox2->Clear();
 					textBox3->Clear();
@@ -882,7 +889,7 @@ namespace ProjectCode {
 
 
 			   MessageBox::Show(String::Format("Member registered successfully.\nYour ID is: {0}\nTotal Price: ${1:F2}", gcnew String(newUser.ID.c_str()), price), "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
-
+			   OperationResult = registered;
 			   this->Close();
 			   MemberNametextBox->Clear();
 			   MemberEmailtextBox->Clear();
