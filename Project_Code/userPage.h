@@ -607,6 +607,7 @@ namespace ProjectCode {
 			   this->comboFilterType->Name = L"comboFilterType";
 			   this->comboFilterType->Size = System::Drawing::Size(195, 33);
 			   this->comboFilterType->TabIndex = 16;
+			   this->comboFilterType->Items->AddRange(gcnew cli::array< System::Object^  >(6){ "Cardio", "Strength", "Pilates", "Yoga", "Cycling", "HIIT" });
 			   // 
 			   // btnHideWorkout
 			   // 
@@ -984,7 +985,7 @@ namespace ProjectCode {
 		  }
 
 
-		  workoutManager.loadFromFile("Data/workouts.csv", userList);
+		 workoutManager.loadFromFile("Data/workouts.csv", userList);
 
 		  string workoutDate = context.marshal_as<std::string>(date);
 		  string workoutType = context.marshal_as<std::string>(type);
@@ -1051,6 +1052,8 @@ namespace ProjectCode {
 
 	 private: System::Void btnTrackProgress_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		workoutManager.loadFromFile("Data/workouts.csv", userList);
+
 		  richTextOutput->Clear();
 
 		  auto it = workoutManager.getWorkoutData().find(userList[loginID].ID);
@@ -1079,9 +1082,30 @@ namespace ProjectCode {
 	 }
 
 
+	 string normalizeWorkoutType(const std::string& input) {
+				std::string cleaned;
+				cleaned.reserve(input.size());
+
+				for (char c : input) {
+					if (c != ' ')
+						cleaned += std::tolower(c);
+				}
+
+				if (cleaned == "cardioworkout" || cleaned == "cardio") return "cardio";
+				if (cleaned == "strenght" || cleaned == "strenghtworkout" || cleaned == "strength") return "strength";
+				if (cleaned == "hiit" || cleaned == "hitt") return "hiit";
+				if (cleaned == "yoga") return "yoga";
+				if (cleaned == "pilates") return "pilates";
+				if (cleaned == "cykling") return "cycling";
+
+				return cleaned; 
+			}
+
 	 private: System::Void btnFilter_Click(System::Object^ sender, System::EventArgs^ e) {
 
 		  richTextOutput->Clear();
+		  workoutManager.loadFromFile("Data/workouts.csv", userList);
+
 
 		  String^ selectedWorkoutType = comboFilterType->SelectedItem != nullptr
 			   ? comboFilterType->SelectedItem->ToString()
@@ -1094,26 +1118,22 @@ namespace ProjectCode {
 		  }
 
 
-		  string type;
+		  string type, normalizedFilterType;
 		  try {
 			   type = msclr::interop::marshal_as<std::string>(selectedWorkoutType);
+			   normalizedFilterType = normalizeWorkoutType(type);
 
-
-			   transform(type.begin(), type.end(), type.begin(), ::tolower);
 		  }
 		  catch (System::Exception^ ex) {
 			   MessageBox::Show("Error processing workout type: " + ex->Message, "Error",
 					MessageBoxButtons::OK, MessageBoxIcon::Error);
 			   return;
 		  }
-		  for (size_t i = 0; i < type.length(); ++i) {
-			   type[i] = std::tolower(type[i]);
-		  }
-		  type.erase(remove(type.begin(), type.end(), ' '), type.end());
+		  
 
 
 		  try {
-			   // Access the workout data
+			   
 			   auto& workoutData = workoutManager.getWorkoutData();
 			   auto it = workoutData.find(userList[loginID].ID);
 
@@ -1127,13 +1147,13 @@ namespace ProjectCode {
 
 			   bool found = false;
 			   for (const auto& workout : it->second) {
-					string workoutType = workout.type;
-					transform(workoutType.begin(), workoutType.end(), workoutType.begin(), ::tolower);
-					workoutType.erase(remove(workoutType.begin(), workoutType.end(), ' '), workoutType.end());
+				   string workoutType = normalizeWorkoutType(workout.type);
+					/*transform(workoutType.begin(), workoutType.end(), workoutType.begin(), ::tolower);
+					workoutType.erase(remove(workoutType.begin(), workoutType.end(), ' '), workoutType.end())*/;
 
 					Console::WriteLine("Workout Type in file: '{0}'", gcnew String(workout.type.c_str()));
 
-					if (workoutType == type) {
+					if (workoutType == normalizedFilterType) {
 						 richTextOutput->AppendText(
 							  "Date: " + gcnew String(workout.date.c_str()) + "\n" +
 							  "Type: " + gcnew String(workout.type.c_str()) + "\n" +

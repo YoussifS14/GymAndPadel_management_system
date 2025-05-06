@@ -983,7 +983,7 @@ public:
 			  {"strength", 5},
 			  {"yoga", 3},
 			  {"cycling", 7},
-			  {"hitt", 9},
+			  {"hiit", 9},
 			  {"pilates", 4}
 		  };
 

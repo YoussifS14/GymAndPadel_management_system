@@ -267,6 +267,55 @@ void readSlotData() {
 	 }
 	 file.close();
 }
+void readWorkoutData() {
+	ifstream file("Data/WorkoutData.csv");
+	string line;
+	getline(file, line); 
+
+	// workout file format: userID,type,date,duration,caloriesBurned
+	while (getline(file, line)) {
+		stringstream ss(line);
+		string userID, type, date;
+		int duration = 0;
+		float calories = 0.0f;
+
+		getline(ss, userID, ',');
+		getline(ss, type, ',');
+		getline(ss, date, ',');
+		ss >> duration;
+		ss.ignore(); // skip comma
+		ss >> calories;
+
+
+		Workout w(date, type, duration, calories);
+		w.caloriesBurned = calories;
+
+		workoutManager.getWorkoutData()[userID].push_back(w);
+	}
+	
+}
+void saveWorkoutData() {
+	ofstream file("Data/WorkoutData.csv");
+
+	file << "userID,type,date,duration,caloriesBurned\n";
+
+	const auto& data = workoutManager.getWorkoutData();
+	for (const auto& userEntry : data) {
+		const string& userID = userEntry.first;
+		const vector<Workout>& workouts = userEntry.second;
+
+		for (const auto& w : workouts) {
+			file << userID << ","
+				<< w.type << ","
+				<< w.date << ","
+				<< w.duration << ","
+				<< w.caloriesBurned << "\n";
+		}
+	}
+
+	file.close();
+}
+
 
 void writeCreditCardData() {
 	 ofstream file("Data/DBofCredit.csv");
@@ -420,6 +469,7 @@ int main()
 	 //readGymClasses(); called in readUserData
 	 readSlotData();
 	 // readNotfication(); //done
+	 readWorkoutData();
 	 Application::EnableVisualStyles();
 	 Application::SetCompatibleTextRenderingDefault(false);
 	 ProjectCode::LoginPage form;
@@ -430,6 +480,7 @@ int main()
 	 writeGymClass();
 	 writePadelCourt();
 	 writeSlotData();
+     saveWorkoutData();
 	 // writeNotification(); //done
 	 return 0;
 }
