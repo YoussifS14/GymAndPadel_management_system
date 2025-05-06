@@ -592,14 +592,14 @@ namespace ProjectCode {
 			   // comboFilterType
 			   // 
 			   this->comboFilterType->FormattingEnabled = true;
-			   this->comboFilterType->Location = System::Drawing::Point(109, 230);
+			   this->comboFilterType->Location = System::Drawing::Point(119, 255);
 			   this->comboFilterType->Name = L"comboFilterType";
 			   this->comboFilterType->Size = System::Drawing::Size(195, 33);
 			   this->comboFilterType->TabIndex = 16;
 			   // 
 			   // btnHideWorkout
 			   // 
-			   this->btnHideWorkout->Location = System::Drawing::Point(565, 3);
+			   this->btnHideWorkout->Location = System::Drawing::Point(804, 8);
 			   this->btnHideWorkout->Name = L"btnHideWorkout";
 			   this->btnHideWorkout->Size = System::Drawing::Size(150, 30);
 			   this->btnHideWorkout->TabIndex = 0;
@@ -615,13 +615,13 @@ namespace ProjectCode {
 			   this->textBox1->ForeColor = System::Drawing::SystemColors::InactiveCaptionText;
 			   this->textBox1->Location = System::Drawing::Point(11, 12);
 			   this->textBox1->Name = L"textBox1";
-			   this->textBox1->Size = System::Drawing::Size(145, 26);
+			   this->textBox1->Size = System::Drawing::Size(391, 26);
 			   this->textBox1->TabIndex = 0;
 			   this->textBox1->Text = L"Workout";
 			   // 
 			   // lblDate
 			   // 
-			   this->lblDate->Location = System::Drawing::Point(20, 50);
+			   this->lblDate->Location = System::Drawing::Point(20, 43);
 			   this->lblDate->Name = L"lblDate";
 			   this->lblDate->Size = System::Drawing::Size(100, 23);
 			   this->lblDate->TabIndex = 1;
@@ -631,14 +631,14 @@ namespace ProjectCode {
 			   // 
 			   this->txtDate->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-			   this->txtDate->Location = System::Drawing::Point(120, 50);
+			   this->txtDate->Location = System::Drawing::Point(119, 40);
 			   this->txtDate->Name = L"txtDate";
-			   this->txtDate->Size = System::Drawing::Size(200, 30);
+			   this->txtDate->Size = System::Drawing::Size(446, 30);
 			   this->txtDate->TabIndex = 2;
 			   // 
 			   // lblType
 			   // 
-			   this->lblType->Location = System::Drawing::Point(20, 80);
+			   this->lblType->Location = System::Drawing::Point(20, 81);
 			   this->lblType->Name = L"lblType";
 			   this->lblType->Size = System::Drawing::Size(100, 23);
 			   this->lblType->TabIndex = 3;
@@ -648,14 +648,14 @@ namespace ProjectCode {
 			   // 
 			   this->txtType->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-			   this->txtType->Location = System::Drawing::Point(120, 80);
+			   this->txtType->Location = System::Drawing::Point(119, 76);
 			   this->txtType->Name = L"txtType";
-			   this->txtType->Size = System::Drawing::Size(200, 30);
+			   this->txtType->Size = System::Drawing::Size(446, 30);
 			   this->txtType->TabIndex = 4;
 			   // 
 			   // lblDuration
 			   // 
-			   this->lblDuration->Location = System::Drawing::Point(20, 110);
+			   this->lblDuration->Location = System::Drawing::Point(20, 119);
 			   this->lblDuration->Name = L"lblDuration";
 			   this->lblDuration->Size = System::Drawing::Size(100, 23);
 			   this->lblDuration->TabIndex = 5;
@@ -665,14 +665,14 @@ namespace ProjectCode {
 			   // 
 			   this->txtDuration->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-			   this->txtDuration->Location = System::Drawing::Point(120, 110);
+			   this->txtDuration->Location = System::Drawing::Point(119, 112);
 			   this->txtDuration->Name = L"txtDuration";
-			   this->txtDuration->Size = System::Drawing::Size(200, 30);
+			   this->txtDuration->Size = System::Drawing::Size(446, 30);
 			   this->txtDuration->TabIndex = 6;
 			   // 
 			   // lblWeight
 			   // 
-			   this->lblWeight->Location = System::Drawing::Point(20, 140);
+			   this->lblWeight->Location = System::Drawing::Point(20, 157);
 			   this->lblWeight->Name = L"lblWeight";
 			   this->lblWeight->Size = System::Drawing::Size(100, 23);
 			   this->lblWeight->TabIndex = 7;
@@ -682,14 +682,14 @@ namespace ProjectCode {
 			   // 
 			   this->txtWeight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-			   this->txtWeight->Location = System::Drawing::Point(120, 140);
+			   this->txtWeight->Location = System::Drawing::Point(119, 148);
 			   this->txtWeight->Name = L"txtWeight";
-			   this->txtWeight->Size = System::Drawing::Size(200, 30);
+			   this->txtWeight->Size = System::Drawing::Size(446, 30);
 			   this->txtWeight->TabIndex = 8;
 			   // 
 			   // btnAddWorkout
 			   // 
-			   this->btnAddWorkout->Location = System::Drawing::Point(20, 180);
+			   this->btnAddWorkout->Location = System::Drawing::Point(19, 204);
 			   this->btnAddWorkout->Name = L"btnAddWorkout";
 			   this->btnAddWorkout->Size = System::Drawing::Size(150, 30);
 			   this->btnAddWorkout->TabIndex = 9;
@@ -698,7 +698,7 @@ namespace ProjectCode {
 			   // 
 			   // btnViewHistory
 			   // 
-			   this->btnViewHistory->Location = System::Drawing::Point(180, 180);
+			   this->btnViewHistory->Location = System::Drawing::Point(179, 204);
 			   this->btnViewHistory->Name = L"btnViewHistory";
 			   this->btnViewHistory->Size = System::Drawing::Size(150, 30);
 			   this->btnViewHistory->TabIndex = 10;
@@ -707,7 +707,7 @@ namespace ProjectCode {
 			   // 
 			   // btnTrackProgress
 			   // 
-			   this->btnTrackProgress->Location = System::Drawing::Point(340, 180);
+			   this->btnTrackProgress->Location = System::Drawing::Point(339, 204);
 			   this->btnTrackProgress->Name = L"btnTrackProgress";
 			   this->btnTrackProgress->Size = System::Drawing::Size(150, 30);
 			   this->btnTrackProgress->TabIndex = 11;
@@ -716,7 +716,7 @@ namespace ProjectCode {
 			   // 
 			   // lblFilter
 			   // 
-			   this->lblFilter->Location = System::Drawing::Point(20, 230);
+			   this->lblFilter->Location = System::Drawing::Point(20, 258);
 			   this->lblFilter->Name = L"lblFilter";
 			   this->lblFilter->Size = System::Drawing::Size(100, 23);
 			   this->lblFilter->TabIndex = 12;
@@ -724,7 +724,7 @@ namespace ProjectCode {
 			   // 
 			   // btnFilter
 			   // 
-			   this->btnFilter->Location = System::Drawing::Point(355, 230);
+			   this->btnFilter->Location = System::Drawing::Point(354, 254);
 			   this->btnFilter->Name = L"btnFilter";
 			   this->btnFilter->Size = System::Drawing::Size(100, 33);
 			   this->btnFilter->TabIndex = 14;
@@ -733,10 +733,10 @@ namespace ProjectCode {
 			   // 
 			   // richTextOutput
 			   // 
-			   this->richTextOutput->Location = System::Drawing::Point(20, 270);
+			   this->richTextOutput->Location = System::Drawing::Point(20, 317);
 			   this->richTextOutput->Name = L"richTextOutput";
 			   this->richTextOutput->ReadOnly = true;
-			   this->richTextOutput->Size = System::Drawing::Size(928, 402);
+			   this->richTextOutput->Size = System::Drawing::Size(928, 355);
 			   this->richTextOutput->TabIndex = 15;
 			   this->richTextOutput->Text = L"";
 			   // 
