@@ -134,14 +134,15 @@ void readUserData() {
 		  string temp;
 		  getline(ss, temp, ',');
 		  stringstream subs(temp);
-		  string startDate, S_Type;
+		  string startDate, endDate, S_Type;
 		  bool is_VIP;
 
 		  getline(subs, S_Type, '!');
 		  getline(subs, startDate, '!');
+		  getline(subs, endDate, '!');
 		  getline(ss, user.PicPath, ',');
 		  subs >> is_VIP;
-		  Subscriptions subscription(S_Type, startDate, is_VIP);
+		  Subscriptions subscription(S_Type, startDate, endDate, is_VIP);
 		  user.subscription = subscription;
 
 		  /*
@@ -157,6 +158,7 @@ void readUserData() {
 					gymClassList[classID].members[user.ID] = user; // Add user to the class's member list
 			   }
 		  }
+		  ss >> user.myWallet;
 		  userList[user.ID] = user;
 	 }
 }
@@ -268,52 +270,52 @@ void readSlotData() {
 	 file.close();
 }
 void readWorkoutData() {
-	ifstream file("Data/WorkoutData.csv");
-	string line;
-	getline(file, line); 
+	 ifstream file("Data/WorkoutData.csv");
+	 string line;
+	 getline(file, line);
 
-	// workout file format: userID,type,date,duration,caloriesBurned
-	while (getline(file, line)) {
-		stringstream ss(line);
-		string userID, type, date;
-		int duration = 0;
-		float calories = 0.0f;
+	 // workout file format: userID,type,date,duration,caloriesBurned
+	 while (getline(file, line)) {
+		  stringstream ss(line);
+		  string userID, type, date;
+		  int duration = 0;
+		  float calories = 0.0f;
 
-		getline(ss, userID, ',');
-		getline(ss, type, ',');
-		getline(ss, date, ',');
-		ss >> duration;
-		ss.ignore(); // skip comma
-		ss >> calories;
+		  getline(ss, userID, ',');
+		  getline(ss, type, ',');
+		  getline(ss, date, ',');
+		  ss >> duration;
+		  ss.ignore(); // skip comma
+		  ss >> calories;
 
 
-		Workout w(date, type, duration, calories);
-		w.caloriesBurned = calories;
+		  Workout w(date, type, duration, calories);
+		  w.caloriesBurned = calories;
 
-		workoutManager.getWorkoutData()[userID].push_back(w);
-	}
-	
+		  workoutManager.getWorkoutData()[userID].push_back(w);
+	 }
+
 }
 void saveWorkoutData() {
-	ofstream file("Data/WorkoutData.csv");
+	 ofstream file("Data/WorkoutData.csv");
 
-	file << "userID,type,date,duration,caloriesBurned\n";
+	 file << "userID,type,date,duration,caloriesBurned\n";
 
-	const auto& data = workoutManager.getWorkoutData();
-	for (const auto& userEntry : data) {
-		const string& userID = userEntry.first;
-		const vector<Workout>& workouts = userEntry.second;
+	 const auto& data = workoutManager.getWorkoutData();
+	 for (const auto& userEntry : data) {
+		  const string& userID = userEntry.first;
+		  const vector<Workout>& workouts = userEntry.second;
 
-		for (const auto& w : workouts) {
-			file << userID << ","
-				<< w.type << ","
-				<< w.date << ","
-				<< w.duration << ","
-				<< w.caloriesBurned << "\n";
-		}
-	}
+		  for (const auto& w : workouts) {
+			   file << userID << ","
+					<< w.type << ","
+					<< w.date << ","
+					<< w.duration << ","
+					<< w.caloriesBurned << "\n";
+		  }
+	 }
 
-	file.close();
+	 file.close();
 }
 
 
@@ -327,17 +329,18 @@ void writeCreditCardData() {
 }
 void writeUserData() {
 	 ofstream file("Data/usrData.csv");
-	 file << "ID,name,email,password,Birthday,subscription,pic Path,my Classes list\n"; // Write header
+	 file << "ID,name,email,password,Birthday,subscription,pic Path,my Classes list,myWallet\n"; // Write header
 
 	 for (auto it = userList.begin(); it != userList.end(); ++it) {
 		  User& user = it->second;
 		  if (!user.ID.empty())
-			   file << user.ID << "," << user.name << "," << user.email << "," << user.password << "," << user.Birthday << "," << user.subscription.getType() << "!" << user.subscription.getStartDate() << "!" << user.subscription.get_is_VIP() << "," << user.PicPath << ",";
+			   file << user.ID << "," << user.name << "," << user.email << "," << user.password << "," << user.Birthday << "," << user.subscription.getType() << "!" << user.subscription.getStartDate() << "!" << user.subscription.getEndDate() << "!" << user.subscription.get_is_VIP() << "," << user.PicPath << ",";
 		  for (auto itCLass = user.myClasses.begin(); itCLass != user.myClasses.end();) {
 			   file << *itCLass;
 			   if ((++itCLass) != user.myClasses.end())
 					file << "!";
 		  }
+		  file << "," << user.myWallet; // Add a comma after the class list
 		  file << "\n";
 	 }
 	 file.close();
@@ -480,7 +483,7 @@ int main()
 	 writeGymClass();
 	 writePadelCourt();
 	 writeSlotData();
-     saveWorkoutData();
+	 saveWorkoutData();
 	 // writeNotification(); //done
 	 return 0;
 }
