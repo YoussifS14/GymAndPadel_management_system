@@ -471,7 +471,7 @@ int main()
 	 readPadelCourt();
 	 //readGymClasses(); called in readUserData
 	 readSlotData();
-	 // readNotfication(); //done
+	 readNotfication(); //done
 	 readWorkoutData();
 	 Application::EnableVisualStyles();
 	 Application::SetCompatibleTextRenderingDefault(false);
@@ -486,4 +486,13 @@ int main()
 	 saveWorkoutData();
 	 // writeNotification(); //done
 	 return 0;
+}
+
+bool User::MessagesNotRead() {
+	 for (auto& it : myNotifications) {
+		  if (!it.isRead) {
+			   return true;
+		  }
+	 }
+	 return false;
 }

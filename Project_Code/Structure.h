@@ -462,7 +462,7 @@ public:
 		  }
 		  return false;
 	 }
-
+	 bool MessagesNotRead();
 };
 
 struct Notification {

@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="staffPage.cpp" />
-    <ClCompile Include="CreatClassForm.cpp" />
     <ClCompile Include="useraccount.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -21,6 +20,8 @@
     <ClInclude Include="CreatClassForm.h" />
     <ClInclude Include="useraccount.h" />
     <ClInclude Include="userExpired.h" />
+    <ClInclude Include="MSGsShow.h" />
+    <ClInclude Include="MSGlabel.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="AccPic.Image.png" />

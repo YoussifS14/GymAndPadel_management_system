@@ -4,6 +4,7 @@
 #include "feature_GUI/CancellingReserv.h"
 #include "feature_GUI/GymPN.h"
 #include"useraccount.h"
+#include "MSGsShow.h"
 namespace ProjectCode {
 
 	 using namespace System;
@@ -156,6 +157,10 @@ namespace ProjectCode {
 	 private: System::Windows::Forms::RadioButton^ OneMradioButton;
 	 private: System::Windows::Forms::RadioButton^ ThreeMradioButton;
 	 public: System::Windows::Forms::Label^ Wallet;
+	 private: System::Windows::Forms::Button^ button5;
+	 public:
+
+
 	 private:
 
 
@@ -189,769 +194,785 @@ namespace ProjectCode {
 		  /// </summary>
 		  void InitializeComponent(void)
 		  {
-			  this->components = (gcnew System::ComponentModel::Container());
-			  System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(userPage::typeid));
-			  this->MainMenu_pn = (gcnew System::Windows::Forms::Panel());
-			  this->button3 = (gcnew System::Windows::Forms::Button());
-			  this->logout_btn = (gcnew System::Windows::Forms::Button());
-			  this->button1 = (gcnew System::Windows::Forms::Button());
-			  this->GymReserv = (gcnew System::Windows::Forms::Button());
-			  this->Padel = (gcnew System::Windows::Forms::Button());
-			  this->btnWorkout = (gcnew System::Windows::Forms::Button());
-			  this->profile_pn = (gcnew System::Windows::Forms::Panel());
-			  this->Wallet = (gcnew System::Windows::Forms::Label());
-			  this->button2 = (gcnew System::Windows::Forms::Button());
-			  this->ListReserPadel = (gcnew System::Windows::Forms::Button());
-			  this->AccName = (gcnew System::Windows::Forms::Label());
-			  this->AccPic = (gcnew System::Windows::Forms::PictureBox());
-			  this->MainPage = (gcnew System::Windows::Forms::Panel());
-			  this->RenewPG = (gcnew System::Windows::Forms::Panel());
-			  this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
-			  this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
-			  this->button4 = (gcnew System::Windows::Forms::Button());
-			  this->SixMradioButton = (gcnew System::Windows::Forms::RadioButton());
-			  this->ChooseSublabel = (gcnew System::Windows::Forms::Label());
-			  this->OneYradioButton = (gcnew System::Windows::Forms::RadioButton());
-			  this->OneMradioButton = (gcnew System::Windows::Forms::RadioButton());
-			  this->ThreeMradioButton = (gcnew System::Windows::Forms::RadioButton());
-			  this->PadelPage = (gcnew System::Windows::Forms::Panel());
-			  this->label4 = (gcnew System::Windows::Forms::Label());
-			  this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
-			  this->label2 = (gcnew System::Windows::Forms::Label());
-			  this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
-			  this->label1 = (gcnew System::Windows::Forms::Label());
-			  this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			  this->searchOFcourts = (gcnew System::Windows::Forms::Button());
-			  this->listOfCourts = (gcnew System::Windows::Forms::FlowLayoutPanel());
-			  this->panelWorkoutContent = (gcnew System::Windows::Forms::Panel());
-			  this->comboFilterType = (gcnew System::Windows::Forms::ComboBox());
-			  this->btnHideWorkout = (gcnew System::Windows::Forms::Button());
-			  this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			  this->lblDate = (gcnew System::Windows::Forms::Label());
-			  this->txtDate = (gcnew System::Windows::Forms::TextBox());
-			  this->lblType = (gcnew System::Windows::Forms::Label());
-			  this->txtType = (gcnew System::Windows::Forms::TextBox());
-			  this->lblDuration = (gcnew System::Windows::Forms::Label());
-			  this->txtDuration = (gcnew System::Windows::Forms::TextBox());
-			  this->lblWeight = (gcnew System::Windows::Forms::Label());
-			  this->txtWeight = (gcnew System::Windows::Forms::TextBox());
-			  this->btnAddWorkout = (gcnew System::Windows::Forms::Button());
-			  this->btnViewHistory = (gcnew System::Windows::Forms::Button());
-			  this->btnTrackProgress = (gcnew System::Windows::Forms::Button());
-			  this->lblFilter = (gcnew System::Windows::Forms::Label());
-			  this->btnFilter = (gcnew System::Windows::Forms::Button());
-			  this->richTextOutput = (gcnew System::Windows::Forms::RichTextBox());
-			  this->GymClass_pg = (gcnew System::Windows::Forms::Panel());
-			  this->ListOfClasses = (gcnew System::Windows::Forms::FlowLayoutPanel());
-			  this->CancelPadel_pg = (gcnew System::Windows::Forms::Panel());
-			  this->label3 = (gcnew System::Windows::Forms::Label());
-			  this->ListOfMyRes = (gcnew System::Windows::Forms::FlowLayoutPanel());
-			  this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
-			  this->MainMenu_pn->SuspendLayout();
-			  this->profile_pn->SuspendLayout();
-			  (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->BeginInit();
-			  this->MainPage->SuspendLayout();
-			  this->RenewPG->SuspendLayout();
-			  this->PadelPage->SuspendLayout();
-			  this->panelWorkoutContent->SuspendLayout();
-			  this->GymClass_pg->SuspendLayout();
-			  this->CancelPadel_pg->SuspendLayout();
-			  this->SuspendLayout();
-			  // 
-			  // MainMenu_pn
-			  // 
-			  this->MainMenu_pn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(64)));
-			  this->MainMenu_pn->Controls->Add(this->button3);
-			  this->MainMenu_pn->Controls->Add(this->logout_btn);
-			  this->MainMenu_pn->Controls->Add(this->button1);
-			  this->MainMenu_pn->Controls->Add(this->GymReserv);
-			  this->MainMenu_pn->Controls->Add(this->Padel);
-			  this->MainMenu_pn->Controls->Add(this->btnWorkout);
-			  this->MainMenu_pn->Controls->Add(this->profile_pn);
-			  this->MainMenu_pn->Dock = System::Windows::Forms::DockStyle::Left;
-			  this->MainMenu_pn->Location = System::Drawing::Point(0, 0);
-			  this->MainMenu_pn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->MainMenu_pn->Name = L"MainMenu_pn";
-			  this->MainMenu_pn->Size = System::Drawing::Size(313, 738);
-			  this->MainMenu_pn->TabIndex = 0;
-			  // 
-			  // button3
-			  // 
-			  this->button3->BackColor = System::Drawing::Color::White;
-			  this->button3->Dock = System::Windows::Forms::DockStyle::Top;
-			  this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			  this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->button3->Location = System::Drawing::Point(0, 456);
-			  this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->button3->Name = L"button3";
-			  this->button3->Size = System::Drawing::Size(313, 66);
-			  this->button3->TabIndex = 6;
-			  this->button3->Text = L"Renew my subscription";
-			  this->button3->UseVisualStyleBackColor = false;
-			  this->button3->Click += gcnew System::EventHandler(this, &userPage::button3_Click);
-			  // 
-			  // logout_btn
-			  // 
-			  this->logout_btn->Dock = System::Windows::Forms::DockStyle::Bottom;
-			  this->logout_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->logout_btn->Location = System::Drawing::Point(0, 672);
-			  this->logout_btn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->logout_btn->Name = L"logout_btn";
-			  this->logout_btn->Size = System::Drawing::Size(313, 66);
-			  this->logout_btn->TabIndex = 5;
-			  this->logout_btn->Text = L"log out";
-			  this->logout_btn->UseVisualStyleBackColor = true;
-			  this->logout_btn->Click += gcnew System::EventHandler(this, &userPage::logout_btn_Click);
-			  // 
-			  // button1
-			  // 
-			  this->button1->BackColor = System::Drawing::Color::White;
-			  this->button1->Dock = System::Windows::Forms::DockStyle::Top;
-			  this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			  this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->button1->Location = System::Drawing::Point(0, 390);
-			  this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->button1->Name = L"button1";
-			  this->button1->Size = System::Drawing::Size(313, 66);
-			  this->button1->TabIndex = 3;
-			  this->button1->Text = L"Cancel Gym Class";
-			  this->button1->UseVisualStyleBackColor = false;
-			  this->button1->Click += gcnew System::EventHandler(this, &userPage::button1_Click);
-			  // 
-			  // GymReserv
-			  // 
-			  this->GymReserv->BackColor = System::Drawing::Color::White;
-			  this->GymReserv->Dock = System::Windows::Forms::DockStyle::Top;
-			  this->GymReserv->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			  this->GymReserv->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->GymReserv->Location = System::Drawing::Point(0, 324);
-			  this->GymReserv->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->GymReserv->Name = L"GymReserv";
-			  this->GymReserv->Size = System::Drawing::Size(313, 66);
-			  this->GymReserv->TabIndex = 2;
-			  this->GymReserv->Text = L"Subscribe to Gym Class";
-			  this->GymReserv->UseVisualStyleBackColor = false;
-			  this->GymReserv->Click += gcnew System::EventHandler(this, &userPage::GymReserv_Click);
-			  // 
-			  // Padel
-			  // 
-			  this->Padel->BackColor = System::Drawing::Color::White;
-			  this->Padel->Dock = System::Windows::Forms::DockStyle::Top;
-			  this->Padel->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			  this->Padel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->Padel->Location = System::Drawing::Point(0, 258);
-			  this->Padel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->Padel->Name = L"Padel";
-			  this->Padel->Size = System::Drawing::Size(313, 66);
-			  this->Padel->TabIndex = 1;
-			  this->Padel->Text = L"Padel Court";
-			  this->Padel->UseVisualStyleBackColor = false;
-			  this->Padel->Click += gcnew System::EventHandler(this, &userPage::Padel_Click);
-			  // 
-			  // btnWorkout
-			  // 
-			  this->btnWorkout->BackColor = System::Drawing::Color::White;
-			  this->btnWorkout->Dock = System::Windows::Forms::DockStyle::Top;
-			  this->btnWorkout->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			  this->btnWorkout->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->btnWorkout->Location = System::Drawing::Point(0, 204);
-			  this->btnWorkout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->btnWorkout->Name = L"btnWorkout";
-			  this->btnWorkout->Size = System::Drawing::Size(313, 54);
-			  this->btnWorkout->TabIndex = 4;
-			  this->btnWorkout->Text = L"My Workout";
-			  this->btnWorkout->UseVisualStyleBackColor = false;
-			  this->btnWorkout->Click += gcnew System::EventHandler(this, &userPage::btnWorkout_Click);
-			  // 
-			  // profile_pn
-			  // 
-			  this->profile_pn->Controls->Add(this->Wallet);
-			  this->profile_pn->Controls->Add(this->button2);
-			  this->profile_pn->Controls->Add(this->ListReserPadel);
-			  this->profile_pn->Controls->Add(this->AccName);
-			  this->profile_pn->Controls->Add(this->AccPic);
-			  this->profile_pn->Dock = System::Windows::Forms::DockStyle::Top;
-			  this->profile_pn->Location = System::Drawing::Point(0, 0);
-			  this->profile_pn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->profile_pn->Name = L"profile_pn";
-			  this->profile_pn->Size = System::Drawing::Size(313, 204);
-			  this->profile_pn->TabIndex = 1;
-			  // 
-			  // Wallet
-			  // 
-			  this->Wallet->AutoSize = true;
-			  this->Wallet->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->Wallet->ForeColor = System::Drawing::Color::White;
-			  this->Wallet->Location = System::Drawing::Point(3, 177);
-			  this->Wallet->Name = L"Wallet";
-			  this->Wallet->Size = System::Drawing::Size(58, 22);
-			  this->Wallet->TabIndex = 6;
-			  this->Wallet->Text = L"label1";
-			  // 
-			  // button2
-			  // 
-			  this->button2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button2.BackgroundImage")));
-			  this->button2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			  this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->button2->Location = System::Drawing::Point(271, 13);
-			  this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->button2->Name = L"button2";
-			  this->button2->Size = System::Drawing::Size(36, 38);
-			  this->button2->TabIndex = 5;
-			  this->button2->UseVisualStyleBackColor = true;
-			  this->button2->Click += gcnew System::EventHandler(this, &userPage::button2_Click);
-			  // 
-			  // ListReserPadel
-			  // 
-			  this->ListReserPadel->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ListReserPadel.BackgroundImage")));
-			  this->ListReserPadel->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			  this->ListReserPadel->Location = System::Drawing::Point(271, 57);
-			  this->ListReserPadel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->ListReserPadel->Name = L"ListReserPadel";
-			  this->ListReserPadel->Size = System::Drawing::Size(36, 36);
-			  this->ListReserPadel->TabIndex = 2;
-			  this->ListReserPadel->UseVisualStyleBackColor = true;
-			  this->ListReserPadel->Click += gcnew System::EventHandler(this, &userPage::ListReserPadel_Click);
-			  // 
-			  // AccName
-			  // 
-			  this->AccName->AutoSize = true;
-			  this->AccName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->AccName->ForeColor = System::Drawing::Color::White;
-			  this->AccName->Location = System::Drawing::Point(3, 148);
-			  this->AccName->Name = L"AccName";
-			  this->AccName->Size = System::Drawing::Size(58, 22);
-			  this->AccName->TabIndex = 1;
-			  this->AccName->Text = L"label1";
-			  // 
-			  // AccPic
-			  // 
-			  this->AccPic->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"AccPic.Image")));
-			  this->AccPic->Location = System::Drawing::Point(47, 9);
-			  this->AccPic->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->AccPic->Name = L"AccPic";
-			  this->AccPic->Size = System::Drawing::Size(196, 130);
-			  this->AccPic->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-			  this->AccPic->TabIndex = 0;
-			  this->AccPic->TabStop = false;
-			  // 
-			  // MainPage
-			  // 
-			  this->MainPage->Controls->Add(this->RenewPG);
-			  this->MainPage->Controls->Add(this->PadelPage);
-			  this->MainPage->Controls->Add(this->panelWorkoutContent);
-			  this->MainPage->Controls->Add(this->GymClass_pg);
-			  this->MainPage->Controls->Add(this->CancelPadel_pg);
-			  this->MainPage->Dock = System::Windows::Forms::DockStyle::Left;
-			  this->MainPage->Location = System::Drawing::Point(313, 0);
-			  this->MainPage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->MainPage->Name = L"MainPage";
-			  this->MainPage->Size = System::Drawing::Size(957, 738);
-			  this->MainPage->TabIndex = 1;
-			  // 
-			  // RenewPG
-			  // 
-			  this->RenewPG->Controls->Add(this->richTextBox1);
-			  this->RenewPG->Controls->Add(this->checkBox1);
-			  this->RenewPG->Controls->Add(this->button4);
-			  this->RenewPG->Controls->Add(this->SixMradioButton);
-			  this->RenewPG->Controls->Add(this->ChooseSublabel);
-			  this->RenewPG->Controls->Add(this->OneYradioButton);
-			  this->RenewPG->Controls->Add(this->OneMradioButton);
-			  this->RenewPG->Controls->Add(this->ThreeMradioButton);
-			  this->RenewPG->Dock = System::Windows::Forms::DockStyle::Fill;
-			  this->RenewPG->Location = System::Drawing::Point(0, 0);
-			  this->RenewPG->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->RenewPG->Name = L"RenewPG";
-			  this->RenewPG->Size = System::Drawing::Size(957, 738);
-			  this->RenewPG->TabIndex = 2;
-			  // 
-			  // richTextBox1
-			  // 
-			  this->richTextBox1->BackColor = System::Drawing::SystemColors::Menu;
-			  this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
-			  this->richTextBox1->Location = System::Drawing::Point(88, 262);
-			  this->richTextBox1->Name = L"richTextBox1";
-			  this->richTextBox1->ReadOnly = true;
-			  this->richTextBox1->Size = System::Drawing::Size(768, 159);
-			  this->richTextBox1->TabIndex = 14;
-			  this->richTextBox1->Text = L"";
-			  // 
-			  // checkBox1
-			  // 
-			  this->checkBox1->AutoSize = true;
-			  this->checkBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Underline))));
-			  this->checkBox1->Location = System::Drawing::Point(431, 232);
-			  this->checkBox1->Name = L"checkBox1";
-			  this->checkBox1->Size = System::Drawing::Size(60, 24);
-			  this->checkBox1->TabIndex = 13;
-			  this->checkBox1->Text = L"VIP";
-			  this->checkBox1->UseVisualStyleBackColor = true;
-			  // 
-			  // button4
-			  // 
-			  this->button4->Font = (gcnew System::Drawing::Font(L"Monotype Corsiva", 25.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->button4->Location = System::Drawing::Point(355, 571);
-			  this->button4->Name = L"button4";
-			  this->button4->Size = System::Drawing::Size(210, 62);
-			  this->button4->TabIndex = 0;
-			  this->button4->Text = L"Pay";
-			  this->button4->UseVisualStyleBackColor = true;
-			  this->button4->Click += gcnew System::EventHandler(this, &userPage::button4_Click);
-			  // 
-			  // SixMradioButton
-			  // 
-			  this->SixMradioButton->AutoSize = true;
-			  this->SixMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			  this->SixMradioButton->Location = System::Drawing::Point(494, 177);
-			  this->SixMradioButton->Name = L"SixMradioButton";
-			  this->SixMradioButton->Size = System::Drawing::Size(104, 29);
-			  this->SixMradioButton->TabIndex = 12;
-			  this->SixMradioButton->TabStop = true;
-			  this->SixMradioButton->Text = L"6 Month";
-			  this->SixMradioButton->UseVisualStyleBackColor = true;
-			  this->SixMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::SixMradioButton_CheckedChanged);
-			  // 
-			  // ChooseSublabel
-			  // 
-			  this->ChooseSublabel->AutoSize = true;
-			  this->ChooseSublabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
-			  this->ChooseSublabel->Location = System::Drawing::Point(350, 84);
-			  this->ChooseSublabel->Name = L"ChooseSublabel";
-			  this->ChooseSublabel->Size = System::Drawing::Size(280, 29);
-			  this->ChooseSublabel->TabIndex = 0;
-			  this->ChooseSublabel->Text = L"choose your subscription";
-			  // 
-			  // OneYradioButton
-			  // 
-			  this->OneYradioButton->AutoSize = true;
-			  this->OneYradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			  this->OneYradioButton->Location = System::Drawing::Point(687, 177);
-			  this->OneYradioButton->Name = L"OneYradioButton";
-			  this->OneYradioButton->Size = System::Drawing::Size(90, 29);
-			  this->OneYradioButton->TabIndex = 11;
-			  this->OneYradioButton->TabStop = true;
-			  this->OneYradioButton->Text = L"1 Year";
-			  this->OneYradioButton->UseVisualStyleBackColor = true;
-			  this->OneYradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::OneYradioButton_CheckedChanged);
-			  // 
-			  // OneMradioButton
-			  // 
-			  this->OneMradioButton->AutoSize = true;
-			  this->OneMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			  this->OneMradioButton->Location = System::Drawing::Point(129, 177);
-			  this->OneMradioButton->Name = L"OneMradioButton";
-			  this->OneMradioButton->Size = System::Drawing::Size(104, 29);
-			  this->OneMradioButton->TabIndex = 9;
-			  this->OneMradioButton->TabStop = true;
-			  this->OneMradioButton->Text = L"1 Month";
-			  this->OneMradioButton->UseVisualStyleBackColor = true;
-			  this->OneMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::OneMradioButton_CheckedChanged);
-			  // 
-			  // ThreeMradioButton
-			  // 
-			  this->ThreeMradioButton->AutoSize = true;
-			  this->ThreeMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			  this->ThreeMradioButton->Location = System::Drawing::Point(307, 177);
-			  this->ThreeMradioButton->Name = L"ThreeMradioButton";
-			  this->ThreeMradioButton->Size = System::Drawing::Size(104, 29);
-			  this->ThreeMradioButton->TabIndex = 10;
-			  this->ThreeMradioButton->TabStop = true;
-			  this->ThreeMradioButton->Text = L"3 Month";
-			  this->ThreeMradioButton->UseVisualStyleBackColor = true;
-			  this->ThreeMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::ThreeMradioButton_CheckedChanged);
-			  // 
-			  // PadelPage
-			  // 
-			  this->PadelPage->Controls->Add(this->label4);
-			  this->PadelPage->Controls->Add(this->dateTimePicker1);
-			  this->PadelPage->Controls->Add(this->label2);
-			  this->PadelPage->Controls->Add(this->comboBox2);
-			  this->PadelPage->Controls->Add(this->label1);
-			  this->PadelPage->Controls->Add(this->comboBox1);
-			  this->PadelPage->Controls->Add(this->searchOFcourts);
-			  this->PadelPage->Controls->Add(this->listOfCourts);
-			  this->PadelPage->Dock = System::Windows::Forms::DockStyle::Fill;
-			  this->PadelPage->Location = System::Drawing::Point(0, 0);
-			  this->PadelPage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->PadelPage->Name = L"PadelPage";
-			  this->PadelPage->Size = System::Drawing::Size(957, 738);
-			  this->PadelPage->TabIndex = 0;
-			  // 
-			  // label4
-			  // 
-			  this->label4->AutoSize = true;
-			  this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->label4->Location = System::Drawing::Point(184, 9);
-			  this->label4->Name = L"label4";
-			  this->label4->Size = System::Drawing::Size(48, 22);
-			  this->label4->TabIndex = 9;
-			  this->label4->Text = L"Date";
-			  // 
-			  // dateTimePicker1
-			  // 
-			  this->dateTimePicker1->CustomFormat = L"MM/dd/yyyy";
-			  this->dateTimePicker1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			  this->dateTimePicker1->Location = System::Drawing::Point(173, 37);
-			  this->dateTimePicker1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->dateTimePicker1->MaxDate = System::DateTime(2026, 2, 28, 0, 0, 0, 0);
-			  this->dateTimePicker1->Name = L"dateTimePicker1";
-			  this->dateTimePicker1->Size = System::Drawing::Size(121, 27);
-			  this->dateTimePicker1->TabIndex = 8;
-			  this->dateTimePicker1->Value = System::DateTime(2025, 4, 16, 0, 0, 0, 0);
-			  // 
-			  // label2
-			  // 
-			  this->label2->AutoSize = true;
-			  this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->label2->Location = System::Drawing::Point(351, 9);
-			  this->label2->Name = L"label2";
-			  this->label2->Size = System::Drawing::Size(51, 22);
-			  this->label2->TabIndex = 5;
-			  this->label2->Text = L"From";
-			  // 
-			  // comboBox2
-			  // 
-			  this->comboBox2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			  this->comboBox2->FormattingEnabled = true;
-			  this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(13) {
-				  L"00:00", L"12:00", L"13:00", L"14:00", L"15:00",
-					  L"16::00", L"17:00", L"18:00", L"19:00", L"20:00", L"21:00", L"22:00", L"23:00"
-			  });
-			  this->comboBox2->Location = System::Drawing::Point(355, 39);
-			  this->comboBox2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->comboBox2->Name = L"comboBox2";
-			  this->comboBox2->Size = System::Drawing::Size(73, 24);
-			  this->comboBox2->TabIndex = 4;
-			  // 
-			  // label1
-			  // 
-			  this->label1->AutoSize = true;
-			  this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->label1->Location = System::Drawing::Point(15, 9);
-			  this->label1->Name = L"label1";
-			  this->label1->Size = System::Drawing::Size(72, 22);
-			  this->label1->TabIndex = 3;
-			  this->label1->Text = L"location";
-			  // 
-			  // comboBox1
-			  // 
-			  this->comboBox1->FormattingEnabled = true;
-			  this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(8) {
-				  L"sheikh zayed", L"6th october", L"rehab city",
-					  L"tagamoa", L"new cairo", L"naser city", L"maadi", L"madinaty"
-			  });
-			  this->comboBox1->Location = System::Drawing::Point(11, 39);
-			  this->comboBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->comboBox1->Name = L"comboBox1";
-			  this->comboBox1->Size = System::Drawing::Size(103, 24);
-			  this->comboBox1->TabIndex = 2;
-			  // 
-			  // searchOFcourts
-			  // 
-			  this->searchOFcourts->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			  this->searchOFcourts->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->searchOFcourts->Location = System::Drawing::Point(811, 25);
-			  this->searchOFcourts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->searchOFcourts->Name = L"searchOFcourts";
-			  this->searchOFcourts->Size = System::Drawing::Size(137, 38);
-			  this->searchOFcourts->TabIndex = 1;
-			  this->searchOFcourts->Text = L"search";
-			  this->searchOFcourts->UseVisualStyleBackColor = true;
-			  this->searchOFcourts->Click += gcnew System::EventHandler(this, &userPage::searchOFcourts_Click);
-			  // 
-			  // listOfCourts
-			  // 
-			  this->listOfCourts->AutoScroll = true;
-			  this->listOfCourts->Dock = System::Windows::Forms::DockStyle::Bottom;
-			  this->listOfCourts->Location = System::Drawing::Point(0, 68);
-			  this->listOfCourts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->listOfCourts->Name = L"listOfCourts";
-			  this->listOfCourts->Size = System::Drawing::Size(957, 670);
-			  this->listOfCourts->TabIndex = 0;
-			  // 
-			  // panelWorkoutContent
-			  // 
-			  this->panelWorkoutContent->Controls->Add(this->comboFilterType);
-			  this->panelWorkoutContent->Controls->Add(this->btnHideWorkout);
-			  this->panelWorkoutContent->Controls->Add(this->textBox1);
-			  this->panelWorkoutContent->Controls->Add(this->lblDate);
-			  this->panelWorkoutContent->Controls->Add(this->txtDate);
-			  this->panelWorkoutContent->Controls->Add(this->lblType);
-			  this->panelWorkoutContent->Controls->Add(this->txtType);
-			  this->panelWorkoutContent->Controls->Add(this->lblDuration);
-			  this->panelWorkoutContent->Controls->Add(this->txtDuration);
-			  this->panelWorkoutContent->Controls->Add(this->lblWeight);
-			  this->panelWorkoutContent->Controls->Add(this->txtWeight);
-			  this->panelWorkoutContent->Controls->Add(this->btnAddWorkout);
-			  this->panelWorkoutContent->Controls->Add(this->btnViewHistory);
-			  this->panelWorkoutContent->Controls->Add(this->btnTrackProgress);
-			  this->panelWorkoutContent->Controls->Add(this->lblFilter);
-			  this->panelWorkoutContent->Controls->Add(this->btnFilter);
-			  this->panelWorkoutContent->Controls->Add(this->richTextOutput);
-			  this->panelWorkoutContent->Dock = System::Windows::Forms::DockStyle::Fill;
-			  this->panelWorkoutContent->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
-				  System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			  this->panelWorkoutContent->Location = System::Drawing::Point(0, 0);
-			  this->panelWorkoutContent->Name = L"panelWorkoutContent";
-			  this->panelWorkoutContent->Size = System::Drawing::Size(957, 738);
-			  this->panelWorkoutContent->TabIndex = 0;
-			  this->panelWorkoutContent->Visible = false;
-			  // 
-			  // comboFilterType
-			  // 
-			  this->comboFilterType->FormattingEnabled = true;
-			  this->comboFilterType->Items->AddRange(gcnew cli::array< System::Object^  >(6) {
-				  L"Cardio", L"Strength", L"Pilates", L"Yoga",
-					  L"Cycling", L"HIIT"
-			  });
-			  this->comboFilterType->Location = System::Drawing::Point(119, 255);
-			  this->comboFilterType->Name = L"comboFilterType";
-			  this->comboFilterType->Size = System::Drawing::Size(195, 33);
-			  this->comboFilterType->TabIndex = 16;
-			  // 
-			  // btnHideWorkout
-			  // 
-			  this->btnHideWorkout->Location = System::Drawing::Point(804, 8);
-			  this->btnHideWorkout->Name = L"btnHideWorkout";
-			  this->btnHideWorkout->Size = System::Drawing::Size(150, 30);
-			  this->btnHideWorkout->TabIndex = 0;
-			  this->btnHideWorkout->Text = L"Back";
-			  this->btnHideWorkout->Click += gcnew System::EventHandler(this, &userPage::btnHideWorkout_Click);
-			  // 
-			  // textBox1
-			  // 
-			  this->textBox1->BackColor = System::Drawing::SystemColors::Menu;
-			  this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			  this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 12, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
-				  System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			  this->textBox1->ForeColor = System::Drawing::SystemColors::InactiveCaptionText;
-			  this->textBox1->Location = System::Drawing::Point(11, 12);
-			  this->textBox1->Name = L"textBox1";
-			  this->textBox1->Size = System::Drawing::Size(391, 26);
-			  this->textBox1->TabIndex = 0;
-			  this->textBox1->Text = L"Workout";
-			  // 
-			  // lblDate
-			  // 
-			  this->lblDate->Location = System::Drawing::Point(20, 43);
-			  this->lblDate->Name = L"lblDate";
-			  this->lblDate->Size = System::Drawing::Size(100, 23);
-			  this->lblDate->TabIndex = 1;
-			  this->lblDate->Text = L"Date:";
-			  // 
-			  // txtDate
-			  // 
-			  this->txtDate->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->txtDate->Location = System::Drawing::Point(119, 40);
-			  this->txtDate->Name = L"txtDate";
-			  this->txtDate->Size = System::Drawing::Size(446, 30);
-			  this->txtDate->TabIndex = 2;
-			  // 
-			  // lblType
-			  // 
-			  this->lblType->Location = System::Drawing::Point(20, 81);
-			  this->lblType->Name = L"lblType";
-			  this->lblType->Size = System::Drawing::Size(100, 23);
-			  this->lblType->TabIndex = 3;
-			  this->lblType->Text = L"Workout Type:";
-			  // 
-			  // txtType
-			  // 
-			  this->txtType->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->txtType->Location = System::Drawing::Point(119, 76);
-			  this->txtType->Name = L"txtType";
-			  this->txtType->Size = System::Drawing::Size(446, 30);
-			  this->txtType->TabIndex = 4;
-			  // 
-			  // lblDuration
-			  // 
-			  this->lblDuration->Location = System::Drawing::Point(20, 119);
-			  this->lblDuration->Name = L"lblDuration";
-			  this->lblDuration->Size = System::Drawing::Size(100, 23);
-			  this->lblDuration->TabIndex = 5;
-			  this->lblDuration->Text = L"Duration (min):";
-			  // 
-			  // txtDuration
-			  // 
-			  this->txtDuration->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->txtDuration->Location = System::Drawing::Point(119, 112);
-			  this->txtDuration->Name = L"txtDuration";
-			  this->txtDuration->Size = System::Drawing::Size(446, 30);
-			  this->txtDuration->TabIndex = 6;
-			  // 
-			  // lblWeight
-			  // 
-			  this->lblWeight->Location = System::Drawing::Point(20, 157);
-			  this->lblWeight->Name = L"lblWeight";
-			  this->lblWeight->Size = System::Drawing::Size(100, 23);
-			  this->lblWeight->TabIndex = 7;
-			  this->lblWeight->Text = L"Weight (kg):";
-			  // 
-			  // txtWeight
-			  // 
-			  this->txtWeight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->txtWeight->Location = System::Drawing::Point(119, 148);
-			  this->txtWeight->Name = L"txtWeight";
-			  this->txtWeight->Size = System::Drawing::Size(446, 30);
-			  this->txtWeight->TabIndex = 8;
-			  // 
-			  // btnAddWorkout
-			  // 
-			  this->btnAddWorkout->Location = System::Drawing::Point(19, 204);
-			  this->btnAddWorkout->Name = L"btnAddWorkout";
-			  this->btnAddWorkout->Size = System::Drawing::Size(150, 30);
-			  this->btnAddWorkout->TabIndex = 9;
-			  this->btnAddWorkout->Text = L"Add Workout";
-			  this->btnAddWorkout->Click += gcnew System::EventHandler(this, &userPage::btnAddWorkout_Click);
-			  // 
-			  // btnViewHistory
-			  // 
-			  this->btnViewHistory->Location = System::Drawing::Point(179, 204);
-			  this->btnViewHistory->Name = L"btnViewHistory";
-			  this->btnViewHistory->Size = System::Drawing::Size(150, 30);
-			  this->btnViewHistory->TabIndex = 10;
-			  this->btnViewHistory->Text = L"View History";
-			  this->btnViewHistory->Click += gcnew System::EventHandler(this, &userPage::btnViewHistory_Click);
-			  // 
-			  // btnTrackProgress
-			  // 
-			  this->btnTrackProgress->Location = System::Drawing::Point(339, 204);
-			  this->btnTrackProgress->Name = L"btnTrackProgress";
-			  this->btnTrackProgress->Size = System::Drawing::Size(150, 30);
-			  this->btnTrackProgress->TabIndex = 11;
-			  this->btnTrackProgress->Text = L"Track Progress";
-			  this->btnTrackProgress->Click += gcnew System::EventHandler(this, &userPage::btnTrackProgress_Click);
-			  // 
-			  // lblFilter
-			  // 
-			  this->lblFilter->Location = System::Drawing::Point(20, 258);
-			  this->lblFilter->Name = L"lblFilter";
-			  this->lblFilter->Size = System::Drawing::Size(100, 23);
-			  this->lblFilter->TabIndex = 12;
-			  this->lblFilter->Text = L"Filter by Type:";
-			  // 
-			  // btnFilter
-			  // 
-			  this->btnFilter->Location = System::Drawing::Point(354, 254);
-			  this->btnFilter->Name = L"btnFilter";
-			  this->btnFilter->Size = System::Drawing::Size(100, 33);
-			  this->btnFilter->TabIndex = 14;
-			  this->btnFilter->Text = L"Filter";
-			  this->btnFilter->Click += gcnew System::EventHandler(this, &userPage::btnFilter_Click);
-			  // 
-			  // richTextOutput
-			  // 
-			  this->richTextOutput->Location = System::Drawing::Point(20, 317);
-			  this->richTextOutput->Name = L"richTextOutput";
-			  this->richTextOutput->ReadOnly = true;
-			  this->richTextOutput->Size = System::Drawing::Size(928, 355);
-			  this->richTextOutput->TabIndex = 15;
-			  this->richTextOutput->Text = L"";
-			  // 
-			  // GymClass_pg
-			  // 
-			  this->GymClass_pg->Controls->Add(this->ListOfClasses);
-			  this->GymClass_pg->Dock = System::Windows::Forms::DockStyle::Fill;
-			  this->GymClass_pg->Location = System::Drawing::Point(0, 0);
-			  this->GymClass_pg->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->GymClass_pg->Name = L"GymClass_pg";
-			  this->GymClass_pg->Size = System::Drawing::Size(957, 738);
-			  this->GymClass_pg->TabIndex = 1;
-			  // 
-			  // ListOfClasses
-			  // 
-			  this->ListOfClasses->AutoScroll = true;
-			  this->ListOfClasses->Dock = System::Windows::Forms::DockStyle::Fill;
-			  this->ListOfClasses->Location = System::Drawing::Point(0, 0);
-			  this->ListOfClasses->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->ListOfClasses->Name = L"ListOfClasses";
-			  this->ListOfClasses->Size = System::Drawing::Size(957, 738);
-			  this->ListOfClasses->TabIndex = 1;
-			  this->ListOfClasses->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &userPage::ListOfClasses_Paint);
-			  // 
-			  // CancelPadel_pg
-			  // 
-			  this->CancelPadel_pg->Controls->Add(this->label3);
-			  this->CancelPadel_pg->Controls->Add(this->ListOfMyRes);
-			  this->CancelPadel_pg->Dock = System::Windows::Forms::DockStyle::Fill;
-			  this->CancelPadel_pg->Location = System::Drawing::Point(0, 0);
-			  this->CancelPadel_pg->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->CancelPadel_pg->Name = L"CancelPadel_pg";
-			  this->CancelPadel_pg->Size = System::Drawing::Size(957, 738);
-			  this->CancelPadel_pg->TabIndex = 0;
-			  // 
-			  // label3
-			  // 
-			  this->label3->AutoSize = true;
-			  this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->label3->ForeColor = System::Drawing::Color::Red;
-			  this->label3->Location = System::Drawing::Point(47, 12);
-			  this->label3->Name = L"label3";
-			  this->label3->Size = System::Drawing::Size(791, 72);
-			  this->label3->TabIndex = 2;
-			  this->label3->Text = L"You must cancel appointments at least 3 hours in advance.\n\n";
-			  // 
-			  // ListOfMyRes
-			  // 
-			  this->ListOfMyRes->AutoScroll = true;
-			  this->ListOfMyRes->Dock = System::Windows::Forms::DockStyle::Bottom;
-			  this->ListOfMyRes->Location = System::Drawing::Point(0, 68);
-			  this->ListOfMyRes->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->ListOfMyRes->Name = L"ListOfMyRes";
-			  this->ListOfMyRes->Size = System::Drawing::Size(957, 670);
-			  this->ListOfMyRes->TabIndex = 1;
-			  // 
-			  // userPage
-			  // 
-			  this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			  this->ClientSize = System::Drawing::Size(1273, 738);
-			  this->ControlBox = false;
-			  this->Controls->Add(this->MainPage);
-			  this->Controls->Add(this->MainMenu_pn);
-			  this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			  this->Name = L"userPage";
-			  this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			  this->Text = L"userPage";
-			  this->Load += gcnew System::EventHandler(this, &userPage::userPage_Load);
-			  this->MainMenu_pn->ResumeLayout(false);
-			  this->profile_pn->ResumeLayout(false);
-			  this->profile_pn->PerformLayout();
-			  (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->EndInit();
-			  this->MainPage->ResumeLayout(false);
-			  this->RenewPG->ResumeLayout(false);
-			  this->RenewPG->PerformLayout();
-			  this->PadelPage->ResumeLayout(false);
-			  this->PadelPage->PerformLayout();
-			  this->panelWorkoutContent->ResumeLayout(false);
-			  this->panelWorkoutContent->PerformLayout();
-			  this->GymClass_pg->ResumeLayout(false);
-			  this->CancelPadel_pg->ResumeLayout(false);
-			  this->CancelPadel_pg->PerformLayout();
-			  this->ResumeLayout(false);
+			   this->components = (gcnew System::ComponentModel::Container());
+			   System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(userPage::typeid));
+			   this->MainMenu_pn = (gcnew System::Windows::Forms::Panel());
+			   this->button3 = (gcnew System::Windows::Forms::Button());
+			   this->logout_btn = (gcnew System::Windows::Forms::Button());
+			   this->button1 = (gcnew System::Windows::Forms::Button());
+			   this->GymReserv = (gcnew System::Windows::Forms::Button());
+			   this->Padel = (gcnew System::Windows::Forms::Button());
+			   this->btnWorkout = (gcnew System::Windows::Forms::Button());
+			   this->profile_pn = (gcnew System::Windows::Forms::Panel());
+			   this->button5 = (gcnew System::Windows::Forms::Button());
+			   this->Wallet = (gcnew System::Windows::Forms::Label());
+			   this->button2 = (gcnew System::Windows::Forms::Button());
+			   this->ListReserPadel = (gcnew System::Windows::Forms::Button());
+			   this->AccName = (gcnew System::Windows::Forms::Label());
+			   this->AccPic = (gcnew System::Windows::Forms::PictureBox());
+			   this->MainPage = (gcnew System::Windows::Forms::Panel());
+			   this->RenewPG = (gcnew System::Windows::Forms::Panel());
+			   this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			   this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			   this->button4 = (gcnew System::Windows::Forms::Button());
+			   this->SixMradioButton = (gcnew System::Windows::Forms::RadioButton());
+			   this->ChooseSublabel = (gcnew System::Windows::Forms::Label());
+			   this->OneYradioButton = (gcnew System::Windows::Forms::RadioButton());
+			   this->OneMradioButton = (gcnew System::Windows::Forms::RadioButton());
+			   this->ThreeMradioButton = (gcnew System::Windows::Forms::RadioButton());
+			   this->PadelPage = (gcnew System::Windows::Forms::Panel());
+			   this->label4 = (gcnew System::Windows::Forms::Label());
+			   this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
+			   this->label2 = (gcnew System::Windows::Forms::Label());
+			   this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			   this->label1 = (gcnew System::Windows::Forms::Label());
+			   this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			   this->searchOFcourts = (gcnew System::Windows::Forms::Button());
+			   this->listOfCourts = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			   this->panelWorkoutContent = (gcnew System::Windows::Forms::Panel());
+			   this->comboFilterType = (gcnew System::Windows::Forms::ComboBox());
+			   this->btnHideWorkout = (gcnew System::Windows::Forms::Button());
+			   this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			   this->lblDate = (gcnew System::Windows::Forms::Label());
+			   this->txtDate = (gcnew System::Windows::Forms::TextBox());
+			   this->lblType = (gcnew System::Windows::Forms::Label());
+			   this->txtType = (gcnew System::Windows::Forms::TextBox());
+			   this->lblDuration = (gcnew System::Windows::Forms::Label());
+			   this->txtDuration = (gcnew System::Windows::Forms::TextBox());
+			   this->lblWeight = (gcnew System::Windows::Forms::Label());
+			   this->txtWeight = (gcnew System::Windows::Forms::TextBox());
+			   this->btnAddWorkout = (gcnew System::Windows::Forms::Button());
+			   this->btnViewHistory = (gcnew System::Windows::Forms::Button());
+			   this->btnTrackProgress = (gcnew System::Windows::Forms::Button());
+			   this->lblFilter = (gcnew System::Windows::Forms::Label());
+			   this->btnFilter = (gcnew System::Windows::Forms::Button());
+			   this->richTextOutput = (gcnew System::Windows::Forms::RichTextBox());
+			   this->GymClass_pg = (gcnew System::Windows::Forms::Panel());
+			   this->ListOfClasses = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			   this->CancelPadel_pg = (gcnew System::Windows::Forms::Panel());
+			   this->label3 = (gcnew System::Windows::Forms::Label());
+			   this->ListOfMyRes = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			   this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
+			   this->MainMenu_pn->SuspendLayout();
+			   this->profile_pn->SuspendLayout();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->BeginInit();
+			   this->MainPage->SuspendLayout();
+			   this->RenewPG->SuspendLayout();
+			   this->PadelPage->SuspendLayout();
+			   this->panelWorkoutContent->SuspendLayout();
+			   this->GymClass_pg->SuspendLayout();
+			   this->CancelPadel_pg->SuspendLayout();
+			   this->SuspendLayout();
+			   // 
+			   // MainMenu_pn
+			   // 
+			   this->MainMenu_pn->BackColor = System::Drawing::Color::Gray;
+			   this->MainMenu_pn->Controls->Add(this->button3);
+			   this->MainMenu_pn->Controls->Add(this->logout_btn);
+			   this->MainMenu_pn->Controls->Add(this->button1);
+			   this->MainMenu_pn->Controls->Add(this->GymReserv);
+			   this->MainMenu_pn->Controls->Add(this->Padel);
+			   this->MainMenu_pn->Controls->Add(this->btnWorkout);
+			   this->MainMenu_pn->Controls->Add(this->profile_pn);
+			   this->MainMenu_pn->Dock = System::Windows::Forms::DockStyle::Left;
+			   this->MainMenu_pn->Location = System::Drawing::Point(0, 0);
+			   this->MainMenu_pn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->MainMenu_pn->Name = L"MainMenu_pn";
+			   this->MainMenu_pn->Size = System::Drawing::Size(313, 738);
+			   this->MainMenu_pn->TabIndex = 0;
+			   // 
+			   // button3
+			   // 
+			   this->button3->BackColor = System::Drawing::Color::White;
+			   this->button3->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			   this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->button3->Location = System::Drawing::Point(0, 456);
+			   this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->button3->Name = L"button3";
+			   this->button3->Size = System::Drawing::Size(313, 66);
+			   this->button3->TabIndex = 6;
+			   this->button3->Text = L"Renew my subscription";
+			   this->button3->UseVisualStyleBackColor = false;
+			   this->button3->Click += gcnew System::EventHandler(this, &userPage::button3_Click);
+			   // 
+			   // logout_btn
+			   // 
+			   this->logout_btn->Dock = System::Windows::Forms::DockStyle::Bottom;
+			   this->logout_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->logout_btn->Location = System::Drawing::Point(0, 672);
+			   this->logout_btn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->logout_btn->Name = L"logout_btn";
+			   this->logout_btn->Size = System::Drawing::Size(313, 66);
+			   this->logout_btn->TabIndex = 5;
+			   this->logout_btn->Text = L"log out";
+			   this->logout_btn->UseVisualStyleBackColor = true;
+			   this->logout_btn->Click += gcnew System::EventHandler(this, &userPage::logout_btn_Click);
+			   // 
+			   // button1
+			   // 
+			   this->button1->BackColor = System::Drawing::Color::White;
+			   this->button1->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			   this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->button1->Location = System::Drawing::Point(0, 390);
+			   this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->button1->Name = L"button1";
+			   this->button1->Size = System::Drawing::Size(313, 66);
+			   this->button1->TabIndex = 3;
+			   this->button1->Text = L"Cancel Gym Class";
+			   this->button1->UseVisualStyleBackColor = false;
+			   this->button1->Click += gcnew System::EventHandler(this, &userPage::button1_Click);
+			   // 
+			   // GymReserv
+			   // 
+			   this->GymReserv->BackColor = System::Drawing::Color::White;
+			   this->GymReserv->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->GymReserv->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			   this->GymReserv->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->GymReserv->Location = System::Drawing::Point(0, 324);
+			   this->GymReserv->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->GymReserv->Name = L"GymReserv";
+			   this->GymReserv->Size = System::Drawing::Size(313, 66);
+			   this->GymReserv->TabIndex = 2;
+			   this->GymReserv->Text = L"Subscribe to Gym Class";
+			   this->GymReserv->UseVisualStyleBackColor = false;
+			   this->GymReserv->Click += gcnew System::EventHandler(this, &userPage::GymReserv_Click);
+			   // 
+			   // Padel
+			   // 
+			   this->Padel->BackColor = System::Drawing::Color::White;
+			   this->Padel->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->Padel->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			   this->Padel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->Padel->Location = System::Drawing::Point(0, 258);
+			   this->Padel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->Padel->Name = L"Padel";
+			   this->Padel->Size = System::Drawing::Size(313, 66);
+			   this->Padel->TabIndex = 1;
+			   this->Padel->Text = L"Padel Court";
+			   this->Padel->UseVisualStyleBackColor = false;
+			   this->Padel->Click += gcnew System::EventHandler(this, &userPage::Padel_Click);
+			   // 
+			   // btnWorkout
+			   // 
+			   this->btnWorkout->BackColor = System::Drawing::Color::White;
+			   this->btnWorkout->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->btnWorkout->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			   this->btnWorkout->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->btnWorkout->Location = System::Drawing::Point(0, 204);
+			   this->btnWorkout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->btnWorkout->Name = L"btnWorkout";
+			   this->btnWorkout->Size = System::Drawing::Size(313, 54);
+			   this->btnWorkout->TabIndex = 4;
+			   this->btnWorkout->Text = L"My Workout";
+			   this->btnWorkout->UseVisualStyleBackColor = false;
+			   this->btnWorkout->Click += gcnew System::EventHandler(this, &userPage::btnWorkout_Click);
+			   // 
+			   // profile_pn
+			   // 
+			   this->profile_pn->Controls->Add(this->button5);
+			   this->profile_pn->Controls->Add(this->Wallet);
+			   this->profile_pn->Controls->Add(this->button2);
+			   this->profile_pn->Controls->Add(this->ListReserPadel);
+			   this->profile_pn->Controls->Add(this->AccName);
+			   this->profile_pn->Controls->Add(this->AccPic);
+			   this->profile_pn->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->profile_pn->Location = System::Drawing::Point(0, 0);
+			   this->profile_pn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->profile_pn->Name = L"profile_pn";
+			   this->profile_pn->Size = System::Drawing::Size(313, 204);
+			   this->profile_pn->TabIndex = 1;
+			   // 
+			   // button5
+			   // 
+			   this->button5->BackColor = System::Drawing::Color::Transparent;
+			   this->button5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button5.BackgroundImage")));
+			   this->button5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			   this->button5->FlatAppearance->BorderSize = 0;
+			   this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			   this->button5->Location = System::Drawing::Point(5, 11);
+			   this->button5->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->button5->Name = L"button5";
+			   this->button5->Size = System::Drawing::Size(36, 36);
+			   this->button5->TabIndex = 7;
+			   this->button5->UseVisualStyleBackColor = false;
+			   this->button5->Click += gcnew System::EventHandler(this, &userPage::button5_Click);
+			   // 
+			   // Wallet
+			   // 
+			   this->Wallet->AutoSize = true;
+			   this->Wallet->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->Wallet->ForeColor = System::Drawing::Color::White;
+			   this->Wallet->Location = System::Drawing::Point(3, 177);
+			   this->Wallet->Name = L"Wallet";
+			   this->Wallet->Size = System::Drawing::Size(58, 22);
+			   this->Wallet->TabIndex = 6;
+			   this->Wallet->Text = L"label1";
+			   // 
+			   // button2
+			   // 
+			   this->button2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button2.BackgroundImage")));
+			   this->button2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			   this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->button2->Location = System::Drawing::Point(271, 13);
+			   this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->button2->Name = L"button2";
+			   this->button2->Size = System::Drawing::Size(36, 38);
+			   this->button2->TabIndex = 5;
+			   this->button2->UseVisualStyleBackColor = true;
+			   this->button2->Click += gcnew System::EventHandler(this, &userPage::button2_Click);
+			   // 
+			   // ListReserPadel
+			   // 
+			   this->ListReserPadel->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ListReserPadel.BackgroundImage")));
+			   this->ListReserPadel->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			   this->ListReserPadel->Location = System::Drawing::Point(271, 57);
+			   this->ListReserPadel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->ListReserPadel->Name = L"ListReserPadel";
+			   this->ListReserPadel->Size = System::Drawing::Size(36, 36);
+			   this->ListReserPadel->TabIndex = 2;
+			   this->ListReserPadel->UseVisualStyleBackColor = true;
+			   this->ListReserPadel->Click += gcnew System::EventHandler(this, &userPage::ListReserPadel_Click);
+			   // 
+			   // AccName
+			   // 
+			   this->AccName->AutoSize = true;
+			   this->AccName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->AccName->ForeColor = System::Drawing::Color::White;
+			   this->AccName->Location = System::Drawing::Point(3, 148);
+			   this->AccName->Name = L"AccName";
+			   this->AccName->Size = System::Drawing::Size(58, 22);
+			   this->AccName->TabIndex = 1;
+			   this->AccName->Text = L"label1";
+			   // 
+			   // AccPic
+			   // 
+			   this->AccPic->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"AccPic.Image")));
+			   this->AccPic->Location = System::Drawing::Point(47, 9);
+			   this->AccPic->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->AccPic->Name = L"AccPic";
+			   this->AccPic->Size = System::Drawing::Size(196, 130);
+			   this->AccPic->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			   this->AccPic->TabIndex = 0;
+			   this->AccPic->TabStop = false;
+			   // 
+			   // MainPage
+			   // 
+			   this->MainPage->Controls->Add(this->RenewPG);
+			   this->MainPage->Controls->Add(this->PadelPage);
+			   this->MainPage->Controls->Add(this->panelWorkoutContent);
+			   this->MainPage->Controls->Add(this->GymClass_pg);
+			   this->MainPage->Controls->Add(this->CancelPadel_pg);
+			   this->MainPage->Dock = System::Windows::Forms::DockStyle::Left;
+			   this->MainPage->Location = System::Drawing::Point(313, 0);
+			   this->MainPage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->MainPage->Name = L"MainPage";
+			   this->MainPage->Size = System::Drawing::Size(957, 738);
+			   this->MainPage->TabIndex = 1;
+			   // 
+			   // RenewPG
+			   // 
+			   this->RenewPG->Controls->Add(this->richTextBox1);
+			   this->RenewPG->Controls->Add(this->checkBox1);
+			   this->RenewPG->Controls->Add(this->button4);
+			   this->RenewPG->Controls->Add(this->SixMradioButton);
+			   this->RenewPG->Controls->Add(this->ChooseSublabel);
+			   this->RenewPG->Controls->Add(this->OneYradioButton);
+			   this->RenewPG->Controls->Add(this->OneMradioButton);
+			   this->RenewPG->Controls->Add(this->ThreeMradioButton);
+			   this->RenewPG->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->RenewPG->Location = System::Drawing::Point(0, 0);
+			   this->RenewPG->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->RenewPG->Name = L"RenewPG";
+			   this->RenewPG->Size = System::Drawing::Size(957, 738);
+			   this->RenewPG->TabIndex = 2;
+			   // 
+			   // richTextBox1
+			   // 
+			   this->richTextBox1->BackColor = System::Drawing::SystemColors::Menu;
+			   this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
+			   this->richTextBox1->Location = System::Drawing::Point(88, 262);
+			   this->richTextBox1->Name = L"richTextBox1";
+			   this->richTextBox1->ReadOnly = true;
+			   this->richTextBox1->Size = System::Drawing::Size(768, 159);
+			   this->richTextBox1->TabIndex = 14;
+			   this->richTextBox1->Text = L"";
+			   // 
+			   // checkBox1
+			   // 
+			   this->checkBox1->AutoSize = true;
+			   this->checkBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Underline))));
+			   this->checkBox1->Location = System::Drawing::Point(431, 232);
+			   this->checkBox1->Name = L"checkBox1";
+			   this->checkBox1->Size = System::Drawing::Size(60, 24);
+			   this->checkBox1->TabIndex = 13;
+			   this->checkBox1->Text = L"VIP";
+			   this->checkBox1->UseVisualStyleBackColor = true;
+			   // 
+			   // button4
+			   // 
+			   this->button4->Font = (gcnew System::Drawing::Font(L"Monotype Corsiva", 25.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->button4->Location = System::Drawing::Point(355, 571);
+			   this->button4->Name = L"button4";
+			   this->button4->Size = System::Drawing::Size(210, 62);
+			   this->button4->TabIndex = 0;
+			   this->button4->Text = L"Pay";
+			   this->button4->UseVisualStyleBackColor = true;
+			   this->button4->Click += gcnew System::EventHandler(this, &userPage::button4_Click);
+			   // 
+			   // SixMradioButton
+			   // 
+			   this->SixMradioButton->AutoSize = true;
+			   this->SixMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			   this->SixMradioButton->Location = System::Drawing::Point(494, 177);
+			   this->SixMradioButton->Name = L"SixMradioButton";
+			   this->SixMradioButton->Size = System::Drawing::Size(104, 29);
+			   this->SixMradioButton->TabIndex = 12;
+			   this->SixMradioButton->TabStop = true;
+			   this->SixMradioButton->Text = L"6 Month";
+			   this->SixMradioButton->UseVisualStyleBackColor = true;
+			   this->SixMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::SixMradioButton_CheckedChanged);
+			   // 
+			   // ChooseSublabel
+			   // 
+			   this->ChooseSublabel->AutoSize = true;
+			   this->ChooseSublabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
+			   this->ChooseSublabel->Location = System::Drawing::Point(350, 84);
+			   this->ChooseSublabel->Name = L"ChooseSublabel";
+			   this->ChooseSublabel->Size = System::Drawing::Size(280, 29);
+			   this->ChooseSublabel->TabIndex = 0;
+			   this->ChooseSublabel->Text = L"choose your subscription";
+			   // 
+			   // OneYradioButton
+			   // 
+			   this->OneYradioButton->AutoSize = true;
+			   this->OneYradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			   this->OneYradioButton->Location = System::Drawing::Point(687, 177);
+			   this->OneYradioButton->Name = L"OneYradioButton";
+			   this->OneYradioButton->Size = System::Drawing::Size(90, 29);
+			   this->OneYradioButton->TabIndex = 11;
+			   this->OneYradioButton->TabStop = true;
+			   this->OneYradioButton->Text = L"1 Year";
+			   this->OneYradioButton->UseVisualStyleBackColor = true;
+			   this->OneYradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::OneYradioButton_CheckedChanged);
+			   // 
+			   // OneMradioButton
+			   // 
+			   this->OneMradioButton->AutoSize = true;
+			   this->OneMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			   this->OneMradioButton->Location = System::Drawing::Point(129, 177);
+			   this->OneMradioButton->Name = L"OneMradioButton";
+			   this->OneMradioButton->Size = System::Drawing::Size(104, 29);
+			   this->OneMradioButton->TabIndex = 9;
+			   this->OneMradioButton->TabStop = true;
+			   this->OneMradioButton->Text = L"1 Month";
+			   this->OneMradioButton->UseVisualStyleBackColor = true;
+			   this->OneMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::OneMradioButton_CheckedChanged);
+			   // 
+			   // ThreeMradioButton
+			   // 
+			   this->ThreeMradioButton->AutoSize = true;
+			   this->ThreeMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			   this->ThreeMradioButton->Location = System::Drawing::Point(307, 177);
+			   this->ThreeMradioButton->Name = L"ThreeMradioButton";
+			   this->ThreeMradioButton->Size = System::Drawing::Size(104, 29);
+			   this->ThreeMradioButton->TabIndex = 10;
+			   this->ThreeMradioButton->TabStop = true;
+			   this->ThreeMradioButton->Text = L"3 Month";
+			   this->ThreeMradioButton->UseVisualStyleBackColor = true;
+			   this->ThreeMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::ThreeMradioButton_CheckedChanged);
+			   // 
+			   // PadelPage
+			   // 
+			   this->PadelPage->Controls->Add(this->label4);
+			   this->PadelPage->Controls->Add(this->dateTimePicker1);
+			   this->PadelPage->Controls->Add(this->label2);
+			   this->PadelPage->Controls->Add(this->comboBox2);
+			   this->PadelPage->Controls->Add(this->label1);
+			   this->PadelPage->Controls->Add(this->comboBox1);
+			   this->PadelPage->Controls->Add(this->searchOFcourts);
+			   this->PadelPage->Controls->Add(this->listOfCourts);
+			   this->PadelPage->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->PadelPage->Location = System::Drawing::Point(0, 0);
+			   this->PadelPage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->PadelPage->Name = L"PadelPage";
+			   this->PadelPage->Size = System::Drawing::Size(957, 738);
+			   this->PadelPage->TabIndex = 0;
+			   // 
+			   // label4
+			   // 
+			   this->label4->AutoSize = true;
+			   this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->label4->Location = System::Drawing::Point(184, 9);
+			   this->label4->Name = L"label4";
+			   this->label4->Size = System::Drawing::Size(48, 22);
+			   this->label4->TabIndex = 9;
+			   this->label4->Text = L"Date";
+			   // 
+			   // dateTimePicker1
+			   // 
+			   this->dateTimePicker1->CustomFormat = L"MM/dd/yyyy";
+			   this->dateTimePicker1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
+			   this->dateTimePicker1->Location = System::Drawing::Point(173, 37);
+			   this->dateTimePicker1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->dateTimePicker1->MaxDate = System::DateTime(2026, 2, 28, 0, 0, 0, 0);
+			   this->dateTimePicker1->Name = L"dateTimePicker1";
+			   this->dateTimePicker1->Size = System::Drawing::Size(121, 27);
+			   this->dateTimePicker1->TabIndex = 8;
+			   this->dateTimePicker1->Value = System::DateTime(2025, 4, 16, 0, 0, 0, 0);
+			   // 
+			   // label2
+			   // 
+			   this->label2->AutoSize = true;
+			   this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->label2->Location = System::Drawing::Point(351, 9);
+			   this->label2->Name = L"label2";
+			   this->label2->Size = System::Drawing::Size(51, 22);
+			   this->label2->TabIndex = 5;
+			   this->label2->Text = L"From";
+			   // 
+			   // comboBox2
+			   // 
+			   this->comboBox2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			   this->comboBox2->FormattingEnabled = true;
+			   this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(13) {
+					L"00:00", L"12:00", L"13:00", L"14:00", L"15:00",
+						 L"16::00", L"17:00", L"18:00", L"19:00", L"20:00", L"21:00", L"22:00", L"23:00"
+			   });
+			   this->comboBox2->Location = System::Drawing::Point(355, 39);
+			   this->comboBox2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->comboBox2->Name = L"comboBox2";
+			   this->comboBox2->Size = System::Drawing::Size(73, 24);
+			   this->comboBox2->TabIndex = 4;
+			   // 
+			   // label1
+			   // 
+			   this->label1->AutoSize = true;
+			   this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->label1->Location = System::Drawing::Point(15, 9);
+			   this->label1->Name = L"label1";
+			   this->label1->Size = System::Drawing::Size(72, 22);
+			   this->label1->TabIndex = 3;
+			   this->label1->Text = L"location";
+			   // 
+			   // comboBox1
+			   // 
+			   this->comboBox1->FormattingEnabled = true;
+			   this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(8) {
+					L"sheikh zayed", L"6th october", L"rehab city",
+						 L"tagamoa", L"new cairo", L"naser city", L"maadi", L"madinaty"
+			   });
+			   this->comboBox1->Location = System::Drawing::Point(11, 39);
+			   this->comboBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->comboBox1->Name = L"comboBox1";
+			   this->comboBox1->Size = System::Drawing::Size(103, 24);
+			   this->comboBox1->TabIndex = 2;
+			   // 
+			   // searchOFcourts
+			   // 
+			   this->searchOFcourts->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			   this->searchOFcourts->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->searchOFcourts->Location = System::Drawing::Point(811, 25);
+			   this->searchOFcourts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->searchOFcourts->Name = L"searchOFcourts";
+			   this->searchOFcourts->Size = System::Drawing::Size(137, 38);
+			   this->searchOFcourts->TabIndex = 1;
+			   this->searchOFcourts->Text = L"search";
+			   this->searchOFcourts->UseVisualStyleBackColor = true;
+			   this->searchOFcourts->Click += gcnew System::EventHandler(this, &userPage::searchOFcourts_Click);
+			   // 
+			   // listOfCourts
+			   // 
+			   this->listOfCourts->AutoScroll = true;
+			   this->listOfCourts->Dock = System::Windows::Forms::DockStyle::Bottom;
+			   this->listOfCourts->Location = System::Drawing::Point(0, 68);
+			   this->listOfCourts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->listOfCourts->Name = L"listOfCourts";
+			   this->listOfCourts->Size = System::Drawing::Size(957, 670);
+			   this->listOfCourts->TabIndex = 0;
+			   // 
+			   // panelWorkoutContent
+			   // 
+			   this->panelWorkoutContent->Controls->Add(this->comboFilterType);
+			   this->panelWorkoutContent->Controls->Add(this->btnHideWorkout);
+			   this->panelWorkoutContent->Controls->Add(this->textBox1);
+			   this->panelWorkoutContent->Controls->Add(this->lblDate);
+			   this->panelWorkoutContent->Controls->Add(this->txtDate);
+			   this->panelWorkoutContent->Controls->Add(this->lblType);
+			   this->panelWorkoutContent->Controls->Add(this->txtType);
+			   this->panelWorkoutContent->Controls->Add(this->lblDuration);
+			   this->panelWorkoutContent->Controls->Add(this->txtDuration);
+			   this->panelWorkoutContent->Controls->Add(this->lblWeight);
+			   this->panelWorkoutContent->Controls->Add(this->txtWeight);
+			   this->panelWorkoutContent->Controls->Add(this->btnAddWorkout);
+			   this->panelWorkoutContent->Controls->Add(this->btnViewHistory);
+			   this->panelWorkoutContent->Controls->Add(this->btnTrackProgress);
+			   this->panelWorkoutContent->Controls->Add(this->lblFilter);
+			   this->panelWorkoutContent->Controls->Add(this->btnFilter);
+			   this->panelWorkoutContent->Controls->Add(this->richTextOutput);
+			   this->panelWorkoutContent->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->panelWorkoutContent->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+					System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			   this->panelWorkoutContent->Location = System::Drawing::Point(0, 0);
+			   this->panelWorkoutContent->Name = L"panelWorkoutContent";
+			   this->panelWorkoutContent->Size = System::Drawing::Size(957, 738);
+			   this->panelWorkoutContent->TabIndex = 0;
+			   this->panelWorkoutContent->Visible = false;
+			   // 
+			   // comboFilterType
+			   // 
+			   this->comboFilterType->FormattingEnabled = true;
+			   this->comboFilterType->Items->AddRange(gcnew cli::array< System::Object^  >(6) {
+					L"Cardio", L"Strength", L"Pilates", L"Yoga",
+						 L"Cycling", L"HIIT"
+			   });
+			   this->comboFilterType->Location = System::Drawing::Point(119, 255);
+			   this->comboFilterType->Name = L"comboFilterType";
+			   this->comboFilterType->Size = System::Drawing::Size(195, 33);
+			   this->comboFilterType->TabIndex = 16;
+			   // 
+			   // btnHideWorkout
+			   // 
+			   this->btnHideWorkout->Location = System::Drawing::Point(804, 8);
+			   this->btnHideWorkout->Name = L"btnHideWorkout";
+			   this->btnHideWorkout->Size = System::Drawing::Size(150, 30);
+			   this->btnHideWorkout->TabIndex = 0;
+			   this->btnHideWorkout->Text = L"Back";
+			   this->btnHideWorkout->Click += gcnew System::EventHandler(this, &userPage::btnHideWorkout_Click);
+			   // 
+			   // textBox1
+			   // 
+			   this->textBox1->BackColor = System::Drawing::SystemColors::Menu;
+			   this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			   this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 12, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+					System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			   this->textBox1->ForeColor = System::Drawing::SystemColors::InactiveCaptionText;
+			   this->textBox1->Location = System::Drawing::Point(11, 12);
+			   this->textBox1->Name = L"textBox1";
+			   this->textBox1->Size = System::Drawing::Size(391, 26);
+			   this->textBox1->TabIndex = 0;
+			   this->textBox1->Text = L"Workout";
+			   // 
+			   // lblDate
+			   // 
+			   this->lblDate->Location = System::Drawing::Point(20, 43);
+			   this->lblDate->Name = L"lblDate";
+			   this->lblDate->Size = System::Drawing::Size(100, 23);
+			   this->lblDate->TabIndex = 1;
+			   this->lblDate->Text = L"Date:";
+			   // 
+			   // txtDate
+			   // 
+			   this->txtDate->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->txtDate->Location = System::Drawing::Point(119, 40);
+			   this->txtDate->Name = L"txtDate";
+			   this->txtDate->Size = System::Drawing::Size(446, 30);
+			   this->txtDate->TabIndex = 2;
+			   // 
+			   // lblType
+			   // 
+			   this->lblType->Location = System::Drawing::Point(20, 81);
+			   this->lblType->Name = L"lblType";
+			   this->lblType->Size = System::Drawing::Size(100, 23);
+			   this->lblType->TabIndex = 3;
+			   this->lblType->Text = L"Workout Type:";
+			   // 
+			   // txtType
+			   // 
+			   this->txtType->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->txtType->Location = System::Drawing::Point(119, 76);
+			   this->txtType->Name = L"txtType";
+			   this->txtType->Size = System::Drawing::Size(446, 30);
+			   this->txtType->TabIndex = 4;
+			   // 
+			   // lblDuration
+			   // 
+			   this->lblDuration->Location = System::Drawing::Point(20, 119);
+			   this->lblDuration->Name = L"lblDuration";
+			   this->lblDuration->Size = System::Drawing::Size(100, 23);
+			   this->lblDuration->TabIndex = 5;
+			   this->lblDuration->Text = L"Duration (min):";
+			   // 
+			   // txtDuration
+			   // 
+			   this->txtDuration->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->txtDuration->Location = System::Drawing::Point(119, 112);
+			   this->txtDuration->Name = L"txtDuration";
+			   this->txtDuration->Size = System::Drawing::Size(446, 30);
+			   this->txtDuration->TabIndex = 6;
+			   // 
+			   // lblWeight
+			   // 
+			   this->lblWeight->Location = System::Drawing::Point(20, 157);
+			   this->lblWeight->Name = L"lblWeight";
+			   this->lblWeight->Size = System::Drawing::Size(100, 23);
+			   this->lblWeight->TabIndex = 7;
+			   this->lblWeight->Text = L"Weight (kg):";
+			   // 
+			   // txtWeight
+			   // 
+			   this->txtWeight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->txtWeight->Location = System::Drawing::Point(119, 148);
+			   this->txtWeight->Name = L"txtWeight";
+			   this->txtWeight->Size = System::Drawing::Size(446, 30);
+			   this->txtWeight->TabIndex = 8;
+			   // 
+			   // btnAddWorkout
+			   // 
+			   this->btnAddWorkout->Location = System::Drawing::Point(19, 204);
+			   this->btnAddWorkout->Name = L"btnAddWorkout";
+			   this->btnAddWorkout->Size = System::Drawing::Size(150, 30);
+			   this->btnAddWorkout->TabIndex = 9;
+			   this->btnAddWorkout->Text = L"Add Workout";
+			   this->btnAddWorkout->Click += gcnew System::EventHandler(this, &userPage::btnAddWorkout_Click);
+			   // 
+			   // btnViewHistory
+			   // 
+			   this->btnViewHistory->Location = System::Drawing::Point(179, 204);
+			   this->btnViewHistory->Name = L"btnViewHistory";
+			   this->btnViewHistory->Size = System::Drawing::Size(150, 30);
+			   this->btnViewHistory->TabIndex = 10;
+			   this->btnViewHistory->Text = L"View History";
+			   this->btnViewHistory->Click += gcnew System::EventHandler(this, &userPage::btnViewHistory_Click);
+			   // 
+			   // btnTrackProgress
+			   // 
+			   this->btnTrackProgress->Location = System::Drawing::Point(339, 204);
+			   this->btnTrackProgress->Name = L"btnTrackProgress";
+			   this->btnTrackProgress->Size = System::Drawing::Size(150, 30);
+			   this->btnTrackProgress->TabIndex = 11;
+			   this->btnTrackProgress->Text = L"Track Progress";
+			   this->btnTrackProgress->Click += gcnew System::EventHandler(this, &userPage::btnTrackProgress_Click);
+			   // 
+			   // lblFilter
+			   // 
+			   this->lblFilter->Location = System::Drawing::Point(20, 258);
+			   this->lblFilter->Name = L"lblFilter";
+			   this->lblFilter->Size = System::Drawing::Size(100, 23);
+			   this->lblFilter->TabIndex = 12;
+			   this->lblFilter->Text = L"Filter by Type:";
+			   // 
+			   // btnFilter
+			   // 
+			   this->btnFilter->Location = System::Drawing::Point(354, 254);
+			   this->btnFilter->Name = L"btnFilter";
+			   this->btnFilter->Size = System::Drawing::Size(100, 33);
+			   this->btnFilter->TabIndex = 14;
+			   this->btnFilter->Text = L"Filter";
+			   this->btnFilter->Click += gcnew System::EventHandler(this, &userPage::btnFilter_Click);
+			   // 
+			   // richTextOutput
+			   // 
+			   this->richTextOutput->Location = System::Drawing::Point(20, 317);
+			   this->richTextOutput->Name = L"richTextOutput";
+			   this->richTextOutput->ReadOnly = true;
+			   this->richTextOutput->Size = System::Drawing::Size(928, 355);
+			   this->richTextOutput->TabIndex = 15;
+			   this->richTextOutput->Text = L"";
+			   // 
+			   // GymClass_pg
+			   // 
+			   this->GymClass_pg->Controls->Add(this->ListOfClasses);
+			   this->GymClass_pg->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->GymClass_pg->Location = System::Drawing::Point(0, 0);
+			   this->GymClass_pg->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->GymClass_pg->Name = L"GymClass_pg";
+			   this->GymClass_pg->Size = System::Drawing::Size(957, 738);
+			   this->GymClass_pg->TabIndex = 1;
+			   // 
+			   // ListOfClasses
+			   // 
+			   this->ListOfClasses->AutoScroll = true;
+			   this->ListOfClasses->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->ListOfClasses->Location = System::Drawing::Point(0, 0);
+			   this->ListOfClasses->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->ListOfClasses->Name = L"ListOfClasses";
+			   this->ListOfClasses->Size = System::Drawing::Size(957, 738);
+			   this->ListOfClasses->TabIndex = 1;
+			   this->ListOfClasses->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &userPage::ListOfClasses_Paint);
+			   // 
+			   // CancelPadel_pg
+			   // 
+			   this->CancelPadel_pg->Controls->Add(this->label3);
+			   this->CancelPadel_pg->Controls->Add(this->ListOfMyRes);
+			   this->CancelPadel_pg->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->CancelPadel_pg->Location = System::Drawing::Point(0, 0);
+			   this->CancelPadel_pg->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->CancelPadel_pg->Name = L"CancelPadel_pg";
+			   this->CancelPadel_pg->Size = System::Drawing::Size(957, 738);
+			   this->CancelPadel_pg->TabIndex = 0;
+			   // 
+			   // label3
+			   // 
+			   this->label3->AutoSize = true;
+			   this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->label3->ForeColor = System::Drawing::Color::Red;
+			   this->label3->Location = System::Drawing::Point(47, 12);
+			   this->label3->Name = L"label3";
+			   this->label3->Size = System::Drawing::Size(791, 72);
+			   this->label3->TabIndex = 2;
+			   this->label3->Text = L"You must cancel appointments at least 3 hours in advance.\n\n";
+			   // 
+			   // ListOfMyRes
+			   // 
+			   this->ListOfMyRes->AutoScroll = true;
+			   this->ListOfMyRes->Dock = System::Windows::Forms::DockStyle::Bottom;
+			   this->ListOfMyRes->Location = System::Drawing::Point(0, 68);
+			   this->ListOfMyRes->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->ListOfMyRes->Name = L"ListOfMyRes";
+			   this->ListOfMyRes->Size = System::Drawing::Size(957, 670);
+			   this->ListOfMyRes->TabIndex = 1;
+			   // 
+			   // userPage
+			   // 
+			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			   this->ClientSize = System::Drawing::Size(1273, 738);
+			   this->ControlBox = false;
+			   this->Controls->Add(this->MainPage);
+			   this->Controls->Add(this->MainMenu_pn);
+			   this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->Name = L"userPage";
+			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			   this->Text = L"userPage";
+			   this->Load += gcnew System::EventHandler(this, &userPage::userPage_Load);
+			   this->MainMenu_pn->ResumeLayout(false);
+			   this->profile_pn->ResumeLayout(false);
+			   this->profile_pn->PerformLayout();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->EndInit();
+			   this->MainPage->ResumeLayout(false);
+			   this->RenewPG->ResumeLayout(false);
+			   this->RenewPG->PerformLayout();
+			   this->PadelPage->ResumeLayout(false);
+			   this->PadelPage->PerformLayout();
+			   this->panelWorkoutContent->ResumeLayout(false);
+			   this->panelWorkoutContent->PerformLayout();
+			   this->GymClass_pg->ResumeLayout(false);
+			   this->CancelPadel_pg->ResumeLayout(false);
+			   this->CancelPadel_pg->PerformLayout();
+			   this->ResumeLayout(false);
 
 		  }
 #pragma endregion
@@ -1378,6 +1399,12 @@ namespace ProjectCode {
 					MessageBox::Show(gcnew String(msg.c_str()), "Notification", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   }
 		  }
+		  if (userList[loginID].MessagesNotRead()) {
+			   button5->BackgroundImage = System::Drawing::Image::FromFile("assets/notread.png");
+
+		  }
+
+
 		  MainPage->Controls->Clear();
 
 	 }
@@ -1530,6 +1557,16 @@ namespace ProjectCode {
 					Wallet->Text = "Wallet: $" + userList[loginID].myWallet.ToString();
 			   }
 
+		  }
+	 }
+	 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+		  MSGsShow^ show = gcnew MSGsShow();
+		  show->ShowDialog();
+		  if (userList[loginID].MessagesNotRead()) {
+			   button5->BackgroundImage = System::Drawing::Image::FromFile("assets/notread.png");
+		  }
+		  else {
+			   button5->BackgroundImage = System::Drawing::Image::FromFile("assets/read.png");
 		  }
 	 }
 	 };

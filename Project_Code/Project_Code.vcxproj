@@ -113,7 +113,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CreatClassForm.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="staffPage.cpp" />
     <ClCompile Include="useraccount.cpp" />
@@ -148,6 +147,12 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="managertPage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MSGlabel.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="MSGsShow.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="sighup.h">
@@ -191,6 +196,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="managertPage.resx">
       <DependentUpon>managertPage.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSGlabel.resx">
+      <DependentUpon>MSGlabel.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSGsShow.resx">
+      <DependentUpon>MSGsShow.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="sighup.resx">
       <DependentUpon>sighup.h</DependentUpon>
