@@ -65,13 +65,13 @@ namespace ProjectCode {
 		  {
 			   System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(staffPage::typeid));
 			   this->MainMenu_pn = (gcnew System::Windows::Forms::Panel());
+			   this->AddNewUser = (gcnew System::Windows::Forms::Button());
 			   this->SendNotification = (gcnew System::Windows::Forms::Button());
 			   this->profile_pn = (gcnew System::Windows::Forms::Panel());
 			   this->AccName = (gcnew System::Windows::Forms::Label());
 			   this->AccPic = (gcnew System::Windows::Forms::PictureBox());
 			   this->MainPage = (gcnew System::Windows::Forms::Panel());
 			   this->ListOFUserEX = (gcnew System::Windows::Forms::FlowLayoutPanel());
-			   this->AddNewUser = (gcnew System::Windows::Forms::Button());
 			   this->MainMenu_pn->SuspendLayout();
 			   this->profile_pn->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->BeginInit();
@@ -88,6 +88,19 @@ namespace ProjectCode {
 			   this->MainMenu_pn->Name = L"MainMenu_pn";
 			   this->MainMenu_pn->Size = System::Drawing::Size(313, 739);
 			   this->MainMenu_pn->TabIndex = 1;
+			   // 
+			   // AddNewUser
+			   // 
+			   this->AddNewUser->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->AddNewUser->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->AddNewUser->Location = System::Drawing::Point(0, 280);
+			   this->AddNewUser->Name = L"AddNewUser";
+			   this->AddNewUser->Size = System::Drawing::Size(313, 76);
+			   this->AddNewUser->TabIndex = 3;
+			   this->AddNewUser->Text = L"Register new user";
+			   this->AddNewUser->UseVisualStyleBackColor = true;
+			   this->AddNewUser->Click += gcnew System::EventHandler(this, &staffPage::AddNewUser_Click);
 			   // 
 			   // SendNotification
 			   // 
@@ -151,19 +164,6 @@ namespace ProjectCode {
 			   this->ListOFUserEX->Size = System::Drawing::Size(960, 739);
 			   this->ListOFUserEX->TabIndex = 0;
 			   // 
-			   // AddNewUser
-			   // 
-			   this->AddNewUser->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->AddNewUser->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->AddNewUser->Location = System::Drawing::Point(0, 280);
-			   this->AddNewUser->Name = L"AddNewUser";
-			   this->AddNewUser->Size = System::Drawing::Size(313, 76);
-			   this->AddNewUser->TabIndex = 3;
-			   this->AddNewUser->Text = L"Register new user";
-			   this->AddNewUser->UseVisualStyleBackColor = true;
-			   this->AddNewUser->Click += gcnew System::EventHandler(this, &staffPage::AddNewUser_Click);
-			   // 
 			   // staffPage
 			   // 
 			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -175,6 +175,7 @@ namespace ProjectCode {
 			   this->Name = L"staffPage";
 			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			   this->Text = L"staffPage";
+			   this->Load += gcnew System::EventHandler(this, &staffPage::staffPage_Load);
 			   this->MainMenu_pn->ResumeLayout(false);
 			   this->profile_pn->ResumeLayout(false);
 			   this->profile_pn->PerformLayout();
@@ -212,6 +213,9 @@ namespace ProjectCode {
 
 		  newPage->ShowDialog();
 
+	 }
+	 private: System::Void staffPage_Load(System::Object^ sender, System::EventArgs^ e) {
+		  this->Icon = gcnew System::Drawing::Icon("assets/program Icon.ico");
 	 }
 	 };
 }

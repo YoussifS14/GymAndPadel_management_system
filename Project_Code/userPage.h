@@ -1363,6 +1363,7 @@ namespace ProjectCode {
 	 private: System::Void userPage_Load(System::Object^ sender, System::EventArgs^ e) {
 		  loadpic(AccPic);
 		  MakePictureCircular(AccPic);
+		  this->Icon = gcnew System::Drawing::Icon("assets/program Icon.ico");
 		  toolTip1->AutoPopDelay = 5000;
 		  toolTip1->InitialDelay = 1000;
 		  toolTip1->ReshowDelay = 500;

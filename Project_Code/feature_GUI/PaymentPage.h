@@ -267,6 +267,7 @@ namespace ProjectCode {
 	 }
 
 	 private: System::Void PaymentPage_Load(System::Object^ sender, System::EventArgs^ e) {
+		  this->Icon = gcnew System::Drawing::Icon("assets/program Icon.ico");
 		  displayPrice->Text = "Transaction price : " + transactionCost.ToString() + " $";
 	 }
 	 private: System::Void confirm_btn_Click(System::Object^ sender, System::EventArgs^ e) {

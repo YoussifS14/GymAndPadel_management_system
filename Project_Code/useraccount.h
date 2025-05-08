@@ -339,6 +339,7 @@ namespace ProjectCode {
 
 	 private: System::Void useraccount_Load(System::Object^ sender, System::EventArgs^ e) {
 		  notifyExpiringSubscriptions();
+		  this->Icon = gcnew System::Drawing::Icon("assets/program Icon.ico");
 
 		  if (userList.find(loginID) != userList.end()) {
 			   User& user = userList[loginID];

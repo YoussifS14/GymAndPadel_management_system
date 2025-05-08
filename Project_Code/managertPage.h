@@ -1021,6 +1021,7 @@ namespace ProjectCode {
         System::Void MainMenu_pn_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {}
         System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {}
         System::Void managertPage_Load(System::Object^ sender, System::EventArgs^ e) {
+             this->Icon = gcnew System::Drawing::Icon("assets/program Icon.ico");
             if (staffList.find(loginID) != staffList.end()) {
                 AccName->Text = gcnew String(staffList[loginID].name.c_str());
             }

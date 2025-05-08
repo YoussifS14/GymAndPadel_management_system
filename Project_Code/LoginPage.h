@@ -106,124 +106,125 @@ namespace ProjectCode {
 		  /// </summary>
 		  void InitializeComponent(void)
 		  {
-			   System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LoginPage::typeid));
-			   this->userName_lb = (gcnew System::Windows::Forms::Label());
-			   this->Login_btn = (gcnew System::Windows::Forms::Button());
-			   this->userName_txb = (gcnew System::Windows::Forms::TextBox());
-			   this->password_txb = (gcnew System::Windows::Forms::TextBox());
-			   this->password_lb = (gcnew System::Windows::Forms::Label());
-			   this->SwitchHide = (gcnew System::Windows::Forms::Button());
-			   this->label1 = (gcnew System::Windows::Forms::Label());
-			   this->button1 = (gcnew System::Windows::Forms::Button());
-			   this->SuspendLayout();
-			   // 
-			   // userName_lb
-			   // 
-			   this->userName_lb->AutoSize = true;
-			   this->userName_lb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
-					System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->userName_lb->Location = System::Drawing::Point(294, 200);
-			   this->userName_lb->Name = L"userName_lb";
-			   this->userName_lb->Size = System::Drawing::Size(91, 32);
-			   this->userName_lb->TabIndex = 0;
-			   this->userName_lb->Text = L"Email";
-			   // 
-			   // Login_btn
-			   // 
-			   this->Login_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->Login_btn->Location = System::Drawing::Point(471, 552);
-			   this->Login_btn->Name = L"Login_btn";
-			   this->Login_btn->Size = System::Drawing::Size(311, 69);
-			   this->Login_btn->TabIndex = 1;
-			   this->Login_btn->Text = L"Sign In ";
-			   this->Login_btn->UseVisualStyleBackColor = true;
-			   this->Login_btn->Click += gcnew System::EventHandler(this, &LoginPage::Login_btn_Click);
-			   // 
-			   // userName_txb
-			   // 
-			   this->userName_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
-					System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->userName_txb->Location = System::Drawing::Point(471, 200);
-			   this->userName_txb->Name = L"userName_txb";
-			   this->userName_txb->Size = System::Drawing::Size(552, 38);
-			   this->userName_txb->TabIndex = 2;
-			   // 
-			   // password_txb
-			   // 
-			   this->password_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
-					System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->password_txb->Location = System::Drawing::Point(471, 350);
-			   this->password_txb->Name = L"password_txb";
-			   this->password_txb->Size = System::Drawing::Size(552, 38);
-			   this->password_txb->TabIndex = 4;
-			   this->password_txb->UseSystemPasswordChar = true;
-			   // 
-			   // password_lb
-			   // 
-			   this->password_lb->AutoSize = true;
-			   this->password_lb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
-					System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->password_lb->Location = System::Drawing::Point(294, 350);
-			   this->password_lb->Name = L"password_lb";
-			   this->password_lb->Size = System::Drawing::Size(146, 32);
-			   this->password_lb->TabIndex = 3;
-			   this->password_lb->Text = L"Password";
-			   // 
-			   // SwitchHide
-			   // 
-			   this->SwitchHide->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SwitchHide.BackgroundImage")));
-			   this->SwitchHide->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			   this->SwitchHide->Location = System::Drawing::Point(1048, 355);
-			   this->SwitchHide->Name = L"SwitchHide";
-			   this->SwitchHide->Size = System::Drawing::Size(36, 32);
-			   this->SwitchHide->TabIndex = 5;
-			   this->SwitchHide->UseVisualStyleBackColor = true;
-			   this->SwitchHide->Click += gcnew System::EventHandler(this, &LoginPage::SwitchHide_Click);
-			   // 
-			   // label1
-			   // 
-			   this->label1->AutoSize = true;
-			   this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label1->Location = System::Drawing::Point(339, 677);
-			   this->label1->Name = L"label1";
-			   this->label1->Size = System::Drawing::Size(282, 22);
-			   this->label1->TabIndex = 6;
-			   this->label1->Text = L"No account...want to sign up\?!";
-			   // 
-			   // button1
-			   // 
-			   this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->button1->Location = System::Drawing::Point(652, 674);
-			   this->button1->Name = L"button1";
-			   this->button1->Size = System::Drawing::Size(139, 31);
-			   this->button1->TabIndex = 7;
-			   this->button1->Text = L"Sign up";
-			   this->button1->UseVisualStyleBackColor = true;
-			   this->button1->Click += gcnew System::EventHandler(this, &LoginPage::button1_Click);
-			   // 
-			   // LoginPage
-			   // 
-			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			   this->ClientSize = System::Drawing::Size(1273, 739);
-			   this->Controls->Add(this->button1);
-			   this->Controls->Add(this->label1);
-			   this->Controls->Add(this->SwitchHide);
-			   this->Controls->Add(this->password_txb);
-			   this->Controls->Add(this->password_lb);
-			   this->Controls->Add(this->userName_txb);
-			   this->Controls->Add(this->Login_btn);
-			   this->Controls->Add(this->userName_lb);
-			   this->Name = L"LoginPage";
-			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			   this->Text = L"LoginPage";
-			   this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &LoginPage::LoginPage_FormClosing);
-			   this->Load += gcnew System::EventHandler(this, &LoginPage::LoginPage_Load);
-			   this->ResumeLayout(false);
-			   this->PerformLayout();
+			  System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LoginPage::typeid));
+			  this->userName_lb = (gcnew System::Windows::Forms::Label());
+			  this->Login_btn = (gcnew System::Windows::Forms::Button());
+			  this->userName_txb = (gcnew System::Windows::Forms::TextBox());
+			  this->password_txb = (gcnew System::Windows::Forms::TextBox());
+			  this->password_lb = (gcnew System::Windows::Forms::Label());
+			  this->SwitchHide = (gcnew System::Windows::Forms::Button());
+			  this->label1 = (gcnew System::Windows::Forms::Label());
+			  this->button1 = (gcnew System::Windows::Forms::Button());
+			  this->SuspendLayout();
+			  // 
+			  // userName_lb
+			  // 
+			  this->userName_lb->AutoSize = true;
+			  this->userName_lb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				  System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			  this->userName_lb->Location = System::Drawing::Point(294, 200);
+			  this->userName_lb->Name = L"userName_lb";
+			  this->userName_lb->Size = System::Drawing::Size(91, 32);
+			  this->userName_lb->TabIndex = 0;
+			  this->userName_lb->Text = L"Email";
+			  // 
+			  // Login_btn
+			  // 
+			  this->Login_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->Login_btn->Location = System::Drawing::Point(471, 552);
+			  this->Login_btn->Name = L"Login_btn";
+			  this->Login_btn->Size = System::Drawing::Size(311, 69);
+			  this->Login_btn->TabIndex = 1;
+			  this->Login_btn->Text = L"Sign In ";
+			  this->Login_btn->UseVisualStyleBackColor = true;
+			  this->Login_btn->Click += gcnew System::EventHandler(this, &LoginPage::Login_btn_Click);
+			  // 
+			  // userName_txb
+			  // 
+			  this->userName_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				  System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			  this->userName_txb->Location = System::Drawing::Point(471, 200);
+			  this->userName_txb->Name = L"userName_txb";
+			  this->userName_txb->Size = System::Drawing::Size(552, 38);
+			  this->userName_txb->TabIndex = 2;
+			  // 
+			  // password_txb
+			  // 
+			  this->password_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				  System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			  this->password_txb->Location = System::Drawing::Point(471, 350);
+			  this->password_txb->Name = L"password_txb";
+			  this->password_txb->Size = System::Drawing::Size(552, 38);
+			  this->password_txb->TabIndex = 4;
+			  this->password_txb->UseSystemPasswordChar = true;
+			  // 
+			  // password_lb
+			  // 
+			  this->password_lb->AutoSize = true;
+			  this->password_lb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				  System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			  this->password_lb->Location = System::Drawing::Point(294, 350);
+			  this->password_lb->Name = L"password_lb";
+			  this->password_lb->Size = System::Drawing::Size(146, 32);
+			  this->password_lb->TabIndex = 3;
+			  this->password_lb->Text = L"Password";
+			  // 
+			  // SwitchHide
+			  // 
+			  this->SwitchHide->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SwitchHide.BackgroundImage")));
+			  this->SwitchHide->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			  this->SwitchHide->Location = System::Drawing::Point(1048, 355);
+			  this->SwitchHide->Name = L"SwitchHide";
+			  this->SwitchHide->Size = System::Drawing::Size(36, 32);
+			  this->SwitchHide->TabIndex = 5;
+			  this->SwitchHide->UseVisualStyleBackColor = true;
+			  this->SwitchHide->Click += gcnew System::EventHandler(this, &LoginPage::SwitchHide_Click);
+			  // 
+			  // label1
+			  // 
+			  this->label1->AutoSize = true;
+			  this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label1->Location = System::Drawing::Point(339, 677);
+			  this->label1->Name = L"label1";
+			  this->label1->Size = System::Drawing::Size(282, 22);
+			  this->label1->TabIndex = 6;
+			  this->label1->Text = L"No account...want to sign up\?!";
+			  // 
+			  // button1
+			  // 
+			  this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->button1->Location = System::Drawing::Point(652, 674);
+			  this->button1->Name = L"button1";
+			  this->button1->Size = System::Drawing::Size(139, 31);
+			  this->button1->TabIndex = 7;
+			  this->button1->Text = L"Sign up";
+			  this->button1->UseVisualStyleBackColor = true;
+			  this->button1->Click += gcnew System::EventHandler(this, &LoginPage::button1_Click);
+			  // 
+			  // LoginPage
+			  // 
+			  this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			  this->ClientSize = System::Drawing::Size(1273, 739);
+			  this->Controls->Add(this->button1);
+			  this->Controls->Add(this->label1);
+			  this->Controls->Add(this->SwitchHide);
+			  this->Controls->Add(this->password_txb);
+			  this->Controls->Add(this->password_lb);
+			  this->Controls->Add(this->userName_txb);
+			  this->Controls->Add(this->Login_btn);
+			  this->Controls->Add(this->userName_lb);
+			  this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			  this->Name = L"LoginPage";
+			  this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			  this->Text = L"LoginPage";
+			  this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &LoginPage::LoginPage_FormClosing);
+			  this->Load += gcnew System::EventHandler(this, &LoginPage::LoginPage_Load);
+			  this->ResumeLayout(false);
+			  this->PerformLayout();
 
 		  }
 #pragma endregion

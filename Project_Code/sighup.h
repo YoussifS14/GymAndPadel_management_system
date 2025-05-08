@@ -692,6 +692,7 @@ namespace ProjectCode {
 			   }
 			   radioButton1->Checked = true;
 			   panel2->BringToFront();
+			   this->Icon = gcnew System::Drawing::Icon("assets/program Icon.ico");
 		  }
 
 		  System::Void radioButton1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -745,7 +746,7 @@ namespace ProjectCode {
 					return;
 			   }
 
-			   for each (Char c in phone) {
+			   for each(Char c in phone) {
 					if (!Char::IsDigit(c)) {
 						 MessageBox::Show("Phone number must contain only digits.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 						 return;

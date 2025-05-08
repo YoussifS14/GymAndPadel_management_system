@@ -57,66 +57,66 @@ namespace ProjectCode {
 		/// </summary>
 		  void InitializeComponent(void)
 		  {
-			  this->components = (gcnew System::ComponentModel::Container());
-			  this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
-			  this->label1 = (gcnew System::Windows::Forms::Label());
-			  this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
-			  this->loadingPic = (gcnew System::Windows::Forms::PictureBox());
-			  (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->loadingPic))->BeginInit();
-			  this->SuspendLayout();
-			  // 
-			  // progressBar1
-			  // 
-			  this->progressBar1->Location = System::Drawing::Point(12, 254);
-			  this->progressBar1->Name = L"progressBar1";
-			  this->progressBar1->Size = System::Drawing::Size(584, 44);
-			  this->progressBar1->Step = 15;
-			  this->progressBar1->Style = System::Windows::Forms::ProgressBarStyle::Marquee;
-			  this->progressBar1->TabIndex = 0;
-			  // 
-			  // label1
-			  // 
-			  this->label1->AutoSize = true;
-			  this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				  static_cast<System::Byte>(0)));
-			  this->label1->Location = System::Drawing::Point(12, 170);
-			  this->label1->Name = L"label1";
-			  this->label1->Size = System::Drawing::Size(137, 32);
-			  this->label1->TabIndex = 1;
-			  this->label1->Text = L"Starting...";
-			  // 
-			  // timer1
-			  // 
-			  this->timer1->Enabled = true;
-			  this->timer1->Interval = 110;
-			  this->timer1->Tick += gcnew System::EventHandler(this, &LoadingPage::timer1_Tick);
-			  // 
-			  // loadingPic
-			  // 
-			  this->loadingPic->Location = System::Drawing::Point(282, 122);
-			  this->loadingPic->Name = L"loadingPic";
-			  this->loadingPic->Size = System::Drawing::Size(314, 126);
-			  this->loadingPic->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-			  this->loadingPic->TabIndex = 2;
-			  this->loadingPic->TabStop = false;
-			  // 
-			  // LoadingPage
-			  // 
-			  this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			  this->BackColor = System::Drawing::Color::AliceBlue;
-			  this->ClientSize = System::Drawing::Size(608, 328);
-			  this->Controls->Add(this->loadingPic);
-			  this->Controls->Add(this->label1);
-			  this->Controls->Add(this->progressBar1);
-			  this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			  this->Name = L"LoadingPage";
-			  this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			  this->Text = L"LoadingPage";
-			  this->Load += gcnew System::EventHandler(this, &LoadingPage::LoadingPage_Load);
-			  (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->loadingPic))->EndInit();
-			  this->ResumeLayout(false);
-			  this->PerformLayout();
+			   this->components = (gcnew System::ComponentModel::Container());
+			   this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
+			   this->label1 = (gcnew System::Windows::Forms::Label());
+			   this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			   this->loadingPic = (gcnew System::Windows::Forms::PictureBox());
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->loadingPic))->BeginInit();
+			   this->SuspendLayout();
+			   // 
+			   // progressBar1
+			   // 
+			   this->progressBar1->Location = System::Drawing::Point(12, 254);
+			   this->progressBar1->Name = L"progressBar1";
+			   this->progressBar1->Size = System::Drawing::Size(584, 44);
+			   this->progressBar1->Step = 15;
+			   this->progressBar1->Style = System::Windows::Forms::ProgressBarStyle::Marquee;
+			   this->progressBar1->TabIndex = 0;
+			   // 
+			   // label1
+			   // 
+			   this->label1->AutoSize = true;
+			   this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->label1->Location = System::Drawing::Point(12, 170);
+			   this->label1->Name = L"label1";
+			   this->label1->Size = System::Drawing::Size(137, 32);
+			   this->label1->TabIndex = 1;
+			   this->label1->Text = L"Starting...";
+			   // 
+			   // timer1
+			   // 
+			   this->timer1->Enabled = true;
+			   this->timer1->Interval = 110;
+			   this->timer1->Tick += gcnew System::EventHandler(this, &LoadingPage::timer1_Tick);
+			   // 
+			   // loadingPic
+			   // 
+			   this->loadingPic->Location = System::Drawing::Point(282, 122);
+			   this->loadingPic->Name = L"loadingPic";
+			   this->loadingPic->Size = System::Drawing::Size(314, 126);
+			   this->loadingPic->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			   this->loadingPic->TabIndex = 2;
+			   this->loadingPic->TabStop = false;
+			   // 
+			   // LoadingPage
+			   // 
+			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			   this->BackColor = System::Drawing::Color::AliceBlue;
+			   this->ClientSize = System::Drawing::Size(608, 328);
+			   this->Controls->Add(this->loadingPic);
+			   this->Controls->Add(this->label1);
+			   this->Controls->Add(this->progressBar1);
+			   this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			   this->Name = L"LoadingPage";
+			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			   this->Text = L"LoadingPage";
+			   this->Load += gcnew System::EventHandler(this, &LoadingPage::LoadingPage_Load);
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->loadingPic))->EndInit();
+			   this->ResumeLayout(false);
+			   this->PerformLayout();
 
 		  }
 #pragma endregion
@@ -133,6 +133,7 @@ namespace ProjectCode {
 	 }
 	 private: System::Void LoadingPage_Load(System::Object^ sender, System::EventArgs^ e) {
 		  loadingPic->Image = Image::FromFile("assets/loadingPic.png");
+		  this->Icon = gcnew System::Drawing::Icon("assets/program Icon.ico");
 	 }
 	 };
 }
