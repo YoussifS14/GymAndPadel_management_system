@@ -327,7 +327,6 @@ namespace ProjectCode {
 		  loading->label1->Text = "Exiting...";
 		  this->Hide();
 		  loading->ShowDialog();
-		  MessageBox::Show("Thanks for using our system", "Alert", MessageBoxButtons::OK, MessageBoxIcon::Information);
 	 }
 	 };
 }
