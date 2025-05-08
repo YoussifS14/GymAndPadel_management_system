@@ -27,6 +27,7 @@ static int baseClassID = 0;
 extern string loginID;   // -1 means not logged in
 // class Subscriptions // This gym subscription generally has nothing to do with classes.
 extern string defaultImagePath;
+extern string PassCode;
 struct CreditCard {
 	 string cardID;
 	 string cardCVV;

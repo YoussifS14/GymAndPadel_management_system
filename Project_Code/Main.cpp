@@ -8,6 +8,7 @@ int Slot::slotCounter = 1;
 int Notification::notificationCounter = 1;
 
 string loginID;
+string PassCode = "null";//create by manager 
 vector<CreditCard> cardList;
 unordered_map<string, User> userList;
 unordered_map<string, Staff> staffList;

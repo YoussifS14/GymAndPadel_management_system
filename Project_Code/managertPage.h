@@ -21,6 +21,7 @@ namespace ProjectCode {
 
 	 private: System::Windows::Forms::FlowLayoutPanel^ MonthReport;
 	 private: System::Windows::Forms::Panel^ searchUser;
+	 private: System::Windows::Forms::Button^ button7;
 
 			System::Windows::Forms::Panel^ creatClassPanel; // To hold panel1 from CreatClassForm
 	 public:
@@ -116,6 +117,7 @@ namespace ProjectCode {
 				 this->button8 = (gcnew System::Windows::Forms::Button());
 				 this->classGridView = (gcnew System::Windows::Forms::DataGridView());
 				 this->profile_pn = (gcnew System::Windows::Forms::Panel());
+				 this->button7 = (gcnew System::Windows::Forms::Button());
 				 this->LogOutbutton = (gcnew System::Windows::Forms::Button());
 				 this->button1 = (gcnew System::Windows::Forms::Button());
 				 this->button4 = (gcnew System::Windows::Forms::Button());
@@ -180,7 +182,7 @@ namespace ProjectCode {
 				 this->userInfoPanel->AutoScroll = true;
 				 this->userInfoPanel->BackColor = System::Drawing::SystemColors::Control;
 				 this->userInfoPanel->FlowDirection = System::Windows::Forms::FlowDirection::TopDown;
-				 this->userInfoPanel->Location = System::Drawing::Point(73, 144);
+				 this->userInfoPanel->Location = System::Drawing::Point(103, 160);
 				 this->userInfoPanel->Margin = System::Windows::Forms::Padding(4);
 				 this->userInfoPanel->Name = L"userInfoPanel";
 				 this->userInfoPanel->Size = System::Drawing::Size(811, 565);
@@ -192,7 +194,7 @@ namespace ProjectCode {
 				 this->userIDTextBox->BackColor = System::Drawing::SystemColors::Control;
 				 this->userIDTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					  static_cast<System::Byte>(0)));
-				 this->userIDTextBox->Location = System::Drawing::Point(217, 19);
+				 this->userIDTextBox->Location = System::Drawing::Point(279, 20);
 				 this->userIDTextBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 				 this->userIDTextBox->Name = L"userIDTextBox";
 				 this->userIDTextBox->Size = System::Drawing::Size(200, 34);
@@ -338,6 +340,7 @@ namespace ProjectCode {
 				 // profile_pn
 				 // 
 				 this->profile_pn->BackColor = System::Drawing::SystemColors::Control;
+				 this->profile_pn->Controls->Add(this->button7);
 				 this->profile_pn->Controls->Add(this->LogOutbutton);
 				 this->profile_pn->Controls->Add(this->button1);
 				 this->profile_pn->Controls->Add(this->button4);
@@ -353,12 +356,26 @@ namespace ProjectCode {
 				 this->profile_pn->TabIndex = 1;
 				 this->profile_pn->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &managertPage::profile_pn_Paint);
 				 // 
+				 // button7
+				 // 
+				 this->button7->Dock = System::Windows::Forms::DockStyle::Top;
+				 this->button7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					  static_cast<System::Byte>(0)));
+				 this->button7->Location = System::Drawing::Point(0, 563);
+				 this->button7->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+				 this->button7->Name = L"button7";
+				 this->button7->Size = System::Drawing::Size(297, 64);
+				 this->button7->TabIndex = 12;
+				 this->button7->Text = L"Genetate Code";
+				 this->button7->UseVisualStyleBackColor = true;
+				 this->button7->Click += gcnew System::EventHandler(this, &managertPage::button7_Click);
+				 // 
 				 // LogOutbutton
 				 // 
-				 this->LogOutbutton->Dock = System::Windows::Forms::DockStyle::Top;
+				 this->LogOutbutton->Dock = System::Windows::Forms::DockStyle::Bottom;
 				 this->LogOutbutton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					  static_cast<System::Byte>(0)));
-				 this->LogOutbutton->Location = System::Drawing::Point(0, 648);
+				 this->LogOutbutton->Location = System::Drawing::Point(0, 665);
 				 this->LogOutbutton->Name = L"LogOutbutton";
 				 this->LogOutbutton->Size = System::Drawing::Size(297, 73);
 				 this->LogOutbutton->TabIndex = 0;
@@ -371,10 +388,10 @@ namespace ProjectCode {
 				 this->button1->Dock = System::Windows::Forms::DockStyle::Top;
 				 this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					  static_cast<System::Byte>(0)));
-				 this->button1->Location = System::Drawing::Point(0, 567);
+				 this->button1->Location = System::Drawing::Point(0, 499);
 				 this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 				 this->button1->Name = L"button1";
-				 this->button1->Size = System::Drawing::Size(297, 81);
+				 this->button1->Size = System::Drawing::Size(297, 64);
 				 this->button1->TabIndex = 4;
 				 this->button1->Text = L"Delete User";
 				 this->button1->UseVisualStyleBackColor = true;
@@ -385,10 +402,10 @@ namespace ProjectCode {
 				 this->button4->Dock = System::Windows::Forms::DockStyle::Top;
 				 this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					  static_cast<System::Byte>(0)));
-				 this->button4->Location = System::Drawing::Point(0, 468);
+				 this->button4->Location = System::Drawing::Point(0, 417);
 				 this->button4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 				 this->button4->Name = L"button4";
-				 this->button4->Size = System::Drawing::Size(297, 99);
+				 this->button4->Size = System::Drawing::Size(297, 82);
 				 this->button4->TabIndex = 1;
 				 this->button4->Text = L"Generate Monthly Report";
 				 this->button4->UseVisualStyleBackColor = true;
@@ -399,10 +416,10 @@ namespace ProjectCode {
 				 this->button3->Dock = System::Windows::Forms::DockStyle::Top;
 				 this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					  static_cast<System::Byte>(0)));
-				 this->button3->Location = System::Drawing::Point(0, 382);
+				 this->button3->Location = System::Drawing::Point(0, 348);
 				 this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 				 this->button3->Name = L"button3";
-				 this->button3->Size = System::Drawing::Size(297, 86);
+				 this->button3->Size = System::Drawing::Size(297, 69);
 				 this->button3->TabIndex = 2;
 				 this->button3->Text = L"Create Class";
 				 this->button3->UseVisualStyleBackColor = true;
@@ -413,10 +430,10 @@ namespace ProjectCode {
 				 this->button2->Dock = System::Windows::Forms::DockStyle::Top;
 				 this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					  static_cast<System::Byte>(0)));
-				 this->button2->Location = System::Drawing::Point(0, 292);
+				 this->button2->Location = System::Drawing::Point(0, 275);
 				 this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 				 this->button2->Name = L"button2";
-				 this->button2->Size = System::Drawing::Size(297, 90);
+				 this->button2->Size = System::Drawing::Size(297, 73);
 				 this->button2->TabIndex = 3;
 				 this->button2->Text = L"Display Coach Classes";
 				 this->button2->UseVisualStyleBackColor = true;
@@ -430,7 +447,7 @@ namespace ProjectCode {
 				 this->button6->Location = System::Drawing::Point(0, 204);
 				 this->button6->Margin = System::Windows::Forms::Padding(4);
 				 this->button6->Name = L"button6";
-				 this->button6->Size = System::Drawing::Size(297, 88);
+				 this->button6->Size = System::Drawing::Size(297, 71);
 				 this->button6->TabIndex = 8;
 				 this->button6->Text = L"Search User By ID";
 				 this->button6->UseVisualStyleBackColor = true;
@@ -463,7 +480,7 @@ namespace ProjectCode {
 				 // pictureBox1
 				 // 
 				 this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-				 this->pictureBox1->Location = System::Drawing::Point(16, 11);
+				 this->pictureBox1->Location = System::Drawing::Point(42, 11);
 				 this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 				 this->pictureBox1->Name = L"pictureBox1";
 				 this->pictureBox1->Size = System::Drawing::Size(213, 146);
@@ -482,6 +499,7 @@ namespace ProjectCode {
 				 this->Controls->Add(this->MainPg_pn);
 				 this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 				 this->Name = L"managertPage";
+				 this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 				 this->Text = L"Manager Page";
 				 this->Load += gcnew System::EventHandler(this, &managertPage::managertPage_Load);
 				 this->MainPg_pn->ResumeLayout(false);
@@ -832,6 +850,7 @@ namespace ProjectCode {
 			   searchUser->BringToFront();
 			   actionButton->Text = L"Delete";
 			   userIDTextBox->Text = "";
+			   label1->Text = "User ID";
 
 		  }
 
@@ -842,20 +861,21 @@ namespace ProjectCode {
 
 			   actionButton->Text = L"Search";
 			   userIDTextBox->Text = "";
+			   label1->Text = "User ID";
 
 		  }
 
 		  System::Void actionButton_Click(System::Object^ sender, System::EventArgs^ e) {
+
 			   System::String^ userIDText = userIDTextBox->Text->Trim();
+			   if (userIDTextBox->Text == "" && actionButton->Text == L"Generate")
+			   {
+					MessageBox::Show("Please enter a code; it can't be left empty.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					return;
+			   }
 			   if (String::IsNullOrEmpty(userIDText)) {
 					userInfoPanel->Controls->Clear();
-					Label^ errorLabel = gcnew Label();
-					errorLabel->AutoSize = true;
-					errorLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
-					errorLabel->ForeColor = Color::Red;
-					errorLabel->Text = L"Please enter a user ID.";
-					userInfoPanel->Controls->Add(errorLabel);
-
+					MessageBox::Show("Please enter a valid user ID.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 					return;
 			   }
 
@@ -871,6 +891,12 @@ namespace ProjectCode {
 					SearchUserByID(userIDText, userInfoPanel);
 					userInfoPanel->Visible = true;
 
+			   }
+			   else if (actionButton->Text == L"Generate") {
+
+					PassCode = msclr::interop::marshal_as<std::string>(userIDTextBox->Text);
+					Clipboard::SetText(userIDTextBox->Text);
+					MessageBox::Show("Code has been generated\nSave the code to register a new staff.\n(It is in the clipboard.)", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   }
 
 
@@ -1027,6 +1053,7 @@ namespace ProjectCode {
 
 			   loadpic(pictureBox1);
 			   MakePictureCircular(pictureBox1);
+			   MainPg_pn->Controls->Clear();
 		  }
 		  System::Void panel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {}
 		  System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {}
@@ -1037,6 +1064,14 @@ namespace ProjectCode {
 		  loadingPage->ShowDialog();
 		  loginID = "";
 		  this->Close();
+	 }
+	 private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
+		  MainPg_pn->Controls->Clear();
+		  MainPg_pn->Controls->Add(searchUser);
+		  searchUser->BringToFront();
+		  actionButton->Text = L"Generate";
+		  userIDTextBox->Text = "";
+		  label1->Text = "Your Code->";
 	 }
 	 };
 }
