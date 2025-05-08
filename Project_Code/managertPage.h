@@ -101,21 +101,21 @@ namespace ProjectCode {
 			{
 				 System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(managertPage::typeid));
 				 this->MainPg_pn = (gcnew System::Windows::Forms::Panel());
-				 this->searchUser = (gcnew System::Windows::Forms::Panel());
-				 this->actionButton = (gcnew System::Windows::Forms::Button());
-				 this->userInfoPanel = (gcnew System::Windows::Forms::FlowLayoutPanel());
-				 this->userIDTextBox = (gcnew System::Windows::Forms::TextBox());
-				 this->label1 = (gcnew System::Windows::Forms::Label());
-				 this->Report_pn = (gcnew System::Windows::Forms::Panel());
-				 this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-				 this->button5 = (gcnew System::Windows::Forms::Button());
-				 this->MonthReport = (gcnew System::Windows::Forms::FlowLayoutPanel());
-				 this->CreateCls = (gcnew System::Windows::Forms::Panel());
 				 this->searchCoach = (gcnew System::Windows::Forms::Panel());
 				 this->coachInfoLabel = (gcnew System::Windows::Forms::Label());
 				 this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 				 this->button8 = (gcnew System::Windows::Forms::Button());
 				 this->classGridView = (gcnew System::Windows::Forms::DataGridView());
+				 this->Report_pn = (gcnew System::Windows::Forms::Panel());
+				 this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+				 this->button5 = (gcnew System::Windows::Forms::Button());
+				 this->MonthReport = (gcnew System::Windows::Forms::FlowLayoutPanel());
+				 this->searchUser = (gcnew System::Windows::Forms::Panel());
+				 this->actionButton = (gcnew System::Windows::Forms::Button());
+				 this->userInfoPanel = (gcnew System::Windows::Forms::FlowLayoutPanel());
+				 this->userIDTextBox = (gcnew System::Windows::Forms::TextBox());
+				 this->label1 = (gcnew System::Windows::Forms::Label());
+				 this->CreateCls = (gcnew System::Windows::Forms::Panel());
 				 this->profile_pn = (gcnew System::Windows::Forms::Panel());
 				 this->button7 = (gcnew System::Windows::Forms::Button());
 				 this->LogOutbutton = (gcnew System::Windows::Forms::Button());
@@ -128,10 +128,10 @@ namespace ProjectCode {
 				 this->AccName = (gcnew System::Windows::Forms::Label());
 				 this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 				 this->MainPg_pn->SuspendLayout();
-				 this->searchUser->SuspendLayout();
-				 this->Report_pn->SuspendLayout();
 				 this->searchCoach->SuspendLayout();
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classGridView))->BeginInit();
+				 this->Report_pn->SuspendLayout();
+				 this->searchUser->SuspendLayout();
 				 this->profile_pn->SuspendLayout();
 				 this->panel2->SuspendLayout();
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -139,10 +139,10 @@ namespace ProjectCode {
 				 // 
 				 // MainPg_pn
 				 // 
-				 this->MainPg_pn->Controls->Add(this->searchUser);
-				 this->MainPg_pn->Controls->Add(this->Report_pn);
-				 this->MainPg_pn->Controls->Add(this->CreateCls);
 				 this->MainPg_pn->Controls->Add(this->searchCoach);
+				 this->MainPg_pn->Controls->Add(this->Report_pn);
+				 this->MainPg_pn->Controls->Add(this->searchUser);
+				 this->MainPg_pn->Controls->Add(this->CreateCls);
 				 this->MainPg_pn->Dock = System::Windows::Forms::DockStyle::Right;
 				 this->MainPg_pn->Location = System::Drawing::Point(296, 0);
 				 this->MainPg_pn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -150,130 +150,6 @@ namespace ProjectCode {
 				 this->MainPg_pn->Size = System::Drawing::Size(977, 738);
 				 this->MainPg_pn->TabIndex = 3;
 				 this->MainPg_pn->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &managertPage::MainMenu_pn_Paint);
-				 // 
-				 // searchUser
-				 // 
-				 this->searchUser->BackColor = System::Drawing::SystemColors::Control;
-				 this->searchUser->Controls->Add(this->actionButton);
-				 this->searchUser->Controls->Add(this->userInfoPanel);
-				 this->searchUser->Controls->Add(this->userIDTextBox);
-				 this->searchUser->Controls->Add(this->label1);
-				 this->searchUser->Dock = System::Windows::Forms::DockStyle::Fill;
-				 this->searchUser->Location = System::Drawing::Point(0, 0);
-				 this->searchUser->Margin = System::Windows::Forms::Padding(4);
-				 this->searchUser->Name = L"searchUser";
-				 this->searchUser->Size = System::Drawing::Size(977, 738);
-				 this->searchUser->TabIndex = 15;
-				 // 
-				 // actionButton
-				 // 
-				 this->actionButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					  static_cast<System::Byte>(0)));
-				 this->actionButton->Location = System::Drawing::Point(700, 19);
-				 this->actionButton->Margin = System::Windows::Forms::Padding(4);
-				 this->actionButton->Name = L"actionButton";
-				 this->actionButton->Size = System::Drawing::Size(146, 47);
-				 this->actionButton->TabIndex = 11;
-				 this->actionButton->UseVisualStyleBackColor = true;
-				 this->actionButton->Click += gcnew System::EventHandler(this, &managertPage::actionButton_Click);
-				 // 
-				 // userInfoPanel
-				 // 
-				 this->userInfoPanel->AutoScroll = true;
-				 this->userInfoPanel->BackColor = System::Drawing::SystemColors::Control;
-				 this->userInfoPanel->FlowDirection = System::Windows::Forms::FlowDirection::TopDown;
-				 this->userInfoPanel->Location = System::Drawing::Point(103, 160);
-				 this->userInfoPanel->Margin = System::Windows::Forms::Padding(4);
-				 this->userInfoPanel->Name = L"userInfoPanel";
-				 this->userInfoPanel->Size = System::Drawing::Size(811, 565);
-				 this->userInfoPanel->TabIndex = 8;
-				 this->userInfoPanel->WrapContents = false;
-				 // 
-				 // userIDTextBox
-				 // 
-				 this->userIDTextBox->BackColor = System::Drawing::SystemColors::Control;
-				 this->userIDTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					  static_cast<System::Byte>(0)));
-				 this->userIDTextBox->Location = System::Drawing::Point(279, 20);
-				 this->userIDTextBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-				 this->userIDTextBox->Name = L"userIDTextBox";
-				 this->userIDTextBox->Size = System::Drawing::Size(200, 34);
-				 this->userIDTextBox->TabIndex = 10;
-				 // 
-				 // label1
-				 // 
-				 this->label1->AutoSize = true;
-				 this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
-					  System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-				 this->label1->Location = System::Drawing::Point(82, 20);
-				 this->label1->Name = L"label1";
-				 this->label1->Size = System::Drawing::Size(111, 35);
-				 this->label1->TabIndex = 9;
-				 this->label1->Text = L"User ID";
-				 // 
-				 // Report_pn
-				 // 
-				 this->Report_pn->Controls->Add(this->comboBox1);
-				 this->Report_pn->Controls->Add(this->button5);
-				 this->Report_pn->Controls->Add(this->MonthReport);
-				 this->Report_pn->Dock = System::Windows::Forms::DockStyle::Fill;
-				 this->Report_pn->Location = System::Drawing::Point(0, 0);
-				 this->Report_pn->Name = L"Report_pn";
-				 this->Report_pn->Size = System::Drawing::Size(977, 738);
-				 this->Report_pn->TabIndex = 12;
-				 // 
-				 // comboBox1
-				 // 
-				 this->comboBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					  static_cast<System::Byte>(0)));
-				 this->comboBox1->FormattingEnabled = true;
-				 this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(12) {
-					  L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
-						   L"9", L"10", L"11", L"12"
-				 });
-				 this->comboBox1->Location = System::Drawing::Point(301, 65);
-				 this->comboBox1->Margin = System::Windows::Forms::Padding(4);
-				 this->comboBox1->Name = L"comboBox1";
-				 this->comboBox1->Size = System::Drawing::Size(273, 30);
-				 this->comboBox1->TabIndex = 6;
-				 this->comboBox1->Text = L"Choose month";
-				 this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &managertPage::comboBox1_SelectedIndexChanged);
-				 // 
-				 // button5
-				 // 
-				 this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					  static_cast<System::Byte>(0)));
-				 this->button5->Location = System::Drawing::Point(777, 53);
-				 this->button5->Margin = System::Windows::Forms::Padding(4);
-				 this->button5->Name = L"button5";
-				 this->button5->Size = System::Drawing::Size(120, 42);
-				 this->button5->TabIndex = 7;
-				 this->button5->Text = L"Submit";
-				 this->button5->UseVisualStyleBackColor = true;
-				 this->button5->Click += gcnew System::EventHandler(this, &managertPage::button5_Click_1);
-				 // 
-				 // MonthReport
-				 // 
-				 this->MonthReport->AutoScroll = true;
-				 this->MonthReport->BackColor = System::Drawing::SystemColors::Control;
-				 this->MonthReport->FlowDirection = System::Windows::Forms::FlowDirection::TopDown;
-				 this->MonthReport->Location = System::Drawing::Point(73, 156);
-				 this->MonthReport->Margin = System::Windows::Forms::Padding(4);
-				 this->MonthReport->Name = L"MonthReport";
-				 this->MonthReport->Size = System::Drawing::Size(811, 565);
-				 this->MonthReport->TabIndex = 9;
-				 this->MonthReport->WrapContents = false;
-				 // 
-				 // CreateCls
-				 // 
-				 this->CreateCls->BackColor = System::Drawing::SystemColors::Control;
-				 this->CreateCls->Dock = System::Windows::Forms::DockStyle::Fill;
-				 this->CreateCls->Location = System::Drawing::Point(0, 0);
-				 this->CreateCls->Margin = System::Windows::Forms::Padding(4);
-				 this->CreateCls->Name = L"CreateCls";
-				 this->CreateCls->Size = System::Drawing::Size(977, 738);
-				 this->CreateCls->TabIndex = 9;
-				 this->CreateCls->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &managertPage::panel1_Paint);
 				 // 
 				 // searchCoach
 				 // 
@@ -286,6 +162,7 @@ namespace ProjectCode {
 				 this->searchCoach->Name = L"searchCoach";
 				 this->searchCoach->Size = System::Drawing::Size(977, 738);
 				 this->searchCoach->TabIndex = 14;
+				 this->searchCoach->Leave += gcnew System::EventHandler(this, &managertPage::searchCoach_Leave);
 				 // 
 				 // coachInfoLabel
 				 // 
@@ -336,6 +213,133 @@ namespace ProjectCode {
 				 this->classGridView->RowTemplate->Height = 40;
 				 this->classGridView->Size = System::Drawing::Size(977, 526);
 				 this->classGridView->TabIndex = 12;
+				 // 
+				 // Report_pn
+				 // 
+				 this->Report_pn->Controls->Add(this->comboBox1);
+				 this->Report_pn->Controls->Add(this->button5);
+				 this->Report_pn->Controls->Add(this->MonthReport);
+				 this->Report_pn->Dock = System::Windows::Forms::DockStyle::Fill;
+				 this->Report_pn->Location = System::Drawing::Point(0, 0);
+				 this->Report_pn->Name = L"Report_pn";
+				 this->Report_pn->Size = System::Drawing::Size(977, 738);
+				 this->Report_pn->TabIndex = 12;
+				 this->Report_pn->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &managertPage::Report_pn_Paint);
+				 this->Report_pn->Leave += gcnew System::EventHandler(this, &managertPage::Report_pn_Leave);
+				 // 
+				 // comboBox1
+				 // 
+				 this->comboBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+					  static_cast<System::Byte>(0)));
+				 this->comboBox1->FormattingEnabled = true;
+				 this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(12) {
+					  L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
+						   L"9", L"10", L"11", L"12"
+				 });
+				 this->comboBox1->Location = System::Drawing::Point(301, 65);
+				 this->comboBox1->Margin = System::Windows::Forms::Padding(4);
+				 this->comboBox1->Name = L"comboBox1";
+				 this->comboBox1->Size = System::Drawing::Size(273, 30);
+				 this->comboBox1->TabIndex = 6;
+				 this->comboBox1->Text = L"Choose month";
+				 this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &managertPage::comboBox1_SelectedIndexChanged);
+				 // 
+				 // button5
+				 // 
+				 this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+					  static_cast<System::Byte>(0)));
+				 this->button5->Location = System::Drawing::Point(777, 53);
+				 this->button5->Margin = System::Windows::Forms::Padding(4);
+				 this->button5->Name = L"button5";
+				 this->button5->Size = System::Drawing::Size(120, 42);
+				 this->button5->TabIndex = 7;
+				 this->button5->Text = L"Submit";
+				 this->button5->UseVisualStyleBackColor = true;
+				 this->button5->Click += gcnew System::EventHandler(this, &managertPage::button5_Click_1);
+				 // 
+				 // MonthReport
+				 // 
+				 this->MonthReport->AutoScroll = true;
+				 this->MonthReport->BackColor = System::Drawing::SystemColors::Control;
+				 this->MonthReport->FlowDirection = System::Windows::Forms::FlowDirection::TopDown;
+				 this->MonthReport->Location = System::Drawing::Point(73, 156);
+				 this->MonthReport->Margin = System::Windows::Forms::Padding(4);
+				 this->MonthReport->Name = L"MonthReport";
+				 this->MonthReport->Size = System::Drawing::Size(811, 565);
+				 this->MonthReport->TabIndex = 9;
+				 this->MonthReport->WrapContents = false;
+				 // 
+				 // searchUser
+				 // 
+				 this->searchUser->BackColor = System::Drawing::SystemColors::Control;
+				 this->searchUser->Controls->Add(this->actionButton);
+				 this->searchUser->Controls->Add(this->userInfoPanel);
+				 this->searchUser->Controls->Add(this->userIDTextBox);
+				 this->searchUser->Controls->Add(this->label1);
+				 this->searchUser->Dock = System::Windows::Forms::DockStyle::Fill;
+				 this->searchUser->Location = System::Drawing::Point(0, 0);
+				 this->searchUser->Margin = System::Windows::Forms::Padding(4);
+				 this->searchUser->Name = L"searchUser";
+				 this->searchUser->Size = System::Drawing::Size(977, 738);
+				 this->searchUser->TabIndex = 15;
+				 this->searchUser->Leave += gcnew System::EventHandler(this, &managertPage::searchUser_Leave);
+				 // 
+				 // actionButton
+				 // 
+				 this->actionButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+					  static_cast<System::Byte>(0)));
+				 this->actionButton->Location = System::Drawing::Point(700, 19);
+				 this->actionButton->Margin = System::Windows::Forms::Padding(4);
+				 this->actionButton->Name = L"actionButton";
+				 this->actionButton->Size = System::Drawing::Size(146, 47);
+				 this->actionButton->TabIndex = 11;
+				 this->actionButton->UseVisualStyleBackColor = true;
+				 this->actionButton->Click += gcnew System::EventHandler(this, &managertPage::actionButton_Click);
+				 // 
+				 // userInfoPanel
+				 // 
+				 this->userInfoPanel->AutoScroll = true;
+				 this->userInfoPanel->BackColor = System::Drawing::SystemColors::Control;
+				 this->userInfoPanel->FlowDirection = System::Windows::Forms::FlowDirection::TopDown;
+				 this->userInfoPanel->Location = System::Drawing::Point(103, 160);
+				 this->userInfoPanel->Margin = System::Windows::Forms::Padding(4);
+				 this->userInfoPanel->Name = L"userInfoPanel";
+				 this->userInfoPanel->Size = System::Drawing::Size(811, 565);
+				 this->userInfoPanel->TabIndex = 8;
+				 this->userInfoPanel->WrapContents = false;
+				 // 
+				 // userIDTextBox
+				 // 
+				 this->userIDTextBox->BackColor = System::Drawing::SystemColors::Control;
+				 this->userIDTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					  static_cast<System::Byte>(0)));
+				 this->userIDTextBox->Location = System::Drawing::Point(279, 20);
+				 this->userIDTextBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+				 this->userIDTextBox->Name = L"userIDTextBox";
+				 this->userIDTextBox->Size = System::Drawing::Size(200, 34);
+				 this->userIDTextBox->TabIndex = 10;
+				 // 
+				 // label1
+				 // 
+				 this->label1->AutoSize = true;
+				 this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+					  System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+				 this->label1->Location = System::Drawing::Point(82, 20);
+				 this->label1->Name = L"label1";
+				 this->label1->Size = System::Drawing::Size(111, 35);
+				 this->label1->TabIndex = 9;
+				 this->label1->Text = L"User ID";
+				 // 
+				 // CreateCls
+				 // 
+				 this->CreateCls->BackColor = System::Drawing::SystemColors::Control;
+				 this->CreateCls->Dock = System::Windows::Forms::DockStyle::Fill;
+				 this->CreateCls->Location = System::Drawing::Point(0, 0);
+				 this->CreateCls->Margin = System::Windows::Forms::Padding(4);
+				 this->CreateCls->Name = L"CreateCls";
+				 this->CreateCls->Size = System::Drawing::Size(977, 738);
+				 this->CreateCls->TabIndex = 9;
+				 this->CreateCls->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &managertPage::panel1_Paint);
 				 // 
 				 // profile_pn
 				 // 
@@ -503,12 +507,12 @@ namespace ProjectCode {
 				 this->Text = L"Manager Page";
 				 this->Load += gcnew System::EventHandler(this, &managertPage::managertPage_Load);
 				 this->MainPg_pn->ResumeLayout(false);
-				 this->searchUser->ResumeLayout(false);
-				 this->searchUser->PerformLayout();
-				 this->Report_pn->ResumeLayout(false);
 				 this->searchCoach->ResumeLayout(false);
 				 this->searchCoach->PerformLayout();
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classGridView))->EndInit();
+				 this->Report_pn->ResumeLayout(false);
+				 this->searchUser->ResumeLayout(false);
+				 this->searchUser->PerformLayout();
 				 this->profile_pn->ResumeLayout(false);
 				 this->panel2->ResumeLayout(false);
 				 this->panel2->PerformLayout();
@@ -930,17 +934,10 @@ namespace ProjectCode {
 			   textBox2->Clear();*/
 			   MainPg_pn->Controls->Clear();
 			   MainPg_pn->Controls->Add(searchCoach);
-			   MainPg_pn->Visible = true;
 			   searchCoach->BringToFront();
 		  }
 
 		  System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
-			   userIDTextBox->Visible = false;
-			   label1->Visible = false;
-			   actionButton->Visible = false;
-			   comboBox1->Visible = false;
-			   button5->Visible = false;
-			   userInfoPanel->Visible = false;
 			   System::String^ coachIDText = textBox2->Text->Trim();
 			   if (String::IsNullOrEmpty(coachIDText)) {
 					MessageBox::Show("Please enter a valid Coach ID in the text box.",
@@ -1072,6 +1069,22 @@ namespace ProjectCode {
 		  actionButton->Text = L"Generate";
 		  userIDTextBox->Text = "";
 		  label1->Text = "Your Code->";
+	 }
+
+	 private: System::Void Report_pn_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+		  ///  MonthReport->Controls->Clear();
+	 }
+	 private: System::Void Report_pn_Leave(System::Object^ sender, System::EventArgs^ e) {
+		  MonthReport->Controls->Clear();
+	 }
+	 private: System::Void searchUser_Leave(System::Object^ sender, System::EventArgs^ e) {
+		  userInfoPanel->Controls->Clear();
+	 }
+	 private: System::Void searchCoach_Leave(System::Object^ sender, System::EventArgs^ e) {
+		  coachInfoLabel->Text = "";
+		  classGridView->Rows->Clear();
+		  classGridView->Columns->Clear();
+		  textBox2->Clear();
 	 }
 	 };
 }
