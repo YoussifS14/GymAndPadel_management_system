@@ -1449,6 +1449,12 @@ namespace ProjectCode {
 	 private: System::Void ListOfClasses_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	 }
 	 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		  //calc days before subscription end
+		  int remainingDays = userList[loginID].subscription.getRemainingDays();
+		  if (remainingDays > 15) {
+			   MessageBox::Show("You can not renew your subscription now, you have " + remainingDays + " days left", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			   return;
+		  }
 
 		  MainPage->Controls->Clear();
 		  MainPage->Controls->Add(RenewPG);
