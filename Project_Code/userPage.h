@@ -1142,6 +1142,17 @@ namespace ProjectCode {
 		  richTextOutput->Clear();
 	 }
 
+	 string convertYMDtoMDY(const string& ymd) {
+				int year, month, day;
+				if (sscanf(ymd.c_str(), "%d/%d/%d", &year, &month, &day) != 3) {
+					return ""; // or handle error
+				}
+
+				char buffer[11];
+				snprintf(buffer, sizeof(buffer), "%02d/%02d/%04d", month, day, year);
+				return string(buffer); // MM/DD/YYYY
+			}
+
 	 private: System::Void btnAddWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
 
 
@@ -1179,6 +1190,24 @@ namespace ProjectCode {
 			   return;
 		  }
 
+		  time_t today = time(0);
+		  string fixedStartDate = convertYMDtoMDY(userList[loginID].subscription.getStartDate());
+		  string fixedEndDate = convertYMDtoMDY(userList[loginID].subscription.getEndDate());
+
+		  time_t subStart = getTime_t(fixedStartDate);
+		  time_t subEnd = getTime_t(fixedEndDate);
+
+
+
+		  if (fixedStartDate.empty() || fixedEndDate.empty()) {
+			  MessageBox::Show("Invalid subscription date format.", "Date Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			  return;
+		  }
+		  if (today < subStart || today > subEnd) {
+			  MessageBox::Show("Your subscription is expired. Please renew to add workouts.",
+				  "Subscription Inactive", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			  return;
+		  }
 
 		  workoutManager.loadFromFile("Data/workouts.csv", userList);
 
