@@ -20,15 +20,20 @@
     <ClInclude Include="userExpired.h" />
     <ClInclude Include="MSGsShow.h" />
     <ClInclude Include="MSGlabel.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="AccPic.Image.png" />
     <Image Include="Image1.png" />
+    <Image Include="assets\program Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\staffData.csv" />
     <None Include="Data\usrData.csv" />
     <None Include="Data\gymClasses.csv" />
     <None Include="Data\SlotsData.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
   </ItemGroup>
 </Project>

@@ -110,6 +110,8 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -153,6 +155,7 @@
     <ClInclude Include="MSGsShow.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="sighup.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -226,7 +229,11 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="AccPic.Image.png" />
+    <Image Include="assets\program Icon.ico" />
     <Image Include="Image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
