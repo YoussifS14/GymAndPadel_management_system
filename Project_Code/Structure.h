@@ -653,12 +653,7 @@ public:
 		  }
 		  return false;
 	 }
-	 static string generateID() {
-		  extern unordered_map<string, Staff> staffList;
-		  string ID = "stf-";
-		  ID += to_string(1001 + staffList.size());
-		  return ID;
-	 }
+
 	 bool registerStaff(string Name, string Email, string Password, string Phone, string Role, string imagepath = "") {
 		  extern unordered_map<string, Staff> staffList;
 		  extern int baseID;

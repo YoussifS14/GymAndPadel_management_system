@@ -926,6 +926,7 @@ namespace ProjectCode {
             panel3->Visible = true;
             panel1->Visible = false;
             panel2->Visible = false;
+          //  groupBox1->Visible = false;
         }
 
         System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
