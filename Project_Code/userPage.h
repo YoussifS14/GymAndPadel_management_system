@@ -1374,9 +1374,7 @@ namespace ProjectCode {
 			   bool found = false;
 			   for (const auto& workout : it->second) {
 					string workoutType = normalizeWorkoutType(workout.type);
-					/*transform(workoutType.begin(), workoutType.end(), workoutType.begin(), ::tolower);
-					workoutType.erase(remove(workoutType.begin(), workoutType.end(), ' '), workoutType.end())*/;
-
+				
 					Console::WriteLine("Workout Type in file: '{0}'", gcnew String(workout.type.c_str()));
 
 					if (workoutType == normalizedFilterType) {
