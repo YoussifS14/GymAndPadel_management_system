@@ -1074,11 +1074,14 @@ namespace ProjectCode {
 	 private: System::Void Report_pn_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 		  ///  MonthReport->Controls->Clear();
 	 }
-	 private: System::Void Report_pn_Leave(System::Object^ sender, System::EventArgs^ e) {
-		  MonthReport->Controls->Clear();
-	 }
+	
 	 private: System::Void searchUser_Leave(System::Object^ sender, System::EventArgs^ e) {
 		  userInfoPanel->Controls->Clear();
+	 }
+    private: System::Void Report_pn_Leave(System::Object^ sender, System::EventArgs^ e) {
+		 MonthReport->Controls->Clear();
+		 comboBox1->SelectedIndex = -1;
+		 comboBox1->Text = "Choose a month";
 	 }
 	 private: System::Void searchCoach_Leave(System::Object^ sender, System::EventArgs^ e) {
 		  coachInfoLabel->Text = "";
