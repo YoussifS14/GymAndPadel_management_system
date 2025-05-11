@@ -208,8 +208,8 @@ namespace ProjectCode {
 			  // 
 			  this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			  this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
-			  this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			  this->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			  this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			  this->ClientSize = System::Drawing::Size(1273, 739);
 			  this->Controls->Add(this->button1);
 			  this->Controls->Add(this->label1);
