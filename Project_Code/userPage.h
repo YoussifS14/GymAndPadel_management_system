@@ -1066,8 +1066,10 @@ namespace ProjectCode {
 		  MainPage->Controls->Add(GymClass_pg);
 		  GymClass_pg->BringToFront();
 		  ListOfClasses->Controls->Clear();
-		  auto it = gymClassList.begin();
-		  for (; it != gymClassList.end(); it++) {
+		  //auto it = userList[loginID].myClasses.begin(); // list contain gym class key
+		 
+		  auto it = userList[loginID].subscription.getAvailableClasses().begin();;
+		  for (; it != userList[loginID].subscription.getAvailableClasses().end(); it++) {
 
 			   GymPN^ class1 = gcnew GymPN(true);
 			   if (userList[loginID].isClassReserved(it->first) || userList[loginID].isClassWaiting(it->first))
@@ -1142,15 +1144,15 @@ namespace ProjectCode {
 		  richTextOutput->Clear();
 	 }
 
-	 string convertYMDtoMDY(const string& ymd) {
-				int year, month, day;
-				if (sscanf(ymd.c_str(), "%d/%d/%d", &year, &month, &day) != 3) {
-					return ""; // or handle error
-				}
+			string convertYMDtoMDY(const string& ymd) {
+				 int year, month, day;
+				 if (sscanf(ymd.c_str(), "%d/%d/%d", &year, &month, &day) != 3) {
+					  return ""; // or handle error
+				 }
 
-				char buffer[11];
-				snprintf(buffer, sizeof(buffer), "%02d/%02d/%04d", month, day, year);
-				return string(buffer); // MM/DD/YYYY
+				 char buffer[11];
+				 snprintf(buffer, sizeof(buffer), "%02d/%02d/%04d", month, day, year);
+				 return string(buffer); // MM/DD/YYYY
 			}
 
 	 private: System::Void btnAddWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1200,13 +1202,13 @@ namespace ProjectCode {
 
 
 		  if (fixedStartDate.empty() || fixedEndDate.empty()) {
-			  MessageBox::Show("Invalid subscription date format.", "Date Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			  return;
+			   MessageBox::Show("Invalid subscription date format.", "Date Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			   return;
 		  }
 		  if (today < subStart || today > subEnd) {
-			  MessageBox::Show("Your subscription is expired. Please renew to add workouts.",
-				  "Subscription Inactive", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-			  return;
+			   MessageBox::Show("Your subscription is expired. Please renew to add workouts.",
+					"Subscription Inactive", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			   return;
 		  }
 
 		  workoutManager.loadFromFile("Data/workouts.csv", userList);
@@ -1435,6 +1437,7 @@ namespace ProjectCode {
 
 
 		  MainPage->Controls->Clear();
+
 
 	 }
 	 private: System::Void logout_btn_Click(System::Object^ sender, System::EventArgs^ e) {

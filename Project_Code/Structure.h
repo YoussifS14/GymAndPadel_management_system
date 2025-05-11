@@ -177,7 +177,12 @@ public:
 	 bool get_is_VIP() {
 		  return is_VIP;
 	 }
-	 unordered_map<string, GymClasses>getAvailableClasses();
+	 // Fix for the error: 'allowedSubTypes': is not a member of 'System::Int32'
+	 // Ensure that the `gymClass` object is of type `GymClasses` and not mistakenly treated as an integer.
+
+	 // Ensure this is declared globally or in the appropriate scope.
+
+	 unordered_map<string, GymClasses> getAvailableClasses();
 
 	 string calculateEndDate() {
 		  struct tm t;
@@ -724,7 +729,8 @@ public:
 	 string endDate;
 	 float price = 1.0;
 	 int maxMembers; // Maximum number of members allowed in the class
-	 unordered_map<string, User> members; // List of users enrolled in the class	
+	 list <string> members; // List of user IDs enrolled in the class
+	 // unordered_map<string, User> members; // List of users enrolled in the class	
 	 deque<string> waitingList; // List of userIDs on the waiting list
 	 vector<string>allowedSubTypes;
 	 vector<Session> sessions;
@@ -749,6 +755,14 @@ public:
 		  sessions.push_back(session);
 	 }
 
+	 bool memberExist(const string& userID) {
+		  for (const auto& it : members) {
+			   if (it == userID) {
+					return true;
+			   }
+		  }
+		  return false;
+	 }
 
 	 bool isFull() {
 		  return members.size() == maxMembers;

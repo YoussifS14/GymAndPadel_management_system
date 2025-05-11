@@ -239,7 +239,7 @@ namespace ProjectCode {
 					paymentPage->ShowDialog();
 					if (paymentPage->OperationResult) {
 						 // Add the user to the member list
-						 gymClassList[classIDStr].members[loginID] = userList[loginID];
+						 gymClassList[classIDStr].members.push_back(loginID);// = userList[loginID];
 						 userList[loginID].myClasses.push_back(classIDStr);
 						 MessageBox::Show("You have successfully reserved a spot in this class.", "Done", MessageBoxButtons::OK, MessageBoxIcon::Information);
 						 this->Visible = false;
@@ -277,13 +277,13 @@ namespace ProjectCode {
 			   string index = GymClasses::FindIndex(classIDStr);
 			   if (index != "") {
 					// Remove the user from the member list
-					if (gymClassList[classIDStr].members.find(loginID) != gymClassList[classIDStr].members.end()) {
-						 gymClassList[classIDStr].members.erase(loginID);
+					if (gymClassList[classIDStr].memberExist(loginID)) {
+						 gymClassList[classIDStr].members.remove(loginID);
 						 userList[loginID].myClasses.remove(classIDStr);
 						 //add member from waiting list to member list
 						 string newEntered = gymClassList[classIDStr].waitingList.front();
 						 gymClassList[classIDStr].waitingList.pop_front();
-						 gymClassList[classIDStr].members[newEntered] = userList[newEntered];
+						 gymClassList[classIDStr].members.push_back(newEntered);
 						 userList[newEntered].myClasses.push_back(classIDStr);
 						 userList[newEntered].myWaitingList.remove(classIDStr);
 						 string msg = Notification::standardMessage(userList[newEntered], gymClassList[classIDStr].className, 1);

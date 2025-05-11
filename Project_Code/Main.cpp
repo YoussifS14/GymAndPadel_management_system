@@ -156,8 +156,10 @@ void readUserData() {
 			   string classID = myClassStr;
 			   if (gymClassList.find(classID) != gymClassList.end()) {
 					user.myClasses.push_back(classID);
-					gymClassList[classID].members[user.ID] = user; // Add user to the class's member list
+					gymClassList[classID].members.push_back(user.ID); // Add user to the class's member list
+
 			   }
+
 		  }
 		  ss >> user.myWallet;
 		  userList[user.ID] = user;
@@ -496,4 +498,25 @@ bool User::MessagesNotRead() {
 		  }
 	 }
 	 return false;
+}
+
+unordered_map<string, GymClasses> Subscriptions::getAvailableClasses() {
+	 extern unordered_map<string, GymClasses> gymClassList; // Assuming this is defined globally
+	 unordered_map<string, GymClasses> filteredClasses;
+	 string subscriptionType = getType();
+	 bool isVIP = get_is_VIP();
+	 for (auto it = gymClassList.begin(); it != gymClassList.end(); ++it) {
+		  GymClasses& gymClass = it->second;
+		  if (isVIP) {
+			   filteredClasses[gymClass.classID] = gymClass;
+			   continue;
+		  }
+		  for (int i = 0; i < gymClass.allowedSubTypes.size(); i++) {
+			   if (gymClass.allowedSubTypes[i] == subscriptionType) {
+					filteredClasses[gymClass.classID] = gymClass;
+					break;
+			   }
+		  }
+	 }
+	 return filteredClasses;
 }

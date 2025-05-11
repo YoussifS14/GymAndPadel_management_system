@@ -125,6 +125,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttedanceInfo.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="CreatClassForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -174,6 +177,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AttedanceInfo.resx">
+      <DependentUpon>AttedanceInfo.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreatClassForm.resx">
       <DependentUpon>CreatClassForm.h</DependentUpon>
     </EmbeddedResource>

@@ -2,6 +2,7 @@
 #include "Structure.h"
 #include "userExpired.h"
 #include "sighup.h"
+#include "AttedanceInfo.h"
 
 // Note: Ensure Structure.h, userExpired.h, and sighup.h do not include native C++ headers
 // like <exception>, <string>, or <vector> without proper guards. Use #pragma unmanaged/#pragma managed
@@ -56,318 +57,320 @@ namespace ProjectCode {
 		  System::Windows::Forms::Button^ button1; // Search User button
 		  System::ComponentModel::Container^ components;
 
-		  // Flag to track if Display Classes is active for reception
-		  bool isDisplayClassesActive = false;
+	 private: System::Windows::Forms::FlowLayoutPanel^ userAttend;
 
-		  void loadpic(PictureBox^ pic) {
-			   string val = staffList[loginID].PicPath;
-			   if (val != "null")
-					pic->Image = System::Drawing::Image::FromFile(gcnew String(val.c_str()));
-			   else
-					pic->Image = System::Drawing::Image::FromFile(gcnew String(defaultImagePath.c_str()));
-		  }
+			// Flag to track if Display Classes is active for reception
+			bool isDisplayClassesActive = false;
 
-		  void MakePictureCircular(PictureBox^ picBox) {
-			   Bitmap^ bmp = gcnew Bitmap(picBox->Image);
-			   int diameter = Math::Min(bmp->Width, bmp->Height);
-			   Bitmap^ circularBmp = gcnew Bitmap(diameter, diameter);
-			   Graphics^ g = Graphics::FromImage(circularBmp);
-			   g->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::AntiAlias;
-			   GraphicsPath^ path = gcnew GraphicsPath();
-			   path->AddEllipse(0, 0, diameter, diameter);
-			   g->SetClip(path);
-			   int offsetX = (bmp->Width - diameter) / 2;
-			   int offsetY = (bmp->Height - diameter) / 2;
-			   g->DrawImage(bmp, -offsetX, -offsetY);
-			   picBox->Image = circularBmp;
-		  }
+			void loadpic(PictureBox^ pic) {
+				 string val = staffList[loginID].PicPath;
+				 if (val != "null")
+					  pic->Image = System::Drawing::Image::FromFile(gcnew String(val.c_str()));
+				 else
+					  pic->Image = System::Drawing::Image::FromFile(gcnew String(defaultImagePath.c_str()));
+			}
 
-		  void SearchUserByID(System::String^ userIDText, System::Windows::Forms::FlowLayoutPanel^ infoPanel) {
-			   extern unordered_map<std::string, User> userList;
-			   System::String^ trimmedID = userIDText->Trim();
-			   infoPanel->Controls->Clear();
+			void MakePictureCircular(PictureBox^ picBox) {
+				 Bitmap^ bmp = gcnew Bitmap(picBox->Image);
+				 int diameter = Math::Min(bmp->Width, bmp->Height);
+				 Bitmap^ circularBmp = gcnew Bitmap(diameter, diameter);
+				 Graphics^ g = Graphics::FromImage(circularBmp);
+				 g->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::AntiAlias;
+				 GraphicsPath^ path = gcnew GraphicsPath();
+				 path->AddEllipse(0, 0, diameter, diameter);
+				 g->SetClip(path);
+				 int offsetX = (bmp->Width - diameter) / 2;
+				 int offsetY = (bmp->Height - diameter) / 2;
+				 g->DrawImage(bmp, -offsetX, -offsetY);
+				 picBox->Image = circularBmp;
+			}
 
-			   if (String::IsNullOrEmpty(trimmedID)) {
-					Label^ errorLabel = gcnew Label();
-					errorLabel->AutoSize = true;
-					errorLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
-					errorLabel->ForeColor = Color::Red;
-					errorLabel->Text = L"Please enter a valid user ID.";
-					infoPanel->Controls->Add(errorLabel);
-					return;
-			   }
+			void SearchUserByID(System::String^ userIDText, System::Windows::Forms::FlowLayoutPanel^ infoPanel) {
+				 extern unordered_map<std::string, User> userList;
+				 System::String^ trimmedID = userIDText->Trim();
+				 infoPanel->Controls->Clear();
 
-			   std::string userID = msclr::interop::marshal_as<std::string>(trimmedID);
-			   User foundUser;
-			   for (const auto& pair : userList) {
-					if (pair.first == userID) {
-						 foundUser = pair.second;
-						 break;
-					}
-			   }
+				 if (String::IsNullOrEmpty(trimmedID)) {
+					  Label^ errorLabel = gcnew Label();
+					  errorLabel->AutoSize = true;
+					  errorLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
+					  errorLabel->ForeColor = Color::Red;
+					  errorLabel->Text = L"Please enter a valid user ID.";
+					  infoPanel->Controls->Add(errorLabel);
+					  return;
+				 }
 
-			   if (foundUser.ID != "") {
-					// Header
-					Label^ headerLabel = gcnew Label();
-					headerLabel->AutoSize = true;
-					headerLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 14, FontStyle::Bold);
-					headerLabel->ForeColor = Color::DarkBlue;
-					headerLabel->Text = L"User Information:\n";
-					infoPanel->Controls->Add(headerLabel);
+				 std::string userID = msclr::interop::marshal_as<std::string>(trimmedID);
+				 User foundUser;
+				 for (const auto& pair : userList) {
+					  if (pair.first == userID) {
+						   foundUser = pair.second;
+						   break;
+					  }
+				 }
 
-					// Name
-					Label^ nameLabel = gcnew Label();
-					nameLabel->AutoSize = true;
-					nameLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-					nameLabel->Text = L"Name: " + gcnew String(foundUser.name.c_str());
-					infoPanel->Controls->Add(nameLabel);
+				 if (foundUser.ID != "") {
+					  // Header
+					  Label^ headerLabel = gcnew Label();
+					  headerLabel->AutoSize = true;
+					  headerLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 14, FontStyle::Bold);
+					  headerLabel->ForeColor = Color::DarkBlue;
+					  headerLabel->Text = L"User Information:\n";
+					  infoPanel->Controls->Add(headerLabel);
 
-					// Birthday
-					Label^ birthdayLabel = gcnew Label();
-					birthdayLabel->AutoSize = true;
-					birthdayLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-					birthdayLabel->Text = L"Birthday: " + gcnew String(foundUser.Birthday.c_str());
-					infoPanel->Controls->Add(birthdayLabel);
+					  // Name
+					  Label^ nameLabel = gcnew Label();
+					  nameLabel->AutoSize = true;
+					  nameLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+					  nameLabel->Text = L"Name: " + gcnew String(foundUser.name.c_str());
+					  infoPanel->Controls->Add(nameLabel);
 
-					// Subscription
-					Label^ subscriptionLabel = gcnew Label();
-					subscriptionLabel->AutoSize = true;
-					subscriptionLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-					subscriptionLabel->Text = L"Subscription: " + gcnew String(foundUser.subscription.getType().c_str());
-					infoPanel->Controls->Add(subscriptionLabel);
+					  // Birthday
+					  Label^ birthdayLabel = gcnew Label();
+					  birthdayLabel->AutoSize = true;
+					  birthdayLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+					  birthdayLabel->Text = L"Birthday: " + gcnew String(foundUser.Birthday.c_str());
+					  infoPanel->Controls->Add(birthdayLabel);
 
-					// Classes Entered
-					Label^ classesEnteredLabel = gcnew Label();
-					classesEnteredLabel->AutoSize = true;
-					classesEnteredLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-					classesEnteredLabel->Text = L"Classes Entered: " + foundUser.classEntered.ToString();
-					infoPanel->Controls->Add(classesEnteredLabel);
+					  // Subscription
+					  Label^ subscriptionLabel = gcnew Label();
+					  subscriptionLabel->AutoSize = true;
+					  subscriptionLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+					  subscriptionLabel->Text = L"Subscription: " + gcnew String(foundUser.subscription.getType().c_str());
+					  infoPanel->Controls->Add(subscriptionLabel);
 
-					// Wallet
-					Label^ walletLabel = gcnew Label();
-					walletLabel->AutoSize = true;
-					walletLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-					walletLabel->Text = L"Wallet Balance: " + String::Format(L"${0:F2}", foundUser.myWallet);
-					infoPanel->Controls->Add(walletLabel);
+					  // Classes Entered
+					  Label^ classesEnteredLabel = gcnew Label();
+					  classesEnteredLabel->AutoSize = true;
+					  classesEnteredLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+					  classesEnteredLabel->Text = L"Classes Entered: " + foundUser.classEntered.ToString();
+					  infoPanel->Controls->Add(classesEnteredLabel);
 
-					// VIP Status
-					Label^ vipLabel = gcnew Label();
-					vipLabel->AutoSize = true;
-					vipLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-					vipLabel->Text = L"VIP Status: " + (foundUser.isVip ? L"Yes" : L"No");
-					infoPanel->Controls->Add(vipLabel);
+					  // Wallet
+					  Label^ walletLabel = gcnew Label();
+					  walletLabel->AutoSize = true;
+					  walletLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+					  walletLabel->Text = L"Wallet Balance: " + String::Format(L"${0:F2}", foundUser.myWallet);
+					  infoPanel->Controls->Add(walletLabel);
 
-					// Picture Path
-					Label^ picPathLabel = gcnew Label();
-					picPathLabel->AutoSize = true;
-					picPathLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-					picPathLabel->Text = L"Picture Path: " + gcnew String(foundUser.PicPath.c_str()) + L"\n";
-					infoPanel->Controls->Add(picPathLabel);
+					  // VIP Status
+					  Label^ vipLabel = gcnew Label();
+					  vipLabel->AutoSize = true;
+					  vipLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+					  vipLabel->Text = L"VIP Status: " + (foundUser.isVip ? L"Yes" : L"No");
+					  infoPanel->Controls->Add(vipLabel);
 
-					// Reserved Classes
-					Label^ reservedClassesHeader = gcnew Label();
-					reservedClassesHeader->AutoSize = true;
-					reservedClassesHeader->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
-					reservedClassesHeader->ForeColor = Color::Navy;
-					reservedClassesHeader->Text = L"Reserved Classes:\n";
-					infoPanel->Controls->Add(reservedClassesHeader);
+					  // Picture Path
+					  Label^ picPathLabel = gcnew Label();
+					  picPathLabel->AutoSize = true;
+					  picPathLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+					  picPathLabel->Text = L"Picture Path: " + gcnew String(foundUser.PicPath.c_str()) + L"\n";
+					  infoPanel->Controls->Add(picPathLabel);
 
-					if (foundUser.myClasses.empty()) {
-						 Label^ noClassesLabel = gcnew Label();
-						 noClassesLabel->AutoSize = true;
-						 noClassesLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-						 noClassesLabel->ForeColor = Color::DarkGreen;
-						 noClassesLabel->Text = L"  None";
-						 infoPanel->Controls->Add(noClassesLabel);
-					}
-					else {
-						 for (const auto& classID : foundUser.myClasses) {
-							  Label^ classLabel = gcnew Label();
-							  classLabel->AutoSize = true;
-							  classLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-							  classLabel->ForeColor = Color::DarkGreen;
-							  classLabel->Text = L"  - " + gcnew String(classID.c_str());
-							  infoPanel->Controls->Add(classLabel);
-						 }
-					}
+					  // Reserved Classes
+					  Label^ reservedClassesHeader = gcnew Label();
+					  reservedClassesHeader->AutoSize = true;
+					  reservedClassesHeader->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
+					  reservedClassesHeader->ForeColor = Color::Navy;
+					  reservedClassesHeader->Text = L"Reserved Classes:\n";
+					  infoPanel->Controls->Add(reservedClassesHeader);
 
-					// Waiting List
-					Label^ waitingListHeader = gcnew Label();
-					waitingListHeader->AutoSize = true;
-					waitingListHeader->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
-					waitingListHeader->ForeColor = Color::Navy;
-					waitingListHeader->Text = L"\nWaiting List Classes:\n";
-					infoPanel->Controls->Add(waitingListHeader);
+					  if (foundUser.myClasses.empty()) {
+						   Label^ noClassesLabel = gcnew Label();
+						   noClassesLabel->AutoSize = true;
+						   noClassesLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+						   noClassesLabel->ForeColor = Color::DarkGreen;
+						   noClassesLabel->Text = L"  None";
+						   infoPanel->Controls->Add(noClassesLabel);
+					  }
+					  else {
+						   for (const auto& classID : foundUser.myClasses) {
+								Label^ classLabel = gcnew Label();
+								classLabel->AutoSize = true;
+								classLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+								classLabel->ForeColor = Color::DarkGreen;
+								classLabel->Text = L"  - " + gcnew String(classID.c_str());
+								infoPanel->Controls->Add(classLabel);
+						   }
+					  }
 
-					if (foundUser.myWaitingList.empty()) {
-						 Label^ noWaitingLabel = gcnew Label();
-						 noWaitingLabel->AutoSize = true;
-						 noWaitingLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-						 noWaitingLabel->ForeColor = Color::DarkGreen;
-						 noWaitingLabel->Text = L"  None";
-						 infoPanel->Controls->Add(noWaitingLabel);
-					}
-					else {
-						 for (const auto& classID : foundUser.myWaitingList) {
-							  Label^ waitingLabel = gcnew Label();
-							  waitingLabel->AutoSize = true;
-							  waitingLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-							  waitingLabel->ForeColor = Color::DarkGreen;
-							  waitingLabel->Text = L"  - " + gcnew String(classID.c_str());
-							  infoPanel->Controls->Add(waitingLabel);
-						 }
-					}
+					  // Waiting List
+					  Label^ waitingListHeader = gcnew Label();
+					  waitingListHeader->AutoSize = true;
+					  waitingListHeader->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
+					  waitingListHeader->ForeColor = Color::Navy;
+					  waitingListHeader->Text = L"\nWaiting List Classes:\n";
+					  infoPanel->Controls->Add(waitingListHeader);
 
-					// Reservations
-					Label^ reservationsHeader = gcnew Label();
-					reservationsHeader->AutoSize = true;
-					reservationsHeader->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
-					reservationsHeader->ForeColor = Color::Navy;
-					reservationsHeader->Text = L"\nReserved Slots:\n";
-					infoPanel->Controls->Add(reservationsHeader);
+					  if (foundUser.myWaitingList.empty()) {
+						   Label^ noWaitingLabel = gcnew Label();
+						   noWaitingLabel->AutoSize = true;
+						   noWaitingLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+						   noWaitingLabel->ForeColor = Color::DarkGreen;
+						   noWaitingLabel->Text = L"  None";
+						   infoPanel->Controls->Add(noWaitingLabel);
+					  }
+					  else {
+						   for (const auto& classID : foundUser.myWaitingList) {
+								Label^ waitingLabel = gcnew Label();
+								waitingLabel->AutoSize = true;
+								waitingLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+								waitingLabel->ForeColor = Color::DarkGreen;
+								waitingLabel->Text = L"  - " + gcnew String(classID.c_str());
+								infoPanel->Controls->Add(waitingLabel);
+						   }
+					  }
 
-					if (foundUser.myReservations.empty()) {
-						 Label^ noReservationsLabel = gcnew Label();
-						 noReservationsLabel->AutoSize = true;
-						 noReservationsLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-						 noReservationsLabel->ForeColor = Color::DarkGreen;
-						 noReservationsLabel->Text = L"  None";
-						 infoPanel->Controls->Add(noReservationsLabel);
-					}
-					else {
-						 int slotIndex = 1;
-						 for (const auto& slot : foundUser.myReservations) {
-							  Label^ slotHeader = gcnew Label();
-							  slotHeader->AutoSize = true;
-							  slotHeader->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-							  slotHeader->ForeColor = Color::DarkGreen;
-							  slotHeader->Text = String::Format(L"  Slot {0}:", slotIndex);
-							  infoPanel->Controls->Add(slotHeader);
+					  // Reservations
+					  Label^ reservationsHeader = gcnew Label();
+					  reservationsHeader->AutoSize = true;
+					  reservationsHeader->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
+					  reservationsHeader->ForeColor = Color::Navy;
+					  reservationsHeader->Text = L"\nReserved Slots:\n";
+					  infoPanel->Controls->Add(reservationsHeader);
 
-							  Label^ courtNameLabel = gcnew Label();
-							  courtNameLabel->AutoSize = true;
-							  courtNameLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-							  courtNameLabel->ForeColor = Color::DarkGreen;
-							  courtNameLabel->Text = L"    Court Name: " + gcnew String(slot.courtName.c_str());
-							  infoPanel->Controls->Add(courtNameLabel);
+					  if (foundUser.myReservations.empty()) {
+						   Label^ noReservationsLabel = gcnew Label();
+						   noReservationsLabel->AutoSize = true;
+						   noReservationsLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+						   noReservationsLabel->ForeColor = Color::DarkGreen;
+						   noReservationsLabel->Text = L"  None";
+						   infoPanel->Controls->Add(noReservationsLabel);
+					  }
+					  else {
+						   int slotIndex = 1;
+						   for (const auto& slot : foundUser.myReservations) {
+								Label^ slotHeader = gcnew Label();
+								slotHeader->AutoSize = true;
+								slotHeader->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+								slotHeader->ForeColor = Color::DarkGreen;
+								slotHeader->Text = String::Format(L"  Slot {0}:", slotIndex);
+								infoPanel->Controls->Add(slotHeader);
 
-							  Label^ dateLabel = gcnew Label();
-							  dateLabel->AutoSize = true;
-							  dateLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-							  dateLabel->ForeColor = Color::DarkGreen;
-							  dateLabel->Text = L"    Date: " + gcnew String(slot.date.c_str());
-							  infoPanel->Controls->Add(dateLabel);
+								Label^ courtNameLabel = gcnew Label();
+								courtNameLabel->AutoSize = true;
+								courtNameLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+								courtNameLabel->ForeColor = Color::DarkGreen;
+								courtNameLabel->Text = L"    Court Name: " + gcnew String(slot.courtName.c_str());
+								infoPanel->Controls->Add(courtNameLabel);
 
-							  Label^ startTimeLabel = gcnew Label();
-							  startTimeLabel->AutoSize = true;
-							  startTimeLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-							  startTimeLabel->ForeColor = Color::DarkGreen;
-							  startTimeLabel->Text = L"    Start Time: " + gcnew String(slot.startTime.c_str());
-							  infoPanel->Controls->Add(startTimeLabel);
+								Label^ dateLabel = gcnew Label();
+								dateLabel->AutoSize = true;
+								dateLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+								dateLabel->ForeColor = Color::DarkGreen;
+								dateLabel->Text = L"    Date: " + gcnew String(slot.date.c_str());
+								infoPanel->Controls->Add(dateLabel);
 
-							  Label^ courtIDLabel = gcnew Label();
-							  courtIDLabel->AutoSize = true;
-							  courtIDLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
-							  courtIDLabel->ForeColor = Color::DarkGreen;
-							  courtIDLabel->Text = L"    Court ID: " + gcnew String(slot.ID.c_str());
-							  infoPanel->Controls->Add(courtIDLabel);
+								Label^ startTimeLabel = gcnew Label();
+								startTimeLabel->AutoSize = true;
+								startTimeLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+								startTimeLabel->ForeColor = Color::DarkGreen;
+								startTimeLabel->Text = L"    Start Time: " + gcnew String(slot.startTime.c_str());
+								infoPanel->Controls->Add(startTimeLabel);
 
-							  slotIndex++;
-						 }
-					}
-			   }
-			   else {
-					Label^ notFoundLabel = gcnew Label();
-					notFoundLabel->AutoSize = true;
-					notFoundLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
-					notFoundLabel->ForeColor = Color::Red;
-					notFoundLabel->Text = L"User not found.";
-					infoPanel->Controls->Add(notFoundLabel);
-			   }
-		  }
+								Label^ courtIDLabel = gcnew Label();
+								courtIDLabel->AutoSize = true;
+								courtIDLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
+								courtIDLabel->ForeColor = Color::DarkGreen;
+								courtIDLabel->Text = L"    Court ID: " + gcnew String(slot.ID.c_str());
+								infoPanel->Controls->Add(courtIDLabel);
 
-		  void displayCoachClasses(System::String^ coachIDText, System::Windows::Forms::DataGridView^ gridView, System::Windows::Forms::Label^ infoLabel) {
-			   extern unordered_map<std::string, Staff> staffList;
-			   extern unordered_map<std::string, GymClasses> gymClassList;
+								slotIndex++;
+						   }
+					  }
+				 }
+				 else {
+					  Label^ notFoundLabel = gcnew Label();
+					  notFoundLabel->AutoSize = true;
+					  notFoundLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
+					  notFoundLabel->ForeColor = Color::Red;
+					  notFoundLabel->Text = L"User not found.";
+					  infoPanel->Controls->Add(notFoundLabel);
+				 }
+			}
 
-			   System::String^ trimmedID = coachIDText->Trim();
-			   gridView->Visible = false;
-			   infoLabel->Visible = false;
-			   gridView->Rows->Clear();
-			   gridView->Columns->Clear();
-			   infoLabel->Text = L"";
+			void displayCoachClasses(System::String^ coachIDText, System::Windows::Forms::DataGridView^ gridView, System::Windows::Forms::Label^ infoLabel) {
+				 extern unordered_map<std::string, Staff> staffList;
+				 extern unordered_map<std::string, GymClasses> gymClassList;
 
-			   if (String::IsNullOrEmpty(trimmedID)) {
-					MessageBox::Show("Please enter a valid Coach ID.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-					return;
-			   }
-			   std::string coachID = msclr::interop::marshal_as<std::string>(trimmedID);
+				 System::String^ trimmedID = coachIDText->Trim();
+				 gridView->Visible = false;
+				 infoLabel->Visible = false;
+				 gridView->Rows->Clear();
+				 gridView->Columns->Clear();
+				 infoLabel->Text = L"";
 
-			   if (staffList.empty()) {
-					MessageBox::Show("No staff data available. Please ensure staff list is populated.",
-						 "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-					return;
-			   }
+				 if (String::IsNullOrEmpty(trimmedID)) {
+					  MessageBox::Show("Please enter a valid Coach ID.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					  return;
+				 }
+				 std::string coachID = msclr::interop::marshal_as<std::string>(trimmedID);
 
-			   Staff foundCoach;
-			   bool coachFound = false;
-			   for (const auto& pair : staffList) {
-					if (pair.first == coachID && _stricmp(pair.second.role.c_str(), "coach") == 0) {
-						 foundCoach = pair.second;
-						 coachFound = true;
-						 break;
-					}
-			   }
+				 if (staffList.empty()) {
+					  MessageBox::Show("No staff data available. Please ensure staff list is populated.",
+						   "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					  return;
+				 }
 
-			   if (!coachFound) {
-					bool idExists = staffList.find(coachID) != staffList.end();
-					String^ errorMsg = "Coach with ID " + trimmedID + " not found or not a coach.\n";
-					if (idExists) {
-						 errorMsg += "ID exists but role is '" + gcnew String(staffList[coachID].role.c_str()) + "'. Expected 'Coach'.";
-					}
-					else {
-						 errorMsg += "ID not found in staff list.";
-					}
-					errorMsg += "\nPlease verify the ID and role.";
-					MessageBox::Show(errorMsg, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-					return;
-			   }
+				 Staff foundCoach;
+				 bool coachFound = false;
+				 for (const auto& pair : staffList) {
+					  if (pair.first == coachID && _stricmp(pair.second.role.c_str(), "coach") == 0) {
+						   foundCoach = pair.second;
+						   coachFound = true;
+						   break;
+					  }
+				 }
 
-			   infoLabel->Text = "Coach Information\n" +
-					"Name: " + gcnew String(foundCoach.name.c_str()) + "\n" +
-					"Email: " + gcnew String(foundCoach.email.c_str()) + "\n" +
-					"Phone: " + gcnew String(foundCoach.phone.c_str());
-			   infoLabel->Visible = true;
+				 if (!coachFound) {
+					  bool idExists = staffList.find(coachID) != staffList.end();
+					  String^ errorMsg = "Coach with ID " + trimmedID + " not found or not a coach.\n";
+					  if (idExists) {
+						   errorMsg += "ID exists but role is '" + gcnew String(staffList[coachID].role.c_str()) + "'. Expected 'Coach'.";
+					  }
+					  else {
+						   errorMsg += "ID not found in staff list.";
+					  }
+					  errorMsg += "\nPlease verify the ID and role.";
+					  MessageBox::Show(errorMsg, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					  return;
+				 }
 
-			   gridView->Columns->Add("ClassID", "Class ID");
-			   gridView->Columns->Add("ClassName", "Class Name");
-			   gridView->Columns->Add("Date", "Date");
-			   gridView->Columns->Add("StartTime", "Start Time");
-			   gridView->Columns->Add("EndTime", "End Time");
+				 infoLabel->Text = "Coach Information\n" +
+					  "Name: " + gcnew String(foundCoach.name.c_str()) + "\n" +
+					  "Email: " + gcnew String(foundCoach.email.c_str()) + "\n" +
+					  "Phone: " + gcnew String(foundCoach.phone.c_str());
+				 infoLabel->Visible = true;
 
-			   bool hasClasses = false;
-			   for (const auto& pair : gymClassList) {
-					const GymClasses& gymClass = pair.second;
-					if (gymClass.instructorID == coachID) {
-						 hasClasses = true;
-						 for (const auto& session : gymClass.sessions) {
-							  gridView->Rows->Add(
-								   gcnew String(gymClass.classID.c_str()),
-								   gcnew String(gymClass.className.c_str()),
-								   gcnew String(session.date.c_str()),
-								   gcnew String(session.startTime.c_str()),
-								   gcnew String(session.endTime.c_str()));
-						 }
-					}
-			   }
+				 gridView->Columns->Add("ClassID", "Class ID");
+				 gridView->Columns->Add("ClassName", "Class Name");
+				 gridView->Columns->Add("Date", "Date");
+				 gridView->Columns->Add("StartTime", "Start Time");
+				 gridView->Columns->Add("EndTime", "End Time");
 
-			   if (!hasClasses) {
-					MessageBox::Show("No classes assigned to this Coach yet.", "Information", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			   }
-			   else {
-					gridView->Visible = true;
-			   }
-		  }
+				 bool hasClasses = false;
+				 for (const auto& pair : gymClassList) {
+					  const GymClasses& gymClass = pair.second;
+					  if (gymClass.instructorID == coachID) {
+						   hasClasses = true;
+						   for (const auto& session : gymClass.sessions) {
+								gridView->Rows->Add(
+									 gcnew String(gymClass.classID.c_str()),
+									 gcnew String(gymClass.className.c_str()),
+									 gcnew String(session.date.c_str()),
+									 gcnew String(session.startTime.c_str()),
+									 gcnew String(session.endTime.c_str()));
+						   }
+					  }
+				 }
+
+				 if (!hasClasses) {
+					  MessageBox::Show("No classes assigned to this Coach yet.", "Information", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				 }
+				 else {
+					  gridView->Visible = true;
+				 }
+			}
 
 #pragma region Windows Form Designer generated code
 	 private:
@@ -385,6 +388,8 @@ namespace ProjectCode {
 			   this->AccName = (gcnew System::Windows::Forms::Label());
 			   this->AccPic = (gcnew System::Windows::Forms::PictureBox());
 			   this->MainPage = (gcnew System::Windows::Forms::Panel());
+			   this->userAttend = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			   this->ListOFUserEX = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			   this->searchCoach = (gcnew System::Windows::Forms::Panel());
 			   this->coachInfoLabel = (gcnew System::Windows::Forms::Label());
 			   this->coachIDTextBox = (gcnew System::Windows::Forms::TextBox());
@@ -395,7 +400,6 @@ namespace ProjectCode {
 			   this->userInfoPanel = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			   this->userIDTextBox = (gcnew System::Windows::Forms::TextBox());
 			   this->userIDLabel = (gcnew System::Windows::Forms::Label());
-			   this->ListOFUserEX = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			   this->MainMenu_pn->SuspendLayout();
 			   this->profile_pn->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->BeginInit();
@@ -506,6 +510,7 @@ namespace ProjectCode {
 			   // 
 			   // MainPage
 			   // 
+			   this->MainPage->Controls->Add(this->userAttend);
 			   this->MainPage->Controls->Add(this->ListOFUserEX);
 			   this->MainPage->Controls->Add(this->searchCoach);
 			   this->MainPage->Controls->Add(this->searchUser);
@@ -515,6 +520,26 @@ namespace ProjectCode {
 			   this->MainPage->Name = L"MainPage";
 			   this->MainPage->Size = System::Drawing::Size(960, 738);
 			   this->MainPage->TabIndex = 2;
+			   // 
+			   // userAttend
+			   // 
+			   this->userAttend->AutoScroll = true;
+			   this->userAttend->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->userAttend->Location = System::Drawing::Point(0, 0);
+			   this->userAttend->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->userAttend->Name = L"userAttend";
+			   this->userAttend->Size = System::Drawing::Size(960, 738);
+			   this->userAttend->TabIndex = 3;
+			   // 
+			   // ListOFUserEX
+			   // 
+			   this->ListOFUserEX->AutoScroll = true;
+			   this->ListOFUserEX->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->ListOFUserEX->Location = System::Drawing::Point(0, 0);
+			   this->ListOFUserEX->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->ListOFUserEX->Name = L"ListOFUserEX";
+			   this->ListOFUserEX->Size = System::Drawing::Size(960, 738);
+			   this->ListOFUserEX->TabIndex = 0;
 			   // 
 			   // searchCoach
 			   // 
@@ -659,16 +684,6 @@ namespace ProjectCode {
 			   this->userIDLabel->TabIndex = 9;
 			   this->userIDLabel->Text = L"User ID";
 			   // 
-			   // ListOFUserEX
-			   // 
-			   this->ListOFUserEX->AutoScroll = true;
-			   this->ListOFUserEX->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->ListOFUserEX->Location = System::Drawing::Point(0, 0);
-			   this->ListOFUserEX->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			   this->ListOFUserEX->Name = L"ListOFUserEX";
-			   this->ListOFUserEX->Size = System::Drawing::Size(960, 738);
-			   this->ListOFUserEX->TabIndex = 0;
-			   // 
 			   // staffPage
 			   // 
 			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -708,9 +723,8 @@ namespace ProjectCode {
 						 AddNewUser->Visible = false;
 					}
 					else {
-						 displayclasses->Visible = false;
-						 displayclasses->Visible = true;
 						 button1->Visible = false;
+
 					}
 			   }
 
@@ -851,5 +865,6 @@ namespace ProjectCode {
 					searchCoach->Visible = false;
 			   }
 		  }
+
 	 };
 }

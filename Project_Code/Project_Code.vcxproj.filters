@@ -21,6 +21,7 @@
     <ClInclude Include="MSGsShow.h" />
     <ClInclude Include="MSGlabel.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="AttedanceInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="AccPic.Image.png" />
