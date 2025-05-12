@@ -231,14 +231,16 @@ public:
 		  return (is_VIP == true);
 	 }
 
-	 double applyOffer(double basePrice) {
-		  if (createOffer()) {
-			   price = basePrice * 0.75;
-		  }
-		  else {
-			   price = basePrice * 0.90;
-		  }
-		  return price;
+	 double applyOffer( int remainingDays) {
+
+		 if (createOffer() && (remainingDays >= 3&& remainingDays <= 5)) {
+			 return 0.15;
+		 }
+		 else if (!createOffer() && (remainingDays >= 3&& remainingDays <= 5)) {
+			 return 0.10;
+		 }
+		
+		 return 0.0;
 	 }
 	 string getStartDate() {
 		  return start_date;
