@@ -12,6 +12,7 @@
 #include<set>
 #include <iomanip>
 #include<map>
+#include<stack>
 #include <filesystem>  
 #include <Windows.h>  
 #include <msclr/marshal_cppstd.h>
@@ -741,7 +742,7 @@ public:
 		  instructor = "";
 		  instructorID = "";
 	 }
-	 GymClasses(string name, Staff coach, string st, string endT, string sessionDate, string sessionStart, string sessionEnd, int capacity) {
+	 GymClasses(string name, Staff coach, string st, string endT, string sessionDate, string sessionStart, string sessionEnd, int capacity,float pri) {
 		  classID = generateUniqueID();
 		  className = name;
 		  instructor = coach.name;
@@ -749,6 +750,7 @@ public:
 		  startDate = st;
 		  endDate = calculateEndDate(startDate);
 		  maxMembers = capacity;
+		  price = pri;
 
 		  Session session;
 		  session.date = sessionDate;
@@ -784,7 +786,7 @@ public:
 		  string date1 = User::getCurrentDate_MM_DD_YYYY();
 		  time_t t1 = getTime_t(date1);
 		  time_t t2 = getTime_t(startDate);
-		  double secondsDiff = difftime(t2, t1);
+		  double secondsDiff = difftime(t1, t2); 
 		  int daysDiff = (int)(secondsDiff / (60 * 60 * 24));
 		  return daysDiff;
 	 }

@@ -214,8 +214,23 @@ namespace ProjectCode {
 						 paymentPage->ShowDialog();
 						 if (paymentPage->OperationResult) {
 							  // Add the user to the waiting list
-							  if (userList[loginID].isVip)
-								   gymClassList[classIDStr].waitingList.push_front(loginID);
+							 if (userList[loginID].isVip) {
+								 stack<string>tempstack; 
+
+								 while (!gymClassList[classIDStr].waitingList.empty() && 
+									 userList[gymClassList[classIDStr].waitingList.front()].isVip) { 
+									 tempstack.push(gymClassList[classIDStr].waitingList.front()); 
+									 gymClassList[classIDStr].waitingList.pop_front(); 
+								 }
+								 // gymClassList[classIDStr].waitingList.push_front(loginID);
+								 tempstack.push(loginID); 
+								 while (!tempstack.empty()) {
+									 gymClassList[classIDStr].waitingList.push_front(tempstack.top());
+									 tempstack.pop(); 
+								 }
+
+							
+							 }
 							  else
 								   gymClassList[classIDStr].waitingList.push_back(loginID);
 							  MessageBox::Show("You have been added to the waiting list.");
