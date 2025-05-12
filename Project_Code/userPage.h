@@ -160,6 +160,8 @@ namespace ProjectCode {
 	 private: System::Windows::Forms::Button^ button5;
 	 private: System::Windows::Forms::Timer^ delayedRenewTimer;
 
+
+
 	 public:
 
 
@@ -255,6 +257,7 @@ namespace ProjectCode {
 			  this->label3 = (gcnew System::Windows::Forms::Label());
 			  this->ListOfMyRes = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			  this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
+			  this->delayedRenewTimer = (gcnew System::Windows::Forms::Timer(this->components));
 			  this->MainMenu_pn->SuspendLayout();
 			  this->profile_pn->SuspendLayout();
 			  (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->BeginInit();
@@ -278,9 +281,9 @@ namespace ProjectCode {
 			  this->MainMenu_pn->Controls->Add(this->profile_pn);
 			  this->MainMenu_pn->Dock = System::Windows::Forms::DockStyle::Left;
 			  this->MainMenu_pn->Location = System::Drawing::Point(0, 0);
-			  this->MainMenu_pn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->MainMenu_pn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->MainMenu_pn->Name = L"MainMenu_pn";
-			  this->MainMenu_pn->Size = System::Drawing::Size(235, 600);
+			  this->MainMenu_pn->Size = System::Drawing::Size(313, 738);
 			  this->MainMenu_pn->TabIndex = 0;
 			  // 
 			  // button3
@@ -290,10 +293,10 @@ namespace ProjectCode {
 			  this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			  this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->button3->Location = System::Drawing::Point(0, 372);
-			  this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->button3->Location = System::Drawing::Point(0, 456);
+			  this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->button3->Name = L"button3";
-			  this->button3->Size = System::Drawing::Size(235, 54);
+			  this->button3->Size = System::Drawing::Size(313, 66);
 			  this->button3->TabIndex = 6;
 			  this->button3->Text = L"Renew my subscription";
 			  this->button3->UseVisualStyleBackColor = false;
@@ -304,10 +307,10 @@ namespace ProjectCode {
 			  this->logout_btn->Dock = System::Windows::Forms::DockStyle::Bottom;
 			  this->logout_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->logout_btn->Location = System::Drawing::Point(0, 546);
-			  this->logout_btn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->logout_btn->Location = System::Drawing::Point(0, 672);
+			  this->logout_btn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->logout_btn->Name = L"logout_btn";
-			  this->logout_btn->Size = System::Drawing::Size(235, 54);
+			  this->logout_btn->Size = System::Drawing::Size(313, 66);
 			  this->logout_btn->TabIndex = 5;
 			  this->logout_btn->Text = L"log out";
 			  this->logout_btn->UseVisualStyleBackColor = true;
@@ -320,10 +323,10 @@ namespace ProjectCode {
 			  this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			  this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->button1->Location = System::Drawing::Point(0, 318);
-			  this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->button1->Location = System::Drawing::Point(0, 390);
+			  this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->button1->Name = L"button1";
-			  this->button1->Size = System::Drawing::Size(235, 54);
+			  this->button1->Size = System::Drawing::Size(313, 66);
 			  this->button1->TabIndex = 3;
 			  this->button1->Text = L"Cancel Gym Class";
 			  this->button1->UseVisualStyleBackColor = false;
@@ -336,10 +339,10 @@ namespace ProjectCode {
 			  this->GymReserv->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			  this->GymReserv->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->GymReserv->Location = System::Drawing::Point(0, 264);
-			  this->GymReserv->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->GymReserv->Location = System::Drawing::Point(0, 324);
+			  this->GymReserv->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->GymReserv->Name = L"GymReserv";
-			  this->GymReserv->Size = System::Drawing::Size(235, 54);
+			  this->GymReserv->Size = System::Drawing::Size(313, 66);
 			  this->GymReserv->TabIndex = 2;
 			  this->GymReserv->Text = L"Subscribe to Gym Class";
 			  this->GymReserv->UseVisualStyleBackColor = false;
@@ -352,10 +355,10 @@ namespace ProjectCode {
 			  this->Padel->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			  this->Padel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->Padel->Location = System::Drawing::Point(0, 210);
-			  this->Padel->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->Padel->Location = System::Drawing::Point(0, 258);
+			  this->Padel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->Padel->Name = L"Padel";
-			  this->Padel->Size = System::Drawing::Size(235, 54);
+			  this->Padel->Size = System::Drawing::Size(313, 66);
 			  this->Padel->TabIndex = 1;
 			  this->Padel->Text = L"Padel Court";
 			  this->Padel->UseVisualStyleBackColor = false;
@@ -368,10 +371,10 @@ namespace ProjectCode {
 			  this->btnWorkout->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			  this->btnWorkout->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->btnWorkout->Location = System::Drawing::Point(0, 166);
-			  this->btnWorkout->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->btnWorkout->Location = System::Drawing::Point(0, 204);
+			  this->btnWorkout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->btnWorkout->Name = L"btnWorkout";
-			  this->btnWorkout->Size = System::Drawing::Size(235, 44);
+			  this->btnWorkout->Size = System::Drawing::Size(313, 54);
 			  this->btnWorkout->TabIndex = 4;
 			  this->btnWorkout->Text = L"My Workout";
 			  this->btnWorkout->UseVisualStyleBackColor = false;
@@ -387,9 +390,9 @@ namespace ProjectCode {
 			  this->profile_pn->Controls->Add(this->AccPic);
 			  this->profile_pn->Dock = System::Windows::Forms::DockStyle::Top;
 			  this->profile_pn->Location = System::Drawing::Point(0, 0);
-			  this->profile_pn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->profile_pn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->profile_pn->Name = L"profile_pn";
-			  this->profile_pn->Size = System::Drawing::Size(235, 166);
+			  this->profile_pn->Size = System::Drawing::Size(313, 204);
 			  this->profile_pn->TabIndex = 1;
 			  // 
 			  // button5
@@ -399,10 +402,10 @@ namespace ProjectCode {
 			  this->button5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			  this->button5->FlatAppearance->BorderSize = 0;
 			  this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			  this->button5->Location = System::Drawing::Point(4, 9);
-			  this->button5->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->button5->Location = System::Drawing::Point(5, 11);
+			  this->button5->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->button5->Name = L"button5";
-			  this->button5->Size = System::Drawing::Size(27, 29);
+			  this->button5->Size = System::Drawing::Size(36, 36);
 			  this->button5->TabIndex = 7;
 			  this->button5->UseVisualStyleBackColor = false;
 			  this->button5->Click += gcnew System::EventHandler(this, &userPage::button5_Click);
@@ -413,10 +416,9 @@ namespace ProjectCode {
 			  this->Wallet->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
 			  this->Wallet->ForeColor = System::Drawing::Color::White;
-			  this->Wallet->Location = System::Drawing::Point(2, 144);
-			  this->Wallet->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->Wallet->Location = System::Drawing::Point(3, 177);
 			  this->Wallet->Name = L"Wallet";
-			  this->Wallet->Size = System::Drawing::Size(46, 18);
+			  this->Wallet->Size = System::Drawing::Size(58, 22);
 			  this->Wallet->TabIndex = 6;
 			  this->Wallet->Text = L"label1";
 			  // 
@@ -426,10 +428,10 @@ namespace ProjectCode {
 			  this->button2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			  this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->button2->Location = System::Drawing::Point(203, 11);
-			  this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->button2->Location = System::Drawing::Point(271, 14);
+			  this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->button2->Name = L"button2";
-			  this->button2->Size = System::Drawing::Size(27, 31);
+			  this->button2->Size = System::Drawing::Size(36, 38);
 			  this->button2->TabIndex = 5;
 			  this->button2->UseVisualStyleBackColor = true;
 			  this->button2->Click += gcnew System::EventHandler(this, &userPage::button2_Click);
@@ -438,10 +440,10 @@ namespace ProjectCode {
 			  // 
 			  this->ListReserPadel->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ListReserPadel.BackgroundImage")));
 			  this->ListReserPadel->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			  this->ListReserPadel->Location = System::Drawing::Point(203, 46);
-			  this->ListReserPadel->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->ListReserPadel->Location = System::Drawing::Point(271, 57);
+			  this->ListReserPadel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->ListReserPadel->Name = L"ListReserPadel";
-			  this->ListReserPadel->Size = System::Drawing::Size(27, 29);
+			  this->ListReserPadel->Size = System::Drawing::Size(36, 36);
 			  this->ListReserPadel->TabIndex = 2;
 			  this->ListReserPadel->UseVisualStyleBackColor = true;
 			  this->ListReserPadel->Click += gcnew System::EventHandler(this, &userPage::ListReserPadel_Click);
@@ -452,20 +454,19 @@ namespace ProjectCode {
 			  this->AccName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
 			  this->AccName->ForeColor = System::Drawing::Color::White;
-			  this->AccName->Location = System::Drawing::Point(2, 120);
-			  this->AccName->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->AccName->Location = System::Drawing::Point(3, 148);
 			  this->AccName->Name = L"AccName";
-			  this->AccName->Size = System::Drawing::Size(46, 18);
+			  this->AccName->Size = System::Drawing::Size(58, 22);
 			  this->AccName->TabIndex = 1;
 			  this->AccName->Text = L"label1";
 			  // 
 			  // AccPic
 			  // 
 			  this->AccPic->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"AccPic.Image")));
-			  this->AccPic->Location = System::Drawing::Point(35, 7);
-			  this->AccPic->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->AccPic->Location = System::Drawing::Point(47, 9);
+			  this->AccPic->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->AccPic->Name = L"AccPic";
-			  this->AccPic->Size = System::Drawing::Size(147, 106);
+			  this->AccPic->Size = System::Drawing::Size(196, 130);
 			  this->AccPic->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			  this->AccPic->TabIndex = 0;
 			  this->AccPic->TabStop = false;
@@ -478,10 +479,10 @@ namespace ProjectCode {
 			  this->MainPage->Controls->Add(this->GymClass_pg);
 			  this->MainPage->Controls->Add(this->CancelPadel_pg);
 			  this->MainPage->Dock = System::Windows::Forms::DockStyle::Left;
-			  this->MainPage->Location = System::Drawing::Point(235, 0);
-			  this->MainPage->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->MainPage->Location = System::Drawing::Point(313, 0);
+			  this->MainPage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->MainPage->Name = L"MainPage";
-			  this->MainPage->Size = System::Drawing::Size(718, 600);
+			  this->MainPage->Size = System::Drawing::Size(957, 738);
 			  this->MainPage->TabIndex = 1;
 			  // 
 			  // RenewPG
@@ -496,20 +497,20 @@ namespace ProjectCode {
 			  this->RenewPG->Controls->Add(this->ThreeMradioButton);
 			  this->RenewPG->Dock = System::Windows::Forms::DockStyle::Fill;
 			  this->RenewPG->Location = System::Drawing::Point(0, 0);
-			  this->RenewPG->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->RenewPG->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->RenewPG->Name = L"RenewPG";
-			  this->RenewPG->Size = System::Drawing::Size(718, 600);
+			  this->RenewPG->Size = System::Drawing::Size(957, 738);
 			  this->RenewPG->TabIndex = 2;
 			  // 
 			  // richTextBox1
 			  // 
 			  this->richTextBox1->BackColor = System::Drawing::SystemColors::Menu;
 			  this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
-			  this->richTextBox1->Location = System::Drawing::Point(66, 213);
-			  this->richTextBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->richTextBox1->Location = System::Drawing::Point(88, 262);
+			  this->richTextBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->richTextBox1->Name = L"richTextBox1";
 			  this->richTextBox1->ReadOnly = true;
-			  this->richTextBox1->Size = System::Drawing::Size(577, 130);
+			  this->richTextBox1->Size = System::Drawing::Size(768, 159);
 			  this->richTextBox1->TabIndex = 14;
 			  this->richTextBox1->Text = L"";
 			  // 
@@ -517,10 +518,10 @@ namespace ProjectCode {
 			  // 
 			  this->checkBox1->AutoSize = true;
 			  this->checkBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Underline))));
-			  this->checkBox1->Location = System::Drawing::Point(323, 188);
-			  this->checkBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->checkBox1->Location = System::Drawing::Point(431, 231);
+			  this->checkBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->checkBox1->Name = L"checkBox1";
-			  this->checkBox1->Size = System::Drawing::Size(51, 21);
+			  this->checkBox1->Size = System::Drawing::Size(60, 24);
 			  this->checkBox1->TabIndex = 13;
 			  this->checkBox1->Text = L"VIP";
 			  this->checkBox1->UseVisualStyleBackColor = true;
@@ -529,10 +530,10 @@ namespace ProjectCode {
 			  // 
 			  this->button4->Font = (gcnew System::Drawing::Font(L"Monotype Corsiva", 25.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->button4->Location = System::Drawing::Point(266, 464);
-			  this->button4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->button4->Location = System::Drawing::Point(355, 571);
+			  this->button4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->button4->Name = L"button4";
-			  this->button4->Size = System::Drawing::Size(158, 50);
+			  this->button4->Size = System::Drawing::Size(211, 62);
 			  this->button4->TabIndex = 0;
 			  this->button4->Text = L"Pay";
 			  this->button4->UseVisualStyleBackColor = true;
@@ -542,10 +543,10 @@ namespace ProjectCode {
 			  // 
 			  this->SixMradioButton->AutoSize = true;
 			  this->SixMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			  this->SixMradioButton->Location = System::Drawing::Point(370, 144);
-			  this->SixMradioButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->SixMradioButton->Location = System::Drawing::Point(493, 177);
+			  this->SixMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->SixMradioButton->Name = L"SixMradioButton";
-			  this->SixMradioButton->Size = System::Drawing::Size(85, 24);
+			  this->SixMradioButton->Size = System::Drawing::Size(104, 29);
 			  this->SixMradioButton->TabIndex = 12;
 			  this->SixMradioButton->TabStop = true;
 			  this->SixMradioButton->Text = L"6 Month";
@@ -556,10 +557,9 @@ namespace ProjectCode {
 			  // 
 			  this->ChooseSublabel->AutoSize = true;
 			  this->ChooseSublabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
-			  this->ChooseSublabel->Location = System::Drawing::Point(262, 68);
-			  this->ChooseSublabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->ChooseSublabel->Location = System::Drawing::Point(349, 84);
 			  this->ChooseSublabel->Name = L"ChooseSublabel";
-			  this->ChooseSublabel->Size = System::Drawing::Size(221, 24);
+			  this->ChooseSublabel->Size = System::Drawing::Size(280, 29);
 			  this->ChooseSublabel->TabIndex = 0;
 			  this->ChooseSublabel->Text = L"choose your subscription";
 			  // 
@@ -567,10 +567,10 @@ namespace ProjectCode {
 			  // 
 			  this->OneYradioButton->AutoSize = true;
 			  this->OneYradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			  this->OneYradioButton->Location = System::Drawing::Point(515, 144);
-			  this->OneYradioButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->OneYradioButton->Location = System::Drawing::Point(687, 177);
+			  this->OneYradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->OneYradioButton->Name = L"OneYradioButton";
-			  this->OneYradioButton->Size = System::Drawing::Size(74, 24);
+			  this->OneYradioButton->Size = System::Drawing::Size(90, 29);
 			  this->OneYradioButton->TabIndex = 11;
 			  this->OneYradioButton->TabStop = true;
 			  this->OneYradioButton->Text = L"1 Year";
@@ -581,10 +581,10 @@ namespace ProjectCode {
 			  // 
 			  this->OneMradioButton->AutoSize = true;
 			  this->OneMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			  this->OneMradioButton->Location = System::Drawing::Point(97, 144);
-			  this->OneMradioButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->OneMradioButton->Location = System::Drawing::Point(129, 177);
+			  this->OneMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->OneMradioButton->Name = L"OneMradioButton";
-			  this->OneMradioButton->Size = System::Drawing::Size(85, 24);
+			  this->OneMradioButton->Size = System::Drawing::Size(104, 29);
 			  this->OneMradioButton->TabIndex = 9;
 			  this->OneMradioButton->TabStop = true;
 			  this->OneMradioButton->Text = L"1 Month";
@@ -595,10 +595,10 @@ namespace ProjectCode {
 			  // 
 			  this->ThreeMradioButton->AutoSize = true;
 			  this->ThreeMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			  this->ThreeMradioButton->Location = System::Drawing::Point(230, 144);
-			  this->ThreeMradioButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->ThreeMradioButton->Location = System::Drawing::Point(307, 177);
+			  this->ThreeMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->ThreeMradioButton->Name = L"ThreeMradioButton";
-			  this->ThreeMradioButton->Size = System::Drawing::Size(85, 24);
+			  this->ThreeMradioButton->Size = System::Drawing::Size(104, 29);
 			  this->ThreeMradioButton->TabIndex = 10;
 			  this->ThreeMradioButton->TabStop = true;
 			  this->ThreeMradioButton->Text = L"3 Month";
@@ -617,9 +617,9 @@ namespace ProjectCode {
 			  this->PadelPage->Controls->Add(this->listOfCourts);
 			  this->PadelPage->Dock = System::Windows::Forms::DockStyle::Fill;
 			  this->PadelPage->Location = System::Drawing::Point(0, 0);
-			  this->PadelPage->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->PadelPage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->PadelPage->Name = L"PadelPage";
-			  this->PadelPage->Size = System::Drawing::Size(718, 600);
+			  this->PadelPage->Size = System::Drawing::Size(957, 738);
 			  this->PadelPage->TabIndex = 0;
 			  // 
 			  // label4
@@ -627,10 +627,9 @@ namespace ProjectCode {
 			  this->label4->AutoSize = true;
 			  this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->label4->Location = System::Drawing::Point(138, 7);
-			  this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->label4->Location = System::Drawing::Point(184, 9);
 			  this->label4->Name = L"label4";
-			  this->label4->Size = System::Drawing::Size(39, 18);
+			  this->label4->Size = System::Drawing::Size(48, 22);
 			  this->label4->TabIndex = 9;
 			  this->label4->Text = L"Date";
 			  // 
@@ -640,11 +639,11 @@ namespace ProjectCode {
 			  this->dateTimePicker1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
 			  this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			  this->dateTimePicker1->Location = System::Drawing::Point(130, 30);
-			  this->dateTimePicker1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->dateTimePicker1->Location = System::Drawing::Point(173, 37);
+			  this->dateTimePicker1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->dateTimePicker1->MaxDate = System::DateTime(2026, 2, 28, 0, 0, 0, 0);
 			  this->dateTimePicker1->Name = L"dateTimePicker1";
-			  this->dateTimePicker1->Size = System::Drawing::Size(92, 23);
+			  this->dateTimePicker1->Size = System::Drawing::Size(121, 27);
 			  this->dateTimePicker1->TabIndex = 8;
 			  this->dateTimePicker1->Value = System::DateTime(2025, 4, 16, 0, 0, 0, 0);
 			  // 
@@ -653,10 +652,9 @@ namespace ProjectCode {
 			  this->label2->AutoSize = true;
 			  this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->label2->Location = System::Drawing::Point(263, 7);
-			  this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->label2->Location = System::Drawing::Point(351, 9);
 			  this->label2->Name = L"label2";
-			  this->label2->Size = System::Drawing::Size(44, 18);
+			  this->label2->Size = System::Drawing::Size(51, 22);
 			  this->label2->TabIndex = 5;
 			  this->label2->Text = L"From";
 			  // 
@@ -668,10 +666,10 @@ namespace ProjectCode {
 				  L"00:00", L"12:00", L"13:00", L"14:00", L"15:00",
 					  L"16::00", L"17:00", L"18:00", L"19:00", L"20:00", L"21:00", L"22:00", L"23:00"
 			  });
-			  this->comboBox2->Location = System::Drawing::Point(266, 32);
-			  this->comboBox2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->comboBox2->Location = System::Drawing::Point(355, 39);
+			  this->comboBox2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->comboBox2->Name = L"comboBox2";
-			  this->comboBox2->Size = System::Drawing::Size(56, 21);
+			  this->comboBox2->Size = System::Drawing::Size(73, 24);
 			  this->comboBox2->TabIndex = 4;
 			  // 
 			  // label1
@@ -679,10 +677,9 @@ namespace ProjectCode {
 			  this->label1->AutoSize = true;
 			  this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->label1->Location = System::Drawing::Point(11, 7);
-			  this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->label1->Location = System::Drawing::Point(15, 9);
 			  this->label1->Name = L"label1";
-			  this->label1->Size = System::Drawing::Size(60, 18);
+			  this->label1->Size = System::Drawing::Size(72, 22);
 			  this->label1->TabIndex = 3;
 			  this->label1->Text = L"location";
 			  // 
@@ -693,10 +690,10 @@ namespace ProjectCode {
 				  L"sheikh zayed", L"6th october", L"rehab city",
 					  L"tagamoa", L"new cairo", L"naser city", L"maadi", L"madinaty"
 			  });
-			  this->comboBox1->Location = System::Drawing::Point(8, 32);
-			  this->comboBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->comboBox1->Location = System::Drawing::Point(11, 39);
+			  this->comboBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->comboBox1->Name = L"comboBox1";
-			  this->comboBox1->Size = System::Drawing::Size(78, 21);
+			  this->comboBox1->Size = System::Drawing::Size(103, 24);
 			  this->comboBox1->TabIndex = 2;
 			  // 
 			  // searchOFcourts
@@ -704,10 +701,10 @@ namespace ProjectCode {
 			  this->searchOFcourts->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			  this->searchOFcourts->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->searchOFcourts->Location = System::Drawing::Point(608, 20);
-			  this->searchOFcourts->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->searchOFcourts->Location = System::Drawing::Point(811, 25);
+			  this->searchOFcourts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->searchOFcourts->Name = L"searchOFcourts";
-			  this->searchOFcourts->Size = System::Drawing::Size(103, 31);
+			  this->searchOFcourts->Size = System::Drawing::Size(137, 38);
 			  this->searchOFcourts->TabIndex = 1;
 			  this->searchOFcourts->Text = L"search";
 			  this->searchOFcourts->UseVisualStyleBackColor = true;
@@ -717,10 +714,10 @@ namespace ProjectCode {
 			  // 
 			  this->listOfCourts->AutoScroll = true;
 			  this->listOfCourts->Dock = System::Windows::Forms::DockStyle::Bottom;
-			  this->listOfCourts->Location = System::Drawing::Point(0, 56);
-			  this->listOfCourts->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->listOfCourts->Location = System::Drawing::Point(0, 68);
+			  this->listOfCourts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->listOfCourts->Name = L"listOfCourts";
-			  this->listOfCourts->Size = System::Drawing::Size(718, 544);
+			  this->listOfCourts->Size = System::Drawing::Size(957, 670);
 			  this->listOfCourts->TabIndex = 0;
 			  // 
 			  // panelWorkoutContent
@@ -746,9 +743,9 @@ namespace ProjectCode {
 			  this->panelWorkoutContent->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
 				  System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			  this->panelWorkoutContent->Location = System::Drawing::Point(0, 0);
-			  this->panelWorkoutContent->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->panelWorkoutContent->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->panelWorkoutContent->Name = L"panelWorkoutContent";
-			  this->panelWorkoutContent->Size = System::Drawing::Size(718, 600);
+			  this->panelWorkoutContent->Size = System::Drawing::Size(957, 738);
 			  this->panelWorkoutContent->TabIndex = 0;
 			  this->panelWorkoutContent->Visible = false;
 			  // 
@@ -759,18 +756,18 @@ namespace ProjectCode {
 				  L"Cardio", L"Strength", L"Pilates", L"Yoga",
 					  L"Cycling", L"HIIT"
 			  });
-			  this->comboFilterType->Location = System::Drawing::Point(89, 207);
-			  this->comboFilterType->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->comboFilterType->Location = System::Drawing::Point(119, 255);
+			  this->comboFilterType->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->comboFilterType->Name = L"comboFilterType";
-			  this->comboFilterType->Size = System::Drawing::Size(147, 28);
+			  this->comboFilterType->Size = System::Drawing::Size(195, 33);
 			  this->comboFilterType->TabIndex = 16;
 			  // 
 			  // btnHideWorkout
 			  // 
-			  this->btnHideWorkout->Location = System::Drawing::Point(603, 6);
-			  this->btnHideWorkout->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->btnHideWorkout->Location = System::Drawing::Point(804, 7);
+			  this->btnHideWorkout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->btnHideWorkout->Name = L"btnHideWorkout";
-			  this->btnHideWorkout->Size = System::Drawing::Size(112, 24);
+			  this->btnHideWorkout->Size = System::Drawing::Size(149, 30);
 			  this->btnHideWorkout->TabIndex = 0;
 			  this->btnHideWorkout->Text = L"Back";
 			  this->btnHideWorkout->Click += gcnew System::EventHandler(this, &userPage::btnHideWorkout_Click);
@@ -782,19 +779,18 @@ namespace ProjectCode {
 			  this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 12, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				  System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			  this->textBox1->ForeColor = System::Drawing::SystemColors::InactiveCaptionText;
-			  this->textBox1->Location = System::Drawing::Point(8, 10);
-			  this->textBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->textBox1->Location = System::Drawing::Point(11, 12);
+			  this->textBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->textBox1->Name = L"textBox1";
-			  this->textBox1->Size = System::Drawing::Size(293, 21);
+			  this->textBox1->Size = System::Drawing::Size(391, 26);
 			  this->textBox1->TabIndex = 0;
 			  this->textBox1->Text = L"Workout";
 			  // 
 			  // lblDate
 			  // 
-			  this->lblDate->Location = System::Drawing::Point(15, 35);
-			  this->lblDate->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->lblDate->Location = System::Drawing::Point(20, 43);
 			  this->lblDate->Name = L"lblDate";
-			  this->lblDate->Size = System::Drawing::Size(75, 19);
+			  this->lblDate->Size = System::Drawing::Size(100, 23);
 			  this->lblDate->TabIndex = 1;
 			  this->lblDate->Text = L"Date:";
 			  // 
@@ -802,18 +798,17 @@ namespace ProjectCode {
 			  // 
 			  this->txtDate->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->txtDate->Location = System::Drawing::Point(89, 32);
-			  this->txtDate->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->txtDate->Location = System::Drawing::Point(119, 39);
+			  this->txtDate->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->txtDate->Name = L"txtDate";
-			  this->txtDate->Size = System::Drawing::Size(336, 26);
+			  this->txtDate->Size = System::Drawing::Size(447, 30);
 			  this->txtDate->TabIndex = 2;
 			  // 
 			  // lblType
 			  // 
-			  this->lblType->Location = System::Drawing::Point(15, 66);
-			  this->lblType->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->lblType->Location = System::Drawing::Point(20, 81);
 			  this->lblType->Name = L"lblType";
-			  this->lblType->Size = System::Drawing::Size(75, 19);
+			  this->lblType->Size = System::Drawing::Size(100, 23);
 			  this->lblType->TabIndex = 3;
 			  this->lblType->Text = L"Workout Type:";
 			  // 
@@ -821,18 +816,17 @@ namespace ProjectCode {
 			  // 
 			  this->txtType->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->txtType->Location = System::Drawing::Point(89, 62);
-			  this->txtType->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->txtType->Location = System::Drawing::Point(119, 76);
+			  this->txtType->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->txtType->Name = L"txtType";
-			  this->txtType->Size = System::Drawing::Size(336, 26);
+			  this->txtType->Size = System::Drawing::Size(447, 30);
 			  this->txtType->TabIndex = 4;
 			  // 
 			  // lblDuration
 			  // 
-			  this->lblDuration->Location = System::Drawing::Point(15, 97);
-			  this->lblDuration->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->lblDuration->Location = System::Drawing::Point(20, 119);
 			  this->lblDuration->Name = L"lblDuration";
-			  this->lblDuration->Size = System::Drawing::Size(75, 19);
+			  this->lblDuration->Size = System::Drawing::Size(100, 23);
 			  this->lblDuration->TabIndex = 5;
 			  this->lblDuration->Text = L"Duration (min):";
 			  // 
@@ -840,18 +834,17 @@ namespace ProjectCode {
 			  // 
 			  this->txtDuration->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->txtDuration->Location = System::Drawing::Point(89, 91);
-			  this->txtDuration->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->txtDuration->Location = System::Drawing::Point(119, 112);
+			  this->txtDuration->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->txtDuration->Name = L"txtDuration";
-			  this->txtDuration->Size = System::Drawing::Size(336, 26);
+			  this->txtDuration->Size = System::Drawing::Size(447, 30);
 			  this->txtDuration->TabIndex = 6;
 			  // 
 			  // lblWeight
 			  // 
-			  this->lblWeight->Location = System::Drawing::Point(15, 128);
-			  this->lblWeight->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->lblWeight->Location = System::Drawing::Point(20, 158);
 			  this->lblWeight->Name = L"lblWeight";
-			  this->lblWeight->Size = System::Drawing::Size(75, 19);
+			  this->lblWeight->Size = System::Drawing::Size(100, 23);
 			  this->lblWeight->TabIndex = 7;
 			  this->lblWeight->Text = L"Weight (kg):";
 			  // 
@@ -859,68 +852,67 @@ namespace ProjectCode {
 			  // 
 			  this->txtWeight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->txtWeight->Location = System::Drawing::Point(89, 120);
-			  this->txtWeight->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->txtWeight->Location = System::Drawing::Point(119, 148);
+			  this->txtWeight->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->txtWeight->Name = L"txtWeight";
-			  this->txtWeight->Size = System::Drawing::Size(336, 26);
+			  this->txtWeight->Size = System::Drawing::Size(447, 30);
 			  this->txtWeight->TabIndex = 8;
 			  // 
 			  // btnAddWorkout
 			  // 
-			  this->btnAddWorkout->Location = System::Drawing::Point(14, 166);
-			  this->btnAddWorkout->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->btnAddWorkout->Location = System::Drawing::Point(19, 204);
+			  this->btnAddWorkout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->btnAddWorkout->Name = L"btnAddWorkout";
-			  this->btnAddWorkout->Size = System::Drawing::Size(112, 24);
+			  this->btnAddWorkout->Size = System::Drawing::Size(149, 30);
 			  this->btnAddWorkout->TabIndex = 9;
 			  this->btnAddWorkout->Text = L"Add Workout";
 			  this->btnAddWorkout->Click += gcnew System::EventHandler(this, &userPage::btnAddWorkout_Click);
 			  // 
 			  // btnViewHistory
 			  // 
-			  this->btnViewHistory->Location = System::Drawing::Point(134, 166);
-			  this->btnViewHistory->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->btnViewHistory->Location = System::Drawing::Point(179, 204);
+			  this->btnViewHistory->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->btnViewHistory->Name = L"btnViewHistory";
-			  this->btnViewHistory->Size = System::Drawing::Size(112, 24);
+			  this->btnViewHistory->Size = System::Drawing::Size(149, 30);
 			  this->btnViewHistory->TabIndex = 10;
 			  this->btnViewHistory->Text = L"View History";
 			  this->btnViewHistory->Click += gcnew System::EventHandler(this, &userPage::btnViewHistory_Click);
 			  // 
 			  // btnTrackProgress
 			  // 
-			  this->btnTrackProgress->Location = System::Drawing::Point(254, 166);
-			  this->btnTrackProgress->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->btnTrackProgress->Location = System::Drawing::Point(339, 204);
+			  this->btnTrackProgress->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->btnTrackProgress->Name = L"btnTrackProgress";
-			  this->btnTrackProgress->Size = System::Drawing::Size(112, 24);
+			  this->btnTrackProgress->Size = System::Drawing::Size(149, 30);
 			  this->btnTrackProgress->TabIndex = 11;
 			  this->btnTrackProgress->Text = L"Track Progress";
 			  this->btnTrackProgress->Click += gcnew System::EventHandler(this, &userPage::btnTrackProgress_Click);
 			  // 
 			  // lblFilter
 			  // 
-			  this->lblFilter->Location = System::Drawing::Point(15, 210);
-			  this->lblFilter->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->lblFilter->Location = System::Drawing::Point(20, 258);
 			  this->lblFilter->Name = L"lblFilter";
-			  this->lblFilter->Size = System::Drawing::Size(75, 19);
+			  this->lblFilter->Size = System::Drawing::Size(100, 23);
 			  this->lblFilter->TabIndex = 12;
 			  this->lblFilter->Text = L"Filter by Type:";
 			  // 
 			  // btnFilter
 			  // 
-			  this->btnFilter->Location = System::Drawing::Point(266, 206);
-			  this->btnFilter->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->btnFilter->Location = System::Drawing::Point(355, 254);
+			  this->btnFilter->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->btnFilter->Name = L"btnFilter";
-			  this->btnFilter->Size = System::Drawing::Size(75, 27);
+			  this->btnFilter->Size = System::Drawing::Size(100, 33);
 			  this->btnFilter->TabIndex = 14;
 			  this->btnFilter->Text = L"Filter";
 			  this->btnFilter->Click += gcnew System::EventHandler(this, &userPage::btnFilter_Click);
 			  // 
 			  // richTextOutput
 			  // 
-			  this->richTextOutput->Location = System::Drawing::Point(15, 258);
-			  this->richTextOutput->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->richTextOutput->Location = System::Drawing::Point(20, 318);
+			  this->richTextOutput->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->richTextOutput->Name = L"richTextOutput";
 			  this->richTextOutput->ReadOnly = true;
-			  this->richTextOutput->Size = System::Drawing::Size(697, 289);
+			  this->richTextOutput->Size = System::Drawing::Size(928, 355);
 			  this->richTextOutput->TabIndex = 15;
 			  this->richTextOutput->Text = L"";
 			  // 
@@ -929,9 +921,9 @@ namespace ProjectCode {
 			  this->GymClass_pg->Controls->Add(this->ListOfClasses);
 			  this->GymClass_pg->Dock = System::Windows::Forms::DockStyle::Fill;
 			  this->GymClass_pg->Location = System::Drawing::Point(0, 0);
-			  this->GymClass_pg->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->GymClass_pg->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->GymClass_pg->Name = L"GymClass_pg";
-			  this->GymClass_pg->Size = System::Drawing::Size(718, 600);
+			  this->GymClass_pg->Size = System::Drawing::Size(957, 738);
 			  this->GymClass_pg->TabIndex = 1;
 			  // 
 			  // ListOfClasses
@@ -939,9 +931,9 @@ namespace ProjectCode {
 			  this->ListOfClasses->AutoScroll = true;
 			  this->ListOfClasses->Dock = System::Windows::Forms::DockStyle::Fill;
 			  this->ListOfClasses->Location = System::Drawing::Point(0, 0);
-			  this->ListOfClasses->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->ListOfClasses->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->ListOfClasses->Name = L"ListOfClasses";
-			  this->ListOfClasses->Size = System::Drawing::Size(718, 600);
+			  this->ListOfClasses->Size = System::Drawing::Size(957, 738);
 			  this->ListOfClasses->TabIndex = 1;
 			  this->ListOfClasses->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &userPage::ListOfClasses_Paint);
 			  // 
@@ -951,9 +943,9 @@ namespace ProjectCode {
 			  this->CancelPadel_pg->Controls->Add(this->ListOfMyRes);
 			  this->CancelPadel_pg->Dock = System::Windows::Forms::DockStyle::Fill;
 			  this->CancelPadel_pg->Location = System::Drawing::Point(0, 0);
-			  this->CancelPadel_pg->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->CancelPadel_pg->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->CancelPadel_pg->Name = L"CancelPadel_pg";
-			  this->CancelPadel_pg->Size = System::Drawing::Size(718, 600);
+			  this->CancelPadel_pg->Size = System::Drawing::Size(957, 738);
 			  this->CancelPadel_pg->TabIndex = 0;
 			  // 
 			  // label3
@@ -962,10 +954,9 @@ namespace ProjectCode {
 			  this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
 			  this->label3->ForeColor = System::Drawing::Color::Red;
-			  this->label3->Location = System::Drawing::Point(35, 10);
-			  this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->label3->Location = System::Drawing::Point(47, 12);
 			  this->label3->Name = L"label3";
-			  this->label3->Size = System::Drawing::Size(634, 58);
+			  this->label3->Size = System::Drawing::Size(791, 72);
 			  this->label3->TabIndex = 2;
 			  this->label3->Text = L"You must cancel appointments at least 3 hours in advance.\n\n";
 			  // 
@@ -973,21 +964,25 @@ namespace ProjectCode {
 			  // 
 			  this->ListOfMyRes->AutoScroll = true;
 			  this->ListOfMyRes->Dock = System::Windows::Forms::DockStyle::Bottom;
-			  this->ListOfMyRes->Location = System::Drawing::Point(0, 56);
-			  this->ListOfMyRes->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->ListOfMyRes->Location = System::Drawing::Point(0, 68);
+			  this->ListOfMyRes->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->ListOfMyRes->Name = L"ListOfMyRes";
-			  this->ListOfMyRes->Size = System::Drawing::Size(718, 544);
+			  this->ListOfMyRes->Size = System::Drawing::Size(957, 670);
 			  this->ListOfMyRes->TabIndex = 1;
+			  // 
+			  // delayedRenewTimer
+			  // 
+			  this->delayedRenewTimer->Tick += gcnew System::EventHandler(this, &userPage::delayedRenewTimer_Tick);
 			  // 
 			  // userPage
 			  // 
-			  this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			  this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			  this->ClientSize = System::Drawing::Size(955, 600);
+			  this->ClientSize = System::Drawing::Size(1273, 738);
 			  this->ControlBox = false;
 			  this->Controls->Add(this->MainPage);
 			  this->Controls->Add(this->MainMenu_pn);
-			  this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			  this->Name = L"userPage";
 			  this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			  this->Text = L"userPage";
@@ -1006,10 +1001,6 @@ namespace ProjectCode {
 			  this->GymClass_pg->ResumeLayout(false);
 			  this->CancelPadel_pg->ResumeLayout(false);
 			  this->CancelPadel_pg->PerformLayout();
-			  this-> delayedRenewTimer = gcnew System::Windows::Forms::Timer();
-			  this->delayedRenewTimer->Interval = 100; // Delay 100ms
-			  this->delayedRenewTimer->Tick += gcnew System::EventHandler(this, &userPage::delayedRenewTimer_Tick);
-
 			  this->ResumeLayout(false);
 
 		  }
@@ -1105,9 +1096,9 @@ namespace ProjectCode {
 		  GymClass_pg->BringToFront();
 		  ListOfClasses->Controls->Clear();
 		  //auto it = userList[loginID].myClasses.begin(); // list contain gym class key
-		 
-		  auto it = userList[loginID].subscription.getAvailableClasses().begin();;
-		  for (; it != userList[loginID].subscription.getAvailableClasses().end(); it++) {
+
+		  auto gymClass = userList[loginID].subscription.getAvailableClasses();
+		  for (auto it = gymClass.begin(); it != gymClass.end(); it++) {
 
 			   GymPN^ class1 = gcnew GymPN(true);
 			   if (userList[loginID].isClassReserved(it->first) || userList[loginID].isClassWaiting(it->first))
@@ -1412,7 +1403,7 @@ namespace ProjectCode {
 			   bool found = false;
 			   for (const auto& workout : it->second) {
 					string workoutType = normalizeWorkoutType(workout.type);
-				
+
 					Console::WriteLine("Workout Type in file: '{0}'", gcnew String(workout.type.c_str()));
 
 					if (workoutType == normalizedFilterType) {
@@ -1468,16 +1459,16 @@ namespace ProjectCode {
 			   }
 		  }
 		  if (remainingDays >= 3 && remainingDays <= 6) {
-			  System::Windows::Forms::DialogResult result = MessageBox::Show(
-				  "You have an early renewal discount of " + discount.ToString() + "%!\nWould you like to renew now and save?",
-				  "Special Offer",
-				  MessageBoxButtons::YesNo,
-				  MessageBoxIcon::Information
-			  );
-			  if (result == System::Windows::Forms::DialogResult::Yes) {
-				  delayedRenewTimer->Start();
+			   System::Windows::Forms::DialogResult result = MessageBox::Show(
+					"You have an early renewal discount of " + discount.ToString() + "%!\nWould you like to renew now and save?",
+					"Special Offer",
+					MessageBoxButtons::YesNo,
+					MessageBoxIcon::Information
+			   );
+			   if (result == System::Windows::Forms::DialogResult::Yes) {
+					delayedRenewTimer->Start();
 
-			  }
+			   }
 
 		  }
 		  if (userList[loginID].MessagesNotRead()) {
@@ -1503,41 +1494,41 @@ namespace ProjectCode {
 	 }
 
 	 private:void showRenewPage() {
-	
-
-		 //calc days before subscription end
-		 int remainingDays = userList[loginID].subscription.getRemainingDays();
-		 if (remainingDays > 15) {
-			 MessageBox::Show("You can not renew your subscription now, you have " + remainingDays + " days left", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			 return;
-		 }
-
-		 MainPage->Controls->Clear();
-		 MainPage->Controls->Add(RenewPG);
-		 RenewPG->BringToFront();
-		 RenewPG->Visible = true;
 
 
-		 if (userList[loginID].subscription.get_is_VIP()) {
-			 checkBox1->Checked = true;
-		 }
+		  //calc days before subscription end
+		  int remainingDays = userList[loginID].subscription.getRemainingDays();
+		  if (remainingDays > 15) {
+			   MessageBox::Show("You can not renew your subscription now, you have " + remainingDays + " days left", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			   return;
+		  }
 
-		 if (userList[loginID].subscription.getType() == "1 month")
-			 OneMradioButton->Checked = true;
-		 else if (userList[loginID].subscription.getType() == "3 month")
-			 ThreeMradioButton->Checked = true;
-		 else if (userList[loginID].subscription.getType() == "6 month")
-			 SixMradioButton->Checked = true;
-		 else if (userList[loginID].subscription.getType() == "1 year")
-			 OneYradioButton->Checked = true;;
-			}
+		  MainPage->Controls->Clear();
+		  MainPage->Controls->Add(RenewPG);
+		  RenewPG->BringToFront();
+		  RenewPG->Visible = true;
+
+
+		  if (userList[loginID].subscription.get_is_VIP()) {
+			   checkBox1->Checked = true;
+		  }
+
+		  if (userList[loginID].subscription.getType() == "1 month")
+			   OneMradioButton->Checked = true;
+		  else if (userList[loginID].subscription.getType() == "3 month")
+			   ThreeMradioButton->Checked = true;
+		  else if (userList[loginID].subscription.getType() == "6 month")
+			   SixMradioButton->Checked = true;
+		  else if (userList[loginID].subscription.getType() == "1 year")
+			   OneYradioButton->Checked = true;;
+	 }
 	 private: System::Void delayedRenewTimer_Tick(System::Object^ sender, System::EventArgs^ e) {
-				delayedRenewTimer->Stop();
-				showRenewPage();
-			}
+		  delayedRenewTimer->Stop();
+		  showRenewPage();
+	 }
 
 	 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		 showRenewPage();
+		  showRenewPage();
 
 	 }
 	 private: System::Void OneMradioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -1649,7 +1640,7 @@ namespace ProjectCode {
 			   Wallet->Text = "Wallet: $" + userList[loginID].myWallet.ToString();
 		  }
 		  else {
-			  priceAfterDiscount = userList[loginID].myWallet > 0 ? (priceAfterDiscount - userList[loginID].myWallet) : priceAfterDiscount;
+			   priceAfterDiscount = userList[loginID].myWallet > 0 ? (priceAfterDiscount - userList[loginID].myWallet) : priceAfterDiscount;
 			   PaymentPage^ paymentPage = gcnew PaymentPage(price);
 			   this->Hide();
 			   paymentPage->ShowDialog();

@@ -507,10 +507,10 @@ unordered_map<string, GymClasses> Subscriptions::getAvailableClasses() {
 	 bool isVIP = get_is_VIP();
 	 for (auto it = gymClassList.begin(); it != gymClassList.end(); ++it) {
 		  GymClasses& gymClass = it->second;
-		  if (isVIP) {
+		  /*if (isVIP) {
 			   filteredClasses[gymClass.classID] = gymClass;
 			   continue;
-		  }
+		  }*/
 		  for (int i = 0; i < gymClass.allowedSubTypes.size(); i++) {
 			   if (gymClass.allowedSubTypes[i] == subscriptionType) {
 					filteredClasses[gymClass.classID] = gymClass;

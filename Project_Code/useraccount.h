@@ -260,6 +260,8 @@ namespace ProjectCode {
 
 					String^ details =
 						 "Subscription Details:\n" +
+						 "-----------------------------\n" +
+						 (user.subscription.get_is_VIP() ? "your subscription is vip" : "your subscription is not vip") + "\n" +
 						 "Type: " + gcnew String(user.subscription.getType().c_str()) + "\n" +
 						 "Start: " + gcnew String(user.subscription.getStartDate().c_str()) + "\n" +
 						 "End: " + gcnew String(endDateStr.c_str()) + "\n" +
