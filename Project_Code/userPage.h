@@ -1081,7 +1081,14 @@ namespace ProjectCode {
 	 }
 	 private: System::Void Padel_Click(System::Object^ sender, System::EventArgs^ e) {
 		  MainPage->Controls->Clear();
+<<<<<<< HEAD
 		  if (userList[loginID].subscription.getEndDate() < User::getCurrentDate_MM_DD_YYYY()) {
+=======
+		  string endDate = userList[loginID].subscription.getEndDate();
+		  time_t currentTime = time(0);
+		  time_t endTime_t = getTime_t(endDate);
+		  if (endTime_t < currentTime) {
+>>>>>>> f16765b177e2aac6ee0f4a25a94d764e8a9fedd7
 			   MessageBox::Show("You cannot reserve  any padel court because your subscription has expired.", "Info", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   return;
 		  }
@@ -1096,7 +1103,14 @@ namespace ProjectCode {
 	 }
 	 private: System::Void GymReserv_Click(System::Object^ sender, System::EventArgs^ e) {
 		  MainPage->Controls->Clear();
+<<<<<<< HEAD
 		  if (userList[loginID].subscription.getEndDate() < User::getCurrentDate_MM_DD_YYYY()) {
+=======
+		  string endDate = userList[loginID].subscription.getEndDate();
+		  time_t currentTime = time(0);
+		  time_t endTime_t = getTime_t(endDate);
+		  if (endTime_t < currentTime) {
+>>>>>>> f16765b177e2aac6ee0f4a25a94d764e8a9fedd7
 			   MessageBox::Show("You cannot subscribe to any classes because your general subscription has expired.", "Info", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   return;
 		  }
