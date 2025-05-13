@@ -772,8 +772,9 @@ namespace ProjectCode {
 			newClass.endDate = newClass.calculateEndDate(startDate);
 			newClass.maxMembers = maxMembers;
 			newClass.price = classPrice; 
-
+			
 			newClass.generateRecurringSessions(startDate, newClass.endDate, startTime, endTime, recurringDays);
+			newClass.recurringDays = recurringDays;
 			for each (String ^ sub in checkedListBoxSubscriptions->CheckedItems)
 			{
 				newClass.allowedSubTypes.push_back(marshal_as<std::string>(sub));

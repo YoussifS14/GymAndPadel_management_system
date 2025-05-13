@@ -107,6 +107,29 @@ void readGymClasses() {
 						 gymClass.waitingList.push_back(userID);
 			   }
 
+			   // reschedule the class is expired
+			   time_t currentTime = time(0);
+			   time_t endTime = getTime_t(gymClass.endDate);
+			   if (currentTime > endTime) {
+					gymClass.startDate = User::getCurrentDate_MM_DD_YYYY();
+					gymClass.members.clear();
+					while (!gymClass.waitingList.empty()) {
+						 string userID = gymClass.waitingList.front();
+						 gymClass.waitingList.pop_front();
+						 gymClass.members.push_back(userID);
+					}
+					gymClass.waitingList.clear();
+					gymClass.endDate = gymClass.calculateEndDate(gymClass.startDate);
+					// reshedule sessions 
+					string oldStartTime = gymClass.sessions[0].startTime;
+					string oldEndTime = gymClass.sessions[0].endTime;
+					string startDate = gymClass.startDate;
+					string endDate = gymClass.endDate;
+					gymClass.sessions.clear();
+					gymClass.generateRecurringSessions(startDate, endDate, oldStartTime, oldEndTime, gymClass.recurringDays);
+					gymClass.reSchedule = true;
+			   }
+
 			   // Save class
 			   gymClassList[gymClass.classID] = gymClass;
 		  }
@@ -155,12 +178,20 @@ void readUserData() {
 		  while (getline(myClassStream, myClassStr, '!')) {
 			   string classID = myClassStr;
 			   if (gymClassList.find(classID) != gymClassList.end()) {
+					if (gymClassList[classID].reSchedule)
+						 continue;
 					user.myClasses.push_back(classID);
 					gymClassList[classID].members.push_back(user.ID); // Add user to the class's member list
 
 			   }
 
 		  }
+		  for (auto it : gymClassList) {
+			   if (it.second.existInWaitingList(user.ID)) {
+					user.myWaitingList.push_back(it.first);
+			   }
+		  }
+
 		  ss >> user.myWallet;
 		  userList[user.ID] = user;
 	 }

@@ -232,16 +232,16 @@ public:
 		  return (is_VIP == true);
 	 }
 
-	 double applyOffer( int remainingDays) {
+	 double applyOffer(int remainingDays) {
 
-		 if (createOffer() && (remainingDays >= 3&& remainingDays <= 5)) {
-			 return 0.15;
-		 }
-		 else if (!createOffer() && (remainingDays >= 3&& remainingDays <= 5)) {
-			 return 0.10;
-		 }
-		
-		 return 0.0;
+		  if (createOffer() && (remainingDays >= 3 && remainingDays <= 5)) {
+			   return 0.15;
+		  }
+		  else if (!createOffer() && (remainingDays >= 3 && remainingDays <= 5)) {
+			   return 0.10;
+		  }
+
+		  return 0.0;
 	 }
 	 string getStartDate() {
 		  return start_date;
@@ -732,17 +732,19 @@ public:
 	 string endDate;
 	 float price = 1.0;
 	 int maxMembers; // Maximum number of members allowed in the class
+	 bool reSchedule = false; // true if the class is rescheduled;
 	 list <string> members; // List of user IDs enrolled in the class
 	 // unordered_map<string, User> members; // List of users enrolled in the class	
 	 deque<string> waitingList; // List of userIDs on the waiting list
 	 vector<string>allowedSubTypes;
 	 vector<Session> sessions;
+	 vector<int> recurringDays;
 	 GymClasses() {
 		  classID = "";
 		  instructor = "";
 		  instructorID = "";
 	 }
-	 GymClasses(string name, Staff coach, string st, string endT, string sessionDate, string sessionStart, string sessionEnd, int capacity,float pri) {
+	 GymClasses(string name, Staff coach, string st, string endT, string sessionDate, string sessionStart, string sessionEnd, int capacity, float pri) {
 		  classID = generateUniqueID();
 		  className = name;
 		  instructor = coach.name;
@@ -786,7 +788,7 @@ public:
 		  string date1 = User::getCurrentDate_MM_DD_YYYY();
 		  time_t t1 = getTime_t(date1);
 		  time_t t2 = getTime_t(startDate);
-		  double secondsDiff = difftime(t1, t2); 
+		  double secondsDiff = difftime(t1, t2);
 		  int daysDiff = (int)(secondsDiff / (60 * 60 * 24));
 		  return daysDiff;
 	 }
@@ -867,7 +869,14 @@ public:
 		  gymClassList[classID] = *this;
 		  return true;
 	 }
-
+	 bool existInWaitingList(const string& userID) {
+		  for (const auto& it : waitingList) {
+			   if (it == userID) {
+					return true;
+			   }
+		  }
+		  return false;
+	 }
 
 	 string calculateEndDate(const string& startDt) {
 		  time_t startTime = getTime_t(startDt);
