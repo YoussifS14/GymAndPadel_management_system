@@ -1548,21 +1548,26 @@ namespace ProjectCode {
 	 }
 	 private: System::Void OneMradioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		  if (OneMradioButton->Checked) {
+			  bool isVIP = checkBox1->Checked;
+			  int remainingDays = userList[loginID].subscription.getRemainingDays();
 			   Subscriptions nonVipSub("1 month", User::getCurrentDate_MM_DD_YYYY(), false);
 			   Subscriptions vipSub("1 month", User::getCurrentDate_MM_DD_YYYY(), true);
 			   double basePrice = nonVipSub.getPrice();
 			   double vipPrice = vipSub.getPrice();
+			   double discount = userList[loginID].subscription.applyOffer(remainingDays);
+			   double discountedPrice = isVIP ? vipPrice * (1 - discount) : basePrice * (1 - discount);
 			   String^ startDate = gcnew String(User::getCurrentDate_MM_DD_YYYY().c_str());
 			   String^ endDate = gcnew String(nonVipSub.calculateEndDate().c_str());
 
 			   richTextBox1->Text = String::Format(
 					"1 Month Subscription Details:\n"
 					"Duration: 1 Month\n"
-					"Base Price: ${0:F2}\n"
-					"VIP Price: ${1:F2}\n"
-					"Start Date: {2}\n"
-					"End Date: {3}",
-					basePrice, vipPrice, startDate, endDate);
+				   "Base Price: ${0:F2}\n"
+				   "VIP Price: ${1:F2}\n"
+				   "Start Date: {2}\n"
+				   "End Date: {3}\n"
+				   "Discounted Price ({4}%): ${5:F2}",
+				   basePrice, vipPrice, startDate, endDate, discount * 100, discountedPrice);
 		  }
 		  else {
 			   richTextBox1->Text = "";
@@ -1570,21 +1575,26 @@ namespace ProjectCode {
 	 }
 	 private: System::Void ThreeMradioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		  if (ThreeMradioButton->Checked) {
+			  bool isVIP = checkBox1->Checked;
+			  int remainingDays = userList[loginID].subscription.getRemainingDays();
 			   Subscriptions nonVipSub("3 month", User::getCurrentDate_MM_DD_YYYY(), false);
 			   Subscriptions vipSub("3 month", User::getCurrentDate_MM_DD_YYYY(), true);
 			   double basePrice = nonVipSub.getPrice();
 			   double vipPrice = vipSub.getPrice();
+			   double discount = userList[loginID].subscription.applyOffer(remainingDays);
+			   double discountedPrice = isVIP ? vipPrice * (1 - discount) : basePrice * (1 - discount);
 			   String^ startDate = gcnew String(User::getCurrentDate_MM_DD_YYYY().c_str());
 			   String^ endDate = gcnew String(nonVipSub.calculateEndDate().c_str());
 
 			   richTextBox1->Text = String::Format(
 					"3 Month Subscription Details:\n"
-					"Duration: 3 Months\n"
-					"Base Price: ${0:F2}\n"
-					"VIP Price: ${1:F2}\n"
-					"Start Date: {2}\n"
-					"End Date: {3}",
-					basePrice, vipPrice, startDate, endDate);
+				   "Duration: 3 Months\n"
+				   "Base Price: ${0:F2}\n"
+				   "VIP Price: ${1:F2}\n"
+				   "Start Date: {2}\n"
+				   "End Date: {3}\n"
+				   "Discounted Price ({4}%): ${5:F2}",
+				   basePrice, vipPrice, startDate, endDate, discount * 100, discountedPrice);
 		  }
 		  else {
 			   richTextBox1->Text = "";
@@ -1592,21 +1602,26 @@ namespace ProjectCode {
 	 }
 	 private: System::Void SixMradioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		  if (SixMradioButton->Checked) {
+			  bool isVIP = checkBox1->Checked;
+			  int remainingDays = userList[loginID].subscription.getRemainingDays();
 			   Subscriptions nonVipSub("6 month", User::getCurrentDate_MM_DD_YYYY(), false);
 			   Subscriptions vipSub("6 month", User::getCurrentDate_MM_DD_YYYY(), true);
 			   double basePrice = nonVipSub.getPrice();
 			   double vipPrice = vipSub.getPrice();
+			   double discount = userList[loginID].subscription.applyOffer(remainingDays);
+			   double discountedPrice = isVIP ? vipPrice * (1 - discount) : basePrice * (1 - discount);
 			   String^ startDate = gcnew String(User::getCurrentDate_MM_DD_YYYY().c_str());
 			   String^ endDate = gcnew String(nonVipSub.calculateEndDate().c_str());
 
 			   richTextBox1->Text = String::Format(
-					"6 Month Subscription Details:\n"
-					"Duration: 6 Months\n"
-					"Base Price: ${0:F2}\n"
-					"VIP Price: ${1:F2}\n"
-					"Start Date: {2}\n"
-					"End Date: {3}",
-					basePrice, vipPrice, startDate, endDate);
+				   "6 Month Subscription Details:\n"
+				   "Duration: 6 Months\n"
+				   "Base Price: ${0:F2}\n"
+				   "VIP Price: ${1:F2}\n"
+				   "Start Date: {2}\n"
+				   "End Date: {3}\n"
+				   "Discounted Price ({4}%): ${5:F2}",
+				   basePrice, vipPrice, startDate, endDate, discount * 100, discountedPrice);
 		  }
 		  else {
 			   richTextBox1->Text = "";
@@ -1614,21 +1629,26 @@ namespace ProjectCode {
 	 }
 	 private: System::Void OneYradioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		  if (OneYradioButton->Checked) {
+			  bool isVIP = checkBox1->Checked;
+			  int remainingDays = userList[loginID].subscription.getRemainingDays();
 			   Subscriptions nonVipSub("1 year", User::getCurrentDate_MM_DD_YYYY(), false);
 			   Subscriptions vipSub("1 year", User::getCurrentDate_MM_DD_YYYY(), true);
 			   double basePrice = nonVipSub.getPrice();
 			   double vipPrice = vipSub.getPrice();
+			   double discount = userList[loginID].subscription.applyOffer(remainingDays);
+			   double discountedPrice = isVIP ? vipPrice * (1 - discount) : basePrice * (1 - discount);
 			   String^ startDate = gcnew String(User::getCurrentDate_MM_DD_YYYY().c_str());
 			   String^ endDate = gcnew String(nonVipSub.calculateEndDate().c_str());
 
 			   richTextBox1->Text = String::Format(
 					"1 Year Subscription Details:\n"
 					"Duration: 1 Year\n"
-					"Base Price: ${0:F2}\n"
-					"VIP Price: ${1:F2}\n"
-					"Start Date: {2}\n"
-					"End Date: {3}",
-					basePrice, vipPrice, startDate, endDate);
+				   "Base Price: ${0:F2}\n"
+				   "VIP Price: ${1:F2}\n"
+				   "Start Date: {2}\n"
+				   "End Date: {3}\n"
+				   "Discounted Price ({4}%): ${5:F2}",
+				   basePrice, vipPrice, startDate, endDate, discount * 100, discountedPrice);
 		  }
 		  else {
 			   richTextBox1->Text = "";
