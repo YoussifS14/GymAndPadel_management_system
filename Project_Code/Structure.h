@@ -563,18 +563,18 @@ public:
 		  int currentMonth = stoi(selectedMonth);
 
 		  stringstream report;
-		  report << " Monthly Report for ";
+		  report << "================Monthly Report for ";
 		  if (currentMonth < 10) report << "0";
-		  report << currentMonth << "-" << selectedYear << " ====================\n\n";
+		  report << currentMonth << "-" << selectedYear << " ================\n\n";
 
 		  // Most Active Members Section
 		  report << ">> Most Active Members (Top 10 Active Members):\n";
-		  report << "-------------------------------------------------------------------------------\n";
+		  report << "--------------------------------------------------------------------------\n";
 		  report << left << setw(30) << "Name"
 			   << setw(15) << "ID"
 			   << setw(20) << "Classes Attended"
 			   << setw(10) << "VIP" << "\n";
-		  report << "-------------------------------------------------------------------------------\n";
+		  report << "--------------------------------------------------------------------------\n";
 
 		  for (auto& entry : userList) {
 			   User& user = entry.second;
@@ -610,22 +610,22 @@ public:
 
 
 		  // Subscription Summary Section
-		  report << "-------------------------------------------------------------------------------\n";
+		  report << "--------------------------------------------------------------------------\n";
 		  report << ">> Subscription Summary by Type:\n";
-		  report << "-------------------------------------------------------------------------------\n";
+		  report << "--------------------------------------------------------------------------\n";
 		  report << left << setw(25) << "Plan Type"
 			   << setw(15) << "Subscribers"
 			   << setw(20) << "Total Revenue (EGP)" << "\n";
-		  report << "-------------------------------------------------------------------------------\n";
+		  report << "--------------------------------------------------------------------------\n";
 		  for (const auto& it : subscriptionState) {
 			   report << left << setw(25) << it.first
 					<< setw(15) << it.second.first
 					<< fixed << setprecision(2) << setw(20) << it.second.second << "\n";
 		  }
 
-		  report << "===============================================================================\n";
+		  report << "==========================================================================\n";
 		  report << ">> Total Subscription Revenue this Month: " << fixed << setprecision(2) << totalRevenue << " EGP\n";
-		  report << "===============================================================================\n";
+		  report << "==========================================================================\n";
 
 		  if (activeUsers.empty()) {
 			   return "";
