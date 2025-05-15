@@ -73,162 +73,189 @@ namespace ProjectCode {
 		  /// </summary>
 		  void InitializeComponent(void)
 		  {
-			   this->confirm_btn = (gcnew System::Windows::Forms::Button());
-			   this->cancelling_btn = (gcnew System::Windows::Forms::Button());
-			   this->CardID_txb = (gcnew System::Windows::Forms::TextBox());
-			   this->label1 = (gcnew System::Windows::Forms::Label());
-			   this->label2 = (gcnew System::Windows::Forms::Label());
-			   this->CardExp_txb = (gcnew System::Windows::Forms::TextBox());
-			   this->label4 = (gcnew System::Windows::Forms::Label());
-			   this->CardCVV_txb = (gcnew System::Windows::Forms::TextBox());
-			   this->label5 = (gcnew System::Windows::Forms::Label());
-			   this->CardName_txb = (gcnew System::Windows::Forms::TextBox());
-			   this->displayPrice = (gcnew System::Windows::Forms::Label());
-			   this->SuspendLayout();
-			   // 
-			   // confirm_btn
-			   // 
-			   this->confirm_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->confirm_btn->Location = System::Drawing::Point(26, 396);
-			   this->confirm_btn->Name = L"confirm_btn";
-			   this->confirm_btn->Size = System::Drawing::Size(163, 64);
-			   this->confirm_btn->TabIndex = 0;
-			   this->confirm_btn->Text = L"Pay";
-			   this->confirm_btn->UseVisualStyleBackColor = true;
-			   this->confirm_btn->Click += gcnew System::EventHandler(this, &PaymentPage::confirm_btn_Click);
-			   // 
-			   // cancelling_btn
-			   // 
-			   this->cancelling_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->cancelling_btn->Location = System::Drawing::Point(267, 396);
-			   this->cancelling_btn->Name = L"cancelling_btn";
-			   this->cancelling_btn->Size = System::Drawing::Size(163, 64);
-			   this->cancelling_btn->TabIndex = 1;
-			   this->cancelling_btn->Text = L"cancel";
-			   this->cancelling_btn->UseVisualStyleBackColor = true;
-			   this->cancelling_btn->Click += gcnew System::EventHandler(this, &PaymentPage::cancelling_btn_Click);
-			   // 
-			   // CardID_txb
-			   // 
-			   this->CardID_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->CardID_txb->Location = System::Drawing::Point(12, 87);
-			   this->CardID_txb->Name = L"CardID_txb";
-			   this->CardID_txb->Size = System::Drawing::Size(319, 30);
-			   this->CardID_txb->TabIndex = 2;
-			   this->CardID_txb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PaymentPage::CardID_txb_KeyPress);
-			   // 
-			   // label1
-			   // 
-			   this->label1->AutoSize = true;
-			   this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label1->Location = System::Drawing::Point(21, 59);
-			   this->label1->Name = L"label1";
-			   this->label1->Size = System::Drawing::Size(126, 25);
-			   this->label1->TabIndex = 3;
-			   this->label1->Text = L"Card number";
-			   // 
-			   // label2
-			   // 
-			   this->label2->AutoSize = true;
-			   this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label2->Location = System::Drawing::Point(7, 243);
-			   this->label2->Name = L"label2";
-			   this->label2->Size = System::Drawing::Size(190, 25);
-			   this->label2->TabIndex = 5;
-			   this->label2->Text = L"Expire date(YY/MM)";
-			   // 
-			   // CardExp_txb
-			   // 
-			   this->CardExp_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->CardExp_txb->Location = System::Drawing::Point(12, 282);
-			   this->CardExp_txb->Name = L"CardExp_txb";
-			   this->CardExp_txb->Size = System::Drawing::Size(71, 30);
-			   this->CardExp_txb->TabIndex = 4;
-			   this->CardExp_txb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PaymentPage::CardMM_txb_KeyPress);
-			   // 
-			   // label4
-			   // 
-			   this->label4->AutoSize = true;
-			   this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label4->Location = System::Drawing::Point(276, 254);
-			   this->label4->Name = L"label4";
-			   this->label4->Size = System::Drawing::Size(55, 25);
-			   this->label4->TabIndex = 9;
-			   this->label4->Text = L"CVV";
-			   // 
-			   // CardCVV_txb
-			   // 
-			   this->CardCVV_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->CardCVV_txb->Location = System::Drawing::Point(276, 282);
-			   this->CardCVV_txb->Name = L"CardCVV_txb";
-			   this->CardCVV_txb->Size = System::Drawing::Size(61, 30);
-			   this->CardCVV_txb->TabIndex = 8;
-			   this->CardCVV_txb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PaymentPage::CardCVV_txb_KeyPress);
-			   // 
-			   // label5
-			   // 
-			   this->label5->AutoSize = true;
-			   this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label5->Location = System::Drawing::Point(21, 147);
-			   this->label5->Name = L"label5";
-			   this->label5->Size = System::Drawing::Size(112, 25);
-			   this->label5->TabIndex = 11;
-			   this->label5->Text = L"Card Name";
-			   // 
-			   // CardName_txb
-			   // 
-			   this->CardName_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->CardName_txb->Location = System::Drawing::Point(12, 175);
-			   this->CardName_txb->Name = L"CardName_txb";
-			   this->CardName_txb->Size = System::Drawing::Size(319, 30);
-			   this->CardName_txb->TabIndex = 10;
-			   this->CardName_txb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PaymentPage::CardName_txb_KeyPress);
-			   // 
-			   // displayPrice
-			   // 
-			   this->displayPrice->AutoSize = true;
-			   this->displayPrice->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->displayPrice->Location = System::Drawing::Point(21, 9);
-			   this->displayPrice->Name = L"displayPrice";
-			   this->displayPrice->Size = System::Drawing::Size(178, 25);
-			   this->displayPrice->TabIndex = 12;
-			   this->displayPrice->Text = L"Transaction price : ";
-			   // 
-			   // PaymentPage
-			   // 
-			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			   this->ClientSize = System::Drawing::Size(466, 512);
-			   this->ControlBox = false;
-			   this->Controls->Add(this->displayPrice);
-			   this->Controls->Add(this->label5);
-			   this->Controls->Add(this->CardName_txb);
-			   this->Controls->Add(this->label4);
-			   this->Controls->Add(this->CardCVV_txb);
-			   this->Controls->Add(this->label2);
-			   this->Controls->Add(this->CardExp_txb);
-			   this->Controls->Add(this->label1);
-			   this->Controls->Add(this->CardID_txb);
-			   this->Controls->Add(this->cancelling_btn);
-			   this->Controls->Add(this->confirm_btn);
-			   this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
-			   this->Name = L"PaymentPage";
-			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
-			   this->Text = L"PaymentPage";
-			   this->Load += gcnew System::EventHandler(this, &PaymentPage::PaymentPage_Load);
-			   this->ResumeLayout(false);
-			   this->PerformLayout();
+			  this->confirm_btn = (gcnew System::Windows::Forms::Button());
+			  this->cancelling_btn = (gcnew System::Windows::Forms::Button());
+			  this->CardID_txb = (gcnew System::Windows::Forms::TextBox());
+			  this->label1 = (gcnew System::Windows::Forms::Label());
+			  this->label2 = (gcnew System::Windows::Forms::Label());
+			  this->CardExp_txb = (gcnew System::Windows::Forms::TextBox());
+			  this->label4 = (gcnew System::Windows::Forms::Label());
+			  this->CardCVV_txb = (gcnew System::Windows::Forms::TextBox());
+			  this->label5 = (gcnew System::Windows::Forms::Label());
+			  this->CardName_txb = (gcnew System::Windows::Forms::TextBox());
+			  this->displayPrice = (gcnew System::Windows::Forms::Label());
+			  this->SuspendLayout();
+			  // 
+			  // confirm_btn
+			  // 
+			  this->confirm_btn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->confirm_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->confirm_btn->Location = System::Drawing::Point(20, 322);
+			  this->confirm_btn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->confirm_btn->Name = L"confirm_btn";
+			  this->confirm_btn->Size = System::Drawing::Size(122, 52);
+			  this->confirm_btn->TabIndex = 0;
+			  this->confirm_btn->Text = L"Pay";
+			  this->confirm_btn->UseVisualStyleBackColor = false;
+			  this->confirm_btn->Click += gcnew System::EventHandler(this, &PaymentPage::confirm_btn_Click);
+			  // 
+			  // cancelling_btn
+			  // 
+			  this->cancelling_btn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->cancelling_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->cancelling_btn->Location = System::Drawing::Point(200, 322);
+			  this->cancelling_btn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->cancelling_btn->Name = L"cancelling_btn";
+			  this->cancelling_btn->Size = System::Drawing::Size(122, 52);
+			  this->cancelling_btn->TabIndex = 1;
+			  this->cancelling_btn->Text = L"cancel";
+			  this->cancelling_btn->UseVisualStyleBackColor = false;
+			  this->cancelling_btn->Click += gcnew System::EventHandler(this, &PaymentPage::cancelling_btn_Click);
+			  // 
+			  // CardID_txb
+			  // 
+			  this->CardID_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->CardID_txb->Location = System::Drawing::Point(9, 71);
+			  this->CardID_txb->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->CardID_txb->Name = L"CardID_txb";
+			  this->CardID_txb->Size = System::Drawing::Size(240, 26);
+			  this->CardID_txb->TabIndex = 2;
+			  this->CardID_txb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PaymentPage::CardID_txb_KeyPress);
+			  // 
+			  // label1
+			  // 
+			  this->label1->AutoSize = true;
+			  this->label1->BackColor = System::Drawing::Color::Black;
+			  this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->label1->Location = System::Drawing::Point(16, 48);
+			  this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->label1->Name = L"label1";
+			  this->label1->Size = System::Drawing::Size(101, 20);
+			  this->label1->TabIndex = 3;
+			  this->label1->Text = L"Card number";
+			  // 
+			  // label2
+			  // 
+			  this->label2->AutoSize = true;
+			  this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->label2->Location = System::Drawing::Point(5, 197);
+			  this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->label2->Name = L"label2";
+			  this->label2->Size = System::Drawing::Size(151, 20);
+			  this->label2->TabIndex = 5;
+			  this->label2->Text = L"Expire date(YY/MM)";
+			  // 
+			  // CardExp_txb
+			  // 
+			  this->CardExp_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->CardExp_txb->Location = System::Drawing::Point(9, 229);
+			  this->CardExp_txb->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->CardExp_txb->Name = L"CardExp_txb";
+			  this->CardExp_txb->Size = System::Drawing::Size(54, 26);
+			  this->CardExp_txb->TabIndex = 4;
+			  this->CardExp_txb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PaymentPage::CardMM_txb_KeyPress);
+			  // 
+			  // label4
+			  // 
+			  this->label4->AutoSize = true;
+			  this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->label4->Location = System::Drawing::Point(207, 206);
+			  this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->label4->Name = L"label4";
+			  this->label4->Size = System::Drawing::Size(42, 20);
+			  this->label4->TabIndex = 9;
+			  this->label4->Text = L"CVV";
+			  // 
+			  // CardCVV_txb
+			  // 
+			  this->CardCVV_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->CardCVV_txb->Location = System::Drawing::Point(207, 229);
+			  this->CardCVV_txb->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->CardCVV_txb->Name = L"CardCVV_txb";
+			  this->CardCVV_txb->Size = System::Drawing::Size(47, 26);
+			  this->CardCVV_txb->TabIndex = 8;
+			  this->CardCVV_txb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PaymentPage::CardCVV_txb_KeyPress);
+			  // 
+			  // label5
+			  // 
+			  this->label5->AutoSize = true;
+			  this->label5->BackColor = System::Drawing::Color::Black;
+			  this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label5->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->label5->Location = System::Drawing::Point(16, 119);
+			  this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->label5->Name = L"label5";
+			  this->label5->Size = System::Drawing::Size(89, 20);
+			  this->label5->TabIndex = 11;
+			  this->label5->Text = L"Card Name";
+			  // 
+			  // CardName_txb
+			  // 
+			  this->CardName_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->CardName_txb->Location = System::Drawing::Point(9, 142);
+			  this->CardName_txb->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->CardName_txb->Name = L"CardName_txb";
+			  this->CardName_txb->Size = System::Drawing::Size(240, 26);
+			  this->CardName_txb->TabIndex = 10;
+			  this->CardName_txb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PaymentPage::CardName_txb_KeyPress);
+			  // 
+			  // displayPrice
+			  // 
+			  this->displayPrice->AutoSize = true;
+			  this->displayPrice->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->displayPrice->Location = System::Drawing::Point(16, 7);
+			  this->displayPrice->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			  this->displayPrice->Name = L"displayPrice";
+			  this->displayPrice->Size = System::Drawing::Size(142, 20);
+			  this->displayPrice->TabIndex = 12;
+			  this->displayPrice->Text = L"Transaction price : ";
+			  // 
+			  // PaymentPage
+			  // 
+			  this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			  this->BackColor = System::Drawing::Color::Black;
+			  this->ClientSize = System::Drawing::Size(350, 416);
+			  this->ControlBox = false;
+			  this->Controls->Add(this->displayPrice);
+			  this->Controls->Add(this->label5);
+			  this->Controls->Add(this->CardName_txb);
+			  this->Controls->Add(this->label4);
+			  this->Controls->Add(this->CardCVV_txb);
+			  this->Controls->Add(this->label2);
+			  this->Controls->Add(this->CardExp_txb);
+			  this->Controls->Add(this->label1);
+			  this->Controls->Add(this->CardID_txb);
+			  this->Controls->Add(this->cancelling_btn);
+			  this->Controls->Add(this->confirm_btn);
+			  this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			  this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->Name = L"PaymentPage";
+			  this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
+			  this->Text = L"PaymentPage";
+			  this->Load += gcnew System::EventHandler(this, &PaymentPage::PaymentPage_Load);
+			  this->ResumeLayout(false);
+			  this->PerformLayout();
 
 		  }
 #pragma endregion

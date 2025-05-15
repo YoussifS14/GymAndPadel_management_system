@@ -1535,7 +1535,7 @@ namespace ProjectCode {
 		  }
 		  if (remainingDays >= 3 && remainingDays <= 6) {
 			   System::Windows::Forms::DialogResult result = MessageBox::Show(
-					"You have an early renewal discount of " + discount.ToString() + "%!\nWould you like to renew now and save?",
+					"You have an early renewal discount of " + discount.ToString() + "%!\nWould you like to renew ?",
 					"Special Offer",
 					MessageBoxButtons::YesNo,
 					MessageBoxIcon::Information

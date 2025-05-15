@@ -61,172 +61,162 @@ namespace ProjectCode {
 #pragma region Windows Form Designer generated code
 		  void InitializeComponent(void)
 		  {
-			   this->label1 = (gcnew System::Windows::Forms::Label());
-			   this->label2 = (gcnew System::Windows::Forms::Label());
-			   this->button2 = (gcnew System::Windows::Forms::Button());
-			   this->subscriptionDetailsLabel = (gcnew System::Windows::Forms::Label());
-			   this->label3 = (gcnew System::Windows::Forms::Label());
-			   this->label4 = (gcnew System::Windows::Forms::Label());
-			   this->label5 = (gcnew System::Windows::Forms::Label());
-			   this->label6 = (gcnew System::Windows::Forms::Label());
-			   this->button1 = (gcnew System::Windows::Forms::Button());
-			   this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
-			   this->SuspendLayout();
-			   // 
-			   // label1
-			   // 
-			   this->label1->AutoSize = true;
-			   this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label1->Location = System::Drawing::Point(31, 32);
-			   this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			   this->label1->Name = L"label1";
-			   this->label1->Size = System::Drawing::Size(45, 29);
-			   this->label1->TabIndex = 0;
-			   this->label1->Text = L"HI ";
-			   this->label1->Visible = false;
-			   // 
-			   // label2
-			   // 
-			   this->label2->AutoSize = true;
-			   this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label2->Location = System::Drawing::Point(779, 32);
-			   this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			   this->label2->Name = L"label2";
-			   this->label2->Size = System::Drawing::Size(292, 29);
-			   this->label2->TabIndex = 2;
-			   this->label2->Text = L"YOUR SUBSCRIPTION:";
-			   this->label2->Visible = false;
-			   // 
-			   // button2
-			   // 
-			   this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->button2->Location = System::Drawing::Point(424, 457);
-			   this->button2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			   this->button2->Name = L"button2";
-			   this->button2->Size = System::Drawing::Size(269, 110);
-			   this->button2->TabIndex = 4;
-			   this->button2->Text = L"Back to main page";
-			   this->button2->UseVisualStyleBackColor = true;
-			   this->button2->Click += gcnew System::EventHandler(this, &useraccount::button2_Click);
-			   // 
-			   // subscriptionDetailsLabel
-			   // 
-			   this->subscriptionDetailsLabel->AutoSize = true;
-			   this->subscriptionDetailsLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
-			   this->subscriptionDetailsLabel->Location = System::Drawing::Point(779, 123);
-			   this->subscriptionDetailsLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			   this->subscriptionDetailsLabel->Name = L"subscriptionDetailsLabel";
-			   this->subscriptionDetailsLabel->Size = System::Drawing::Size(0, 20);
-			   this->subscriptionDetailsLabel->TabIndex = 5;
-			   this->subscriptionDetailsLabel->Visible = false;
-			   // 
-			   // label3
-			   // 
-			   this->label3->AutoSize = true;
-			   this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label3->Location = System::Drawing::Point(32, 87);
-			   this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			   this->label3->Name = L"label3";
-			   this->label3->Size = System::Drawing::Size(70, 25);
-			   this->label3->TabIndex = 6;
-			   this->label3->Text = L"label3";
-			   this->label3->Visible = false;
-			   // 
-			   // label4
-			   // 
-			   this->label4->AutoSize = true;
-			   this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label4->Location = System::Drawing::Point(31, 128);
-			   this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			   this->label4->Name = L"label4";
-			   this->label4->Size = System::Drawing::Size(70, 25);
-			   this->label4->TabIndex = 7;
-			   this->label4->Text = L"label4";
-			   this->label4->Visible = false;
-			   // 
-			   // label5
-			   // 
-			   this->label5->AutoSize = true;
-			   this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label5->Location = System::Drawing::Point(32, 174);
-			   this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			   this->label5->Name = L"label5";
-			   this->label5->Size = System::Drawing::Size(70, 25);
-			   this->label5->TabIndex = 8;
-			   this->label5->Text = L"label5";
-			   this->label5->Visible = false;
-			   // 
-			   // label6
-			   // 
-			   this->label6->AutoSize = true;
-			   this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label6->Location = System::Drawing::Point(31, 230);
-			   this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			   this->label6->Name = L"label6";
-			   this->label6->Size = System::Drawing::Size(70, 25);
-			   this->label6->TabIndex = 9;
-			   this->label6->Text = L"label6";
-			   this->label6->Visible = false;
-			   // 
-			   // button1
-			   // 
-			   this->button1->Enabled = false;
-			   this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->button1->Location = System::Drawing::Point(23, 486);
-			   this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			   this->button1->Name = L"button1";
-			   this->button1->Size = System::Drawing::Size(269, 110);
-			   this->button1->TabIndex = 10;
-			   this->button1->Text = L"Update subscription";
-			   this->button1->UseVisualStyleBackColor = true;
-			   this->button1->Click += gcnew System::EventHandler(this, &useraccount::button1_Click);
-			   // 
-			   // richTextBox1
-			   // 
-			   this->richTextBox1->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->richTextBox1->Location = System::Drawing::Point(0, 0);
-			   this->richTextBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			   this->richTextBox1->Name = L"richTextBox1";
-			   this->richTextBox1->ReadOnly = true;
-			   this->richTextBox1->Size = System::Drawing::Size(1129, 440);
-			   this->richTextBox1->TabIndex = 11;
-			   this->richTextBox1->Text = L"";
-			   // 
-			   // useraccount
-			   // 
-			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			   this->CancelButton = this->button1;
-			   this->ClientSize = System::Drawing::Size(1129, 609);
-			   this->ControlBox = false;
-			   this->Controls->Add(this->richTextBox1);
-			   this->Controls->Add(this->button1);
-			   this->Controls->Add(this->label6);
-			   this->Controls->Add(this->label5);
-			   this->Controls->Add(this->label4);
-			   this->Controls->Add(this->label3);
-			   this->Controls->Add(this->subscriptionDetailsLabel);
-			   this->Controls->Add(this->button2);
-			   this->Controls->Add(this->label2);
-			   this->Controls->Add(this->label1);
-			   this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
-			   this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			   this->Name = L"useraccount";
-			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
-			   this->Text = L"useraccount";
-			   this->Load += gcnew System::EventHandler(this, &useraccount::useraccount_Load);
-			   this->ResumeLayout(false);
-			   this->PerformLayout();
+			  this->label1 = (gcnew System::Windows::Forms::Label());
+			  this->label2 = (gcnew System::Windows::Forms::Label());
+			  this->button2 = (gcnew System::Windows::Forms::Button());
+			  this->subscriptionDetailsLabel = (gcnew System::Windows::Forms::Label());
+			  this->label3 = (gcnew System::Windows::Forms::Label());
+			  this->label4 = (gcnew System::Windows::Forms::Label());
+			  this->label5 = (gcnew System::Windows::Forms::Label());
+			  this->label6 = (gcnew System::Windows::Forms::Label());
+			  this->button1 = (gcnew System::Windows::Forms::Button());
+			  this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			  this->SuspendLayout();
+			  // 
+			  // label1
+			  // 
+			  this->label1->AutoSize = true;
+			  this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label1->Location = System::Drawing::Point(23, 26);
+			  this->label1->Name = L"label1";
+			  this->label1->Size = System::Drawing::Size(36, 24);
+			  this->label1->TabIndex = 0;
+			  this->label1->Text = L"HI ";
+			  this->label1->Visible = false;
+			  // 
+			  // label2
+			  // 
+			  this->label2->AutoSize = true;
+			  this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label2->Location = System::Drawing::Point(584, 26);
+			  this->label2->Name = L"label2";
+			  this->label2->Size = System::Drawing::Size(227, 24);
+			  this->label2->TabIndex = 2;
+			  this->label2->Text = L"YOUR SUBSCRIPTION:";
+			  this->label2->Visible = false;
+			  // 
+			  // button2
+			  // 
+			  this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->button2->Location = System::Drawing::Point(318, 371);
+			  this->button2->Name = L"button2";
+			  this->button2->Size = System::Drawing::Size(202, 89);
+			  this->button2->TabIndex = 4;
+			  this->button2->Text = L"Back to main page";
+			  this->button2->UseVisualStyleBackColor = true;
+			  this->button2->Click += gcnew System::EventHandler(this, &useraccount::button2_Click);
+			  // 
+			  // subscriptionDetailsLabel
+			  // 
+			  this->subscriptionDetailsLabel->AutoSize = true;
+			  this->subscriptionDetailsLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
+			  this->subscriptionDetailsLabel->Location = System::Drawing::Point(584, 100);
+			  this->subscriptionDetailsLabel->Name = L"subscriptionDetailsLabel";
+			  this->subscriptionDetailsLabel->Size = System::Drawing::Size(0, 17);
+			  this->subscriptionDetailsLabel->TabIndex = 5;
+			  this->subscriptionDetailsLabel->Visible = false;
+			  // 
+			  // label3
+			  // 
+			  this->label3->AutoSize = true;
+			  this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label3->Location = System::Drawing::Point(24, 71);
+			  this->label3->Name = L"label3";
+			  this->label3->Size = System::Drawing::Size(57, 20);
+			  this->label3->TabIndex = 6;
+			  this->label3->Text = L"label3";
+			  this->label3->Visible = false;
+			  // 
+			  // label4
+			  // 
+			  this->label4->AutoSize = true;
+			  this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label4->Location = System::Drawing::Point(23, 104);
+			  this->label4->Name = L"label4";
+			  this->label4->Size = System::Drawing::Size(57, 20);
+			  this->label4->TabIndex = 7;
+			  this->label4->Text = L"label4";
+			  this->label4->Visible = false;
+			  // 
+			  // label5
+			  // 
+			  this->label5->AutoSize = true;
+			  this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label5->Location = System::Drawing::Point(24, 141);
+			  this->label5->Name = L"label5";
+			  this->label5->Size = System::Drawing::Size(57, 20);
+			  this->label5->TabIndex = 8;
+			  this->label5->Text = L"label5";
+			  this->label5->Visible = false;
+			  // 
+			  // label6
+			  // 
+			  this->label6->AutoSize = true;
+			  this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label6->Location = System::Drawing::Point(23, 187);
+			  this->label6->Name = L"label6";
+			  this->label6->Size = System::Drawing::Size(57, 20);
+			  this->label6->TabIndex = 9;
+			  this->label6->Text = L"label6";
+			  this->label6->Visible = false;
+			  // 
+			  // button1
+			  // 
+			  this->button1->DialogResult = System::Windows::Forms::DialogResult::Cancel;
+			  this->button1->Enabled = false;
+			  this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->button1->Location = System::Drawing::Point(17, 395);
+			  this->button1->Name = L"button1";
+			  this->button1->Size = System::Drawing::Size(202, 89);
+			  this->button1->TabIndex = 10;
+			  this->button1->Text = L"Update subscription";
+			  this->button1->UseVisualStyleBackColor = true;
+			  this->button1->Click += gcnew System::EventHandler(this, &useraccount::button1_Click);
+			  // 
+			  // richTextBox1
+			  // 
+			  this->richTextBox1->Dock = System::Windows::Forms::DockStyle::Top;
+			  this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->richTextBox1->Location = System::Drawing::Point(0, 0);
+			  this->richTextBox1->Name = L"richTextBox1";
+			  this->richTextBox1->ReadOnly = true;
+			  this->richTextBox1->Size = System::Drawing::Size(847, 358);
+			  this->richTextBox1->TabIndex = 11;
+			  this->richTextBox1->Text = L"";
+			  // 
+			  // useraccount
+			  // 
+			  this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			  this->CancelButton = this->button1;
+			  this->ClientSize = System::Drawing::Size(847, 495);
+			  this->ControlBox = false;
+			  this->Controls->Add(this->richTextBox1);
+			  this->Controls->Add(this->button1);
+			  this->Controls->Add(this->label6);
+			  this->Controls->Add(this->label5);
+			  this->Controls->Add(this->label4);
+			  this->Controls->Add(this->label3);
+			  this->Controls->Add(this->subscriptionDetailsLabel);
+			  this->Controls->Add(this->button2);
+			  this->Controls->Add(this->label2);
+			  this->Controls->Add(this->label1);
+			  this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			  this->Name = L"useraccount";
+			  this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
+			  this->Text = L"useraccount";
+			  this->Load += gcnew System::EventHandler(this, &useraccount::useraccount_Load);
+			  this->ResumeLayout(false);
+			  this->PerformLayout();
 
 		  }
 
