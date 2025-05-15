@@ -1170,7 +1170,7 @@ namespace ProjectCode {
                 Label^ reportLabel = gcnew Label();
                 reportLabel->AutoSize = true;
                 reportLabel->Font = gcnew System::Drawing::Font(L"Consolas", 10);
-                reportLabel->ForeColor = System::Drawing::Color::White;
+                reportLabel->ForeColor = System::Drawing::Color::FromArgb(255, 234, 0);
                 reportLabel->Text = gcnew String(report.c_str());
                 MonthReport->Controls->Add(reportLabel);
             }
