@@ -495,7 +495,15 @@ struct Notification {
 			   standardMessage = "Dear " + usr.name + ",\nYou have been added to " + cls +
 					"\nyou were waiting for." + "\n\nHave a nice day :)";
 		  }
+		  else if (type == 2) {
+			   standardMessage = "Dear " + usr.name + ",\nYou applied to join the class \" " + cls +
+					"\"\n and it's no longer possible to join this class this month.\nYou can explore the available classes as they start.\nYour payment has been refunded." + "\n\nHave a nice day :)";
+		  }
 
+		  /*
+		  You applied to join the class, but no one responded, and it's no longer possible to join this class this month. You can explore the available classes as they start. Your payment has been refunded.
+
+		  */
 
 
 
@@ -796,6 +804,7 @@ public:
 		  auto it = find(waitingList.begin(), waitingList.end(), userID);
 		  if (it != waitingList.end()) {
 			   waitingList.erase(it);
+
 		  }
 	 }
 	 string generateUniqueID() {

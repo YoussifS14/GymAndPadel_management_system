@@ -113,11 +113,11 @@ void readGymClasses() {
 			   if (currentTime > endTime) {
 					gymClass.startDate = User::getCurrentDate_MM_DD_YYYY();
 					gymClass.members.clear();
-					while (!gymClass.waitingList.empty()) {
+					/*while (!gymClass.waitingList.empty()) {
 						 string userID = gymClass.waitingList.front();
 						 gymClass.waitingList.pop_front();
 						 gymClass.members.push_back(userID);
-					}
+					}*/
 					gymClass.waitingList.clear();
 					gymClass.endDate = gymClass.calculateEndDate(gymClass.startDate);
 					// reshedule sessions 
@@ -487,6 +487,8 @@ void writeNotification() {
 					type = 0;
 			   else if (notif.message.find("You have been added to") != string::npos)
 					type = 1;
+			   else if (notif.message.find("You applied to join the class") != string::npos)
+					type = 2;
 
 			   string className = extractClass(notif.message);
 
@@ -507,6 +509,22 @@ int main()
 	 readSlotData();
 	 readNotfication(); //done
 	 readWorkoutData();
+	 for (auto& itClass : gymClassList) {
+		  if (itClass.second.getDaysDifference() >= 15) {
+			   string clssName = itClass.second.className;
+			   while (!itClass.second.waitingList.empty()) {
+					string userID = itClass.second.waitingList.front();
+					string msg = Notification::standardMessage(userList[userID], clssName, 2);
+					Notification notify;
+					notify.message = msg;
+					itClass.second.waitingList.pop_front();
+					userList[userID].myNotifications.push_back(notify);
+					userList[userID].myWallet += itClass.second.price;
+					userList[userID].myWaitingList.remove(itClass.first);
+			   }
+
+		  }
+	 }
 	 Application::EnableVisualStyles();
 	 Application::SetCompatibleTextRenderingDefault(false);
 	 ProjectCode::LoginPage form;
