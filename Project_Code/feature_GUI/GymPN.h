@@ -70,128 +70,142 @@ namespace ProjectCode {
 		  /// </summary>
 		  void InitializeComponent(void)
 		  {
-			   this->CName = (gcnew System::Windows::Forms::Label());
-			   this->CInstructor = (gcnew System::Windows::Forms::Label());
-			   this->CStart = (gcnew System::Windows::Forms::Label());
-			   this->CEnd = (gcnew System::Windows::Forms::Label());
-			   this->Reserv_btn = (gcnew System::Windows::Forms::Button());
-			   this->CPrice = (gcnew System::Windows::Forms::Label());
-			   this->cancelling_btn = (gcnew System::Windows::Forms::Button());
-			   this->label1 = (gcnew System::Windows::Forms::Label());
-			   this->SuspendLayout();
-			   // 
-			   // CName
-			   // 
-			   this->CName->AutoSize = true;
-			   this->CName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->CName->Location = System::Drawing::Point(3, 9);
-			   this->CName->Name = L"CName";
-			   this->CName->Size = System::Drawing::Size(90, 29);
-			   this->CName->TabIndex = 0;
-			   this->CName->Text = L"Name :";
-			   // 
-			   // CInstructor
-			   // 
-			   this->CInstructor->AutoSize = true;
-			   this->CInstructor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->CInstructor->Location = System::Drawing::Point(3, 57);
-			   this->CInstructor->Name = L"CInstructor";
-			   this->CInstructor->Size = System::Drawing::Size(123, 29);
-			   this->CInstructor->TabIndex = 1;
-			   this->CInstructor->Text = L"Instructor :";
-			   // 
-			   // CStart
-			   // 
-			   this->CStart->AutoSize = true;
-			   this->CStart->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->CStart->Location = System::Drawing::Point(3, 153);
-			   this->CStart->Name = L"CStart";
-			   this->CStart->Size = System::Drawing::Size(127, 29);
-			   this->CStart->TabIndex = 2;
-			   this->CStart->Text = L"Start date :";
-			   // 
-			   // CEnd
-			   // 
-			   this->CEnd->AutoSize = true;
-			   this->CEnd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->CEnd->Location = System::Drawing::Point(3, 201);
-			   this->CEnd->Name = L"CEnd";
-			   this->CEnd->Size = System::Drawing::Size(121, 29);
-			   this->CEnd->TabIndex = 3;
-			   this->CEnd->Text = L"End date :";
-			   // 
-			   // Reserv_btn
-			   // 
-			   this->Reserv_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->Reserv_btn->Location = System::Drawing::Point(632, 191);
-			   this->Reserv_btn->Name = L"Reserv_btn";
-			   this->Reserv_btn->Size = System::Drawing::Size(123, 39);
-			   this->Reserv_btn->TabIndex = 4;
-			   this->Reserv_btn->Text = L"Reserve";
-			   this->Reserv_btn->UseVisualStyleBackColor = true;
-			   this->Reserv_btn->Visible = false;
-			   this->Reserv_btn->Click += gcnew System::EventHandler(this, &GymPN::Reserv_btn_Click);
-			   // 
-			   // CPrice
-			   // 
-			   this->CPrice->AutoSize = true;
-			   this->CPrice->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->CPrice->Location = System::Drawing::Point(3, 105);
-			   this->CPrice->Name = L"CPrice";
-			   this->CPrice->Size = System::Drawing::Size(81, 29);
-			   this->CPrice->TabIndex = 5;
-			   this->CPrice->Text = L"Price :";
-			   // 
-			   // cancelling_btn
-			   // 
-			   this->cancelling_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->cancelling_btn->Location = System::Drawing::Point(515, 191);
-			   this->cancelling_btn->Name = L"cancelling_btn";
-			   this->cancelling_btn->Size = System::Drawing::Size(123, 39);
-			   this->cancelling_btn->TabIndex = 6;
-			   this->cancelling_btn->Text = L"Cancel";
-			   this->cancelling_btn->UseVisualStyleBackColor = true;
-			   this->cancelling_btn->Visible = false;
-			   this->cancelling_btn->Click += gcnew System::EventHandler(this, &GymPN::cancelling_btn_Click);
-			   // 
-			   // label1
-			   // 
-			   this->label1->AutoSize = true;
-			   this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->label1->ForeColor = System::Drawing::Color::DarkGreen;
-			   this->label1->Location = System::Drawing::Point(302, 208);
-			   this->label1->Name = L"label1";
-			   this->label1->Size = System::Drawing::Size(61, 22);
-			   this->label1->TabIndex = 7;
-			   this->label1->Text = L"Status";
-			   this->label1->Visible = false;
-			   // 
-			   // GymPN
-			   // 
-			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			   this->Controls->Add(this->label1);
-			   this->Controls->Add(this->cancelling_btn);
-			   this->Controls->Add(this->CPrice);
-			   this->Controls->Add(this->Reserv_btn);
-			   this->Controls->Add(this->CEnd);
-			   this->Controls->Add(this->CStart);
-			   this->Controls->Add(this->CInstructor);
-			   this->Controls->Add(this->CName);
-			   this->Name = L"GymPN";
-			   this->Padding = System::Windows::Forms::Padding(0, 0, 10, 0);
-			   this->Size = System::Drawing::Size(785, 264);
-			   this->Load += gcnew System::EventHandler(this, &GymPN::GymPN_Load);
-			   this->ResumeLayout(false);
-			   this->PerformLayout();
+			  this->CName = (gcnew System::Windows::Forms::Label());
+			  this->CInstructor = (gcnew System::Windows::Forms::Label());
+			  this->CStart = (gcnew System::Windows::Forms::Label());
+			  this->CEnd = (gcnew System::Windows::Forms::Label());
+			  this->Reserv_btn = (gcnew System::Windows::Forms::Button());
+			  this->CPrice = (gcnew System::Windows::Forms::Label());
+			  this->cancelling_btn = (gcnew System::Windows::Forms::Button());
+			  this->label1 = (gcnew System::Windows::Forms::Label());
+			  this->SuspendLayout();
+			  // 
+			  // CName
+			  // 
+			  this->CName->AutoSize = true;
+			  this->CName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->CName->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->CName->Location = System::Drawing::Point(3, 9);
+			  this->CName->Name = L"CName";
+			  this->CName->Size = System::Drawing::Size(90, 29);
+			  this->CName->TabIndex = 0;
+			  this->CName->Text = L"Name :";
+			  // 
+			  // CInstructor
+			  // 
+			  this->CInstructor->AutoSize = true;
+			  this->CInstructor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->CInstructor->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->CInstructor->Location = System::Drawing::Point(3, 57);
+			  this->CInstructor->Name = L"CInstructor";
+			  this->CInstructor->Size = System::Drawing::Size(123, 29);
+			  this->CInstructor->TabIndex = 1;
+			  this->CInstructor->Text = L"Instructor :";
+			  // 
+			  // CStart
+			  // 
+			  this->CStart->AutoSize = true;
+			  this->CStart->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->CStart->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->CStart->Location = System::Drawing::Point(3, 153);
+			  this->CStart->Name = L"CStart";
+			  this->CStart->Size = System::Drawing::Size(127, 29);
+			  this->CStart->TabIndex = 2;
+			  this->CStart->Text = L"Start date :";
+			  // 
+			  // CEnd
+			  // 
+			  this->CEnd->AutoSize = true;
+			  this->CEnd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->CEnd->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->CEnd->Location = System::Drawing::Point(3, 201);
+			  this->CEnd->Name = L"CEnd";
+			  this->CEnd->Size = System::Drawing::Size(121, 29);
+			  this->CEnd->TabIndex = 3;
+			  this->CEnd->Text = L"End date :";
+			  // 
+			  // Reserv_btn
+			  // 
+			  this->Reserv_btn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->Reserv_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->Reserv_btn->Location = System::Drawing::Point(632, 191);
+			  this->Reserv_btn->Name = L"Reserv_btn";
+			  this->Reserv_btn->Size = System::Drawing::Size(123, 39);
+			  this->Reserv_btn->TabIndex = 4;
+			  this->Reserv_btn->Text = L"Reserve";
+			  this->Reserv_btn->UseVisualStyleBackColor = false;
+			  this->Reserv_btn->Visible = false;
+			  this->Reserv_btn->Click += gcnew System::EventHandler(this, &GymPN::Reserv_btn_Click);
+			  // 
+			  // CPrice
+			  // 
+			  this->CPrice->AutoSize = true;
+			  this->CPrice->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->CPrice->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->CPrice->Location = System::Drawing::Point(3, 105);
+			  this->CPrice->Name = L"CPrice";
+			  this->CPrice->Size = System::Drawing::Size(81, 29);
+			  this->CPrice->TabIndex = 5;
+			  this->CPrice->Text = L"Price :";
+			  // 
+			  // cancelling_btn
+			  // 
+			  this->cancelling_btn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->cancelling_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->cancelling_btn->Location = System::Drawing::Point(515, 191);
+			  this->cancelling_btn->Name = L"cancelling_btn";
+			  this->cancelling_btn->Size = System::Drawing::Size(123, 39);
+			  this->cancelling_btn->TabIndex = 6;
+			  this->cancelling_btn->Text = L"Cancel";
+			  this->cancelling_btn->UseVisualStyleBackColor = false;
+			  this->cancelling_btn->Visible = false;
+			  this->cancelling_btn->Click += gcnew System::EventHandler(this, &GymPN::cancelling_btn_Click);
+			  // 
+			  // label1
+			  // 
+			  this->label1->AutoSize = true;
+			  this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->label1->ForeColor = System::Drawing::Color::DarkGreen;
+			  this->label1->Location = System::Drawing::Point(302, 208);
+			  this->label1->Name = L"label1";
+			  this->label1->Size = System::Drawing::Size(61, 22);
+			  this->label1->TabIndex = 7;
+			  this->label1->Text = L"Status";
+			  this->label1->Visible = false;
+			  // 
+			  // GymPN
+			  // 
+			  this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			  this->Controls->Add(this->label1);
+			  this->Controls->Add(this->cancelling_btn);
+			  this->Controls->Add(this->CPrice);
+			  this->Controls->Add(this->Reserv_btn);
+			  this->Controls->Add(this->CEnd);
+			  this->Controls->Add(this->CStart);
+			  this->Controls->Add(this->CInstructor);
+			  this->Controls->Add(this->CName);
+			  this->Name = L"GymPN";
+			  this->Padding = System::Windows::Forms::Padding(0, 0, 10, 0);
+			  this->Size = System::Drawing::Size(785, 264);
+			  this->Load += gcnew System::EventHandler(this, &GymPN::GymPN_Load);
+			  this->ResumeLayout(false);
+			  this->PerformLayout();
 
 		  }
 #pragma endregion

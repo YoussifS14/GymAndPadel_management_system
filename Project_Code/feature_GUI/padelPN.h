@@ -72,97 +72,107 @@ namespace ProjectCode {
 		  /// </summary>
 		  void InitializeComponent(void)
 		  {
-			   this->courtName = (gcnew System::Windows::Forms::Label());
-			   this->courtLoc = (gcnew System::Windows::Forms::Label());
-			   this->courtPrice = (gcnew System::Windows::Forms::Label());
-			   this->courtDate = (gcnew System::Windows::Forms::Label());
-			   this->courtAva = (gcnew System::Windows::Forms::Label());
-			   this->reserCourt = (gcnew System::Windows::Forms::Button());
-			   this->SuspendLayout();
-			   // 
-			   // courtName
-			   // 
-			   this->courtName->AutoSize = true;
-			   this->courtName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->courtName->Location = System::Drawing::Point(27, 19);
-			   this->courtName->Name = L"courtName";
-			   this->courtName->Size = System::Drawing::Size(85, 29);
-			   this->courtName->TabIndex = 0;
-			   this->courtName->Text = L"name :";
-			   // 
-			   // courtLoc
-			   // 
-			   this->courtLoc->AutoSize = true;
-			   this->courtLoc->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->courtLoc->Location = System::Drawing::Point(27, 76);
-			   this->courtLoc->Name = L"courtLoc";
-			   this->courtLoc->Size = System::Drawing::Size(116, 29);
-			   this->courtLoc->TabIndex = 1;
-			   this->courtLoc->Text = L"Location :";
-			   // 
-			   // courtPrice
-			   // 
-			   this->courtPrice->AutoSize = true;
-			   this->courtPrice->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->courtPrice->Location = System::Drawing::Point(27, 133);
-			   this->courtPrice->Name = L"courtPrice";
-			   this->courtPrice->Size = System::Drawing::Size(87, 29);
-			   this->courtPrice->TabIndex = 2;
-			   this->courtPrice->Text = L"Price : ";
-			   // 
-			   // courtDate
-			   // 
-			   this->courtDate->AutoSize = true;
-			   this->courtDate->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->courtDate->Location = System::Drawing::Point(27, 190);
-			   this->courtDate->Name = L"courtDate";
-			   this->courtDate->Size = System::Drawing::Size(75, 29);
-			   this->courtDate->TabIndex = 3;
-			   this->courtDate->Text = L"Date :";
-			   // 
-			   // courtAva
-			   // 
-			   this->courtAva->AutoSize = true;
-			   this->courtAva->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->courtAva->ForeColor = System::Drawing::Color::Green;
-			   this->courtAva->Location = System::Drawing::Point(27, 247);
-			   this->courtAva->Name = L"courtAva";
-			   this->courtAva->Size = System::Drawing::Size(111, 29);
-			   this->courtAva->TabIndex = 4;
-			   this->courtAva->Text = L"Available";
-			   // 
-			   // reserCourt
-			   // 
-			   this->reserCourt->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->reserCourt->Location = System::Drawing::Point(561, 247);
-			   this->reserCourt->Name = L"reserCourt";
-			   this->reserCourt->Size = System::Drawing::Size(213, 52);
-			   this->reserCourt->TabIndex = 5;
-			   this->reserCourt->Text = L"Reserve";
-			   this->reserCourt->UseVisualStyleBackColor = true;
-			   this->reserCourt->Click += gcnew System::EventHandler(this, &padelPN::reserCourt_Click);
-			   // 
-			   // padelPN
-			   // 
-			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			   this->Controls->Add(this->reserCourt);
-			   this->Controls->Add(this->courtAva);
-			   this->Controls->Add(this->courtDate);
-			   this->Controls->Add(this->courtPrice);
-			   this->Controls->Add(this->courtLoc);
-			   this->Controls->Add(this->courtName);
-			   this->Name = L"padelPN";
-			   this->Padding = System::Windows::Forms::Padding(0, 0, 0, 10);
-			   this->Size = System::Drawing::Size(811, 317);
-			   this->ResumeLayout(false);
-			   this->PerformLayout();
+			  this->courtName = (gcnew System::Windows::Forms::Label());
+			  this->courtLoc = (gcnew System::Windows::Forms::Label());
+			  this->courtPrice = (gcnew System::Windows::Forms::Label());
+			  this->courtDate = (gcnew System::Windows::Forms::Label());
+			  this->courtAva = (gcnew System::Windows::Forms::Label());
+			  this->reserCourt = (gcnew System::Windows::Forms::Button());
+			  this->SuspendLayout();
+			  // 
+			  // courtName
+			  // 
+			  this->courtName->AutoSize = true;
+			  this->courtName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->courtName->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->courtName->Location = System::Drawing::Point(27, 19);
+			  this->courtName->Name = L"courtName";
+			  this->courtName->Size = System::Drawing::Size(85, 29);
+			  this->courtName->TabIndex = 0;
+			  this->courtName->Text = L"name :";
+			  // 
+			  // courtLoc
+			  // 
+			  this->courtLoc->AutoSize = true;
+			  this->courtLoc->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->courtLoc->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->courtLoc->Location = System::Drawing::Point(27, 76);
+			  this->courtLoc->Name = L"courtLoc";
+			  this->courtLoc->Size = System::Drawing::Size(116, 29);
+			  this->courtLoc->TabIndex = 1;
+			  this->courtLoc->Text = L"Location :";
+			  // 
+			  // courtPrice
+			  // 
+			  this->courtPrice->AutoSize = true;
+			  this->courtPrice->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->courtPrice->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->courtPrice->Location = System::Drawing::Point(27, 133);
+			  this->courtPrice->Name = L"courtPrice";
+			  this->courtPrice->Size = System::Drawing::Size(87, 29);
+			  this->courtPrice->TabIndex = 2;
+			  this->courtPrice->Text = L"Price : ";
+			  // 
+			  // courtDate
+			  // 
+			  this->courtDate->AutoSize = true;
+			  this->courtDate->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->courtDate->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->courtDate->Location = System::Drawing::Point(27, 190);
+			  this->courtDate->Name = L"courtDate";
+			  this->courtDate->Size = System::Drawing::Size(75, 29);
+			  this->courtDate->TabIndex = 3;
+			  this->courtDate->Text = L"Date :";
+			  // 
+			  // courtAva
+			  // 
+			  this->courtAva->AutoSize = true;
+			  this->courtAva->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->courtAva->ForeColor = System::Drawing::Color::Green;
+			  this->courtAva->Location = System::Drawing::Point(27, 247);
+			  this->courtAva->Name = L"courtAva";
+			  this->courtAva->Size = System::Drawing::Size(111, 29);
+			  this->courtAva->TabIndex = 4;
+			  this->courtAva->Text = L"Available";
+			  // 
+			  // reserCourt
+			  // 
+			  this->reserCourt->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->reserCourt->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				  static_cast<System::Byte>(0)));
+			  this->reserCourt->Location = System::Drawing::Point(561, 247);
+			  this->reserCourt->Name = L"reserCourt";
+			  this->reserCourt->Size = System::Drawing::Size(213, 52);
+			  this->reserCourt->TabIndex = 5;
+			  this->reserCourt->Text = L"Reserve";
+			  this->reserCourt->UseVisualStyleBackColor = false;
+			  this->reserCourt->Click += gcnew System::EventHandler(this, &padelPN::reserCourt_Click);
+			  // 
+			  // padelPN
+			  // 
+			  this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			  this->Controls->Add(this->reserCourt);
+			  this->Controls->Add(this->courtAva);
+			  this->Controls->Add(this->courtDate);
+			  this->Controls->Add(this->courtPrice);
+			  this->Controls->Add(this->courtLoc);
+			  this->Controls->Add(this->courtName);
+			  this->Name = L"padelPN";
+			  this->Padding = System::Windows::Forms::Padding(0, 0, 0, 10);
+			  this->Size = System::Drawing::Size(811, 317);
+			  this->ResumeLayout(false);
+			  this->PerformLayout();
 
 		  }
 #pragma endregion

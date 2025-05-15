@@ -125,10 +125,9 @@ namespace ProjectCode {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->userName_lb->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->userName_lb->Location = System::Drawing::Point(393, 365);
-			this->userName_lb->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->userName_lb->Location = System::Drawing::Point(319, 362);
 			this->userName_lb->Name = L"userName_lb";
-			this->userName_lb->Size = System::Drawing::Size(73, 26);
+			this->userName_lb->Size = System::Drawing::Size(91, 32);
 			this->userName_lb->TabIndex = 0;
 			this->userName_lb->Text = L"Email";
 			// 
@@ -140,10 +139,10 @@ namespace ProjectCode {
 				static_cast<System::Byte>(0)));
 			this->Login_btn->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->Login_btn->Location = System::Drawing::Point(586, 475);
-			this->Login_btn->Margin = System::Windows::Forms::Padding(2);
+			this->Login_btn->Location = System::Drawing::Point(576, 498);
+			this->Login_btn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Login_btn->Name = L"Login_btn";
-			this->Login_btn->Size = System::Drawing::Size(233, 56);
+			this->Login_btn->Size = System::Drawing::Size(311, 69);
 			this->Login_btn->TabIndex = 1;
 			this->Login_btn->Text = L"Sign In ";
 			this->Login_btn->UseVisualStyleBackColor = false;
@@ -153,10 +152,10 @@ namespace ProjectCode {
 			// 
 			this->userName_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->userName_txb->Location = System::Drawing::Point(500, 359);
-			this->userName_txb->Margin = System::Windows::Forms::Padding(2);
+			this->userName_txb->Location = System::Drawing::Point(462, 355);
+			this->userName_txb->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->userName_txb->Name = L"userName_txb";
-			this->userName_txb->Size = System::Drawing::Size(397, 32);
+			this->userName_txb->Size = System::Drawing::Size(528, 38);
 			this->userName_txb->TabIndex = 2;
 			this->userName_txb->TextChanged += gcnew System::EventHandler(this, &LoginPage::userName_txb_TextChanged);
 			// 
@@ -164,10 +163,10 @@ namespace ProjectCode {
 			// 
 			this->password_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->password_txb->Location = System::Drawing::Point(500, 422);
-			this->password_txb->Margin = System::Windows::Forms::Padding(2);
+			this->password_txb->Location = System::Drawing::Point(462, 432);
+			this->password_txb->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->password_txb->Name = L"password_txb";
-			this->password_txb->Size = System::Drawing::Size(397, 32);
+			this->password_txb->Size = System::Drawing::Size(528, 38);
 			this->password_txb->TabIndex = 4;
 			this->password_txb->UseSystemPasswordChar = true;
 			// 
@@ -179,10 +178,9 @@ namespace ProjectCode {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->password_lb->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->password_lb->Location = System::Drawing::Point(368, 425);
-			this->password_lb->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->password_lb->Location = System::Drawing::Point(286, 436);
 			this->password_lb->Name = L"password_lb";
-			this->password_lb->Size = System::Drawing::Size(116, 26);
+			this->password_lb->Size = System::Drawing::Size(146, 32);
 			this->password_lb->TabIndex = 3;
 			this->password_lb->Text = L"Password";
 			// 
@@ -193,10 +191,10 @@ namespace ProjectCode {
 			this->SwitchHide->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->SwitchHide->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->SwitchHide->ForeColor = System::Drawing::Color::DarkGoldenrod;
-			this->SwitchHide->Location = System::Drawing::Point(917, 428);
-			this->SwitchHide->Margin = System::Windows::Forms::Padding(2);
+			this->SwitchHide->Location = System::Drawing::Point(1017, 436);
+			this->SwitchHide->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->SwitchHide->Name = L"SwitchHide";
-			this->SwitchHide->Size = System::Drawing::Size(27, 26);
+			this->SwitchHide->Size = System::Drawing::Size(36, 32);
 			this->SwitchHide->TabIndex = 5;
 			this->SwitchHide->UseVisualStyleBackColor = false;
 			this->SwitchHide->Click += gcnew System::EventHandler(this, &LoginPage::SwitchHide_Click);
@@ -209,10 +207,9 @@ namespace ProjectCode {
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(485, 562);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(442, 605);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(237, 18);
+			this->label1->Size = System::Drawing::Size(282, 22);
 			this->label1->TabIndex = 6;
 			this->label1->Text = L"No account...want to sign up\?!";
 			// 
@@ -224,10 +221,10 @@ namespace ProjectCode {
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(741, 564);
-			this->button1->Margin = System::Windows::Forms::Padding(2);
+			this->button1->Location = System::Drawing::Point(776, 596);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(104, 25);
+			this->button1->Size = System::Drawing::Size(139, 31);
 			this->button1->TabIndex = 7;
 			this->button1->Text = L"Sign up";
 			this->button1->UseVisualStyleBackColor = false;
@@ -235,11 +232,11 @@ namespace ProjectCode {
 			// 
 			// LoginPage
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(999, 600);
+			this->ClientSize = System::Drawing::Size(1332, 738);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->SwitchHide);
@@ -249,7 +246,7 @@ namespace ProjectCode {
 			this->Controls->Add(this->Login_btn);
 			this->Controls->Add(this->userName_lb);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"LoginPage";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"LoginPage";
