@@ -250,12 +250,13 @@ public:
 		  return end_date;
 	 }
 	 int getRemainingDays() {
-		  time_t currentDate = time(0);
-		  time_t endDate = getTime_t(end_date);
-		  double secondsDiff = (difftime(endDate, currentDate));
-		  int daysRemaining = static_cast<int>(abs(secondsDiff) / (60 * 60 * 24));
-		  return daysRemaining;
+		 time_t currentDate = time(0);
+		 time_t endDate = getTime_t(end_date);
+		 double secondsDiff = difftime(endDate, currentDate);
+		 int daysRemaining = static_cast<int>(secondsDiff / (60 * 60 * 24));
+		 return daysRemaining;
 	 }
+
 	 void renewSub(Subscriptions sub) {
 		  type = sub.type;
 		  is_VIP = sub.is_VIP;
