@@ -85,11 +85,11 @@ namespace ProjectCode {
 			  this->CName->AutoSize = true;
 			  this->CName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->CName->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->CName->Location = System::Drawing::Point(3, 9);
+			  this->CName->ForeColor = System::Drawing::Color::White;
+			  this->CName->Location = System::Drawing::Point(2, 7);
+			  this->CName->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->CName->Name = L"CName";
-			  this->CName->Size = System::Drawing::Size(90, 29);
+			  this->CName->Size = System::Drawing::Size(71, 24);
 			  this->CName->TabIndex = 0;
 			  this->CName->Text = L"Name :";
 			  // 
@@ -98,11 +98,11 @@ namespace ProjectCode {
 			  this->CInstructor->AutoSize = true;
 			  this->CInstructor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->CInstructor->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->CInstructor->Location = System::Drawing::Point(3, 57);
+			  this->CInstructor->ForeColor = System::Drawing::Color::White;
+			  this->CInstructor->Location = System::Drawing::Point(2, 46);
+			  this->CInstructor->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->CInstructor->Name = L"CInstructor";
-			  this->CInstructor->Size = System::Drawing::Size(123, 29);
+			  this->CInstructor->Size = System::Drawing::Size(96, 24);
 			  this->CInstructor->TabIndex = 1;
 			  this->CInstructor->Text = L"Instructor :";
 			  // 
@@ -111,11 +111,11 @@ namespace ProjectCode {
 			  this->CStart->AutoSize = true;
 			  this->CStart->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->CStart->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->CStart->Location = System::Drawing::Point(3, 153);
+			  this->CStart->ForeColor = System::Drawing::Color::White;
+			  this->CStart->Location = System::Drawing::Point(2, 124);
+			  this->CStart->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->CStart->Name = L"CStart";
-			  this->CStart->Size = System::Drawing::Size(127, 29);
+			  this->CStart->Size = System::Drawing::Size(97, 24);
 			  this->CStart->TabIndex = 2;
 			  this->CStart->Text = L"Start date :";
 			  // 
@@ -124,11 +124,11 @@ namespace ProjectCode {
 			  this->CEnd->AutoSize = true;
 			  this->CEnd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->CEnd->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->CEnd->Location = System::Drawing::Point(3, 201);
+			  this->CEnd->ForeColor = System::Drawing::Color::White;
+			  this->CEnd->Location = System::Drawing::Point(2, 163);
+			  this->CEnd->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->CEnd->Name = L"CEnd";
-			  this->CEnd->Size = System::Drawing::Size(121, 29);
+			  this->CEnd->Size = System::Drawing::Size(96, 24);
 			  this->CEnd->TabIndex = 3;
 			  this->CEnd->Text = L"End date :";
 			  // 
@@ -138,9 +138,11 @@ namespace ProjectCode {
 				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			  this->Reserv_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->Reserv_btn->Location = System::Drawing::Point(632, 191);
+			  this->Reserv_btn->ForeColor = System::Drawing::Color::Black;
+			  this->Reserv_btn->Location = System::Drawing::Point(474, 155);
+			  this->Reserv_btn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			  this->Reserv_btn->Name = L"Reserv_btn";
-			  this->Reserv_btn->Size = System::Drawing::Size(123, 39);
+			  this->Reserv_btn->Size = System::Drawing::Size(92, 32);
 			  this->Reserv_btn->TabIndex = 4;
 			  this->Reserv_btn->Text = L"Reserve";
 			  this->Reserv_btn->UseVisualStyleBackColor = false;
@@ -152,11 +154,11 @@ namespace ProjectCode {
 			  this->CPrice->AutoSize = true;
 			  this->CPrice->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->CPrice->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->CPrice->Location = System::Drawing::Point(3, 105);
+			  this->CPrice->ForeColor = System::Drawing::Color::White;
+			  this->CPrice->Location = System::Drawing::Point(2, 85);
+			  this->CPrice->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->CPrice->Name = L"CPrice";
-			  this->CPrice->Size = System::Drawing::Size(81, 29);
+			  this->CPrice->Size = System::Drawing::Size(63, 24);
 			  this->CPrice->TabIndex = 5;
 			  this->CPrice->Text = L"Price :";
 			  // 
@@ -166,9 +168,11 @@ namespace ProjectCode {
 				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			  this->cancelling_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->cancelling_btn->Location = System::Drawing::Point(515, 191);
+			  this->cancelling_btn->ForeColor = System::Drawing::Color::Black;
+			  this->cancelling_btn->Location = System::Drawing::Point(386, 155);
+			  this->cancelling_btn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			  this->cancelling_btn->Name = L"cancelling_btn";
-			  this->cancelling_btn->Size = System::Drawing::Size(123, 39);
+			  this->cancelling_btn->Size = System::Drawing::Size(92, 32);
 			  this->cancelling_btn->TabIndex = 6;
 			  this->cancelling_btn->Text = L"Cancel";
 			  this->cancelling_btn->UseVisualStyleBackColor = false;
@@ -181,16 +185,17 @@ namespace ProjectCode {
 			  this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
 			  this->label1->ForeColor = System::Drawing::Color::DarkGreen;
-			  this->label1->Location = System::Drawing::Point(302, 208);
+			  this->label1->Location = System::Drawing::Point(226, 169);
+			  this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->label1->Name = L"label1";
-			  this->label1->Size = System::Drawing::Size(61, 22);
+			  this->label1->Size = System::Drawing::Size(50, 18);
 			  this->label1->TabIndex = 7;
 			  this->label1->Text = L"Status";
 			  this->label1->Visible = false;
 			  // 
 			  // GymPN
 			  // 
-			  this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			  this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			  this->Controls->Add(this->label1);
 			  this->Controls->Add(this->cancelling_btn);
@@ -200,9 +205,10 @@ namespace ProjectCode {
 			  this->Controls->Add(this->CStart);
 			  this->Controls->Add(this->CInstructor);
 			  this->Controls->Add(this->CName);
+			  this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			  this->Name = L"GymPN";
-			  this->Padding = System::Windows::Forms::Padding(0, 0, 10, 0);
-			  this->Size = System::Drawing::Size(785, 264);
+			  this->Padding = System::Windows::Forms::Padding(0, 0, 8, 0);
+			  this->Size = System::Drawing::Size(589, 214);
 			  this->Load += gcnew System::EventHandler(this, &GymPN::GymPN_Load);
 			  this->ResumeLayout(false);
 			  this->PerformLayout();

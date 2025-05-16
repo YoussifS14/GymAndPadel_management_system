@@ -88,12 +88,12 @@ namespace ProjectCode {
 			  // 
 			  // confirm_btn
 			  // 
-			  this->confirm_btn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->confirm_btn->BackColor = System::Drawing::Color::Black;
 			  this->confirm_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
+			  this->confirm_btn->ForeColor = System::Drawing::Color::LightGray;
 			  this->confirm_btn->Location = System::Drawing::Point(20, 322);
-			  this->confirm_btn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->confirm_btn->Margin = System::Windows::Forms::Padding(2);
 			  this->confirm_btn->Name = L"confirm_btn";
 			  this->confirm_btn->Size = System::Drawing::Size(122, 52);
 			  this->confirm_btn->TabIndex = 0;
@@ -103,12 +103,12 @@ namespace ProjectCode {
 			  // 
 			  // cancelling_btn
 			  // 
-			  this->cancelling_btn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->cancelling_btn->BackColor = System::Drawing::Color::Black;
 			  this->cancelling_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
+			  this->cancelling_btn->ForeColor = System::Drawing::Color::LightGray;
 			  this->cancelling_btn->Location = System::Drawing::Point(200, 322);
-			  this->cancelling_btn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->cancelling_btn->Margin = System::Windows::Forms::Padding(2);
 			  this->cancelling_btn->Name = L"cancelling_btn";
 			  this->cancelling_btn->Size = System::Drawing::Size(122, 52);
 			  this->cancelling_btn->TabIndex = 1;
@@ -118,10 +118,11 @@ namespace ProjectCode {
 			  // 
 			  // CardID_txb
 			  // 
+			  this->CardID_txb->BackColor = System::Drawing::Color::WhiteSmoke;
 			  this->CardID_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
 			  this->CardID_txb->Location = System::Drawing::Point(9, 71);
-			  this->CardID_txb->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->CardID_txb->Margin = System::Windows::Forms::Padding(2);
 			  this->CardID_txb->Name = L"CardID_txb";
 			  this->CardID_txb->Size = System::Drawing::Size(240, 26);
 			  this->CardID_txb->TabIndex = 2;
@@ -133,8 +134,7 @@ namespace ProjectCode {
 			  this->label1->BackColor = System::Drawing::Color::Black;
 			  this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->label1->ForeColor = System::Drawing::Color::LightGray;
 			  this->label1->Location = System::Drawing::Point(16, 48);
 			  this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->label1->Name = L"label1";
@@ -147,8 +147,7 @@ namespace ProjectCode {
 			  this->label2->AutoSize = true;
 			  this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->label2->ForeColor = System::Drawing::Color::LightGray;
 			  this->label2->Location = System::Drawing::Point(5, 197);
 			  this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->label2->Name = L"label2";
@@ -158,10 +157,11 @@ namespace ProjectCode {
 			  // 
 			  // CardExp_txb
 			  // 
+			  this->CardExp_txb->BackColor = System::Drawing::Color::WhiteSmoke;
 			  this->CardExp_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
 			  this->CardExp_txb->Location = System::Drawing::Point(9, 229);
-			  this->CardExp_txb->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->CardExp_txb->Margin = System::Windows::Forms::Padding(2);
 			  this->CardExp_txb->Name = L"CardExp_txb";
 			  this->CardExp_txb->Size = System::Drawing::Size(54, 26);
 			  this->CardExp_txb->TabIndex = 4;
@@ -172,8 +172,7 @@ namespace ProjectCode {
 			  this->label4->AutoSize = true;
 			  this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->label4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->label4->ForeColor = System::Drawing::Color::LightGray;
 			  this->label4->Location = System::Drawing::Point(207, 206);
 			  this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->label4->Name = L"label4";
@@ -183,10 +182,11 @@ namespace ProjectCode {
 			  // 
 			  // CardCVV_txb
 			  // 
+			  this->CardCVV_txb->BackColor = System::Drawing::Color::WhiteSmoke;
 			  this->CardCVV_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
 			  this->CardCVV_txb->Location = System::Drawing::Point(207, 229);
-			  this->CardCVV_txb->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->CardCVV_txb->Margin = System::Windows::Forms::Padding(2);
 			  this->CardCVV_txb->Name = L"CardCVV_txb";
 			  this->CardCVV_txb->Size = System::Drawing::Size(47, 26);
 			  this->CardCVV_txb->TabIndex = 8;
@@ -198,8 +198,7 @@ namespace ProjectCode {
 			  this->label5->BackColor = System::Drawing::Color::Black;
 			  this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->label5->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->label5->ForeColor = System::Drawing::Color::LightGray;
 			  this->label5->Location = System::Drawing::Point(16, 119);
 			  this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->label5->Name = L"label5";
@@ -209,10 +208,11 @@ namespace ProjectCode {
 			  // 
 			  // CardName_txb
 			  // 
+			  this->CardName_txb->BackColor = System::Drawing::Color::WhiteSmoke;
 			  this->CardName_txb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
 			  this->CardName_txb->Location = System::Drawing::Point(9, 142);
-			  this->CardName_txb->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->CardName_txb->Margin = System::Windows::Forms::Padding(2);
 			  this->CardName_txb->Name = L"CardName_txb";
 			  this->CardName_txb->Size = System::Drawing::Size(240, 26);
 			  this->CardName_txb->TabIndex = 10;
@@ -249,7 +249,7 @@ namespace ProjectCode {
 			  this->Controls->Add(this->cancelling_btn);
 			  this->Controls->Add(this->confirm_btn);
 			  this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
-			  this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->Margin = System::Windows::Forms::Padding(2);
 			  this->Name = L"PaymentPage";
 			  this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			  this->Text = L"PaymentPage";

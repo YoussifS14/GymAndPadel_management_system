@@ -85,11 +85,11 @@ namespace ProjectCode {
 			  this->courtName->AutoSize = true;
 			  this->courtName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->courtName->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->courtName->Location = System::Drawing::Point(27, 19);
+			  this->courtName->ForeColor = System::Drawing::Color::White;
+			  this->courtName->Location = System::Drawing::Point(20, 15);
+			  this->courtName->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->courtName->Name = L"courtName";
-			  this->courtName->Size = System::Drawing::Size(85, 29);
+			  this->courtName->Size = System::Drawing::Size(68, 24);
 			  this->courtName->TabIndex = 0;
 			  this->courtName->Text = L"name :";
 			  // 
@@ -98,11 +98,11 @@ namespace ProjectCode {
 			  this->courtLoc->AutoSize = true;
 			  this->courtLoc->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->courtLoc->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->courtLoc->Location = System::Drawing::Point(27, 76);
+			  this->courtLoc->ForeColor = System::Drawing::Color::White;
+			  this->courtLoc->Location = System::Drawing::Point(20, 62);
+			  this->courtLoc->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->courtLoc->Name = L"courtLoc";
-			  this->courtLoc->Size = System::Drawing::Size(116, 29);
+			  this->courtLoc->Size = System::Drawing::Size(91, 24);
 			  this->courtLoc->TabIndex = 1;
 			  this->courtLoc->Text = L"Location :";
 			  // 
@@ -111,11 +111,11 @@ namespace ProjectCode {
 			  this->courtPrice->AutoSize = true;
 			  this->courtPrice->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->courtPrice->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->courtPrice->Location = System::Drawing::Point(27, 133);
+			  this->courtPrice->ForeColor = System::Drawing::Color::White;
+			  this->courtPrice->Location = System::Drawing::Point(20, 108);
+			  this->courtPrice->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->courtPrice->Name = L"courtPrice";
-			  this->courtPrice->Size = System::Drawing::Size(87, 29);
+			  this->courtPrice->Size = System::Drawing::Size(68, 24);
 			  this->courtPrice->TabIndex = 2;
 			  this->courtPrice->Text = L"Price : ";
 			  // 
@@ -124,11 +124,11 @@ namespace ProjectCode {
 			  this->courtDate->AutoSize = true;
 			  this->courtDate->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->courtDate->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->courtDate->Location = System::Drawing::Point(27, 190);
+			  this->courtDate->ForeColor = System::Drawing::Color::White;
+			  this->courtDate->Location = System::Drawing::Point(20, 154);
+			  this->courtDate->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->courtDate->Name = L"courtDate";
-			  this->courtDate->Size = System::Drawing::Size(75, 29);
+			  this->courtDate->Size = System::Drawing::Size(58, 24);
 			  this->courtDate->TabIndex = 3;
 			  this->courtDate->Text = L"Date :";
 			  // 
@@ -138,9 +138,10 @@ namespace ProjectCode {
 			  this->courtAva->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
 			  this->courtAva->ForeColor = System::Drawing::Color::Green;
-			  this->courtAva->Location = System::Drawing::Point(27, 247);
+			  this->courtAva->Location = System::Drawing::Point(20, 201);
+			  this->courtAva->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->courtAva->Name = L"courtAva";
-			  this->courtAva->Size = System::Drawing::Size(111, 29);
+			  this->courtAva->Size = System::Drawing::Size(86, 24);
 			  this->courtAva->TabIndex = 4;
 			  this->courtAva->Text = L"Available";
 			  // 
@@ -150,9 +151,10 @@ namespace ProjectCode {
 				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			  this->reserCourt->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->reserCourt->Location = System::Drawing::Point(561, 247);
+			  this->reserCourt->Location = System::Drawing::Point(421, 201);
+			  this->reserCourt->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			  this->reserCourt->Name = L"reserCourt";
-			  this->reserCourt->Size = System::Drawing::Size(213, 52);
+			  this->reserCourt->Size = System::Drawing::Size(160, 42);
 			  this->reserCourt->TabIndex = 5;
 			  this->reserCourt->Text = L"Reserve";
 			  this->reserCourt->UseVisualStyleBackColor = false;
@@ -160,7 +162,7 @@ namespace ProjectCode {
 			  // 
 			  // padelPN
 			  // 
-			  this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			  this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			  this->Controls->Add(this->reserCourt);
 			  this->Controls->Add(this->courtAva);
@@ -168,9 +170,10 @@ namespace ProjectCode {
 			  this->Controls->Add(this->courtPrice);
 			  this->Controls->Add(this->courtLoc);
 			  this->Controls->Add(this->courtName);
+			  this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			  this->Name = L"padelPN";
-			  this->Padding = System::Windows::Forms::Padding(0, 0, 0, 10);
-			  this->Size = System::Drawing::Size(811, 317);
+			  this->Padding = System::Windows::Forms::Padding(0, 0, 0, 8);
+			  this->Size = System::Drawing::Size(608, 258);
 			  this->ResumeLayout(false);
 			  this->PerformLayout();
 

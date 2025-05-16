@@ -75,11 +75,11 @@ namespace ProjectCode {
 			  this->courtName->AutoSize = true;
 			  this->courtName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->courtName->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->courtName->Location = System::Drawing::Point(3, 19);
+			  this->courtName->ForeColor = System::Drawing::Color::White;
+			  this->courtName->Location = System::Drawing::Point(2, 15);
+			  this->courtName->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->courtName->Name = L"courtName";
-			  this->courtName->Size = System::Drawing::Size(180, 32);
+			  this->courtName->Size = System::Drawing::Size(142, 26);
 			  this->courtName->TabIndex = 0;
 			  this->courtName->Text = L"Court Name :";
 			  // 
@@ -88,11 +88,11 @@ namespace ProjectCode {
 			  this->ReservDate->AutoSize = true;
 			  this->ReservDate->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->ReservDate->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->ReservDate->Location = System::Drawing::Point(3, 71);
+			  this->ReservDate->ForeColor = System::Drawing::Color::White;
+			  this->ReservDate->Location = System::Drawing::Point(2, 58);
+			  this->ReservDate->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->ReservDate->Name = L"ReservDate";
-			  this->ReservDate->Size = System::Drawing::Size(196, 32);
+			  this->ReservDate->Size = System::Drawing::Size(151, 26);
 			  this->ReservDate->TabIndex = 1;
 			  this->ReservDate->Text = L"Booking date :";
 			  // 
@@ -101,11 +101,11 @@ namespace ProjectCode {
 			  this->StartingTime->AutoSize = true;
 			  this->StartingTime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->StartingTime->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->StartingTime->Location = System::Drawing::Point(3, 122);
+			  this->StartingTime->ForeColor = System::Drawing::Color::White;
+			  this->StartingTime->Location = System::Drawing::Point(2, 99);
+			  this->StartingTime->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->StartingTime->Name = L"StartingTime";
-			  this->StartingTime->Size = System::Drawing::Size(198, 32);
+			  this->StartingTime->Size = System::Drawing::Size(153, 26);
 			  this->StartingTime->TabIndex = 2;
 			  this->StartingTime->Text = L"Starting Time :";
 			  // 
@@ -115,9 +115,10 @@ namespace ProjectCode {
 				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			  this->Cancelling_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				  static_cast<System::Byte>(0)));
-			  this->Cancelling_btn->Location = System::Drawing::Point(686, 132);
+			  this->Cancelling_btn->Location = System::Drawing::Point(514, 107);
+			  this->Cancelling_btn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			  this->Cancelling_btn->Name = L"Cancelling_btn";
-			  this->Cancelling_btn->Size = System::Drawing::Size(135, 39);
+			  this->Cancelling_btn->Size = System::Drawing::Size(101, 32);
 			  this->Cancelling_btn->TabIndex = 3;
 			  this->Cancelling_btn->Text = L"Cancel";
 			  this->Cancelling_btn->UseVisualStyleBackColor = false;
@@ -130,14 +131,15 @@ namespace ProjectCode {
 				  static_cast<System::Byte>(0)));
 			  this->Warning->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
 				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			  this->Warning->Location = System::Drawing::Point(240, 167);
+			  this->Warning->Location = System::Drawing::Point(180, 136);
+			  this->Warning->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			  this->Warning->Name = L"Warning";
-			  this->Warning->Size = System::Drawing::Size(0, 25);
+			  this->Warning->Size = System::Drawing::Size(0, 20);
 			  this->Warning->TabIndex = 4;
 			  // 
 			  // CancellingReserv
 			  // 
-			  this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			  this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			  this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			  this->BackColor = System::Drawing::Color::Transparent;
 			  this->Controls->Add(this->Warning);
@@ -145,9 +147,10 @@ namespace ProjectCode {
 			  this->Controls->Add(this->StartingTime);
 			  this->Controls->Add(this->ReservDate);
 			  this->Controls->Add(this->courtName);
+			  this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			  this->Name = L"CancellingReserv";
-			  this->Padding = System::Windows::Forms::Padding(0, 0, 0, 10);
-			  this->Size = System::Drawing::Size(840, 202);
+			  this->Padding = System::Windows::Forms::Padding(0, 0, 0, 8);
+			  this->Size = System::Drawing::Size(630, 164);
 			  this->ResumeLayout(false);
 			  this->PerformLayout();
 

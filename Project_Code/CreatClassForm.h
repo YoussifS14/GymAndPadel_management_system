@@ -127,8 +127,9 @@ namespace ProjectCode {
 			   this->panel1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
 				   static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			   this->panel1->Location = System::Drawing::Point(0, 0);
+			   this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->panel1->Name = L"panel1";
-			   this->panel1->Size = System::Drawing::Size(835, 571);
+			   this->panel1->Size = System::Drawing::Size(1113, 703);
 			   this->panel1->TabIndex = 0;
 			   this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &CreatClassForm::panel1_Paint);
 			   // 
@@ -136,9 +137,10 @@ namespace ProjectCode {
 			   // 
 			   this->pricetextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->pricetextBox->Location = System::Drawing::Point(195, 334);
+			   this->pricetextBox->Location = System::Drawing::Point(260, 411);
+			   this->pricetextBox->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->pricetextBox->Name = L"pricetextBox";
-			   this->pricetextBox->Size = System::Drawing::Size(159, 28);
+			   this->pricetextBox->Size = System::Drawing::Size(211, 34);
 			   this->pricetextBox->TabIndex = 43;
 			   this->pricetextBox->TextChanged += gcnew System::EventHandler(this, &CreatClassForm::pricetextBox_TextChanged);
 			   // 
@@ -147,10 +149,10 @@ namespace ProjectCode {
 			   this->priceLabel->AutoSize = true;
 			   this->priceLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->priceLabel->Location = System::Drawing::Point(9, 338);
-			   this->priceLabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->priceLabel->ForeColor = System::Drawing::Color::White;
+			   this->priceLabel->Location = System::Drawing::Point(12, 416);
 			   this->priceLabel->Name = L"priceLabel";
-			   this->priceLabel->Size = System::Drawing::Size(53, 24);
+			   this->priceLabel->Size = System::Drawing::Size(69, 29);
 			   this->priceLabel->TabIndex = 42;
 			   this->priceLabel->Text = L"Price";
 			   this->priceLabel->Click += gcnew System::EventHandler(this, &CreatClassForm::label2_Click);
@@ -160,15 +162,15 @@ namespace ProjectCode {
 			   this->DaysofClassCheckbox->BackColor = System::Drawing::Color::Black;
 			   this->DaysofClassCheckbox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->DaysofClassCheckbox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
-				   static_cast<System::Int32>(static_cast<System::Byte>(234)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			   this->DaysofClassCheckbox->ForeColor = System::Drawing::Color::White;
 			   this->DaysofClassCheckbox->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
 				   L"Sunday", L"Monday", L"Tuesday", L"Wednesday",
 					   L"Thursday", L"Friday", L"Saturday"
 			   });
-			   this->DaysofClassCheckbox->Location = System::Drawing::Point(524, 407);
+			   this->DaysofClassCheckbox->Location = System::Drawing::Point(699, 501);
+			   this->DaysofClassCheckbox->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->DaysofClassCheckbox->Name = L"DaysofClassCheckbox";
-			   this->DaysofClassCheckbox->Size = System::Drawing::Size(156, 73);
+			   this->DaysofClassCheckbox->Size = System::Drawing::Size(207, 62);
 			   this->DaysofClassCheckbox->TabIndex = 41;
 			   // 
 			   // label1
@@ -176,9 +178,11 @@ namespace ProjectCode {
 			   this->label1->AutoSize = true;
 			   this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->label1->Location = System::Drawing::Point(380, 380);
+			   this->label1->ForeColor = System::Drawing::Color::White;
+			   this->label1->Location = System::Drawing::Point(507, 468);
+			   this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label1->Name = L"label1";
-			   this->label1->Size = System::Drawing::Size(128, 24);
+			   this->label1->Size = System::Drawing::Size(165, 29);
 			   this->label1->TabIndex = 40;
 			   this->label1->Text = L"Days of class :";
 			   // 
@@ -187,9 +191,11 @@ namespace ProjectCode {
 			   this->labelClassName->AutoSize = true;
 			   this->labelClassName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->labelClassName->Location = System::Drawing::Point(3, 205);
+			   this->labelClassName->ForeColor = System::Drawing::Color::White;
+			   this->labelClassName->Location = System::Drawing::Point(4, 252);
+			   this->labelClassName->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->labelClassName->Name = L"labelClassName";
-			   this->labelClassName->Size = System::Drawing::Size(116, 24);
+			   this->labelClassName->Size = System::Drawing::Size(150, 29);
 			   this->labelClassName->TabIndex = 21;
 			   this->labelClassName->Text = L"Class Name:";
 			   // 
@@ -197,9 +203,10 @@ namespace ProjectCode {
 			   // 
 			   this->textBoxClassName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->textBoxClassName->Location = System::Drawing::Point(195, 205);
+			   this->textBoxClassName->Location = System::Drawing::Point(260, 252);
+			   this->textBoxClassName->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->textBoxClassName->Name = L"textBoxClassName";
-			   this->textBoxClassName->Size = System::Drawing::Size(159, 28);
+			   this->textBoxClassName->Size = System::Drawing::Size(211, 34);
 			   this->textBoxClassName->TabIndex = 22;
 			   // 
 			   // DateLabel
@@ -207,11 +214,11 @@ namespace ProjectCode {
 			   this->DateLabel->AutoSize = true;
 			   this->DateLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->DateLabel->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				   static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			   this->DateLabel->Location = System::Drawing::Point(373, 207);
+			   this->DateLabel->ForeColor = System::Drawing::Color::White;
+			   this->DateLabel->Location = System::Drawing::Point(497, 255);
+			   this->DateLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->DateLabel->Name = L"DateLabel";
-			   this->DateLabel->Size = System::Drawing::Size(53, 24);
+			   this->DateLabel->Size = System::Drawing::Size(69, 29);
 			   this->DateLabel->TabIndex = 23;
 			   this->DateLabel->Text = L"Date:";
 			   // 
@@ -221,16 +228,16 @@ namespace ProjectCode {
 			   this->YearcomboBox->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->YearcomboBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->YearcomboBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				   static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			   this->YearcomboBox->ForeColor = System::Drawing::Color::White;
 			   this->YearcomboBox->FormattingEnabled = true;
 			   this->YearcomboBox->Items->AddRange(gcnew cli::array< System::Object^  >(6) {
 				   L"2025", L"2026", L"2027", L"2028", L"2029",
 					   L"2030"
 			   });
-			   this->YearcomboBox->Location = System::Drawing::Point(612, 205);
+			   this->YearcomboBox->Location = System::Drawing::Point(816, 252);
+			   this->YearcomboBox->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->YearcomboBox->Name = L"YearcomboBox";
-			   this->YearcomboBox->Size = System::Drawing::Size(68, 30);
+			   this->YearcomboBox->Size = System::Drawing::Size(89, 37);
 			   this->YearcomboBox->TabIndex = 24;
 			   this->YearcomboBox->Text = L"Year";
 			   // 
@@ -240,16 +247,16 @@ namespace ProjectCode {
 			   this->MonthcomboBox->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->MonthcomboBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->MonthcomboBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				   static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			   this->MonthcomboBox->ForeColor = System::Drawing::Color::White;
 			   this->MonthcomboBox->FormattingEnabled = true;
 			   this->MonthcomboBox->Items->AddRange(gcnew cli::array< System::Object^  >(12) {
 				   L"01", L"02", L"03", L"04", L"05", L"06", L"07",
 					   L"08", L"09", L"10", L"11", L"12"
 			   });
-			   this->MonthcomboBox->Location = System::Drawing::Point(524, 205);
+			   this->MonthcomboBox->Location = System::Drawing::Point(699, 252);
+			   this->MonthcomboBox->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->MonthcomboBox->Name = L"MonthcomboBox";
-			   this->MonthcomboBox->Size = System::Drawing::Size(68, 30);
+			   this->MonthcomboBox->Size = System::Drawing::Size(89, 37);
 			   this->MonthcomboBox->TabIndex = 25;
 			   this->MonthcomboBox->Text = L"Month";
 			   this->MonthcomboBox->SelectedIndexChanged += gcnew System::EventHandler(this, &CreatClassForm::MonthcomboBox_SelectedIndexChanged);
@@ -260,17 +267,17 @@ namespace ProjectCode {
 			   this->DaycomboBox->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->DaycomboBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->DaycomboBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				   static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			   this->DaycomboBox->ForeColor = System::Drawing::Color::White;
 			   this->DaycomboBox->FormattingEnabled = true;
 			   this->DaycomboBox->Items->AddRange(gcnew cli::array< System::Object^  >(31) {
 				   L"01", L"02", L"03", L"04", L"05", L"06", L"07",
 					   L"08", L"09", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"17", L"18", L"19", L"20", L"21", L"22", L"23", L"24", L"25",
 					   L"26", L"27", L"28", L"29", L"30", L"31"
 			   });
-			   this->DaycomboBox->Location = System::Drawing::Point(444, 205);
+			   this->DaycomboBox->Location = System::Drawing::Point(592, 252);
+			   this->DaycomboBox->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->DaycomboBox->Name = L"DaycomboBox";
-			   this->DaycomboBox->Size = System::Drawing::Size(68, 30);
+			   this->DaycomboBox->Size = System::Drawing::Size(89, 37);
 			   this->DaycomboBox->TabIndex = 26;
 			   this->DaycomboBox->Text = L"Day";
 			   // 
@@ -279,9 +286,11 @@ namespace ProjectCode {
 			   this->labelStartTime->AutoSize = true;
 			   this->labelStartTime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->labelStartTime->Location = System::Drawing::Point(368, 291);
+			   this->labelStartTime->ForeColor = System::Drawing::Color::White;
+			   this->labelStartTime->Location = System::Drawing::Point(491, 358);
+			   this->labelStartTime->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->labelStartTime->Name = L"labelStartTime";
-			   this->labelStartTime->Size = System::Drawing::Size(176, 24);
+			   this->labelStartTime->Size = System::Drawing::Size(226, 29);
 			   this->labelStartTime->TabIndex = 27;
 			   this->labelStartTime->Text = L"Start Time(HH:MM):";
 			   // 
@@ -289,9 +298,10 @@ namespace ProjectCode {
 			   // 
 			   this->textBoxStartTime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->textBoxStartTime->Location = System::Drawing::Point(544, 288);
+			   this->textBoxStartTime->Location = System::Drawing::Point(725, 354);
+			   this->textBoxStartTime->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->textBoxStartTime->Name = L"textBoxStartTime";
-			   this->textBoxStartTime->Size = System::Drawing::Size(144, 28);
+			   this->textBoxStartTime->Size = System::Drawing::Size(191, 34);
 			   this->textBoxStartTime->TabIndex = 28;
 			   this->textBoxStartTime->TextChanged += gcnew System::EventHandler(this, &CreatClassForm::textBoxStartTime_TextChanged);
 			   // 
@@ -300,9 +310,11 @@ namespace ProjectCode {
 			   this->labelEndTime->AutoSize = true;
 			   this->labelEndTime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->labelEndTime->Location = System::Drawing::Point(368, 330);
+			   this->labelEndTime->ForeColor = System::Drawing::Color::White;
+			   this->labelEndTime->Location = System::Drawing::Point(491, 406);
+			   this->labelEndTime->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->labelEndTime->Name = L"labelEndTime";
-			   this->labelEndTime->Size = System::Drawing::Size(175, 24);
+			   this->labelEndTime->Size = System::Drawing::Size(220, 29);
 			   this->labelEndTime->TabIndex = 29;
 			   this->labelEndTime->Text = L"End Time(HH:MM):";
 			   this->labelEndTime->Click += gcnew System::EventHandler(this, &CreatClassForm::labelEndTime_Click);
@@ -311,9 +323,10 @@ namespace ProjectCode {
 			   // 
 			   this->textBoxEndTime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->textBoxEndTime->Location = System::Drawing::Point(544, 330);
+			   this->textBoxEndTime->Location = System::Drawing::Point(725, 406);
+			   this->textBoxEndTime->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->textBoxEndTime->Name = L"textBoxEndTime";
-			   this->textBoxEndTime->Size = System::Drawing::Size(144, 28);
+			   this->textBoxEndTime->Size = System::Drawing::Size(191, 34);
 			   this->textBoxEndTime->TabIndex = 30;
 			   // 
 			   // labelMaxMembers
@@ -321,9 +334,11 @@ namespace ProjectCode {
 			   this->labelMaxMembers->AutoSize = true;
 			   this->labelMaxMembers->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->labelMaxMembers->Location = System::Drawing::Point(368, 250);
+			   this->labelMaxMembers->ForeColor = System::Drawing::Color::White;
+			   this->labelMaxMembers->Location = System::Drawing::Point(491, 308);
+			   this->labelMaxMembers->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->labelMaxMembers->Name = L"labelMaxMembers";
-			   this->labelMaxMembers->Size = System::Drawing::Size(136, 24);
+			   this->labelMaxMembers->Size = System::Drawing::Size(171, 29);
 			   this->labelMaxMembers->TabIndex = 31;
 			   this->labelMaxMembers->Text = L"Max Members:";
 			   // 
@@ -331,9 +346,10 @@ namespace ProjectCode {
 			   // 
 			   this->textBoxMaxMembers->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->textBoxMaxMembers->Location = System::Drawing::Point(544, 244);
+			   this->textBoxMaxMembers->Location = System::Drawing::Point(725, 300);
+			   this->textBoxMaxMembers->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->textBoxMaxMembers->Name = L"textBoxMaxMembers";
-			   this->textBoxMaxMembers->Size = System::Drawing::Size(143, 28);
+			   this->textBoxMaxMembers->Size = System::Drawing::Size(189, 34);
 			   this->textBoxMaxMembers->TabIndex = 32;
 			   // 
 			   // labelInstructorName
@@ -341,9 +357,11 @@ namespace ProjectCode {
 			   this->labelInstructorName->AutoSize = true;
 			   this->labelInstructorName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->labelInstructorName->Location = System::Drawing::Point(3, 291);
+			   this->labelInstructorName->ForeColor = System::Drawing::Color::White;
+			   this->labelInstructorName->Location = System::Drawing::Point(4, 358);
+			   this->labelInstructorName->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->labelInstructorName->Name = L"labelInstructorName";
-			   this->labelInstructorName->Size = System::Drawing::Size(147, 24);
+			   this->labelInstructorName->Size = System::Drawing::Size(188, 29);
 			   this->labelInstructorName->TabIndex = 33;
 			   this->labelInstructorName->Text = L"Instructor Name:";
 			   this->labelInstructorName->Click += gcnew System::EventHandler(this, &CreatClassForm::labelInstructorName_Click);
@@ -352,9 +370,10 @@ namespace ProjectCode {
 			   // 
 			   this->textBoxInstructorName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->textBoxInstructorName->Location = System::Drawing::Point(195, 287);
+			   this->textBoxInstructorName->Location = System::Drawing::Point(260, 353);
+			   this->textBoxInstructorName->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->textBoxInstructorName->Name = L"textBoxInstructorName";
-			   this->textBoxInstructorName->Size = System::Drawing::Size(159, 28);
+			   this->textBoxInstructorName->Size = System::Drawing::Size(211, 34);
 			   this->textBoxInstructorName->TabIndex = 34;
 			   // 
 			   // labelInstructorID
@@ -362,9 +381,11 @@ namespace ProjectCode {
 			   this->labelInstructorID->AutoSize = true;
 			   this->labelInstructorID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->labelInstructorID->Location = System::Drawing::Point(3, 250);
+			   this->labelInstructorID->ForeColor = System::Drawing::Color::White;
+			   this->labelInstructorID->Location = System::Drawing::Point(4, 308);
+			   this->labelInstructorID->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->labelInstructorID->Name = L"labelInstructorID";
-			   this->labelInstructorID->Size = System::Drawing::Size(113, 24);
+			   this->labelInstructorID->Size = System::Drawing::Size(146, 29);
 			   this->labelInstructorID->TabIndex = 35;
 			   this->labelInstructorID->Text = L"Instructor ID:";
 			   // 
@@ -372,9 +393,10 @@ namespace ProjectCode {
 			   // 
 			   this->textBoxInstructorID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->textBoxInstructorID->Location = System::Drawing::Point(195, 246);
+			   this->textBoxInstructorID->Location = System::Drawing::Point(260, 303);
+			   this->textBoxInstructorID->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->textBoxInstructorID->Name = L"textBoxInstructorID";
-			   this->textBoxInstructorID->Size = System::Drawing::Size(159, 28);
+			   this->textBoxInstructorID->Size = System::Drawing::Size(211, 34);
 			   this->textBoxInstructorID->TabIndex = 36;
 			   this->textBoxInstructorID->TextChanged += gcnew System::EventHandler(this, &CreatClassForm::textBoxInstructorID_TextChanged);
 			   // 
@@ -383,9 +405,11 @@ namespace ProjectCode {
 			   this->labelSubscription->AutoSize = true;
 			   this->labelSubscription->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->labelSubscription->Location = System::Drawing::Point(3, 380);
+			   this->labelSubscription->ForeColor = System::Drawing::Color::White;
+			   this->labelSubscription->Location = System::Drawing::Point(4, 468);
+			   this->labelSubscription->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->labelSubscription->Name = L"labelSubscription";
-			   this->labelSubscription->Size = System::Drawing::Size(211, 24);
+			   this->labelSubscription->Size = System::Drawing::Size(271, 29);
 			   this->labelSubscription->TabIndex = 37;
 			   this->labelSubscription->Text = L"Required Subscriptions:";
 			   // 
@@ -394,22 +418,25 @@ namespace ProjectCode {
 			   this->checkedListBoxSubscriptions->BackColor = System::Drawing::Color::Black;
 			   this->checkedListBoxSubscriptions->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				   System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			   this->checkedListBoxSubscriptions->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
-				   static_cast<System::Int32>(static_cast<System::Byte>(234)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			   this->checkedListBoxSubscriptions->Location = System::Drawing::Point(188, 407);
+			   this->checkedListBoxSubscriptions->ForeColor = System::Drawing::Color::White;
+			   this->checkedListBoxSubscriptions->Location = System::Drawing::Point(251, 501);
+			   this->checkedListBoxSubscriptions->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->checkedListBoxSubscriptions->Name = L"checkedListBoxSubscriptions";
-			   this->checkedListBoxSubscriptions->Size = System::Drawing::Size(166, 73);
+			   this->checkedListBoxSubscriptions->Size = System::Drawing::Size(220, 62);
 			   this->checkedListBoxSubscriptions->TabIndex = 38;
 			   // 
 			   // buttonCreateClass
 			   // 
-			   this->buttonCreateClass->BackColor = System::Drawing::Color::Black;
+			   this->buttonCreateClass->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+				   static_cast<System::Int32>(static_cast<System::Byte>(234)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			   this->buttonCreateClass->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->buttonCreateClass->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->buttonCreateClass->Location = System::Drawing::Point(344, 488);
+			   this->buttonCreateClass->ForeColor = System::Drawing::Color::Black;
+			   this->buttonCreateClass->Location = System::Drawing::Point(459, 601);
+			   this->buttonCreateClass->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->buttonCreateClass->Name = L"buttonCreateClass";
-			   this->buttonCreateClass->Size = System::Drawing::Size(152, 52);
+			   this->buttonCreateClass->Size = System::Drawing::Size(182, 64);
 			   this->buttonCreateClass->TabIndex = 39;
 			   this->buttonCreateClass->Text = L"Create ";
 			   this->buttonCreateClass->UseVisualStyleBackColor = false;
@@ -417,12 +444,13 @@ namespace ProjectCode {
 			   // 
 			   // CreatClassForm
 			   // 
-			   this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			   this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			   this->ClientSize = System::Drawing::Size(835, 571);
+			   this->ClientSize = System::Drawing::Size(1113, 703);
 			   this->Controls->Add(this->panel1);
 			   this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			   this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			   this->MaximizeBox = false;
 			   this->Name = L"CreatClassForm";
 			   this->Text = L"Create New Gym Class";

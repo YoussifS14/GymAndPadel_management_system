@@ -60,12 +60,11 @@ namespace ProjectCode {
 			  // flow
 			  // 
 			  this->flow->AutoScroll = true;
-			  this->flow->BackColor = System::Drawing::Color::Black;
+			  this->flow->BackColor = System::Drawing::Color::Transparent;
 			  this->flow->Dock = System::Windows::Forms::DockStyle::Fill;
-			  this->flow->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-				  static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			  this->flow->ForeColor = System::Drawing::Color::White;
 			  this->flow->Location = System::Drawing::Point(0, 0);
-			  this->flow->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->flow->Margin = System::Windows::Forms::Padding(2);
 			  this->flow->Name = L"flow";
 			  this->flow->Size = System::Drawing::Size(434, 432);
 			  this->flow->TabIndex = 0;
@@ -79,7 +78,7 @@ namespace ProjectCode {
 			  this->Controls->Add(this->flow);
 			  this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::Fixed3D;
 			  this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			  this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			  this->Margin = System::Windows::Forms::Padding(2);
 			  this->Name = L"MSGsShow";
 			  this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			  this->Text = L"MSGsShow";
