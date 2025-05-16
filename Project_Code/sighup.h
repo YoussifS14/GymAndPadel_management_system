@@ -117,7 +117,8 @@ namespace ProjectCode {
 		  System::Windows::Forms::OpenFileDialog^ openFileDialog1;
 		  System::Windows::Forms::Label^ label5;
 		  System::Windows::Forms::TextBox^ Pcode;
-		  String^ selectedImagePath;
+private: System::Windows::Forms::Panel^ panel4;
+	   String^ selectedImagePath;
 
 #pragma region Windows Form Designer generated code
 		  void InitializeComponent(void) {
@@ -165,12 +166,14 @@ namespace ProjectCode {
 			   this->MemberSubmitbutton = (gcnew System::Windows::Forms::Button());
 			   this->ChooseSublabel = (gcnew System::Windows::Forms::Label());
 			   this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			   this->panel4 = (gcnew System::Windows::Forms::Panel());
 			   this->groupBox1->SuspendLayout();
 			   this->panel1->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			   this->panel2->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->MemberpictureBox2))->BeginInit();
 			   this->panel3->SuspendLayout();
+			   this->panel4->SuspendLayout();
 			   this->SuspendLayout();
 			   // 
 			   // groupBox1
@@ -181,11 +184,11 @@ namespace ProjectCode {
 			   this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 28.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic))));
 			   this->groupBox1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
 					static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			   this->groupBox1->Location = System::Drawing::Point(31, 10);
-			   this->groupBox1->Margin = System::Windows::Forms::Padding(2);
+			   this->groupBox1->Location = System::Drawing::Point(41, 12);
+			   this->groupBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->groupBox1->Name = L"groupBox1";
-			   this->groupBox1->Padding = System::Windows::Forms::Padding(2);
-			   this->groupBox1->Size = System::Drawing::Size(256, 154);
+			   this->groupBox1->Padding = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->groupBox1->Size = System::Drawing::Size(341, 190);
 			   this->groupBox1->TabIndex = 0;
 			   this->groupBox1->TabStop = false;
 			   this->groupBox1->Text = L"Sign Up as ";
@@ -196,10 +199,10 @@ namespace ProjectCode {
 			   this->radioButton2->BackColor = System::Drawing::Color::Black;
 			   this->radioButton2->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 22.2F));
 			   this->radioButton2->ForeColor = System::Drawing::Color::Silver;
-			   this->radioButton2->Location = System::Drawing::Point(20, 115);
-			   this->radioButton2->Margin = System::Windows::Forms::Padding(2);
+			   this->radioButton2->Location = System::Drawing::Point(27, 142);
+			   this->radioButton2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->radioButton2->Name = L"radioButton2";
-			   this->radioButton2->Size = System::Drawing::Size(100, 43);
+			   this->radioButton2->Size = System::Drawing::Size(122, 52);
 			   this->radioButton2->TabIndex = 1;
 			   this->radioButton2->TabStop = true;
 			   this->radioButton2->Text = L"Staff";
@@ -213,10 +216,10 @@ namespace ProjectCode {
 			   this->radioButton1->Checked = true;
 			   this->radioButton1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 22.2F));
 			   this->radioButton1->ForeColor = System::Drawing::Color::Silver;
-			   this->radioButton1->Location = System::Drawing::Point(20, 67);
-			   this->radioButton1->Margin = System::Windows::Forms::Padding(2);
+			   this->radioButton1->Location = System::Drawing::Point(27, 82);
+			   this->radioButton1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->radioButton1->Name = L"radioButton1";
-			   this->radioButton1->Size = System::Drawing::Size(156, 43);
+			   this->radioButton1->Size = System::Drawing::Size(192, 52);
 			   this->radioButton1->TabIndex = 0;
 			   this->radioButton1->TabStop = true;
 			   this->radioButton1->Text = L"Member";
@@ -240,10 +243,11 @@ namespace ProjectCode {
 			   this->panel1->Controls->Add(this->textBox1);
 			   this->panel1->Controls->Add(this->label2);
 			   this->panel1->Controls->Add(this->textBox2);
-			   this->panel1->Location = System::Drawing::Point(31, 181);
-			   this->panel1->Margin = System::Windows::Forms::Padding(2);
+			   this->panel1->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->panel1->Location = System::Drawing::Point(0, 0);
+			   this->panel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->panel1->Name = L"panel1";
-			   this->panel1->Size = System::Drawing::Size(794, 333);
+			   this->panel1->Size = System::Drawing::Size(1351, 489);
 			   this->panel1->TabIndex = 4;
 			   this->panel1->Visible = false;
 			   // 
@@ -253,10 +257,9 @@ namespace ProjectCode {
 			   this->label5->BackColor = System::Drawing::Color::Black;
 			   this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->label5->ForeColor = System::Drawing::Color::Silver;
-			   this->label5->Location = System::Drawing::Point(2, 233);
-			   this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->label5->Location = System::Drawing::Point(159, 289);
 			   this->label5->Name = L"label5";
-			   this->label5->Size = System::Drawing::Size(156, 24);
+			   this->label5->Size = System::Drawing::Size(202, 29);
 			   this->label5->TabIndex = 11;
 			   this->label5->Text = L"Registration code";
 			   // 
@@ -266,20 +269,20 @@ namespace ProjectCode {
 			   this->Pcode->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 			   this->Pcode->ForeColor = System::Drawing::Color::Black;
-			   this->Pcode->Location = System::Drawing::Point(158, 235);
-			   this->Pcode->Margin = System::Windows::Forms::Padding(2);
+			   this->Pcode->Location = System::Drawing::Point(367, 291);
+			   this->Pcode->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->Pcode->Name = L"Pcode";
-			   this->Pcode->Size = System::Drawing::Size(119, 24);
+			   this->Pcode->Size = System::Drawing::Size(157, 28);
 			   this->Pcode->TabIndex = 10;
 			   // 
 			   // pictureBox1
 			   // 
 			   this->pictureBox1->Cursor = System::Windows::Forms::Cursors::Hand;
 			   this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			   this->pictureBox1->Location = System::Drawing::Point(300, 0);
-			   this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
+			   this->pictureBox1->Location = System::Drawing::Point(556, 2);
+			   this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->pictureBox1->Name = L"pictureBox1";
-			   this->pictureBox1->Size = System::Drawing::Size(176, 132);
+			   this->pictureBox1->Size = System::Drawing::Size(235, 162);
 			   this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			   this->pictureBox1->TabIndex = 5;
 			   this->pictureBox1->TabStop = false;
@@ -290,10 +293,10 @@ namespace ProjectCode {
 			   this->button1->BackColor = System::Drawing::Color::Black;
 			   this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 18, System::Drawing::FontStyle::Bold));
 			   this->button1->ForeColor = System::Drawing::Color::Silver;
-			   this->button1->Location = System::Drawing::Point(310, 280);
-			   this->button1->Margin = System::Windows::Forms::Padding(2);
+			   this->button1->Location = System::Drawing::Point(569, 347);
+			   this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->button1->Name = L"button1";
-			   this->button1->Size = System::Drawing::Size(166, 37);
+			   this->button1->Size = System::Drawing::Size(221, 46);
 			   this->button1->TabIndex = 5;
 			   this->button1->Text = L"Submit";
 			   this->button1->UseVisualStyleBackColor = false;
@@ -305,10 +308,10 @@ namespace ProjectCode {
 			   this->radioButton4->BackColor = System::Drawing::Color::Black;
 			   this->radioButton4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->radioButton4->ForeColor = System::Drawing::Color::Silver;
-			   this->radioButton4->Location = System::Drawing::Point(638, 235);
-			   this->radioButton4->Margin = System::Windows::Forms::Padding(2);
+			   this->radioButton4->Location = System::Drawing::Point(1007, 291);
+			   this->radioButton4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->radioButton4->Name = L"radioButton4";
-			   this->radioButton4->Size = System::Drawing::Size(83, 28);
+			   this->radioButton4->Size = System::Drawing::Size(103, 33);
 			   this->radioButton4->TabIndex = 9;
 			   this->radioButton4->TabStop = true;
 			   this->radioButton4->Text = L"Coach";
@@ -320,10 +323,10 @@ namespace ProjectCode {
 			   this->radioButton3->BackColor = System::Drawing::Color::Black;
 			   this->radioButton3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->radioButton3->ForeColor = System::Drawing::Color::Silver;
-			   this->radioButton3->Location = System::Drawing::Point(506, 235);
-			   this->radioButton3->Margin = System::Windows::Forms::Padding(2);
+			   this->radioButton3->Location = System::Drawing::Point(831, 291);
+			   this->radioButton3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->radioButton3->Name = L"radioButton3";
-			   this->radioButton3->Size = System::Drawing::Size(114, 28);
+			   this->radioButton3->Size = System::Drawing::Size(144, 33);
 			   this->radioButton3->TabIndex = 8;
 			   this->radioButton3->TabStop = true;
 			   this->radioButton3->Text = L"Reception";
@@ -335,10 +338,10 @@ namespace ProjectCode {
 			   this->textBox4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 			   this->textBox4->ForeColor = System::Drawing::Color::Black;
-			   this->textBox4->Location = System::Drawing::Point(500, 143);
-			   this->textBox4->Margin = System::Windows::Forms::Padding(2);
+			   this->textBox4->Location = System::Drawing::Point(823, 178);
+			   this->textBox4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->textBox4->Name = L"textBox4";
-			   this->textBox4->Size = System::Drawing::Size(279, 24);
+			   this->textBox4->Size = System::Drawing::Size(371, 28);
 			   this->textBox4->TabIndex = 7;
 			   // 
 			   // label4
@@ -347,10 +350,9 @@ namespace ProjectCode {
 			   this->label4->BackColor = System::Drawing::Color::Black;
 			   this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->label4->ForeColor = System::Drawing::Color::Silver;
-			   this->label4->Location = System::Drawing::Point(414, 143);
-			   this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->label4->Location = System::Drawing::Point(708, 178);
 			   this->label4->Name = L"label4";
-			   this->label4->Size = System::Drawing::Size(66, 24);
+			   this->label4->Size = System::Drawing::Size(83, 29);
 			   this->label4->TabIndex = 6;
 			   this->label4->Text = L"Phone";
 			   // 
@@ -360,10 +362,9 @@ namespace ProjectCode {
 			   this->label3->BackColor = System::Drawing::Color::Black;
 			   this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->label3->ForeColor = System::Drawing::Color::Silver;
-			   this->label3->Location = System::Drawing::Point(405, 197);
-			   this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->label3->Location = System::Drawing::Point(696, 244);
 			   this->label3->Name = L"label3";
-			   this->label3->Size = System::Drawing::Size(92, 24);
+			   this->label3->Size = System::Drawing::Size(120, 29);
 			   this->label3->TabIndex = 5;
 			   this->label3->Text = L"Password";
 			   // 
@@ -373,10 +374,10 @@ namespace ProjectCode {
 			   this->textBox3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 			   this->textBox3->ForeColor = System::Drawing::Color::Black;
-			   this->textBox3->Location = System::Drawing::Point(500, 197);
-			   this->textBox3->Margin = System::Windows::Forms::Padding(2);
+			   this->textBox3->Location = System::Drawing::Point(823, 244);
+			   this->textBox3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->textBox3->Name = L"textBox3";
-			   this->textBox3->Size = System::Drawing::Size(279, 24);
+			   this->textBox3->Size = System::Drawing::Size(371, 28);
 			   this->textBox3->TabIndex = 4;
 			   // 
 			   // label1
@@ -385,10 +386,9 @@ namespace ProjectCode {
 			   this->label1->BackColor = System::Drawing::Color::Black;
 			   this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->label1->ForeColor = System::Drawing::Color::Silver;
-			   this->label1->Location = System::Drawing::Point(2, 137);
-			   this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->label1->Location = System::Drawing::Point(159, 171);
 			   this->label1->Name = L"label1";
-			   this->label1->Size = System::Drawing::Size(61, 24);
+			   this->label1->Size = System::Drawing::Size(78, 29);
 			   this->label1->TabIndex = 0;
 			   this->label1->Text = L"Name";
 			   // 
@@ -398,10 +398,10 @@ namespace ProjectCode {
 			   this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 			   this->textBox1->ForeColor = System::Drawing::Color::Black;
-			   this->textBox1->Location = System::Drawing::Point(74, 143);
-			   this->textBox1->Margin = System::Windows::Forms::Padding(2);
+			   this->textBox1->Location = System::Drawing::Point(255, 178);
+			   this->textBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->textBox1->Name = L"textBox1";
-			   this->textBox1->Size = System::Drawing::Size(279, 24);
+			   this->textBox1->Size = System::Drawing::Size(371, 29);
 			   this->textBox1->TabIndex = 1;
 			   // 
 			   // label2
@@ -410,10 +410,9 @@ namespace ProjectCode {
 			   this->label2->BackColor = System::Drawing::Color::Black;
 			   this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->label2->ForeColor = System::Drawing::Color::Silver;
-			   this->label2->Location = System::Drawing::Point(2, 192);
-			   this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->label2->Location = System::Drawing::Point(159, 238);
 			   this->label2->Name = L"label2";
-			   this->label2->Size = System::Drawing::Size(57, 24);
+			   this->label2->Size = System::Drawing::Size(74, 29);
 			   this->label2->TabIndex = 2;
 			   this->label2->Text = L"Email";
 			   // 
@@ -423,10 +422,10 @@ namespace ProjectCode {
 			   this->textBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 			   this->textBox2->ForeColor = System::Drawing::Color::Black;
-			   this->textBox2->Location = System::Drawing::Point(74, 197);
-			   this->textBox2->Margin = System::Windows::Forms::Padding(2);
+			   this->textBox2->Location = System::Drawing::Point(255, 244);
+			   this->textBox2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->textBox2->Name = L"textBox2";
-			   this->textBox2->Size = System::Drawing::Size(279, 24);
+			   this->textBox2->Size = System::Drawing::Size(371, 28);
 			   this->textBox2->TabIndex = 3;
 			   // 
 			   // panel2
@@ -445,12 +444,13 @@ namespace ProjectCode {
 			   this->panel2->Controls->Add(this->MemberNametextBox);
 			   this->panel2->Controls->Add(this->MemberEmailtextBox);
 			   this->panel2->Controls->Add(this->MemberEmaillabel);
+			   this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
 			   this->panel2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-			   this->panel2->Location = System::Drawing::Point(28, 179);
-			   this->panel2->Margin = System::Windows::Forms::Padding(2);
+			   this->panel2->Location = System::Drawing::Point(0, 0);
+			   this->panel2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->panel2->Name = L"panel2";
-			   this->panel2->Size = System::Drawing::Size(794, 336);
+			   this->panel2->Size = System::Drawing::Size(1351, 489);
 			   this->panel2->TabIndex = 10;
 			   this->panel2->Visible = false;
 			   // 
@@ -466,10 +466,10 @@ namespace ProjectCode {
 						 L"1988", L"1989", L"1990", L"1991", L"1992", L"1993", L"1994", L"1995", L"1996", L"1997", L"1998", L"1999", L"2000", L"2001",
 						 L"2002", L"2003", L"2004", L"2005", L"2006", L"2007"
 			   });
-			   this->YearcomboBox->Location = System::Drawing::Point(687, 214);
-			   this->YearcomboBox->Margin = System::Windows::Forms::Padding(2);
+			   this->YearcomboBox->Location = System::Drawing::Point(1072, 265);
+			   this->YearcomboBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->YearcomboBox->Name = L"YearcomboBox";
-			   this->YearcomboBox->Size = System::Drawing::Size(92, 25);
+			   this->YearcomboBox->Size = System::Drawing::Size(121, 30);
 			   this->YearcomboBox->TabIndex = 12;
 			   this->YearcomboBox->Text = L"Year";
 			   // 
@@ -482,10 +482,10 @@ namespace ProjectCode {
 					L"01", L"02", L"03", L"04", L"05", L"06", L"07",
 						 L"08", L"09", L"10", L"11", L"12"
 			   });
-			   this->MonthcomboBox->Location = System::Drawing::Point(585, 214);
-			   this->MonthcomboBox->Margin = System::Windows::Forms::Padding(2);
+			   this->MonthcomboBox->Location = System::Drawing::Point(936, 265);
+			   this->MonthcomboBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->MonthcomboBox->Name = L"MonthcomboBox";
-			   this->MonthcomboBox->Size = System::Drawing::Size(92, 25);
+			   this->MonthcomboBox->Size = System::Drawing::Size(121, 30);
 			   this->MonthcomboBox->TabIndex = 11;
 			   this->MonthcomboBox->Text = L"Month";
 			   // 
@@ -501,10 +501,10 @@ namespace ProjectCode {
 						 L"08", L"09", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"17", L"18", L"19", L"20", L"21", L"22", L"23", L"24", L"25",
 						 L"26", L"27", L"28", L"29", L"30", L"31"
 			   });
-			   this->DaycomboBox->Location = System::Drawing::Point(481, 214);
-			   this->DaycomboBox->Margin = System::Windows::Forms::Padding(2);
+			   this->DaycomboBox->Location = System::Drawing::Point(797, 265);
+			   this->DaycomboBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->DaycomboBox->Name = L"DaycomboBox";
-			   this->DaycomboBox->Size = System::Drawing::Size(92, 25);
+			   this->DaycomboBox->Size = System::Drawing::Size(121, 30);
 			   this->DaycomboBox->TabIndex = 10;
 			   this->DaycomboBox->Text = L"Day";
 			   // 
@@ -514,10 +514,9 @@ namespace ProjectCode {
 			   this->BirthDaylabel->BackColor = System::Drawing::Color::Black;
 			   this->BirthDaylabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->BirthDaylabel->ForeColor = System::Drawing::Color::Silver;
-			   this->BirthDaylabel->Location = System::Drawing::Point(386, 214);
-			   this->BirthDaylabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->BirthDaylabel->Location = System::Drawing::Point(671, 265);
 			   this->BirthDaylabel->Name = L"BirthDaylabel";
-			   this->BirthDaylabel->Size = System::Drawing::Size(77, 24);
+			   this->BirthDaylabel->Size = System::Drawing::Size(100, 29);
 			   this->BirthDaylabel->TabIndex = 9;
 			   this->BirthDaylabel->Text = L"Birthday";
 			   // 
@@ -527,10 +526,9 @@ namespace ProjectCode {
 			   this->label9->BackColor = System::Drawing::Color::Black;
 			   this->label9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold));
 			   this->label9->ForeColor = System::Drawing::Color::Silver;
-			   this->label9->Location = System::Drawing::Point(406, 315);
-			   this->label9->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->label9->Location = System::Drawing::Point(697, 390);
 			   this->label9->Name = L"label9";
-			   this->label9->Size = System::Drawing::Size(34, 20);
+			   this->label9->Size = System::Drawing::Size(43, 25);
 			   this->label9->TabIndex = 8;
 			   this->label9->Text = L"1/2";
 			   // 
@@ -538,10 +536,10 @@ namespace ProjectCode {
 			   // 
 			   this->MemberpictureBox2->Cursor = System::Windows::Forms::Cursors::Hand;
 			   this->MemberpictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"MemberpictureBox2.Image")));
-			   this->MemberpictureBox2->Location = System::Drawing::Point(292, 0);
-			   this->MemberpictureBox2->Margin = System::Windows::Forms::Padding(2);
+			   this->MemberpictureBox2->Location = System::Drawing::Point(545, 2);
+			   this->MemberpictureBox2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->MemberpictureBox2->Name = L"MemberpictureBox2";
-			   this->MemberpictureBox2->Size = System::Drawing::Size(176, 132);
+			   this->MemberpictureBox2->Size = System::Drawing::Size(235, 162);
 			   this->MemberpictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			   this->MemberpictureBox2->TabIndex = 5;
 			   this->MemberpictureBox2->TabStop = false;
@@ -552,10 +550,10 @@ namespace ProjectCode {
 			   this->MemberNextbutton->BackColor = System::Drawing::Color::Black;
 			   this->MemberNextbutton->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 13.8F, System::Drawing::FontStyle::Bold));
 			   this->MemberNextbutton->ForeColor = System::Drawing::Color::Silver;
-			   this->MemberNextbutton->Location = System::Drawing::Point(356, 275);
-			   this->MemberNextbutton->Margin = System::Windows::Forms::Padding(2);
+			   this->MemberNextbutton->Location = System::Drawing::Point(631, 340);
+			   this->MemberNextbutton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->MemberNextbutton->Name = L"MemberNextbutton";
-			   this->MemberNextbutton->Size = System::Drawing::Size(112, 37);
+			   this->MemberNextbutton->Size = System::Drawing::Size(149, 46);
 			   this->MemberNextbutton->TabIndex = 5;
 			   this->MemberNextbutton->Text = L"Next";
 			   this->MemberNextbutton->UseVisualStyleBackColor = false;
@@ -567,10 +565,9 @@ namespace ProjectCode {
 			   this->label6->BackColor = System::Drawing::Color::Black;
 			   this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->label6->ForeColor = System::Drawing::Color::Silver;
-			   this->label6->Location = System::Drawing::Point(386, 166);
-			   this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->label6->Location = System::Drawing::Point(671, 206);
 			   this->label6->Name = L"label6";
-			   this->label6->Size = System::Drawing::Size(92, 24);
+			   this->label6->Size = System::Drawing::Size(120, 29);
 			   this->label6->TabIndex = 5;
 			   this->label6->Text = L"Password";
 			   // 
@@ -580,10 +577,10 @@ namespace ProjectCode {
 			   this->textBox6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 			   this->textBox6->ForeColor = System::Drawing::Color::Black;
-			   this->textBox6->Location = System::Drawing::Point(481, 166);
-			   this->textBox6->Margin = System::Windows::Forms::Padding(2);
+			   this->textBox6->Location = System::Drawing::Point(797, 206);
+			   this->textBox6->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->textBox6->Name = L"textBox6";
-			   this->textBox6->Size = System::Drawing::Size(279, 24);
+			   this->textBox6->Size = System::Drawing::Size(371, 28);
 			   this->textBox6->TabIndex = 4;
 			   // 
 			   // MemberNamelabel
@@ -592,10 +589,9 @@ namespace ProjectCode {
 			   this->MemberNamelabel->BackColor = System::Drawing::Color::Black;
 			   this->MemberNamelabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->MemberNamelabel->ForeColor = System::Drawing::Color::Silver;
-			   this->MemberNamelabel->Location = System::Drawing::Point(2, 166);
-			   this->MemberNamelabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->MemberNamelabel->Location = System::Drawing::Point(159, 206);
 			   this->MemberNamelabel->Name = L"MemberNamelabel";
-			   this->MemberNamelabel->Size = System::Drawing::Size(61, 24);
+			   this->MemberNamelabel->Size = System::Drawing::Size(78, 29);
 			   this->MemberNamelabel->TabIndex = 0;
 			   this->MemberNamelabel->Text = L"Name";
 			   // 
@@ -605,10 +601,10 @@ namespace ProjectCode {
 			   this->MemberNametextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular,
 					System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			   this->MemberNametextBox->ForeColor = System::Drawing::Color::Black;
-			   this->MemberNametextBox->Location = System::Drawing::Point(74, 166);
-			   this->MemberNametextBox->Margin = System::Windows::Forms::Padding(2);
+			   this->MemberNametextBox->Location = System::Drawing::Point(255, 206);
+			   this->MemberNametextBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->MemberNametextBox->Name = L"MemberNametextBox";
-			   this->MemberNametextBox->Size = System::Drawing::Size(279, 24);
+			   this->MemberNametextBox->Size = System::Drawing::Size(371, 28);
 			   this->MemberNametextBox->TabIndex = 1;
 			   // 
 			   // MemberEmailtextBox
@@ -617,10 +613,10 @@ namespace ProjectCode {
 			   this->MemberEmailtextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular,
 					System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			   this->MemberEmailtextBox->ForeColor = System::Drawing::Color::Black;
-			   this->MemberEmailtextBox->Location = System::Drawing::Point(74, 220);
-			   this->MemberEmailtextBox->Margin = System::Windows::Forms::Padding(2);
+			   this->MemberEmailtextBox->Location = System::Drawing::Point(255, 273);
+			   this->MemberEmailtextBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->MemberEmailtextBox->Name = L"MemberEmailtextBox";
-			   this->MemberEmailtextBox->Size = System::Drawing::Size(279, 24);
+			   this->MemberEmailtextBox->Size = System::Drawing::Size(371, 28);
 			   this->MemberEmailtextBox->TabIndex = 3;
 			   // 
 			   // MemberEmaillabel
@@ -629,10 +625,9 @@ namespace ProjectCode {
 			   this->MemberEmaillabel->BackColor = System::Drawing::Color::Black;
 			   this->MemberEmaillabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->MemberEmaillabel->ForeColor = System::Drawing::Color::Silver;
-			   this->MemberEmaillabel->Location = System::Drawing::Point(2, 220);
-			   this->MemberEmaillabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->MemberEmaillabel->Location = System::Drawing::Point(159, 273);
 			   this->MemberEmaillabel->Name = L"MemberEmaillabel";
-			   this->MemberEmaillabel->Size = System::Drawing::Size(57, 24);
+			   this->MemberEmaillabel->Size = System::Drawing::Size(74, 29);
 			   this->MemberEmaillabel->TabIndex = 2;
 			   this->MemberEmaillabel->Text = L"Email";
 			   // 
@@ -648,10 +643,11 @@ namespace ProjectCode {
 			   this->panel3->Controls->Add(this->label7);
 			   this->panel3->Controls->Add(this->MemberSubmitbutton);
 			   this->panel3->Controls->Add(this->ChooseSublabel);
-			   this->panel3->Location = System::Drawing::Point(28, 179);
-			   this->panel3->Margin = System::Windows::Forms::Padding(2);
+			   this->panel3->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->panel3->Location = System::Drawing::Point(0, 0);
+			   this->panel3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->panel3->Name = L"panel3";
-			   this->panel3->Size = System::Drawing::Size(794, 350);
+			   this->panel3->Size = System::Drawing::Size(1351, 489);
 			   this->panel3->TabIndex = 13;
 			   this->panel3->Visible = false;
 			   // 
@@ -660,10 +656,10 @@ namespace ProjectCode {
 			   this->richTextBox1->BackColor = System::Drawing::Color::Black;
 			   this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
 			   this->richTextBox1->ForeColor = System::Drawing::Color::Silver;
-			   this->richTextBox1->Location = System::Drawing::Point(100, 176);
-			   this->richTextBox1->Margin = System::Windows::Forms::Padding(2);
+			   this->richTextBox1->Location = System::Drawing::Point(307, 215);
+			   this->richTextBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->richTextBox1->Name = L"richTextBox1";
-			   this->richTextBox1->Size = System::Drawing::Size(577, 97);
+			   this->richTextBox1->Size = System::Drawing::Size(768, 118);
 			   this->richTextBox1->TabIndex = 14;
 			   this->richTextBox1->Text = L"";
 			   // 
@@ -673,10 +669,10 @@ namespace ProjectCode {
 			   this->checkBox1->BackColor = System::Drawing::Color::Black;
 			   this->checkBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Underline))));
 			   this->checkBox1->ForeColor = System::Drawing::Color::Silver;
-			   this->checkBox1->Location = System::Drawing::Point(357, 152);
-			   this->checkBox1->Margin = System::Windows::Forms::Padding(2);
+			   this->checkBox1->Location = System::Drawing::Point(650, 185);
+			   this->checkBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->checkBox1->Name = L"checkBox1";
-			   this->checkBox1->Size = System::Drawing::Size(51, 21);
+			   this->checkBox1->Size = System::Drawing::Size(60, 24);
 			   this->checkBox1->TabIndex = 13;
 			   this->checkBox1->Text = L"VIP";
 			   this->checkBox1->UseVisualStyleBackColor = false;
@@ -687,10 +683,10 @@ namespace ProjectCode {
 			   this->SixMradioButton->BackColor = System::Drawing::Color::Black;
 			   this->SixMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
 			   this->SixMradioButton->ForeColor = System::Drawing::Color::Silver;
-			   this->SixMradioButton->Location = System::Drawing::Point(404, 107);
-			   this->SixMradioButton->Margin = System::Windows::Forms::Padding(2);
+			   this->SixMradioButton->Location = System::Drawing::Point(713, 130);
+			   this->SixMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->SixMradioButton->Name = L"SixMradioButton";
-			   this->SixMradioButton->Size = System::Drawing::Size(85, 24);
+			   this->SixMradioButton->Size = System::Drawing::Size(104, 29);
 			   this->SixMradioButton->TabIndex = 12;
 			   this->SixMradioButton->TabStop = true;
 			   this->SixMradioButton->Text = L"6 Month";
@@ -703,10 +699,10 @@ namespace ProjectCode {
 			   this->OneYradioButton->BackColor = System::Drawing::Color::Black;
 			   this->OneYradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
 			   this->OneYradioButton->ForeColor = System::Drawing::Color::Silver;
-			   this->OneYradioButton->Location = System::Drawing::Point(549, 107);
-			   this->OneYradioButton->Margin = System::Windows::Forms::Padding(2);
+			   this->OneYradioButton->Location = System::Drawing::Point(906, 130);
+			   this->OneYradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->OneYradioButton->Name = L"OneYradioButton";
-			   this->OneYradioButton->Size = System::Drawing::Size(74, 24);
+			   this->OneYradioButton->Size = System::Drawing::Size(90, 29);
 			   this->OneYradioButton->TabIndex = 11;
 			   this->OneYradioButton->TabStop = true;
 			   this->OneYradioButton->Text = L"1 Year";
@@ -719,10 +715,10 @@ namespace ProjectCode {
 			   this->ThreeMradioButton->BackColor = System::Drawing::Color::Black;
 			   this->ThreeMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
 			   this->ThreeMradioButton->ForeColor = System::Drawing::Color::Silver;
-			   this->ThreeMradioButton->Location = System::Drawing::Point(264, 107);
-			   this->ThreeMradioButton->Margin = System::Windows::Forms::Padding(2);
+			   this->ThreeMradioButton->Location = System::Drawing::Point(526, 130);
+			   this->ThreeMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->ThreeMradioButton->Name = L"ThreeMradioButton";
-			   this->ThreeMradioButton->Size = System::Drawing::Size(85, 24);
+			   this->ThreeMradioButton->Size = System::Drawing::Size(104, 29);
 			   this->ThreeMradioButton->TabIndex = 10;
 			   this->ThreeMradioButton->TabStop = true;
 			   this->ThreeMradioButton->Text = L"3 Month";
@@ -735,10 +731,10 @@ namespace ProjectCode {
 			   this->OneMradioButton->BackColor = System::Drawing::Color::Black;
 			   this->OneMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
 			   this->OneMradioButton->ForeColor = System::Drawing::Color::Silver;
-			   this->OneMradioButton->Location = System::Drawing::Point(130, 107);
-			   this->OneMradioButton->Margin = System::Windows::Forms::Padding(2);
+			   this->OneMradioButton->Location = System::Drawing::Point(347, 130);
+			   this->OneMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->OneMradioButton->Name = L"OneMradioButton";
-			   this->OneMradioButton->Size = System::Drawing::Size(85, 24);
+			   this->OneMradioButton->Size = System::Drawing::Size(104, 29);
 			   this->OneMradioButton->TabIndex = 9;
 			   this->OneMradioButton->TabStop = true;
 			   this->OneMradioButton->Text = L"1 Month";
@@ -751,10 +747,9 @@ namespace ProjectCode {
 			   this->label7->BackColor = System::Drawing::Color::Black;
 			   this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold));
 			   this->label7->ForeColor = System::Drawing::Color::Gray;
-			   this->label7->Location = System::Drawing::Point(386, 325);
-			   this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->label7->Location = System::Drawing::Point(689, 398);
 			   this->label7->Name = L"label7";
-			   this->label7->Size = System::Drawing::Size(34, 20);
+			   this->label7->Size = System::Drawing::Size(43, 25);
 			   this->label7->TabIndex = 8;
 			   this->label7->Text = L"2/2";
 			   // 
@@ -763,10 +758,10 @@ namespace ProjectCode {
 			   this->MemberSubmitbutton->BackColor = System::Drawing::Color::Black;
 			   this->MemberSubmitbutton->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 13.8F, System::Drawing::FontStyle::Bold));
 			   this->MemberSubmitbutton->ForeColor = System::Drawing::Color::Silver;
-			   this->MemberSubmitbutton->Location = System::Drawing::Point(356, 275);
-			   this->MemberSubmitbutton->Margin = System::Windows::Forms::Padding(2);
+			   this->MemberSubmitbutton->Location = System::Drawing::Point(649, 336);
+			   this->MemberSubmitbutton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->MemberSubmitbutton->Name = L"MemberSubmitbutton";
-			   this->MemberSubmitbutton->Size = System::Drawing::Size(112, 37);
+			   this->MemberSubmitbutton->Size = System::Drawing::Size(149, 46);
 			   this->MemberSubmitbutton->TabIndex = 5;
 			   this->MemberSubmitbutton->Text = L"Submit";
 			   this->MemberSubmitbutton->UseVisualStyleBackColor = false;
@@ -779,10 +774,9 @@ namespace ProjectCode {
 			   this->ChooseSublabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
 			   this->ChooseSublabel->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
 					static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			   this->ChooseSublabel->Location = System::Drawing::Point(296, 32);
-			   this->ChooseSublabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			   this->ChooseSublabel->Location = System::Drawing::Point(569, 37);
 			   this->ChooseSublabel->Name = L"ChooseSublabel";
-			   this->ChooseSublabel->Size = System::Drawing::Size(221, 24);
+			   this->ChooseSublabel->Size = System::Drawing::Size(280, 29);
 			   this->ChooseSublabel->TabIndex = 0;
 			   this->ChooseSublabel->Text = L"choose your subscription";
 			   // 
@@ -791,17 +785,26 @@ namespace ProjectCode {
 			   this->openFileDialog1->Filter = L"Image Files|.jpg;.jpeg;.png;.bmp;*.gif";
 			   this->openFileDialog1->Title = L"Select an Image";
 			   // 
+			   // panel4
+			   // 
+			   this->panel4->Controls->Add(this->panel1);
+			   this->panel4->Controls->Add(this->panel2);
+			   this->panel4->Controls->Add(this->panel3);
+			   this->panel4->Dock = System::Windows::Forms::DockStyle::Bottom;
+			   this->panel4->Location = System::Drawing::Point(0, 211);
+			   this->panel4->Name = L"panel4";
+			   this->panel4->Size = System::Drawing::Size(1351, 489);
+			   this->panel4->TabIndex = 14;
+			   // 
 			   // sighup
 			   // 
-			   this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			   this->BackColor = System::Drawing::Color::Black;
-			   this->ClientSize = System::Drawing::Size(1013, 569);
-			   this->Controls->Add(this->panel1);
-			   this->Controls->Add(this->panel2);
-			   this->Controls->Add(this->panel3);
+			   this->ClientSize = System::Drawing::Size(1351, 700);
+			   this->Controls->Add(this->panel4);
 			   this->Controls->Add(this->groupBox1);
-			   this->Margin = System::Windows::Forms::Padding(2);
+			   this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			   this->Name = L"sighup";
 			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			   this->Text = L"sign up";
@@ -816,6 +819,7 @@ namespace ProjectCode {
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->MemberpictureBox2))->EndInit();
 			   this->panel3->ResumeLayout(false);
 			   this->panel3->PerformLayout();
+			   this->panel4->ResumeLayout(false);
 			   this->ResumeLayout(false);
 
 		  }
