@@ -528,7 +528,7 @@ public:
 	 string password;
 	 string phone;
 	 string role; // Staff, Manager, Admin
-	 string myClass = "null"; // if the staff is a coach, this will be the class(ID) they are coaching 
+	 //string myClass = "null"; // if the staff is a coach, this will be the class(ID) they are coaching 
 	 string PicPath;
 	 Staff() {
 		  ID = "";
@@ -577,7 +577,7 @@ public:
 		  sort(activeUsers.begin(), activeUsers.end(), [](const User& user1, const User& user2) {
 			   return user1.myClasses.size() > user2.myClasses.size();
 			   });
-		  int numberOfMembers = min(10, static_cast<int>(activeUsers.size()));
+		  int numberOfMembers = min(10, (int)activeUsers.size());
 		  for (int i = 0; i < numberOfMembers; ++i) {
 			   string name = activeUsers[i].name;
 			   if (name.length() > 24) {

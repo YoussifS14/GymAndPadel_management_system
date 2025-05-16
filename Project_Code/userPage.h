@@ -1154,7 +1154,9 @@ namespace ProjectCode {
 		  MainPage->Controls->Add(GymClass_pg);
 		  GymClass_pg->BringToFront();
 		  ListOfClasses->Controls->Clear();
-		  //auto it = userList[loginID].myClasses.begin(); // list contain gym class key
+		  //auto it = userList[loginID].
+		  // 
+		  // es.begin(); // list contain gym class key
 		  auto gymClass = userList[loginID].subscription.getAvailableClasses();
 		  for (auto it = gymClass.begin(); it != gymClass.end(); it++) {
 
