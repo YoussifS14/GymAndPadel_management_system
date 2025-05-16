@@ -1719,8 +1719,11 @@ namespace ProjectCode {
 		  else if (ThreeMradioButton->Checked) subType = "3 month";
 		  else if (SixMradioButton->Checked) subType = "6 month";
 		  else if (OneYradioButton->Checked) subType = "1 year";
+		  string newStartDate = getCurrentDate_MM_DD_YYYY();
 
 		  Subscriptions sub(subType, userList[loginID].subscription.getEndDate(), isVIP);
+		  
+
 		  double price = sub.getPrice();
 		  // Check offers
 		  int remainingDays = userList[loginID].subscription.getRemainingDays();
@@ -1730,6 +1733,12 @@ namespace ProjectCode {
 		  if (userList[loginID].myWallet >= priceAfterDiscount) {
 			   MessageBox::Show("Subscription renewed successfully", "successful operation", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   userList[loginID].myWallet -= priceAfterDiscount;
+			 //  userList[loginID].subscription.setStartDate(getCurrentDate_MM_DD_YYYY());
+			   //userList[loginID].subscription = sub;
+			 //  userList[loginID].subscription.endTimeAfterRenew(); 
+			   sub.setStartDate(getCurrentDate_MM_DD_YYYY()); // update before assigning 
+			   userList[loginID].subscription = sub; 
+			    
 			   Wallet->Text = "Wallet: $" + userList[loginID].myWallet.ToString();
 		  }
 		  else {
@@ -1740,6 +1749,12 @@ namespace ProjectCode {
 			   this->Show();
 			   if (paymentPage->OperationResult) {
 					MessageBox::Show("Subscription renewed successfully", "successful operation", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					//userList[loginID].subscription.setStartDate(getCurrentDate_MM_DD_YYYY()); 
+					//userList[loginID].subscription = sub; 
+				//	userList[loginID].subscription.endTimeAfterRenew();
+					sub.setStartDate(getCurrentDate_MM_DD_YYYY());  // update before assigning
+					userList[loginID].subscription = sub; 
+
 					userList[loginID].subscription.renewSub(sub);
 					userList[loginID].myWallet = 0;
 					//  userList[loginID].saveToFile("Data/users.csv");

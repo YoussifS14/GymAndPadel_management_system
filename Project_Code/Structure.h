@@ -264,6 +264,9 @@ public:
 		  end_date = endTimeAfterRenew();
 
 	 }
+	 void setStartDate(string st) {
+		 start_date = st;
+	 }
 
 };
 
