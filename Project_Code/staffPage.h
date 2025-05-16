@@ -411,9 +411,9 @@ namespace ProjectCode {
     private:
         void InitializeComponent(void) {
             System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(staffPage::typeid));
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->MainMenu_pn = (gcnew System::Windows::Forms::Panel());
             this->profile_pn = (gcnew System::Windows::Forms::Panel());
             this->panel1 = (gcnew System::Windows::Forms::Panel());
@@ -491,10 +491,10 @@ namespace ProjectCode {
             this->SendNotification->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
                 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
             this->SendNotification->ForeColor = System::Drawing::Color::Black;
-            this->SendNotification->Location = System::Drawing::Point(0, 251);
+            this->SendNotification->Location = System::Drawing::Point(0, 200);
             this->SendNotification->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
             this->SendNotification->Name = L"SendNotification";
-            this->SendNotification->Size = System::Drawing::Size(291, 87);
+            this->SendNotification->Size = System::Drawing::Size(291, 76);
             this->SendNotification->TabIndex = 2;
             this->SendNotification->Text = L"Send Notification";
             this->SendNotification->UseVisualStyleBackColor = false;
@@ -510,10 +510,10 @@ namespace ProjectCode {
             this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->button1->ForeColor = System::Drawing::Color::Black;
-            this->button1->Location = System::Drawing::Point(0, 163);
+            this->button1->Location = System::Drawing::Point(0, 128);
             this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
             this->button1->Name = L"button1";
-            this->button1->Size = System::Drawing::Size(291, 88);
+            this->button1->Size = System::Drawing::Size(291, 72);
             this->button1->TabIndex = 5;
             this->button1->Text = L"Search User";
             this->button1->UseVisualStyleBackColor = false;
@@ -529,10 +529,10 @@ namespace ProjectCode {
             this->AddNewUser->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->AddNewUser->ForeColor = System::Drawing::Color::Black;
-            this->AddNewUser->Location = System::Drawing::Point(0, 77);
+            this->AddNewUser->Location = System::Drawing::Point(0, 62);
             this->AddNewUser->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
             this->AddNewUser->Name = L"AddNewUser";
-            this->AddNewUser->Size = System::Drawing::Size(291, 86);
+            this->AddNewUser->Size = System::Drawing::Size(291, 66);
             this->AddNewUser->TabIndex = 3;
             this->AddNewUser->Text = L"Register new user";
             this->AddNewUser->UseVisualStyleBackColor = false;
@@ -551,7 +551,7 @@ namespace ProjectCode {
             this->displayclasses->Location = System::Drawing::Point(0, 0);
             this->displayclasses->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
             this->displayclasses->Name = L"displayclasses";
-            this->displayclasses->Size = System::Drawing::Size(291, 77);
+            this->displayclasses->Size = System::Drawing::Size(291, 62);
             this->displayclasses->TabIndex = 4;
             this->displayclasses->Text = L"Display Classes";
             this->displayclasses->UseVisualStyleBackColor = false;
@@ -698,32 +698,32 @@ namespace ProjectCode {
             // 
             this->classGridView->AllowUserToAddRows = false;
             this->classGridView->AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1->BackColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle1->ForeColor = System::Drawing::Color::White;
-            this->classGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4->BackColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle4->ForeColor = System::Drawing::Color::White;
+            this->classGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this->classGridView->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
             this->classGridView->BackgroundColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-            dataGridViewCellStyle2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+            dataGridViewCellStyle5->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+            dataGridViewCellStyle5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(234)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
-            dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
-            dataGridViewCellStyle2->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+            dataGridViewCellStyle5->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(180)), static_cast<System::Int32>(static_cast<System::Byte>(180)));
-            dataGridViewCellStyle2->SelectionForeColor = System::Drawing::Color::White;
-            dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-            this->classGridView->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5->SelectionForeColor = System::Drawing::Color::White;
+            dataGridViewCellStyle5->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->classGridView->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this->classGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-            dataGridViewCellStyle3->BackColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
-            dataGridViewCellStyle3->ForeColor = System::Drawing::Color::White;
-            dataGridViewCellStyle3->Padding = System::Windows::Forms::Padding(5, 10, 5, 10);
-            dataGridViewCellStyle3->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle6->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+            dataGridViewCellStyle6->BackColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle6->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+            dataGridViewCellStyle6->ForeColor = System::Drawing::Color::White;
+            dataGridViewCellStyle6->Padding = System::Windows::Forms::Padding(5, 10, 5, 10);
+            dataGridViewCellStyle6->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(180)), static_cast<System::Int32>(static_cast<System::Byte>(180)));
-            dataGridViewCellStyle3->SelectionForeColor = System::Drawing::Color::White;
-            dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-            this->classGridView->DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6->SelectionForeColor = System::Drawing::Color::White;
+            dataGridViewCellStyle6->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+            this->classGridView->DefaultCellStyle = dataGridViewCellStyle6;
             this->classGridView->EnableHeadersVisualStyles = false;
             this->classGridView->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
             this->classGridView->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
@@ -817,7 +817,7 @@ namespace ProjectCode {
             this->ClientSize = System::Drawing::Size(1273, 738);
             this->Controls->Add(this->MainPage);
             this->Controls->Add(this->MainMenu_pn);
-            this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+            this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::SizableToolWindow;
             this->Margin = System::Windows::Forms::Padding(4);
             this->Name = L"staffPage";
             this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
