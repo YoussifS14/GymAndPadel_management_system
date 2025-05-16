@@ -48,6 +48,7 @@ court-15,NewCairoPadel,new cairo,225
 
 court-16,TagamoaPadelStars,tagamoa,250
 slot-court16-1,04/23/2025,14:00
+slot-25,05/29/2025,14:00
 
 court-17,RehabCityPadelZone,rehab city,265
 slot-court17-1,04/24/2025,10:00
