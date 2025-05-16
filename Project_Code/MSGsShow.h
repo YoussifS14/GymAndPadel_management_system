@@ -60,7 +60,7 @@ namespace ProjectCode {
 			  // flow
 			  // 
 			  this->flow->AutoScroll = true;
-			  this->flow->BackColor = System::Drawing::Color::Transparent;
+			  this->flow->BackColor = System::Drawing::Color::Black;
 			  this->flow->Dock = System::Windows::Forms::DockStyle::Fill;
 			  this->flow->ForeColor = System::Drawing::Color::White;
 			  this->flow->Location = System::Drawing::Point(0, 0);
