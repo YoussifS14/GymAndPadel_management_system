@@ -509,6 +509,14 @@ int main()
 	 readSlotData();
 	 readNotfication(); //done
 	 readWorkoutData();
+	 for (auto& itUser : userList) {
+		  User& user = itUser.second;
+		  time_t end = getTime_t(user.subscription.getEndDate());
+		  time_t currentTime = time(0);
+		  if (currentTime > end) {
+			   user.subscription.setActivated(false);
+		  }
+	 }
 	 for (auto& itClass : gymClassList) {
 		  if (itClass.second.getDaysDifference() >= 15) {
 			   string clssName = itClass.second.className;
@@ -525,6 +533,7 @@ int main()
 
 		  }
 	 }
+
 	 Application::EnableVisualStyles();
 	 Application::SetCompatibleTextRenderingDefault(false);
 	 ProjectCode::LoginPage form;

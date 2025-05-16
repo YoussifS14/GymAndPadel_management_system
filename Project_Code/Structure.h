@@ -117,6 +117,7 @@ public:
 		  end_date = ed_date;
 		  is_VIP = vip;
 		  price = getPrice();
+		  isActivated = true;
 
 	 }
 	 Subscriptions(string _type, string  st_date, bool vip) {
@@ -125,11 +126,14 @@ public:
 		  is_VIP = vip;
 		  price = getPrice();
 		  end_date = calculateEndDate();
+		  isActivated = true;
 	 }
 	 Subscriptions() : type(""), start_date(""), end_date(""),
-		  is_VIP(false), price(0.0), isActivated(false) {
+		  is_VIP(false), price(0.0), isActivated(true) {
 	 }
-
+	 void setActivated(bool activated) {
+		  isActivated = activated;
+	 }
 	 double getPrice() {
 		  if (type == "1 month")
 			   price = 450.0;
@@ -257,15 +261,17 @@ public:
 		  return daysRemaining;
 	 }
 
-	 void renewSub(Subscriptions sub) {
+	 void renewSub(Subscriptions sub) { //start_date, end_date, type, is_VIP, price, isActivated
 		  type = sub.type;
 		  is_VIP = sub.is_VIP;
 		  price = sub.price;
-		  end_date = endTimeAfterRenew();
+		  isActivated = true;
+		  setStartDate(getCurrentDate_MM_DD_YYYY());
+		  end_date = sub.getEndDate();
 
 	 }
 	 void setStartDate(string st) {
-		 start_date = st;
+		  start_date = st;
 	 }
 
 };
