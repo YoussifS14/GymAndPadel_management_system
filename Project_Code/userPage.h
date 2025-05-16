@@ -1519,7 +1519,7 @@ namespace ProjectCode {
 					MessageBox::Show(gcnew String(msg.c_str()), "Notification", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   }
 		  }
-		  if (remainingDays >= 3 && remainingDays <= 6) {
+		  if (remainingDays >= 5 && remainingDays <= 14) {
 			   System::Windows::Forms::DialogResult result = MessageBox::Show(
 					"You have an early renewal discount of " + discount.ToString() + "%!\nWould you like to renew ?",
 					"Special Offer",

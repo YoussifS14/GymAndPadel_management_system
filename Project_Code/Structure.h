@@ -155,25 +155,20 @@ public:
 		  return(current_date >= convertedStartDate && current_date <= convertedEndDate);
 	 }
 	 bool isActive(int month, int year) {
-		  // Create time_t for the first and last day of the specified month/year
 		  tm firstDay = {};
 		  firstDay.tm_year = year - 1900;
 		  firstDay.tm_mon = month - 1;
 		  firstDay.tm_mday = 1;
 		  time_t firstDayTime = mktime(&firstDay);
-
 		  tm lastDay = firstDay;
-		  lastDay.tm_mon += 1; // Next month
+		  lastDay.tm_mon += 1;
 		  if (lastDay.tm_mon == 12) {
 			   lastDay.tm_mon = 0;
 			   lastDay.tm_year += 1;
 		  }
-		  time_t lastDayTime = mktime(&lastDay) - 1; // Last second of the month
-
+		  time_t lastDayTime = mktime(&lastDay) - 1; 
 		  time_t startTime = getTime_t(start_date);
 		  time_t endTime = getTime_t(end_date);
-
-		  // Check if subscription overlaps with the specified month
 		  return (startTime <= lastDayTime && endTime >= firstDayTime);
 	 }
 	 string getType() {
@@ -182,10 +177,6 @@ public:
 	 bool get_is_VIP() {
 		  return is_VIP;
 	 }
-	 // Fix for the error: 'allowedSubTypes': is not a member of 'System::Int32'
-	 // Ensure that the `gymClass` object is of type `GymClasses` and not mistakenly treated as an integer.
-
-	 // Ensure this is declared globally or in the appropriate scope.
 
 	 unordered_map<string, GymClasses> getAvailableClasses();
 
@@ -238,10 +229,10 @@ public:
 
 	 double applyOffer(int remainingDays) {
 
-		  if (createOffer() && (remainingDays >= 3 && remainingDays <= 5)) {
+		  if (createOffer() && (remainingDays >= 5 && remainingDays <= 14)) {
 			   return 0.15;
 		  }
-		  else if (!createOffer() && (remainingDays >= 3 && remainingDays <= 5)) {
+		  else if (!createOffer() && (remainingDays >= 5 && remainingDays <= 14)) {
 			   return 0.10;
 		  }
 
@@ -290,7 +281,6 @@ public:
 	 int classEntered = 0;
 	 float myWallet; // cash back from cancelling
 	 bool isVip;
-	 // bool isActive = true;
 	 list<Notification> myNotifications; // List of notifications
 	 vector<Slot> myReservations; // List of reserved slots
 	 list<string> myClasses;  // List of reserved classes ->> classID
@@ -426,13 +416,10 @@ public:
 		  initializeBaseIDUser();
 		  if (!isNameValid(Name)) return false;
 		  if (!isEmailCorrect(Email) || !isEmailUnique(Email)) return false;
-		  // if (!isBirthdayValid(Bday)) return false;
 		  if (subType != "1 month" && subType != "3 month" && subType != "6 month" && subType != "1 year")
 			   return false;
 		  Subscriptions userSub(subType, getCurrentDate_MM_DD_YYYY(), isVip);
-		  // userSub.getAvailableClasses();
-
-		  ID = "M" + to_string(++baseID);// replace with the generateID function
+		  ID = "M" + to_string(++baseID);
 		  name = Name;
 		  email = Email;
 		  password = Password;
@@ -509,16 +496,6 @@ struct Notification {
 			   standardMessage = "Dear " + usr.name + ",\nYou applied to join the class \" " + cls +
 					"\"\n and it's no longer possible to join this class this month.\nYou can explore the available classes as they start.\nYour payment has been refunded." + "\n\nHave a nice day :)";
 		  }
-
-		  /*
-		  You applied to join the class, but no one responded, and it's no longer possible to join this class this month. You can explore the available classes as they start. Your payment has been refunded.
-
-		  */
-
-
-
-
-
 		  return standardMessage;
 	 }
 	 Notification(User usr, string _ID, string _Date, string _hour, string cls, int type, bool _isRead) {
@@ -576,8 +553,6 @@ public:
 		  report << "================Monthly Report for ";
 		  if (currentMonth < 10) report << "0";
 		  report << currentMonth << "-" << selectedYear << " ================\n\n";
-
-		  // Most Active Members Section
 		  report << ">> Most Active Members (Top 10 Active Members):\n";
 		  report << "--------------------------------------------------------------------------\n";
 		  report << left << setw(30) << "Name"
@@ -599,12 +574,9 @@ public:
 			   }
 		  }
 
-		  // Sort active users by number of classes attended
 		  sort(activeUsers.begin(), activeUsers.end(), [](const User& user1, const User& user2) {
 			   return user1.myClasses.size() > user2.myClasses.size();
 			   });
-
-		  // Display top 10 most active members
 		  int numberOfMembers = min(10, static_cast<int>(activeUsers.size()));
 		  for (int i = 0; i < numberOfMembers; ++i) {
 			   string name = activeUsers[i].name;
@@ -617,9 +589,6 @@ public:
 					<< setw(18) << activeUsers[i].myClasses.size()
 					<< setw(8) << (activeUsers[i].subscription.get_is_VIP() ? "YES" : "NO") << "\n";
 		  }
-
-
-		  // Subscription Summary Section
 		  report << "--------------------------------------------------------------------------\n";
 		  report << ">> Subscription Summary by Type:\n";
 		  report << "--------------------------------------------------------------------------\n";
@@ -752,7 +721,6 @@ public:
 	 int maxMembers; // Maximum number of members allowed in the class
 	 bool reSchedule = false; // true if the class is rescheduled;
 	 list <string> members; // List of user IDs enrolled in the class
-	 // unordered_map<string, User> members; // List of users enrolled in the class	
 	 deque<string> waitingList; // List of userIDs on the waiting list
 	 vector<string>allowedSubTypes;
 	 vector<Session> sessions;
@@ -905,69 +873,7 @@ public:
 		  time_t endTime = mktime(&t);
 		  return getFormat(endTime);
 	 }
-	 string displayClassesForUserSubscription(const string& userSubType) {
-		  extern unordered_map<string, GymClasses> gymClassList;
-		  stringstream result;
-
-		  // Check if there are any classes for the subscription type
-		  bool hasClasses = false;
-		  for (const auto& pair : gymClassList) {
-			   const GymClasses& gymClass = pair.second;
-			   if (find(gymClass.allowedSubTypes.begin(), gymClass.allowedSubTypes.end(), userSubType) != gymClass.allowedSubTypes.end()) {
-					hasClasses = true;
-					break;
-			   }
-		  }
-
-		  if (hasClasses) {
-			   // Generate output for available classes
-			   result << "Classes Available for Subscription Type: " << userSubType << "\n";
-			   result << "================================================================================\n";
-			   result << left << setw(10) << "Class ID"
-					<< setw(20) << "Class Name"
-					<< setw(20) << "Instructor"
-					<< setw(15) << "Start Date"
-					<< setw(15) << "End Date"
-					<< setw(10) << "Price"
-					<< setw(15) << "Max Members" << "\n";
-			   result << "================================================================================\n";
-
-			   for (const auto& pair : gymClassList) {
-					const GymClasses& gymClass = pair.second;
-					if (find(gymClass.allowedSubTypes.begin(), gymClass.allowedSubTypes.end(), userSubType) != gymClass.allowedSubTypes.end()) {
-						 string className = gymClass.className;
-						 if (className.length() > 17) {
-							  className = className.substr(0, 14) + "...";
-						 }
-						 string instructor = gymClass.instructor;
-						 if (instructor.length() > 17) {
-							  instructor = instructor.substr(0, 14) + "...";
-						 }
-
-						 result << left << setw(10) << gymClass.classID
-							  << setw(20) << className
-							  << setw(20) << instructor
-							  << setw(15) << gymClass.startDate
-							  << setw(15) << gymClass.endDate
-							  << fixed << setprecision(2) << setw(10) << gymClass.price
-							  << setw(15) << gymClass.maxMembers << "\n";
-
-						 result << "Sessions:\n";
-						 for (const auto& session : gymClass.sessions) {
-							  result << "  Date: " << session.date << ", Time: " << session.startTime << " - " << session.endTime << "\n";
-						 }
-						 result << "--------------------------------------------------------------------------------\n";
-					}
-			   }
-			   result << "================================================================================\n";
-		  }
-		  else {
-
-			   return "No classes available for your subscription type: " + userSubType;
-		  }
-
-		  return result.str();
-	 }
+	
 };
 
 struct PadelCourt {
@@ -1125,7 +1031,5 @@ extern unordered_map<string, Staff> staffList;
 extern unordered_map<string, GymClasses> gymClassList;
 extern unordered_map<string, PadelCourt> courtList;
 extern WorkoutManger workoutManager;
-
-
 extern void writeCreditCardData();
 extern void writeUserData();

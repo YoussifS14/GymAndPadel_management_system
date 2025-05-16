@@ -628,6 +628,11 @@ namespace ProjectCode {
                std::string userIDStr = msclr::interop::marshal_as<std::string>(userID);
 
                if (userList.find(userIDStr) != userList.end()) {
+                   if (userList[userIDStr].subscription.isActive()) {
+                       MessageBox::Show("Cannot delete user with an active subscription. Please cancel the subscription first.",
+                           "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+                       return;
+                   }
                    userList.erase(userIDStr);
                    MessageBox::Show(String::Format("User {0} has been removed from the system.", userID), "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
                }
@@ -992,9 +997,7 @@ namespace ProjectCode {
                monthReportGridView->GridColor = System::Drawing::Color::FromArgb(255, 234, 0);
                monthReportGridView->DefaultCellStyle->Padding = System::Windows::Forms::Padding(5, 10, 5, 10);
                monthReportGridView->CellBorderStyle = DataGridViewCellBorderStyle::Single;
-               monthReportGridView->EnableHeadersVisualStyles = false;
-
-               bool hasClasses = false;
+               monthReportGridView->EnableHeadersVisualStyles = false; bool hasClasses = false;
 
                Label^ headerLabel = gcnew Label();
                headerLabel->AutoSize = true;
@@ -1054,6 +1057,10 @@ namespace ProjectCode {
             actionButton->Text = L"Delete";
             userIDTextBox->Text = "";
             label1->Text = "User ID";
+            userIDTextBox->Visible = true;
+            label1->Visible = true;
+            actionButton->Visible = true;
+            userInfoPanel->Visible = true;
         }
 
         System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1063,6 +1070,10 @@ namespace ProjectCode {
             actionButton->Text = L"Search";
             userIDTextBox->Text = "";
             label1->Text = "User ID";
+            userIDTextBox->Visible = true;
+            label1->Visible = true;
+            actionButton->Visible = true;
+            userInfoPanel->Visible = true;
         }
 
         System::Void actionButton_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1079,10 +1090,6 @@ namespace ProjectCode {
 
             if (actionButton->Text == L"Delete") {
                 deleteUser_and_cancelsubscription(userIDText);
-                userIDTextBox->Visible = false;
-                label1->Visible = false;
-                actionButton->Visible = false;
-                CreateCls->Visible = false;
                 userInfoPanel->Visible = false;
             }
             else if (actionButton->Text == L"Search") {
@@ -1143,8 +1150,8 @@ namespace ProjectCode {
             MainPg_pn->Controls->Clear();
             MainPg_pn->Controls->Add(Report_pn);
             Report_pn->BringToFront();
-            // Restore button5 to original monthly report handler
             button5->Click -= gcnew System::EventHandler(this, &managertPage::button5_SessionsPerMonth_Click);
+            button5->Click -= gcnew System::EventHandler(this, &managertPage::button5_Click_1);
             button5->Click += gcnew System::EventHandler(this, &managertPage::button5_Click_1);
         }
 
@@ -1186,19 +1193,16 @@ namespace ProjectCode {
             MainPg_pn->Controls->Add(Report_pn);
             Report_pn->BringToFront();
             MonthReport->Controls->Clear();
-            monthReportGridView->Visible = false; // Initially hide
-            comboBox1->Text = L"Choose a month";
+            monthReportGridView->Visible = false; \
+                comboBox1->Text = L"Choose a month";
             comboBox1->SelectedIndex = -1;
-
-            // Set button5 to trigger sessions per month handler
             button5->Click -= gcnew System::EventHandler(this, &managertPage::button5_Click_1);
             button5->Click += gcnew System::EventHandler(this, &managertPage::button5_SessionsPerMonth_Click);
         }
 
         System::Void button5_SessionsPerMonth_Click(System::Object^ sender, System::EventArgs^ e) {
             MonthReport->Controls->Clear();
-            monthReportGridView->Visible = false; // Ensure grid is hidden initially
-
+            monthReportGridView->Visible = false;
             if (this->comboBox1->SelectedIndex == -1) {
                 MessageBox::Show("Please select a month first.", "Missing Selection",
                     MessageBoxButtons::OK, MessageBoxIcon::Warning);
@@ -1247,6 +1251,10 @@ namespace ProjectCode {
         actionButton->Text = L"Generate";
         userIDTextBox->Text = "";
         label1->Text = "Your Code->";
+        userIDTextBox->Visible = true;
+        label1->Visible = true;
+        actionButton->Visible = true;
+        userInfoPanel->Visible = true;
     }
 
     private: System::Void Report_pn_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {}
@@ -1269,87 +1277,87 @@ namespace ProjectCode {
     }
     private: System::Void coachInfoLabel_Click(System::Object^ sender, System::EventArgs^ e) {
     }
-   private: System::Void button6_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-       Button^ btn = dynamic_cast<Button^>(sender);
-       btn->BackColor = Color::Black;
-       btn->ForeColor = Color::FromArgb(255, 234, 0);
-   }
+    private: System::Void button6_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::Black;
+        btn->ForeColor = Color::FromArgb(255, 234, 0);
+    }
 
-private: System::Void button6_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::FromArgb(255, 234, 0);
-    btn->ForeColor = Color::Black;
-}
+    private: System::Void button6_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::FromArgb(255, 234, 0);
+        btn->ForeColor = Color::Black;
+    }
 
-private: System::Void button2_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::Black;
-    btn->ForeColor = Color::FromArgb(255, 234, 0);
-}
-private: System::Void button2_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::FromArgb(255, 234, 0);
-    btn->ForeColor = Color::Black;
-}
-private: System::Void button3_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::Black;
-    btn->ForeColor = Color::FromArgb(255, 234, 0);
-}
-private: System::Void button3_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::FromArgb(255, 234, 0);
-    btn->ForeColor = Color::Black;
-}
-private: System::Void button4_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::Black;
-    btn->ForeColor = Color::FromArgb(255, 234, 0);
-}
-private: System::Void button4_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::FromArgb(255, 234, 0);
-    btn->ForeColor = Color::Black;
-}
-private: System::Void button1_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::Black;
-    btn->ForeColor = Color::FromArgb(255, 234, 0);
-}
-private: System::Void button1_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::FromArgb(255, 234, 0);
-    btn->ForeColor = Color::Black;
-}
-private: System::Void button7_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::Black;
-    btn->ForeColor = Color::FromArgb(255, 234, 0);;
-}
-private: System::Void button7_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::FromArgb(255, 234, 0);
-    btn->ForeColor = Color::Black;
-}
-private: System::Void sessionsPerMonth_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::Black;
-    btn->ForeColor = Color::FromArgb(255, 234, 0);
-}
-private: System::Void sessionsPerMonth_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::FromArgb(255, 234, 0);
-    btn->ForeColor = Color::Black;
-}
-private: System::Void LogOutbutton_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::Black;
-    btn->ForeColor = Color::FromArgb(255, 234, 0);
-}
-private: System::Void LogOutbutton_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    Button^ btn = dynamic_cast<Button^>(sender);
-    btn->BackColor = Color::FromArgb(255, 234, 0);
-    btn->ForeColor = Color::Black;
-}
-};
+    private: System::Void button2_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::Black;
+        btn->ForeColor = Color::FromArgb(255, 234, 0);
+    }
+    private: System::Void button2_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::FromArgb(255, 234, 0);
+        btn->ForeColor = Color::Black;
+    }
+    private: System::Void button3_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::Black;
+        btn->ForeColor = Color::FromArgb(255, 234, 0);
+    }
+    private: System::Void button3_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::FromArgb(255, 234, 0);
+        btn->ForeColor = Color::Black;
+    }
+    private: System::Void button4_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::Black;
+        btn->ForeColor = Color::FromArgb(255, 234, 0);
+    }
+    private: System::Void button4_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::FromArgb(255, 234, 0);
+        btn->ForeColor = Color::Black;
+    }
+    private: System::Void button1_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::Black;
+        btn->ForeColor = Color::FromArgb(255, 234, 0);
+    }
+    private: System::Void button1_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::FromArgb(255, 234, 0);
+        btn->ForeColor = Color::Black;
+    }
+    private: System::Void button7_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::Black;
+        btn->ForeColor = Color::FromArgb(255, 234, 0);;
+    }
+    private: System::Void button7_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::FromArgb(255, 234, 0);
+        btn->ForeColor = Color::Black;
+    }
+    private: System::Void sessionsPerMonth_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::Black;
+        btn->ForeColor = Color::FromArgb(255, 234, 0);
+    }
+    private: System::Void sessionsPerMonth_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::FromArgb(255, 234, 0);
+        btn->ForeColor = Color::Black;
+    }
+    private: System::Void LogOutbutton_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::Black;
+        btn->ForeColor = Color::FromArgb(255, 234, 0);
+    }
+    private: System::Void LogOutbutton_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+        Button^ btn = dynamic_cast<Button^>(sender);
+        btn->BackColor = Color::FromArgb(255, 234, 0);
+        btn->ForeColor = Color::Black;
+    }
+    };
 }
