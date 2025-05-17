@@ -543,7 +543,6 @@ public:
 
 	 string generateMonthlyReport(const string& selectedMonth, int selectedYear) {
 		  extern unordered_map<string, User> userList;
-
 		  vector<User> activeUsers;
 		  double totalRevenue = 0.0;
 		  map<string, pair<int, double>> subscriptionState;
@@ -561,19 +560,18 @@ public:
 			   << setw(10) << "VIP" << "\n";
 		  report << "--------------------------------------------------------------------------\n";
 
-		  for (auto& entry : userList) {
-			   User& user = entry.second;
-			   if (user.subscription.isActive(currentMonth, selectedYear)) {
-					activeUsers.push_back(user);
-					string type = user.subscription.getType();
-					double price = user.subscription.getPrice();
+		  for (auto it = userList.begin(); it != userList.end(); ++it) {
+			  User& user = it->second;
+			  if (user.subscription.isActive(currentMonth, selectedYear)) {
+				  activeUsers.push_back(user);
+				  string type = user.subscription.getType();
+				  double price = user.subscription.getPrice();
 
-					subscriptionState[type].first += 1;
-					subscriptionState[type].second += price;
-					totalRevenue += price;
-			   }
+				  subscriptionState[type].first += 1;
+				  subscriptionState[type].second += price;
+				  totalRevenue += price;
+			  }
 		  }
-
 		  sort(activeUsers.begin(), activeUsers.end(), [](const User& user1, const User& user2) {
 			   return user1.myClasses.size() > user2.myClasses.size();
 			   });
