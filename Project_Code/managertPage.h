@@ -658,11 +658,10 @@ namespace ProjectCode {
 
                std::string userID = msclr::interop::marshal_as<std::string>(trimmedID);
                User foundUser;
-               for (const auto& pair : userList) {
-                   if (pair.first == userID) {
-                       foundUser = pair.second;
-                       break;
-                   }
+               auto it = userList.find(userID);
+               if (it != userList.end()) {
+                   foundUser = it->second;
+                  
                }
 
                if (foundUser.ID != "") {
