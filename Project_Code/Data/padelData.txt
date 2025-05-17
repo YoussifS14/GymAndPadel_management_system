@@ -18,6 +18,7 @@ court-5,PadelArena-New Cairo,new cairo,220
 court-6,ElitePadel-Tagamoa,tagamoa,240
 slot-court6-1,04/23/2025,12:00
 slot-24,05/02/2025,04:00
+slot-25,05/20/2025,17:00
 
 court-7,PadelPro-Rehab,rehab city,260
 slot-court7-1,04/24/2025,08:00

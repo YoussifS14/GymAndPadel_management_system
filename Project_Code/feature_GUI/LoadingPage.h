@@ -132,8 +132,14 @@ namespace ProjectCode {
 		  }
 	 }
 	 private: System::Void LoadingPage_Load(System::Object^ sender, System::EventArgs^ e) {
-		  loadingPic->Image = Image::FromFile("assets/loadingPic.png");
-		  this->Icon = gcnew System::Drawing::Icon("assets/program Icon.ico");
+		  try {
+			   loadingPic->Image = Image::FromFile("assets/loadingPic.png");
+			   this->Icon = gcnew System::Drawing::Icon("assets/program Icon.ico");
+
+		  }
+		  catch (exception e) {
+			   MessageBox::Show("failed to load pic", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		  }
 	 }
 	 };
 }

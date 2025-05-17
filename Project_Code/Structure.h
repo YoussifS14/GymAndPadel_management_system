@@ -166,7 +166,7 @@ public:
 			   lastDay.tm_mon = 0;
 			   lastDay.tm_year += 1;
 		  }
-		  time_t lastDayTime = mktime(&lastDay) - 1; 
+		  time_t lastDayTime = mktime(&lastDay) - 1;
 		  time_t startTime = getTime_t(start_date);
 		  time_t endTime = getTime_t(end_date);
 		  return (startTime <= lastDayTime && endTime >= firstDayTime);
@@ -561,16 +561,16 @@ public:
 		  report << "--------------------------------------------------------------------------\n";
 
 		  for (auto it = userList.begin(); it != userList.end(); ++it) {
-			  User& user = it->second;
-			  if (user.subscription.isActive(currentMonth, selectedYear)) {
-				  activeUsers.push_back(user);
-				  string type = user.subscription.getType();
-				  double price = user.subscription.getPrice();
+			   User& user = it->second;
+			   if (user.subscription.isActive(currentMonth, selectedYear)) {
+					activeUsers.push_back(user);
+					string type = user.subscription.getType();
+					double price = user.subscription.getPrice();
 
-				  subscriptionState[type].first += 1;
-				  subscriptionState[type].second += price;
-				  totalRevenue += price;
-			  }
+					subscriptionState[type].first += 1;
+					subscriptionState[type].second += price;
+					totalRevenue += price;
+			   }
 		  }
 		  sort(activeUsers.begin(), activeUsers.end(), [](const User& user1, const User& user2) {
 			   return user1.myClasses.size() > user2.myClasses.size();
@@ -755,7 +755,7 @@ public:
 	 }
 
 	 bool isFull() {
-		  return members.size() == maxMembers;
+		  return members.size() >= maxMembers;
 	 }
 	 static string  FindIndex(const string& classID) {
 		  extern unordered_map<string, GymClasses> gymClassList;
@@ -871,7 +871,7 @@ public:
 		  time_t endTime = mktime(&t);
 		  return getFormat(endTime);
 	 }
-	
+
 };
 
 struct PadelCourt {

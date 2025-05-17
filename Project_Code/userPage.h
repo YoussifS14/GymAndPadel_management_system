@@ -5,7 +5,9 @@
 #include "feature_GUI/GymPN.h"
 #include"useraccount.h"
 #include "MSGsShow.h"
-namespace ProjectCode {
+namespace ProjectCode
+
+{
 
 	 using namespace System;
 	 using namespace System::IO;
@@ -215,6 +217,15 @@ namespace ProjectCode {
 			   this->AccName = (gcnew System::Windows::Forms::Label());
 			   this->AccPic = (gcnew System::Windows::Forms::PictureBox());
 			   this->MainPage = (gcnew System::Windows::Forms::Panel());
+			   this->RenewPG = (gcnew System::Windows::Forms::Panel());
+			   this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			   this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			   this->button4 = (gcnew System::Windows::Forms::Button());
+			   this->SixMradioButton = (gcnew System::Windows::Forms::RadioButton());
+			   this->ChooseSublabel = (gcnew System::Windows::Forms::Label());
+			   this->OneYradioButton = (gcnew System::Windows::Forms::RadioButton());
+			   this->OneMradioButton = (gcnew System::Windows::Forms::RadioButton());
+			   this->ThreeMradioButton = (gcnew System::Windows::Forms::RadioButton());
 			   this->panelWorkoutContent = (gcnew System::Windows::Forms::Panel());
 			   this->comboFilterType = (gcnew System::Windows::Forms::ComboBox());
 			   this->btnHideWorkout = (gcnew System::Windows::Forms::Button());
@@ -244,15 +255,6 @@ namespace ProjectCode {
 			   this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			   this->searchOFcourts = (gcnew System::Windows::Forms::Button());
 			   this->listOfCourts = (gcnew System::Windows::Forms::FlowLayoutPanel());
-			   this->RenewPG = (gcnew System::Windows::Forms::Panel());
-			   this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
-			   this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
-			   this->button4 = (gcnew System::Windows::Forms::Button());
-			   this->SixMradioButton = (gcnew System::Windows::Forms::RadioButton());
-			   this->ChooseSublabel = (gcnew System::Windows::Forms::Label());
-			   this->OneYradioButton = (gcnew System::Windows::Forms::RadioButton());
-			   this->OneMradioButton = (gcnew System::Windows::Forms::RadioButton());
-			   this->ThreeMradioButton = (gcnew System::Windows::Forms::RadioButton());
 			   this->CancelPadel_pg = (gcnew System::Windows::Forms::Panel());
 			   this->label3 = (gcnew System::Windows::Forms::Label());
 			   this->ListOfMyRes = (gcnew System::Windows::Forms::FlowLayoutPanel());
@@ -262,10 +264,10 @@ namespace ProjectCode {
 			   this->profile_pn->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->BeginInit();
 			   this->MainPage->SuspendLayout();
+			   this->RenewPG->SuspendLayout();
 			   this->panelWorkoutContent->SuspendLayout();
 			   this->GymClass_pg->SuspendLayout();
 			   this->PadelPage->SuspendLayout();
-			   this->RenewPG->SuspendLayout();
 			   this->CancelPadel_pg->SuspendLayout();
 			   this->SuspendLayout();
 			   // 
@@ -478,10 +480,10 @@ namespace ProjectCode {
 			   // MainPage
 			   // 
 			   this->MainPage->BackColor = System::Drawing::Color::Black;
+			   this->MainPage->Controls->Add(this->PadelPage);
 			   this->MainPage->Controls->Add(this->RenewPG);
 			   this->MainPage->Controls->Add(this->panelWorkoutContent);
 			   this->MainPage->Controls->Add(this->GymClass_pg);
-			   this->MainPage->Controls->Add(this->PadelPage);
 			   this->MainPage->Controls->Add(this->CancelPadel_pg);
 			   this->MainPage->Dock = System::Windows::Forms::DockStyle::Left;
 			   this->MainPage->Location = System::Drawing::Point(313, 0);
@@ -489,6 +491,135 @@ namespace ProjectCode {
 			   this->MainPage->Name = L"MainPage";
 			   this->MainPage->Size = System::Drawing::Size(957, 738);
 			   this->MainPage->TabIndex = 1;
+			   // 
+			   // RenewPG
+			   // 
+			   this->RenewPG->BackColor = System::Drawing::Color::Black;
+			   this->RenewPG->Controls->Add(this->richTextBox1);
+			   this->RenewPG->Controls->Add(this->checkBox1);
+			   this->RenewPG->Controls->Add(this->button4);
+			   this->RenewPG->Controls->Add(this->SixMradioButton);
+			   this->RenewPG->Controls->Add(this->ChooseSublabel);
+			   this->RenewPG->Controls->Add(this->OneYradioButton);
+			   this->RenewPG->Controls->Add(this->OneMradioButton);
+			   this->RenewPG->Controls->Add(this->ThreeMradioButton);
+			   this->RenewPG->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->RenewPG->Location = System::Drawing::Point(0, 0);
+			   this->RenewPG->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->RenewPG->Name = L"RenewPG";
+			   this->RenewPG->Size = System::Drawing::Size(957, 738);
+			   this->RenewPG->TabIndex = 2;
+			   // 
+			   // richTextBox1
+			   // 
+			   this->richTextBox1->BackColor = System::Drawing::Color::Black;
+			   this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
+			   this->richTextBox1->ForeColor = System::Drawing::Color::White;
+			   this->richTextBox1->Location = System::Drawing::Point(88, 262);
+			   this->richTextBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->richTextBox1->Name = L"richTextBox1";
+			   this->richTextBox1->ReadOnly = true;
+			   this->richTextBox1->Size = System::Drawing::Size(768, 159);
+			   this->richTextBox1->TabIndex = 14;
+			   this->richTextBox1->Text = L"";
+			   // 
+			   // checkBox1
+			   // 
+			   this->checkBox1->AutoSize = true;
+			   this->checkBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Underline))));
+			   this->checkBox1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
+					static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			   this->checkBox1->Location = System::Drawing::Point(431, 231);
+			   this->checkBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->checkBox1->Name = L"checkBox1";
+			   this->checkBox1->Size = System::Drawing::Size(60, 24);
+			   this->checkBox1->TabIndex = 13;
+			   this->checkBox1->Text = L"VIP";
+			   this->checkBox1->UseVisualStyleBackColor = true;
+			   // 
+			   // button4
+			   // 
+			   this->button4->Font = (gcnew System::Drawing::Font(L"Monotype Corsiva", 25.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+			   this->button4->Location = System::Drawing::Point(355, 571);
+			   this->button4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->button4->Name = L"button4";
+			   this->button4->Size = System::Drawing::Size(211, 62);
+			   this->button4->TabIndex = 0;
+			   this->button4->Text = L"Pay";
+			   this->button4->UseVisualStyleBackColor = true;
+			   this->button4->Click += gcnew System::EventHandler(this, &userPage::button4_Click);
+			   // 
+			   // SixMradioButton
+			   // 
+			   this->SixMradioButton->AutoSize = true;
+			   this->SixMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			   this->SixMradioButton->ForeColor = System::Drawing::Color::White;
+			   this->SixMradioButton->Location = System::Drawing::Point(493, 177);
+			   this->SixMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->SixMradioButton->Name = L"SixMradioButton";
+			   this->SixMradioButton->Size = System::Drawing::Size(104, 29);
+			   this->SixMradioButton->TabIndex = 12;
+			   this->SixMradioButton->TabStop = true;
+			   this->SixMradioButton->Text = L"6 Month";
+			   this->SixMradioButton->UseVisualStyleBackColor = true;
+			   this->SixMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::SixMradioButton_CheckedChanged);
+			   // 
+			   // ChooseSublabel
+			   // 
+			   this->ChooseSublabel->AutoSize = true;
+			   this->ChooseSublabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
+			   this->ChooseSublabel->ForeColor = System::Drawing::Color::White;
+			   this->ChooseSublabel->Location = System::Drawing::Point(349, 84);
+			   this->ChooseSublabel->Name = L"ChooseSublabel";
+			   this->ChooseSublabel->Size = System::Drawing::Size(280, 29);
+			   this->ChooseSublabel->TabIndex = 0;
+			   this->ChooseSublabel->Text = L"choose your subscription";
+			   // 
+			   // OneYradioButton
+			   // 
+			   this->OneYradioButton->AutoSize = true;
+			   this->OneYradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			   this->OneYradioButton->ForeColor = System::Drawing::Color::White;
+			   this->OneYradioButton->Location = System::Drawing::Point(687, 177);
+			   this->OneYradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->OneYradioButton->Name = L"OneYradioButton";
+			   this->OneYradioButton->Size = System::Drawing::Size(90, 29);
+			   this->OneYradioButton->TabIndex = 11;
+			   this->OneYradioButton->TabStop = true;
+			   this->OneYradioButton->Text = L"1 Year";
+			   this->OneYradioButton->UseVisualStyleBackColor = true;
+			   this->OneYradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::OneYradioButton_CheckedChanged);
+			   // 
+			   // OneMradioButton
+			   // 
+			   this->OneMradioButton->AutoSize = true;
+			   this->OneMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			   this->OneMradioButton->ForeColor = System::Drawing::Color::White;
+			   this->OneMradioButton->Location = System::Drawing::Point(129, 177);
+			   this->OneMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->OneMradioButton->Name = L"OneMradioButton";
+			   this->OneMradioButton->Size = System::Drawing::Size(104, 29);
+			   this->OneMradioButton->TabIndex = 9;
+			   this->OneMradioButton->TabStop = true;
+			   this->OneMradioButton->Text = L"1 Month";
+			   this->OneMradioButton->UseVisualStyleBackColor = true;
+			   this->OneMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::OneMradioButton_CheckedChanged);
+			   // 
+			   // ThreeMradioButton
+			   // 
+			   this->ThreeMradioButton->AutoSize = true;
+			   this->ThreeMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			   this->ThreeMradioButton->ForeColor = System::Drawing::Color::White;
+			   this->ThreeMradioButton->Location = System::Drawing::Point(307, 177);
+			   this->ThreeMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			   this->ThreeMradioButton->Name = L"ThreeMradioButton";
+			   this->ThreeMradioButton->Size = System::Drawing::Size(104, 29);
+			   this->ThreeMradioButton->TabIndex = 10;
+			   this->ThreeMradioButton->TabStop = true;
+			   this->ThreeMradioButton->Text = L"3 Month";
+			   this->ThreeMradioButton->UseVisualStyleBackColor = true;
+			   this->ThreeMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::ThreeMradioButton_CheckedChanged);
 			   // 
 			   // panelWorkoutContent
 			   // 
@@ -851,135 +982,6 @@ namespace ProjectCode {
 			   this->listOfCourts->Size = System::Drawing::Size(957, 665);
 			   this->listOfCourts->TabIndex = 0;
 			   // 
-			   // RenewPG
-			   // 
-			   this->RenewPG->BackColor = System::Drawing::Color::Black;
-			   this->RenewPG->Controls->Add(this->richTextBox1);
-			   this->RenewPG->Controls->Add(this->checkBox1);
-			   this->RenewPG->Controls->Add(this->button4);
-			   this->RenewPG->Controls->Add(this->SixMradioButton);
-			   this->RenewPG->Controls->Add(this->ChooseSublabel);
-			   this->RenewPG->Controls->Add(this->OneYradioButton);
-			   this->RenewPG->Controls->Add(this->OneMradioButton);
-			   this->RenewPG->Controls->Add(this->ThreeMradioButton);
-			   this->RenewPG->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->RenewPG->Location = System::Drawing::Point(0, 0);
-			   this->RenewPG->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			   this->RenewPG->Name = L"RenewPG";
-			   this->RenewPG->Size = System::Drawing::Size(957, 738);
-			   this->RenewPG->TabIndex = 2;
-			   // 
-			   // richTextBox1
-			   // 
-			   this->richTextBox1->BackColor = System::Drawing::Color::Black;
-			   this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
-			   this->richTextBox1->ForeColor = System::Drawing::Color::White;
-			   this->richTextBox1->Location = System::Drawing::Point(88, 262);
-			   this->richTextBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			   this->richTextBox1->Name = L"richTextBox1";
-			   this->richTextBox1->ReadOnly = true;
-			   this->richTextBox1->Size = System::Drawing::Size(768, 159);
-			   this->richTextBox1->TabIndex = 14;
-			   this->richTextBox1->Text = L"";
-			   // 
-			   // checkBox1
-			   // 
-			   this->checkBox1->AutoSize = true;
-			   this->checkBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Underline))));
-			   this->checkBox1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(234)),
-					static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			   this->checkBox1->Location = System::Drawing::Point(431, 231);
-			   this->checkBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			   this->checkBox1->Name = L"checkBox1";
-			   this->checkBox1->Size = System::Drawing::Size(60, 24);
-			   this->checkBox1->TabIndex = 13;
-			   this->checkBox1->Text = L"VIP";
-			   this->checkBox1->UseVisualStyleBackColor = true;
-			   // 
-			   // button4
-			   // 
-			   this->button4->Font = (gcnew System::Drawing::Font(L"Monotype Corsiva", 25.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(0)));
-			   this->button4->Location = System::Drawing::Point(355, 571);
-			   this->button4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			   this->button4->Name = L"button4";
-			   this->button4->Size = System::Drawing::Size(211, 62);
-			   this->button4->TabIndex = 0;
-			   this->button4->Text = L"Pay";
-			   this->button4->UseVisualStyleBackColor = true;
-			   this->button4->Click += gcnew System::EventHandler(this, &userPage::button4_Click);
-			   // 
-			   // SixMradioButton
-			   // 
-			   this->SixMradioButton->AutoSize = true;
-			   this->SixMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			   this->SixMradioButton->ForeColor = System::Drawing::Color::White;
-			   this->SixMradioButton->Location = System::Drawing::Point(493, 177);
-			   this->SixMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			   this->SixMradioButton->Name = L"SixMradioButton";
-			   this->SixMradioButton->Size = System::Drawing::Size(104, 29);
-			   this->SixMradioButton->TabIndex = 12;
-			   this->SixMradioButton->TabStop = true;
-			   this->SixMradioButton->Text = L"6 Month";
-			   this->SixMradioButton->UseVisualStyleBackColor = true;
-			   this->SixMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::SixMradioButton_CheckedChanged);
-			   // 
-			   // ChooseSublabel
-			   // 
-			   this->ChooseSublabel->AutoSize = true;
-			   this->ChooseSublabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Italic));
-			   this->ChooseSublabel->ForeColor = System::Drawing::Color::White;
-			   this->ChooseSublabel->Location = System::Drawing::Point(349, 84);
-			   this->ChooseSublabel->Name = L"ChooseSublabel";
-			   this->ChooseSublabel->Size = System::Drawing::Size(280, 29);
-			   this->ChooseSublabel->TabIndex = 0;
-			   this->ChooseSublabel->Text = L"choose your subscription";
-			   // 
-			   // OneYradioButton
-			   // 
-			   this->OneYradioButton->AutoSize = true;
-			   this->OneYradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			   this->OneYradioButton->ForeColor = System::Drawing::Color::White;
-			   this->OneYradioButton->Location = System::Drawing::Point(687, 177);
-			   this->OneYradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			   this->OneYradioButton->Name = L"OneYradioButton";
-			   this->OneYradioButton->Size = System::Drawing::Size(90, 29);
-			   this->OneYradioButton->TabIndex = 11;
-			   this->OneYradioButton->TabStop = true;
-			   this->OneYradioButton->Text = L"1 Year";
-			   this->OneYradioButton->UseVisualStyleBackColor = true;
-			   this->OneYradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::OneYradioButton_CheckedChanged);
-			   // 
-			   // OneMradioButton
-			   // 
-			   this->OneMradioButton->AutoSize = true;
-			   this->OneMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			   this->OneMradioButton->ForeColor = System::Drawing::Color::White;
-			   this->OneMradioButton->Location = System::Drawing::Point(129, 177);
-			   this->OneMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			   this->OneMradioButton->Name = L"OneMradioButton";
-			   this->OneMradioButton->Size = System::Drawing::Size(104, 29);
-			   this->OneMradioButton->TabIndex = 9;
-			   this->OneMradioButton->TabStop = true;
-			   this->OneMradioButton->Text = L"1 Month";
-			   this->OneMradioButton->UseVisualStyleBackColor = true;
-			   this->OneMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::OneMradioButton_CheckedChanged);
-			   // 
-			   // ThreeMradioButton
-			   // 
-			   this->ThreeMradioButton->AutoSize = true;
-			   this->ThreeMradioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			   this->ThreeMradioButton->ForeColor = System::Drawing::Color::White;
-			   this->ThreeMradioButton->Location = System::Drawing::Point(307, 177);
-			   this->ThreeMradioButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			   this->ThreeMradioButton->Name = L"ThreeMradioButton";
-			   this->ThreeMradioButton->Size = System::Drawing::Size(104, 29);
-			   this->ThreeMradioButton->TabIndex = 10;
-			   this->ThreeMradioButton->TabStop = true;
-			   this->ThreeMradioButton->Text = L"3 Month";
-			   this->ThreeMradioButton->UseVisualStyleBackColor = true;
-			   this->ThreeMradioButton->CheckedChanged += gcnew System::EventHandler(this, &userPage::ThreeMradioButton_CheckedChanged);
-			   // 
 			   // CancelPadel_pg
 			   // 
 			   this->CancelPadel_pg->Controls->Add(this->label3);
@@ -1035,13 +1037,13 @@ namespace ProjectCode {
 			   this->profile_pn->PerformLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AccPic))->EndInit();
 			   this->MainPage->ResumeLayout(false);
+			   this->RenewPG->ResumeLayout(false);
+			   this->RenewPG->PerformLayout();
 			   this->panelWorkoutContent->ResumeLayout(false);
 			   this->panelWorkoutContent->PerformLayout();
 			   this->GymClass_pg->ResumeLayout(false);
 			   this->PadelPage->ResumeLayout(false);
 			   this->PadelPage->PerformLayout();
-			   this->RenewPG->ResumeLayout(false);
-			   this->RenewPG->PerformLayout();
 			   this->CancelPadel_pg->ResumeLayout(false);
 			   this->CancelPadel_pg->PerformLayout();
 			   this->ResumeLayout(false);
