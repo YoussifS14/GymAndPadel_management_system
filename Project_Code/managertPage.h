@@ -749,12 +749,12 @@ namespace ProjectCode {
                        infoPanel->Controls->Add(noClassesLabel);
                    }
                    else {
-                       for (const auto& classID : foundUser.myClasses) {
+                       for (auto it = foundUser.myClasses.begin(); it != foundUser.myClasses.end(); ++it) {
                            Label^ classLabel = gcnew Label();
                            classLabel->AutoSize = true;
                            classLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
                            classLabel->ForeColor = System::Drawing::Color::FromArgb(255, 234, 0);
-                           classLabel->Text = L"  - " + gcnew String(classID.c_str());
+                           classLabel->Text = L"  - " + gcnew String(it->c_str());
                            infoPanel->Controls->Add(classLabel);
                        }
                    }
@@ -776,12 +776,12 @@ namespace ProjectCode {
                        infoPanel->Controls->Add(noWaitingLabel);
                    }
                    else {
-                       for (const auto& classID : foundUser.myWaitingList) {
+                       for (auto it = foundUser.myWaitingList.begin(); it != foundUser.myWaitingList.end(); ++it) {
                            Label^ waitingLabel = gcnew Label();
                            waitingLabel->AutoSize = true;
                            waitingLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
                            waitingLabel->ForeColor = System::Drawing::Color::FromArgb(255, 234, 0);
-                           waitingLabel->Text = L"  - " + gcnew String(classID.c_str());
+                           waitingLabel->Text = L"  - " + gcnew String(it->c_str());
                            infoPanel->Controls->Add(waitingLabel);
                        }
                    }
@@ -879,13 +879,10 @@ namespace ProjectCode {
 
                Staff foundCoach;
                bool coachFound = false;
-               for (const auto& pair : staffList) {
-                   if (pair.first == coachID &&
-                       _stricmp(pair.second.role.c_str(), "coach") == 0) {
-                       foundCoach = pair.second;
-                       coachFound = true;
-                       break;
-                   }
+               auto it = staffList.find(coachID);
+               if (it != staffList.end() && _stricmp(it->second.role.c_str(), "coach") == 0) {
+                   foundCoach = it->second;
+                   coachFound = true;
                }
 
                if (!coachFound) {
@@ -926,19 +923,18 @@ namespace ProjectCode {
                gridView->DefaultCellStyle->Padding = System::Windows::Forms::Padding(5, 10, 5, 10);
                gridView->CellBorderStyle = DataGridViewCellBorderStyle::Single;
                gridView->EnableHeadersVisualStyles = false;
-
                bool hasClasses = false;
-               for (const auto& pair : gymClassList) {
-                   const GymClasses& gymClass = pair.second;
+               for (auto it = gymClassList.begin(); it != gymClassList.end(); ++it) {
+                   const GymClasses& gymClass = it->second;
                    if (gymClass.instructorID == coachID) {
                        hasClasses = true;
-                       for (const auto& session : gymClass.sessions) {
+                       for (auto sessionIt = gymClass.sessions.begin(); sessionIt != gymClass.sessions.end(); ++sessionIt) {
                            gridView->Rows->Add(
                                gcnew String(gymClass.classID.c_str()),
                                gcnew String(gymClass.className.c_str()),
-                               gcnew String(session.date.c_str()),
-                               gcnew String(session.startTime.c_str()),
-                               gcnew String(session.endTime.c_str())
+                               gcnew String(sessionIt->date.c_str()),
+                               gcnew String(sessionIt->startTime.c_str()),
+                               gcnew String(sessionIt->endTime.c_str())
                            );
                        }
                    }
