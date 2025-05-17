@@ -162,6 +162,7 @@ namespace ProjectCode {
                this->searchCoach->Name = L"searchCoach";
                this->searchCoach->Size = System::Drawing::Size(977, 738);
                this->searchCoach->TabIndex = 14;
+               this->searchCoach->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &managertPage::searchCoach_Paint);
                this->searchCoach->Leave += gcnew System::EventHandler(this, &managertPage::searchCoach_Leave);
                // 
                // coachInfoLabel
@@ -705,7 +706,7 @@ namespace ProjectCode {
                    classesEnteredLabel->AutoSize = true;
                    classesEnteredLabel->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Regular);
                    classesEnteredLabel->ForeColor = System::Drawing::Color::White;
-                   classesEnteredLabel->Text = L"Classes Entered: " + foundUser.classEntered.ToString();
+                   classesEnteredLabel->Text = L"Classes Entered: " + foundUser.myClasses.size().ToString();
                    infoPanel->Controls->Add(classesEnteredLabel);
 
                    // Wallet
@@ -889,14 +890,8 @@ namespace ProjectCode {
                }
 
                if (!coachFound) {
-                   bool idExists = staffList.find(coachID) != staffList.end();
+
                    String^ errorMsg = "Coach with ID " + trimmedID + " not found or not a coach.\n";
-                   if (idExists) {
-                       errorMsg += "ID exists but role is '" + gcnew String(staffList[coachID].role.c_str()) + "'. Expected 'Coach'.";
-                   }
-                   else {
-                       errorMsg += "ID not found in staff list.";
-                   }
                    errorMsg += "\nPlease verify the ID and role.";
                    MessageBox::Show(errorMsg, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
                    return;
@@ -1359,5 +1354,7 @@ namespace ProjectCode {
         btn->BackColor = Color::FromArgb(255, 234, 0);
         btn->ForeColor = Color::Black;
     }
-    };
+    private: System::Void searchCoach_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+    }
+};
 }
